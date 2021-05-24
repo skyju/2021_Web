@@ -1,4 +1,4 @@
-package MyProject;
+package ch01;
 
 public class Member {
 	

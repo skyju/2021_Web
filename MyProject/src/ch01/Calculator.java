@@ -1,4 +1,4 @@
-package MyProject;
+package ch01;
 
 public class Calculator {
 	// 메소드 -> 기능( 재료 > 처리 > 반환)
