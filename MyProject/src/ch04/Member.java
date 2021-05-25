@@ -39,10 +39,8 @@ public class Member {
 	
 	void checkUp() {
 		age = (thisYear - this.birthYear) + 1;
-		System.out.println("나이:"+age+"세");
 		if(age>=20) {
-			if((birthYear%2==0 && thisYear%2==0) || 
-				(birthYear%2!=0 && thisYear%2!=0)) {
+			if(birthYear%2 == thisYear%2) {
 				System.out.println("올해 건강 검진 대상자입니다.");
 				if(age>=40) {
 					System.out.println("40세 이상이므로 무료 암검진 대상입니다.");
