@@ -59,7 +59,7 @@ public class Calculator {
 		try {
 		Calculator cal = new Calculator();
 		
-		System.out.println("연산 할 두 값을 입력해주세요.\n첫 번째 숫자를 입력해주세요.");
+		System.out.println("사칙연산을 시작합니다.\n첫 번째 숫자를 입력해주세요.");
 		int num1 = Integer.parseInt(inputValue());
 		System.out.println("두 번째 숫자를 입력해주세요.");
 		int num2 = Integer.parseInt(inputValue());
