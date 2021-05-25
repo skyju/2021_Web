@@ -22,34 +22,28 @@ public class Calculator {
 		return input;
 	}
 	
-	static int add(int x, int y) {
-		int z = x+y;
-		return z;
+	static long add(int x, int y) {
+		return x+y;
 	}
 	
 	static int substract(int x, int y) {
-		int z = x-y;
-		return z;
+		return x-y;
 	}
 	
 	static int multiply(int x, int y) {
-		int z = x*y;
-		return z;
+		return x*y;
 	}
 	
 	static double divide(int x, int y) {
-		double z = x/y;
-		return z;
+		return x/y;
 	}
 	
 	static double circumference(double x) {
-		double y = 2*x*3.141;
-		return y;
+		return  2*x*3.141;
 	}
 	
 	static double areaOfCircle(double x) {
-		double y = 3.141*x*x;
-		return y;
+		return 3.141*x*x;
 	}
 	
 	public static void main(String[] args) {
@@ -58,7 +52,7 @@ public class Calculator {
 		System.out.println("연산할 두 값을 입력해주세요.");
 		int a = Integer.parseInt(inputValue());
 		int b = Integer.parseInt(inputValue());
-		int c1 = add(a,b);
+		long c1 = add(a,b);
 		int c2 = substract(a,b);
 		int c3 = multiply(a,b);
 		double c4 = divide(a,b);
