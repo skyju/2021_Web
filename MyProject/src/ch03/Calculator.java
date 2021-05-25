@@ -59,10 +59,10 @@ public class Calculator {
 		int c2 = substract(a,b);
 		int c3 = multiply(a,b);
 		double c4 = divide(a,b);
-		System.out.println("두 값을 더한 값은 "+c1+"입니다.\n");
-		System.out.println("두 값을 뺀 값은 "+c2+"입니다.\n");
-		System.out.println("두 값을 곱한 값은 "+c3+"입니다.\n");
-		System.out.println("두 값을 나눈 값은 "+c4+"입니다.\n");
+		System.out.println("두 값을 더한 값은 "+c1+"입니다.");
+		System.out.println("두 값을 뺀 값은 "+c2+"입니다.");
+		System.out.println("두 값을 곱한 값은 "+c3+"입니다.");
+		System.out.println("두 값을 나눈 값은 "+c4+"입니다.");
 		
 		System.out.println("원의 반지름을 입력해주세요.");
 		double a5 = Double.parseDouble(inputValue());
