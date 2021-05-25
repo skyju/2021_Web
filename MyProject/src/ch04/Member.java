@@ -26,8 +26,12 @@ public class Member {
 		this.birthYear = birthYear;
 	}
 	
-	void nochargeVaccin() {
+	void aging() {
 		age = (thisYear - birthYear) + 1;
+	}
+	
+	void nochargeVaccin() {
+		aging();
 		if(age<15 || age>=65) {
 			System.out.println("무료 예방 접종이 가능합니다.");
 		} else {
@@ -37,7 +41,7 @@ public class Member {
 	}
 	
 	void checkUp() {
-		age = (thisYear - birthYear) + 1;
+		aging();
 		if(age>=20) {
 			if(birthYear%2 == thisYear%2) {
 				System.out.println("올해 건강 검진 대상자입니다.");
