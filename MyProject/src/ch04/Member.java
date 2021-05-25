@@ -17,8 +17,7 @@ import java.util.*;
 public class Member {
 	
 	int birthYear;
-	Calendar today = Calendar.getInstance();
-	int thisYear = today.get(Calendar.YEAR);
+	int thisYear = Calendar.getInstance().get(Calendar.YEAR);
 	int age;
 	
 	Member() {
