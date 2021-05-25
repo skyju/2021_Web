@@ -33,6 +33,7 @@ public class Member {
 		} else {
 			System.out.println("무료 접종 대상이 아닙니다.");
 		}
+		System.out.println();
 	}
 	
 	void checkUp() {
@@ -49,6 +50,7 @@ public class Member {
 		} else {
 			System.out.println("건강 검진 대상자가 아닙니다.");
 		}
+		System.out.println();
 	}
 	
 	public static void main(String[] args) {
@@ -60,8 +62,6 @@ public class Member {
 		
 		System.out.println("<무료 독감 예방 접종 대상자 여부>");
 		member.nochargeVaccin();
-		
-		System.out.println();
 		
 		System.out.println("<건강 검진 대상자 여부>");
 		member.checkUp();
