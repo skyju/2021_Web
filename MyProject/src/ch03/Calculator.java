@@ -22,52 +22,61 @@ public class Calculator {
 		return input;
 	}
 	
-	static long add(int x, int y) {
-		return x+y;
+	long add(int x, int y) {
+		return (long)x+y; //하나만 해도 뒤에는 자동형변환 이루어짐
 	}
 	
-	static long substract(int x, int y) {
-		return x-y;
+	long substract(int x, int y) {
+		return (long)x-y;
 	}
 	
-	static int multiply(int x, int y) {
-		return x*y;
+	long multiply(int x, int y) {
+		return (long)x*y;
 	}
 	
-	static double divide(int x, int y) {
+	double divide(int x, int y) {
 		return x/y;
 	}
 	
-	static double circumference(double x) {
-		return  2*x*3.141;
+	// 클래스 이름 : 대문자 시작, 케멀 케이스
+	// 변수 이름    : 소문자 시작, 케멀 케이스
+	// 상수           : 모두 대문자
+	double pi1 = 3.14;
+	float pi2 = 3.14f;
+	final float PI = 3.14f;
+	
+	float circumference(int r) {
+		return 2*PI*r;
 	}
 	
-	static double areaOfCircle(double x) {
-		return 3.141*x*x;
+	float areaOfCircle(int r) {
+		return PI*r*r;
 	}
 	
 	public static void main(String[] args) {
 		
 		try {
+		Calculator cal = new Calculator();
+		
 		System.out.println("연산할 두 값을 입력해주세요.");
 		int a = Integer.parseInt(inputValue());
 		int b = Integer.parseInt(inputValue());
-		long c1 = add(a,b);
-		long c2 = substract(a,b);
-		int c3 = multiply(a,b);
-		double c4 = divide(a,b);
-		System.out.println("두 값을 더한 값은 "+c1+"입니다.");
-		System.out.println("두 값을 뺀 값은 "+c2+"입니다.");
-		System.out.println("두 값을 곱한 값은 "+c3+"입니다.");
-		System.out.println("두 값을 나눈 값은 "+c4+"입니다.");
+		long c1 = cal.add(a,b);
+		long c2 = cal.substract(a,b);
+		long c3 = cal.multiply(a,b);
+		double c4 = cal.divide(a,b);
+		System.out.printf("%d + %d = %d\n",a,b,c1);
+		System.out.printf("%d - %d = %d\n",a,b,c2);
+		System.out.printf("%d * %d = %d\n",a,b,c3);
+		System.out.printf("%d / %d = %g\n",a,b,c4);
 		
 		System.out.println();
 		System.out.println("원의 반지름을 입력해주세요.");
-		double a5 = Double.parseDouble(inputValue());
-		double b5 = circumference(a5);
-		System.out.printf("원의 둘레는 %g 입니다.\n",b5);
-		double c5 = areaOfCircle(a5);
-		System.out.printf("원의 넓이는 %g 입니다.\n",c5);
+		int a1 = Integer.parseInt(inputValue());
+		float c5 = cal.circumference(a1);
+		System.out.printf("원의 둘레는 %g 입니다.\n",c5);
+		float c6 = cal.areaOfCircle(a1);
+		System.out.printf("원의 넓이는 %g 입니다.\n",c6);
 		
 		} catch(ArithmeticException e) {
 			System.out.println("0으로는 나눌 수 없습니다.");
