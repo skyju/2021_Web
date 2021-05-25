@@ -8,7 +8,13 @@ package ch05;
 //③ 모든 정보를 저장하도록 하는 생성자와 생일과 주소는 저장하지 않을 수 있는 생성자를 정의
 //④ main() 메소드에서 두 가지 생성자를 이용해서 인스턴스 생성하고 출력 메소드를 통해 저장된 데이터 출력
 
+
+// 직렬화
+// 변수의 기능 1) Data 메모리 저장
+//		   2) 주소 기능
+
 public class Member {
+	
 	String name;
 	String phonNum;
 	String major;
