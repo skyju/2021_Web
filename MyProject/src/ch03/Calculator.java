@@ -76,8 +76,10 @@ public class Calculator {
 		System.out.printf("원의 넓이는 %g 입니다.\n",c5);
 		
 		} catch(ArithmeticException e) {
-			System.out.println("나눌 수 없는 값입니다.");
+			System.out.println("0으로는 나눌 수 없습니다.");
 		} catch(InputMismatchException e) {
+			System.out.println("계산할 수 없는 값입니다.");
+		} catch(NumberFormatException e) {
 			System.out.println("계산할 수 없는 값입니다.");
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
