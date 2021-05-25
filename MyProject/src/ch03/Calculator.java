@@ -52,28 +52,16 @@ public class Calculator {
 	//메소드의 매개변수의 인자로 전달하는 코드를 main() 메소드에 추가해봅시다.
 		
 		try {
-		System.out.println("더할 두 값을 입력해주세요.");
-		int a1 = Integer.parseInt(inputValue());
-		int b1 = Integer.parseInt(inputValue());
-		int c1 = add(a1,b1);
+		System.out.println("연산할 두 값을 입력해주세요.");
+		int a = Integer.parseInt(inputValue());
+		int b = Integer.parseInt(inputValue());
+		int c1 = add(a,b);
+		int c2 = substract(a,b);
+		int c3 = multiply(a,b);
+		double c4 = divide(a,b);
 		System.out.println("두 값을 더한 값은 "+c1+"입니다.\n");
-		
-		System.out.println("뻴 두 값을 입력해주세요.");
-		int a2 = Integer.parseInt(inputValue());
-		int b2 = Integer.parseInt(inputValue());
-		int c2 = substract(a2,b2);
 		System.out.println("두 값을 뺀 값은 "+c2+"입니다.\n");
-		
-		System.out.println("곱할 두 값을 입력해주세요.");
-		int a3 = Integer.parseInt(inputValue());
-		int b3 = Integer.parseInt(inputValue());
-		int c3 = multiply(a3,b3);
 		System.out.println("두 값을 곱한 값은 "+c3+"입니다.\n");
-		
-		System.out.println("나눌 두 값을 입력해주세요.");
-		int a4 = Integer.parseInt(inputValue());
-		int b4 = Integer.parseInt(inputValue());
-		double c4 = divide(a4,b4);
 		System.out.println("두 값을 나눈 값은 "+c4+"입니다.\n");
 		
 		System.out.println("원의 반지름을 입력해주세요.");
