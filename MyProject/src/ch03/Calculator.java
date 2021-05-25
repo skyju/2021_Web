@@ -56,25 +56,25 @@ public class Calculator {
 		int a1 = Integer.parseInt(inputValue());
 		int b1 = Integer.parseInt(inputValue());
 		int c1 = add(a1,b1);
-		System.out.println("두값을 더한 값은 "+c1+"입니다.\n");
+		System.out.println("두 값을 더한 값은 "+c1+"입니다.\n");
 		
 		System.out.println("뻴 두 값을 입력해주세요.");
 		int a2 = Integer.parseInt(inputValue());
 		int b2 = Integer.parseInt(inputValue());
 		int c2 = substract(a2,b2);
-		System.out.println("두값을 뺀 값은 "+c2+"입니다.\n");
+		System.out.println("두 값을 뺀 값은 "+c2+"입니다.\n");
 		
 		System.out.println("곱할 두 값을 입력해주세요.");
 		int a3 = Integer.parseInt(inputValue());
 		int b3 = Integer.parseInt(inputValue());
 		int c3 = multiply(a3,b3);
-		System.out.println("두값을 곱한 값은 "+c3+"입니다.\n");
+		System.out.println("두 값을 곱한 값은 "+c3+"입니다.\n");
 		
 		System.out.println("나눌 두 값을 입력해주세요.");
 		int a4 = Integer.parseInt(inputValue());
 		int b4 = Integer.parseInt(inputValue());
 		double c4 = divide(a4,b4);
-		System.out.println("두값을 나눈 값은 "+c4+"입니다.\n");
+		System.out.println("두 값을 나눈 값은 "+c4+"입니다.\n");
 		
 		System.out.println("원의 반지름을 입력해주세요.");
 		double a5 = Double.parseDouble(inputValue());
