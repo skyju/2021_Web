@@ -20,11 +20,7 @@ public class Member {
 	Member() {}
 	
 	Member(String name, String phonNum, String major, int grade, String email) {
-		this.name = name;
-		this.phonNum = phonNum;
-		this.major = major;
-		this.grade = grade;
-		this.email = email;
+		this(name, phonNum, major, grade, email, null, null);
 	}
 	
 	Member(String name, String phonNum, String major, int grade, String email, String birth, String address) {
@@ -43,7 +39,7 @@ public class Member {
 		System.out.println("전공: "+major+"학과");
 		System.out.println("학년: "+grade+"학년");
 		System.out.println("생일: "+birth);
-		System.out.println("주소: "+address);
+		System.out.println("주소: "+address+'\n');
 	}
 	
 	public static void main(String[] args) {
