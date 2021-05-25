@@ -3,7 +3,7 @@ package ch01;
 public class Member {
 	
 	public static void main(String[] args) {
-		System.out.println("°û¹ÎÁÖÀÔ´Ï´Ù.");
+		System.out.println("ê³½ë¯¼ì£¼ì…ë‹ˆë‹¤.");
 		
 		String name;
 		int age;
