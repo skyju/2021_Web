@@ -64,12 +64,13 @@ public class Calculator {
 		System.out.println("두 값을 곱한 값은 "+c3+"입니다.");
 		System.out.println("두 값을 나눈 값은 "+c4+"입니다.");
 		
+		System.out.println();
 		System.out.println("원의 반지름을 입력해주세요.");
 		double a5 = Double.parseDouble(inputValue());
 		double b5 = circumference(a5);
-		System.out.println("원의 둘레는 "+b5+"입니다.");
+		System.out.printf("원의 둘레는 %g 입니다.\n",b5);
 		double c5 = areaOfCircle(a5);
-		System.out.println("원의 넓이는 "+c5+"입니다.");
+		System.out.printf("원의 넓이는 %g 입니다.\n",c5);
 		
 		} catch(ArithmeticException e) {
 			System.out.println("나눌 수 없는 값입니다.");
