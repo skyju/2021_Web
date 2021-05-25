@@ -35,7 +35,13 @@ public class Member {
 		System.out.println("키는 "+height+"cm 입니다.");
 		//String + double + String > (String + String) + String > String + String
 		//String + anyType > String + String
-		System.out.println("책 보유 여부:"+hasBook);
+		
+		//System.out.println("책 보유 여부:"+hasBook);//String + boolean
+		if(hasBook) {
+			System.out.println("책 있어요.");
+		} else {
+			System.out.println("책 없어요.");
+		}
 		
 
 	}
