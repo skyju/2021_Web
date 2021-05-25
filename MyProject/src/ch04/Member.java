@@ -16,7 +16,6 @@ import java.util.*;
 
 public class Member {
 	
-	String name;
 	int birthYear;
 	Calendar today = Calendar.getInstance();
 	int thisYear = today.get(Calendar.YEAR);
