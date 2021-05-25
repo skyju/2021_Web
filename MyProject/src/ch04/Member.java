@@ -28,7 +28,7 @@ public class Member {
 	
 	void nochargeVaccin() {
 		age = (thisYear - birthYear) + 1;
-		if(age<15 || age>=65) {
+		if(age<15 || age>=65) { // = !(age>=15 && age<65)
 			System.out.println("무료 예방 접종이 가능합니다.");
 		} else {
 			System.out.println("무료 접종 대상이 아닙니다.");
@@ -56,8 +56,7 @@ public class Member {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("출생 년도 4글자를 입력해주세요.");
-		String input = scanner.nextLine();
-		int birthYear = Integer.parseInt(input);
+		int birthYear = scanner.nextInt();
 		Member member = new Member(birthYear);
 		
 		System.out.println("<무료 독감 예방 접종 대상자 여부>");
