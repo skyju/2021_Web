@@ -26,7 +26,7 @@ public class Calculator {
 		return x+y;
 	}
 	
-	static int substract(int x, int y) {
+	static long substract(int x, int y) {
 		return x-y;
 	}
 	
@@ -53,7 +53,7 @@ public class Calculator {
 		int a = Integer.parseInt(inputValue());
 		int b = Integer.parseInt(inputValue());
 		long c1 = add(a,b);
-		int c2 = substract(a,b);
+		long c2 = substract(a,b);
 		int c3 = multiply(a,b);
 		double c4 = divide(a,b);
 		System.out.println("두 값을 더한 값은 "+c1+"입니다.");
