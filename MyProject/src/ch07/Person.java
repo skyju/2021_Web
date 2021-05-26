@@ -17,6 +17,9 @@ public class Person {
 	public Person(String name, String idNum) {
 		this.name = name;
 		this.idNum = idNum;
+		ageCal();
+		checkSex();
+		hello();
 	}
 	
 	public String getName() {
@@ -77,12 +80,15 @@ public class Person {
 			setSex(true);
 		} else if(a[6] == '1' || a[6] == '3'){
 			setSex(false);
+		} else {
+			System.out.println("올바르지 않은 주민등록번호입니다.");
 		}
 	}
 	
 	void hello() {
 		if(getName() != null && getAge() != 0)
-		System.out.println("안녕하세요. 저는"+getName()+"입니다. "+
-				getAge()+"살 입니다.");
+		System.out.println(
+				"안녕하세요. 저는"+getName()+"입니다.\n"
+				+getAge()+"살 입니다.");
 	}
 }
