@@ -1,3 +1,2 @@
 # java205
-
-자바 205기
+Bitcamp JAVA 수업 내용
