@@ -81,19 +81,23 @@ public class Student {
 		stu[8] = new Student("홍자바",42,57,44);
 		stu[9] = new Student("현자바",88,98,97);
 		
+		int korSum = 0;
+		int engSum = 0;
+		int mathSum = 0;
 		for(int inx = 0 ; inx < stu.length ; inx ++) {
 			stu[inx].printInfo();
+			korSum += stu[inx].getKorScore();
+			engSum += stu[inx].getEngScore();
+			mathSum += stu[inx].getMathScore();
 		}
 		
 		//++
-		int[] KorScoreList = new int[stu.length];
-		int sum = 0;
-		for(int inx = 0 ; inx < KorScoreList.length ; inx ++) {
-			KorScoreList[inx] = stu[inx].getKorScore();
-			sum += KorScoreList[inx];
-		}
-		double korAverage = (double)sum/KorScoreList.length;
+		double korAverage = (double)korSum/stu.length;
+		double engAverage = (double)engSum/stu.length;
+		double mathAverage = (double)mathSum/stu.length;
 		System.out.println("총 국어 점수 평균: "+korAverage);
+		System.out.println("총 영어 점수 평균: "+engAverage);
+		System.out.println("총 수학 점수 평균: "+mathAverage);
 		
 		
 	}
