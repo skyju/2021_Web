@@ -77,7 +77,7 @@ public class Person {
 			setSex(true);
 		} else if(a[6] == '1' || a[6] == '3'){
 			setSex(false);
-		} 
+		}
 	}
 	
 	void hello() {
