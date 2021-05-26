@@ -66,7 +66,7 @@ public class Student {
 		System.out.println("수학 점수: "+getMathScor());
 		System.out.println("  총점  : "+totalScore());
 		System.out.println("  평균  : "+avgScore());
-		System.out.println();
+		System.out.println("=====================");
 	}
 	
 	public static void main(String[] args) {
@@ -74,20 +74,20 @@ public class Student {
 		stu[0] = new Student("홍길동",45,88,74);
 		stu[1] = new Student("홍길은",71,84,98);
 		stu[2] = new Student("홍길금",97,58,66);
-		stu[3] = new Student("아무개",98,96,92);
-		stu[4] = new Student("아무개",98,96,92);
-		stu[5] = new Student("아무개",98,96,92);
-		stu[6] = new Student("아무개",98,96,92);
-		stu[7] = new Student("아무개",98,96,92);
-		stu[8] = new Student("아무개",98,96,92);
-		stu[9] = new Student("아무개",98,96,92);
+		stu[3] = new Student("아무개",78,96,92);
+		stu[4] = new Student("김자바",73,92,87);
+		stu[5] = new Student("이자바",92,53,67);
+		stu[6] = new Student("박자바",61,22,54);
+		stu[7] = new Student("최자바",73,73,64);
+		stu[8] = new Student("홍자바",42,57,44);
+		stu[9] = new Student("현자바",88,98,97);
 		
-		stu[0].printInfo();
-		stu[1].printInfo();
-		stu[2].printInfo();
-		stu[3].printInfo();
+		for(int inx = 0 ; inx < stu.length ; inx ++) {
+			stu[inx].printInfo();
+		}
 		
 		
+		//++
 		int[] KorScoreList = new int[10];
 		int sum = 0;
 		for(int inx = 0 ; inx < KorScoreList.length ; inx ++) {
