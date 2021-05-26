@@ -9,7 +9,8 @@ package ch06;
 // 	1차원 배열: 타입[] 식별자(배열이름) = new 타입[size]
 // 	ex) int[] score = new int[10];
 //	score[index] = {};
-// 	index > 주소가 순서대로 연결되어 있기 때문에
+// 	index > 주소가 순서대로 연결되어 있기 때문에 > for 사용
+//	마찬가지로 Collection, List > for 사용
 
 public class Student {
 	private String name;
@@ -74,11 +75,27 @@ public class Student {
 		stu[1] = new Student("홍길은",71,84,98);
 		stu[2] = new Student("홍길금",97,58,66);
 		stu[3] = new Student("아무개",98,96,92);
-
+		stu[4] = new Student("아무개",98,96,92);
+		stu[5] = new Student("아무개",98,96,92);
+		stu[6] = new Student("아무개",98,96,92);
+		stu[7] = new Student("아무개",98,96,92);
+		stu[8] = new Student("아무개",98,96,92);
+		stu[9] = new Student("아무개",98,96,92);
+		
 		stu[0].printInfo();
 		stu[1].printInfo();
 		stu[2].printInfo();
 		stu[3].printInfo();
+		
+		
+		int[] KorScoreList = new int[10];
+		int sum = 0;
+		for(int inx = 0 ; inx < KorScoreList.length ; inx ++) {
+			KorScoreList[inx] = stu[inx].getKorScore();
+			sum += KorScoreList[inx];
+		}
+		double korAverage = (double)sum/KorScoreList.length;
+		System.out.println("총 국어 점수 평균: "+korAverage);
 		
 		
 	}
