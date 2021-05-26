@@ -81,6 +81,7 @@ public class Person {
 	}
 	
 	void hello() {
+		if(getName() != null && getAge() != 0)
 		System.out.println("안녕하세요. 저는"+getName()+"입니다. "+
 				getAge()+"살 입니다.");
 	}
