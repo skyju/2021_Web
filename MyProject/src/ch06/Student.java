@@ -29,16 +29,16 @@ public class Student {
 	public void setKorScore(int korScore) {
 		this.korScore = korScore;
 	}
-	public int getEngScor() {
+	public int getEngScore() {
 		return engScore;
 	}
-	public void setEngScor(int engScore) {
+	public void setEngScore(int engScore) {
 		this.engScore = engScore;
 	}
-	public int getMathScor() {
+	public int getMathScore() {
 		return mathScore;
 	}
-	public void setMathScor(int mathScore) {
+	public void setMathScore(int mathScore) {
 		this.mathScore = mathScore;
 	}
 	
@@ -61,8 +61,8 @@ public class Student {
 	public void printInfo() {
 		System.out.println("  이름  : "+getName());
 		System.out.println("국어 점수: "+getKorScore());
-		System.out.println("영어 점수: "+getEngScor());
-		System.out.println("수학 점수: "+getMathScor());
+		System.out.println("영어 점수: "+getEngScore());
+		System.out.println("수학 점수: "+getMathScore());
 		System.out.println("  총점  : "+totalScore());
 		System.out.println("  평균  : "+avgScore());
 		System.out.println("=====================");
