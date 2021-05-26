@@ -10,7 +10,6 @@ public class Female extends Person {
 		setIdNum(idNum);
 		ageCal();
 		checkSex();
-		hello();
 	}
 	
 	void hello() {
