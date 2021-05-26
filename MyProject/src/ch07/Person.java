@@ -6,6 +6,7 @@ public class Person {
 	
 	private String name;
 	private String idNum;
+	
 	int thisYear = Calendar.getInstance().get(Calendar.YEAR);
 	private int BirthYear;
 	private int age;
