@@ -19,7 +19,6 @@ public class Person {
 		this.idNum = idNum;
 		ageCal();
 		checkSex();
-		hello();
 	}
 	
 	public String getName() {
