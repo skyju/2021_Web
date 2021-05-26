@@ -2,7 +2,7 @@ package ch07;
 
 public class Male extends Person {
 	
-	String hobby;
+	private String hobby;
 	public String getHobby() {
 		return hobby;
 	}
@@ -31,7 +31,7 @@ public class Male extends Person {
 			System.out.println("성별은 남성입니다.");
 		}
 		if(hobby != null) {
-			System.out.println("취미는 "+hobby+"입니다.");
+			System.out.println("취미는 "+getHobby()+"입니다.");
 		}
 	}
 }
