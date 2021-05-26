@@ -8,7 +8,6 @@ package ch06;
 // 배열 선언 방법 >
 // 	1차원 배열: 타입[] 식별자(배열이름) = new 타입[size]
 // 	ex) int[] score = new int[10];
-//	score[index] = {};
 // 	index > 주소가 순서대로 연결되어 있기 때문에 > for 사용
 //	마찬가지로 Collection, List > for 사용
 
@@ -88,7 +87,7 @@ public class Student {
 		
 		
 		//++
-		int[] KorScoreList = new int[10];
+		int[] KorScoreList = new int[stu.length];
 		int sum = 0;
 		for(int inx = 0 ; inx < KorScoreList.length ; inx ++) {
 			KorScoreList[inx] = stu[inx].getKorScore();
