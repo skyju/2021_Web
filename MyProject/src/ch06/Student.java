@@ -54,7 +54,7 @@ public class Student {
 		return korScore+engScore+mathScore;
 	}
 	
-	public int avgScore() {
+	public double avgScore() {
 		return (korScore+engScore+mathScore)/3;
 	}
 	
@@ -84,7 +84,6 @@ public class Student {
 		for(int inx = 0 ; inx < stu.length ; inx ++) {
 			stu[inx].printInfo();
 		}
-		
 		
 		//++
 		int[] KorScoreList = new int[stu.length];
