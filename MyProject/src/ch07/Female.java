@@ -13,14 +13,13 @@ public class Female extends Person {
 	
 	public Female() {}
 	public Female(String name, String idNum, String hobby) {
-		this(name, idNum);
+		super(name, idNum);
 		ageCal();
 		checkSex();
 		this.hobby = hobby;
 	}
 	public Female(String name, String idNum) {
-		setName(name);
-		setIdNum(idNum);
+		super(name,idNum);
 		ageCal();
 		checkSex();
 	}
