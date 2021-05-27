@@ -1,4 +1,4 @@
-package array;
+package homwork1_array;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package array;
+package homwork1_array;
 
 public class ArrayQ2 {
 	public static void addOneDArr(int[] arr, int add) {

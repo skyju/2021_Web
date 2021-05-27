@@ -1,4 +1,4 @@
-package array;
+package homwork1_array;
 
 public class ArrayQ3 {
 	
