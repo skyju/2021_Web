@@ -14,14 +14,10 @@ public class Male extends Person {
 	public Male() {}// 빈생성자	
 	public Male(String name, String idNum, String hobby) {
 		super(name, idNum);
-		ageCal();
-		checkSex();
 		this.hobby = hobby;
 	}
 	public Male(String name, String idNum) {
 		super(name, idNum);
-		ageCal();
-		checkSex();
 	}
 	
 	void hello() {
