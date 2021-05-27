@@ -64,15 +64,24 @@ public class Sample01 {
 				try {
 					for(int k = 0 ; k <= i ; k ++) {
 						if(name3.equals(userinfo[k].name)) {
+							System.out.println(name3+"의 데이터를 삭제합니다.");
 							for(int l = k ; l <= i ; l ++) {
-								userinfo[k] = userinfo[k+1];
+								if(userinfo[l+1] != null) {
+									userinfo[l] = userinfo[l+1];
+									i = i--;
+									System.out.println("해당하는 데이터가 삭제되었습니다.");
+								} else if (userinfo[l+1] == null) {
+									userinfo[l] = null;
+									i = i--;
+									System.out.println("해당하는 데이터가 삭제되었습니다.");
+								}
 							}
 						}
 					}
 				} catch(NullPointerException e) {
 					System.out.print("");
 				}
-				continue;
+				break;
 			}
 		}
 	}
