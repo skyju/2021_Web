@@ -1,13 +1,8 @@
 package homwork1_array;
 
 public class ArrayQ2 {
-	public static void addOneDArr(int[] arr, int add) {
-		for(int i = 0 ; i < arr.length ; i++) {
-			arr[i] += add;
-		}
-	}
 	
-	public static void addOneDArr2(int[][] arr, int add) {
+	public static void addOneDArr(int[][] arr, int add) {
 		for(int i = 0 ; i < arr.length ; i ++) {
 			for(int j = 0 ; j < arr[i].length ; j ++) {
 				arr[i][j] += add;
@@ -25,7 +20,7 @@ public class ArrayQ2 {
 				{5,6,7,8,9}
 		};
 		
-		addOneDArr2(arr, 2);
+		addOneDArr(arr, 2);
 		
 		for(int[] a : arr) {
 			for(int b : a) {
