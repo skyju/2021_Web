@@ -1,6 +1,6 @@
-package test;
+package array;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class ArrayQ1 {
 	
@@ -11,34 +11,23 @@ public class ArrayQ1 {
 	}
 	
 	public static int minValue(int[] arr) {
-		for(int j = 0 ; j < arr.length ; j ++) {
-			for(int i = 0 ; i < arr.length-1 ; i ++) {
-				int temp = 0;
-				if(arr[i] > arr[i+1]) {
-					temp = arr[i];
-					arr[i] = arr[i+1];
-					arr[i+1] = temp;
-				}		
+		int min = arr[0];
+		for(int i = 0 ; i < arr.length ; i ++) {
+			if(min > arr[i]) {
+				min = arr[i];
 			}
 		}
-		return arr[0];
+		return min;
 	}
 	
 	public static int maxValue(int[] arr) {
-		boolean sorted = false;
-		while(!sorted) {
-			sorted = true;
-			for(int i = 0 ; i < arr.length-1 ; i ++) {
-				int temp = 0;
-				if(arr[i] < arr[i+1]) {
-					temp = arr[i];
-					arr[i] = arr[i+1];
-					arr[i+1] = temp;
-					sorted =false;
-				}		
+		int max = arr[0];
+		for(int i = 0 ; i < arr.length ; i ++) {
+			if(max < arr[i]) {
+				max = arr[i];
 			}
 		}
-		return arr[0];
+		return max;
 	}
 	
 	public static void main(String[] args) {
