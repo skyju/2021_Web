@@ -43,7 +43,7 @@ public class ArrayQ1 {
 		int min = minValue(arr);
 		int max = maxValue(arr);
 		
-		System.out.println("최소값은"+min+","+"최대값은"+max);
+		System.out.println("최소값은"+min+", 최대값은"+max);
 		
 	}
 
