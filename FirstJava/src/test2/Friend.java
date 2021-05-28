@@ -1,6 +1,8 @@
 package test2;
 
 public class Friend {
+	
+	//이름, 전화번호, 주소 ... 기본 상속
 	String name;
 	String phoneNumber;
 	String address;
