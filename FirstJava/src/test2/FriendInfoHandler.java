@@ -2,12 +2,12 @@ package test2;
 
 import java.util.*;
 
-public class FriendInfoHandler {
+public class FriendInfoHandler { // 데이터(객체)를 배열로 저장하고, 관리하는 기능
 	
 	private Friend[] myFriends;
-	private int numOfFriends;
+	private int numOfFriends; // 배열의 index, 정보 갯수, 카운트 될 것임
 	
-	public FriendInfoHandler(int num) {
+	public FriendInfoHandler(int num) { //num은 배열의 사이즈 > 인스턴스 생성
 		myFriends = new Friend[num];
 		numOfFriends = 0; //? 0에서 시작해야 add할 때마다 카운트가 올라가지
 	}
