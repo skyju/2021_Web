@@ -7,7 +7,8 @@ public class Tv extends Product {
 	}
 	
 	public String toString() {
-		return "TV";
+		//return "제품: TV [price="+price+", bounusPoint="+bonusPoint+"]";
+		return "Tv";
 	}
 
 }
