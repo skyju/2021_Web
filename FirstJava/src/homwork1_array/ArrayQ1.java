@@ -32,13 +32,11 @@ public class ArrayQ1 {
 	
 	public static void main(String[] args) {
 		
-		System.out.println("정수를 입력해주세요.");
+		System.out.println("정수 5개를 입력해주세요.");
 		int[] arr = new int[5];
-		arr[0] = Integer.parseInt(getUserInput());
-		arr[1] = Integer.parseInt(getUserInput());
-		arr[2] = Integer.parseInt(getUserInput());
-		arr[3] = Integer.parseInt(getUserInput());
-		arr[4] = Integer.parseInt(getUserInput());
+		for(int i = 0 ; i <arr.length ; i ++) {
+			arr[i] =  Integer.parseInt(getUserInput());
+		}
 		
 		int min = minValue(arr);
 		int max = maxValue(arr);

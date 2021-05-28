@@ -18,7 +18,7 @@ public class MyFriendInfoBook {
 			System.out.print("번호 선택>> ");
 			
 			Scanner scanner = new Scanner(System.in);
-			int choice = scanner.nextInt();
+			int choice = Integer.parseInt(scanner.nextLine());
 			
 			switch (choice) {
 			case 1: case 2: 

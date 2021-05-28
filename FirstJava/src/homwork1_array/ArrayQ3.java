@@ -4,8 +4,8 @@ public class ArrayQ3 {
 	
 	public static int[][] rotate(int[][] arr) {
 		int[] tmp = arr[arr.length-1];
-		for(int j = arr.length-1 ; j > 0 ; j --) {
-			arr[j] = arr[j-1];
+		for(int i = arr.length-1 ; i > 0 ; i --) {
+			arr[i] = arr[i-1];
 		}
 		arr[0] = tmp;	
 		return arr;
