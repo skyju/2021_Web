@@ -35,7 +35,7 @@ public class MyFriendInfoBook {
 				System.exit(0);
 			default:
 				System.out.println("잘못 입력하셨습니다.");
-			}//switch	
+			}//switch
 		}//while
 	}//main
 }

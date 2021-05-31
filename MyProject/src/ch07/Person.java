@@ -4,8 +4,8 @@ import java.util.Calendar;
 
 public class Person {
 	
-	private String name;
-	private String idNum;
+	protected String name;
+	protected String personNumber;
 	
 	int thisYear = Calendar.getInstance().get(Calendar.YEAR);
 	private int BirthYear;
@@ -15,9 +15,9 @@ public class Person {
 	public Person() {
 	}
 	
-	public Person(String name, String idNum) {
+	public Person(String name, String personNumber) {
 		this.name = name;
-		this.idNum = idNum;
+		this.personNumber = personNumber;
 		ageCal();
 		checkSex();
 	}
@@ -30,12 +30,12 @@ public class Person {
 		this.name = name;
 	}
 
-	public String getIdNum() {
-		return idNum;
+	public String getPersonNumber() {
+		return personNumber;
 	}
 
-	public void setIdNum(String idNum) {
-		this.idNum = idNum;
+	public void setPersonNumber(String personNumber) {
+		this.personNumber = personNumber;
 	}
 
 	public int getBirthYear() {
@@ -62,8 +62,8 @@ public class Person {
 		this.sex = sex;
 	}
 	
-	void ageCal() {
-		char[] a = idNum.toCharArray();
+	protected void ageCal() {
+		char[] a = personNumber.toCharArray();
 		if(a[6] == '1' || a[6] == '2') {
 			BirthYear = 1900+((a[0]-48)*10+(a[1]-48));
 		} else if(a[6] == '3' || a[6] == '4') {
@@ -74,8 +74,8 @@ public class Person {
 		setAge(thisYear - BirthYear + 1);
 	}
 	
-	void checkSex() {
-		char[] a = idNum.toCharArray();
+	protected void checkSex() {
+		char[] a = personNumber.toCharArray();
 		if(a[6] == '2' || a[6] == '4') {
 			setSex(true);
 		} else if(a[6] == '1' || a[6] == '3'){
@@ -85,10 +85,14 @@ public class Person {
 		}
 	}
 	
-	void hello() {
+	public void isEquals(Person person1) {
+	}
+	
+	public void hello() {
 		if(getName() != null && getAge() != 0)
 		System.out.println(
 				"안녕하세요. 저는"+getName()+"입니다.\n"
 				+getAge()+"살 입니다.");
 	}
+
 }

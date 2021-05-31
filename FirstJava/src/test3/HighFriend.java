@@ -10,8 +10,8 @@ public class HighFriend extends Friend {
 	}
 	
 	@Override
-	public void showData() {
-		super.showData();
+	public void showInfo() {
+		super.showInfo();
 		System.out.println("직   업: "+this.job);
 	}
 	

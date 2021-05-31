@@ -13,7 +13,7 @@ public abstract class Friend implements ShowData{
 		this.address = address;
 	}
 	
-	public void showData() {
+	public void showInfo() {
 		System.out.println("이   름: "+this.name);
 		System.out.println("전화 번호: "+this.phoneNumber);
 		System.out.println("주   소: "+this.address);

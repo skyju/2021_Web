@@ -20,7 +20,7 @@ public class Female extends Person {
 		super(name,idNum);
 	}
 	
-	void hello() {
+	public void hello() {
 		super.hello();
 		if(isSex()) {
 			System.out.println("성별은 여성입니다.");

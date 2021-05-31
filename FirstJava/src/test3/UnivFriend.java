@@ -10,8 +10,8 @@ public class UnivFriend extends Friend {
 	}
 
 	@Override
-	public void showData() {
-		super.showData();
+	public void showInfo() {
+		super.showInfo();
 		System.out.println("전   공: "+this.major);
 	}
 
