@@ -8,34 +8,29 @@ public class Driver {
 		
 		UserHandler handler = new UserHandler(100);
 		
+		Scanner kb = new Scanner(System.in);
+
 		while (true) {
 			printMenu();
-			int menu = Integer.parseInt(getUserInput());
+			int menu = kb.nextInt();
 			switch(menu) {
 			case Menu.SAVE_INFO:
 				handler.addInfo();
 				break;
 			case Menu.SHOW_INFO:
-				System.out.print("정보를 출력할 이름을 입력하세요: ");
-				String name = getUserInput();
-				handler.findInfo(name);
+				handler.findInfo();
 				break;
 			case Menu.REMOVE_INFO:
-				System.out.println("삭제할 데이터의 계정주 이름을 입력하세요: ");
-				String name1 = getUserInput();
-				handler.removeInfo(name1);
+				handler.removeInfo();
 				break;
 			case Menu.EXIT:
 				System.out.println("종료합니다.");
 				System.exit(0);
+			default: 
+				System.err.println("잘못된 번호입니다.");
 			}
+			kb.close();
 		}
-	}
-	
-	public static String getUserInput() {
-		Scanner kb = new Scanner(System.in);
-		String input = kb.nextLine();
-		return input;
 	}
 	
 	public static void printMenu() {
@@ -47,11 +42,11 @@ public class Driver {
         System.out.println( "=================" );
         System.out.print( ">> 메뉴 : " );
 	}
-	
-	interface Menu {
-		int SAVE_INFO = 1;
-		int SHOW_INFO = 2;
-		int REMOVE_INFO = 3;
-		int EXIT = 4;
-	}
+}
+
+interface Menu {
+	int SAVE_INFO = 1;
+	int SHOW_INFO = 2;
+	int REMOVE_INFO = 3;
+	int EXIT = 4;
 }

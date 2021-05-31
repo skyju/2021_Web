@@ -5,7 +5,7 @@ import java.util.*;
 public class UserHandler {
 	
 	private UserInfo[] user;
-	private int numOfUser;
+	private int numOfUser; //저장된 정보 갯수 카운팅
 	
 	public UserHandler(int num) {
 		user = new UserInfo[num];
@@ -27,36 +27,56 @@ public class UserHandler {
 		System.out.print("생년월일 6글자를 입력하세요 : ");
 		birth = Integer.parseInt(kb.nextLine());
 		addUserInfo(new UserInfo(name, phoneNum, birth));
+		System.out.println("저장 완료하였습니다.");
+		kb.close();
 	}
 	
-	public void findInfo(String name) {
+	public void findInfo() {
+		System.out.print("찾고 싶은 데이터의 계정주 이름을 입력하세요 : ");
+		Scanner kb = new Scanner(System.in);
+		String findName = kb.nextLine();
 		if(numOfUser > 0 ) {
+			int isIt = 0;
 			for(int i = 0 ; i < numOfUser ; i ++) {
-				if(name.equals(user[i].name)) {
+				if(findName.equals(user[i].name)) {
 					System.out.println(
 							 "  이름  : "+user[i].name
 							+"\n전화번호: "+user[i].phonNum
 							+"\n생년월일: "+user[i].birth);
+					++isIt;
 				}
+			}
+			if(isIt == 0 ) {
+				System.out.println("일치하는 정보가 없습니다.");
 			}
 		} else {
 			System.out.println("저장된 정보가 없습니다.");
 		}
+		kb.close();
 	}
 	
-	public void removeInfo(String name) {
+	public void removeInfo() {
+		System.out.println("삭제할 데이터의 계정주 이름을 입력하세요: ");
+		Scanner kb = new Scanner(System.in);
+		String removeName = kb.nextLine();
 		if(numOfUser > 0 ) {
+			int isIt = 0;
 			for(int i = 0 ; i < numOfUser ; i++) {
-				if(name.equals(user[i].name)) {
+				if(removeName.equals(user[i].name)) {
 					for(int j = i ; j < numOfUser ; j++) {
 					user[j] = user[j+1];
 					numOfUser--;
 					}
+					++isIt;
 					System.out.println("해당하는 정보를 삭제했습니다.");
 				}
+			}
+			if(isIt == 0 ) {
+				System.out.println("일치하는 정보가 없습니다.");
 			}
 		} else {
 			System.out.println("저장된 정보가 없습니다.");
 		}
+		kb.close();
 	}
 }
