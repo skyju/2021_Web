@@ -48,7 +48,7 @@ public class UserHandler {
 		if(numOfUser > 0 ) {
 			for(int i = 0 ; i < numOfUser ; i++) {
 				if(name.equals(user[i].name)) {
-					for(int j = 0 ; j < i ; j++) {
+					for(int j = i ; j < user.length-1 ; j++) {
 					user[j] = user[j+1];
 					}
 					System.out.println("해당하는 정보를 삭제했습니다.");

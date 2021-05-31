@@ -10,11 +10,4 @@ public class UserInfo {
 		this.phonNum = phonNum;
 		this.birth = birth;
 	}
-	
-	void removeInfo(String name) {
-		if(name.equals(this.name)) {
-			System.out.println("정보를 삭제합니다.");
-			
-		}
-	}
 }

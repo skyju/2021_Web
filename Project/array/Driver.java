@@ -40,11 +40,11 @@ public class Driver {
 	
 	public static void printMenu() {
         System.out.println( "\n===== <메뉴> =====" );
-        System.out.println( Menu.SAVE_INFO+" . 정보 저장" );
-        System.out.println( Menu.SHOW_INFO+" . 정보 출력" );
-        System.out.println( Menu.REMOVE_INFO+" . 정보 삭제" );
-        System.out.println( Menu.EXIT+" . 종료" );
-        System.out.println( "===================" );
+        System.out.println( Menu.SAVE_INFO+". 정보 저장" );
+        System.out.println( Menu.SHOW_INFO+". 정보 출력" );
+        System.out.println( Menu.REMOVE_INFO+". 정보 삭제" );
+        System.out.println( Menu.EXIT+". 종료" );
+        System.out.println( "=================" );
         System.out.print( ">> 메뉴 : " );
 	}
 	
