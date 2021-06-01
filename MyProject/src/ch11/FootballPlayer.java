@@ -46,16 +46,17 @@ public class FootballPlayer implements Comparable<FootballPlayer>{
 	// 문제 3번
 	@Override
 	public int compareTo(FootballPlayer o) {
+		//team 비교
 		if(this.team.compareTo(o.team) > 0) {
 			return 1;
 		} else if (this.team.compareTo(o.team) < 0) {
 			return -1;
-		} else {
+		} else { //team이 같은경우 name 비교
 			if(this.name.compareTo(o.name) > 0) {
 				return 1;
 			} else if (this.name.compareTo(o.name) < 0) {
 				return -1;
-			} else {
+			} else { //team과 name이 같은 경우 number비교
 				if(this.number > o.number) {
 					return 1;
 				} else if (this.number < o.number) {
