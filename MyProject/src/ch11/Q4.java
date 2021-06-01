@@ -17,7 +17,9 @@ public class Q4 {
 		fMap.put(12, new FootballPlayer("저쩌고", 12, "유벤투스", 28));
 		fMap.put(2 , new FootballPlayer("어쩌고", 2, "토트넘", 24));
 		
+		//Entry: key & value 쌍 
 		for(Entry<Integer, FootballPlayer> entry : fMap.entrySet()) {
+			//entry중, 객체인 value만 가져오며, 객체 메서드 실행
 			entry.getValue().showInfo();
 		}
 	}
