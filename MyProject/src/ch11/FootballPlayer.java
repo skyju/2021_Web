@@ -61,7 +61,7 @@ public class FootballPlayer implements Comparable<FootballPlayer>{
 					return 1;
 				} else if (this.number < o.number) {
 					return -1;
-				} else {
+				} else { //모두 같은 경우
 					return 0;
 				}
 			}
