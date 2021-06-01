@@ -15,19 +15,24 @@ public class Q1 {
 	public Q1(String id) throws BadIdInputException {
 		this.id = id;
 		char[] idChar = id.toCharArray();
-		if(id.equals("")) {
-			throw new BadIdInputException("아이디를 입력받지 못했습니다.");
-		} else {
-			System.out.println("id: "+id+"가 성공적으로 생성되었습니다.");
+		for(int i = 0 ; i < id.length() ; i++) {
+			if( id.length() == 0 || 
+			 !((idChar[i] >= 'a' && idChar[i] <= 'z') ||
+			   (idChar[i] >= 'A' && idChar[i] <= 'Z') ||
+			   (idChar[i] >= '0' && idChar[i] <= '9'))) {
+				throw new BadIdInputException("id는 숫자나 문자로 공백없이 입력해주세요.");
+			}
 		}
 	}
 	
 	public static void main(String[] args) {
 		try {
+			System.out.println("id를 입력해주세요.");
 			String id = getUserInput();
 			Q1 user1 = new Q1(id);
 			String id2 = getUserInput();
 			Q1 user2 = new Q1(id2);
+			
 		} catch (BadIdInputException e) {
 			System.out.println(e.getMessage());
 		}
