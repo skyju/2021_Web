@@ -6,7 +6,7 @@ public class Q1 {
 	
 	String id;
 	
-	public String getUserInput() {
+	public static String getUserInput() {
 		Scanner kb = new Scanner(System.in);
 		String input = kb.nextLine();
 		return input;
@@ -14,6 +14,7 @@ public class Q1 {
 	
 	public Q1(String id) throws BadIdInputException {
 		this.id = id;
+		char[] idChar = id.toCharArray();
 		if(id.equals("")) {
 			throw new BadIdInputException("아이디를 입력받지 못했습니다.");
 		} else {
@@ -23,8 +24,10 @@ public class Q1 {
 	
 	public static void main(String[] args) {
 		try {
-			Q1 user1 = new Q1("gksk1");
-			Q1 user2 = new Q1("");
+			String id = getUserInput();
+			Q1 user1 = new Q1(id);
+			String id2 = getUserInput();
+			Q1 user2 = new Q1(id2);
 		} catch (BadIdInputException e) {
 			System.out.println(e.getMessage());
 		}
