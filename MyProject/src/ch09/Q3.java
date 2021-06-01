@@ -4,23 +4,32 @@ import java.util.*;
 
 public class Q3 {
 	
-	public static String getUserInput() {
-		Scanner kb = new Scanner(System.in);
-		String inputString = kb.nextLine();
-		return inputString;
-	}
-	
-	public static void isEmpty(String str) {
-		if(str.equals("")) {
-			System.out.println("공백입니다.");
-		} else if(!str.equals(null)) {
-			System.out.println("이름이 입력되었습니다.");
+	public static boolean checkName(String str) {
+		boolean result = true;
+		for(int i = 0 ; i < str.length(); i++) {
+			char ch = str.charAt(i);
+			if(!(ch >= 'a' && ch <= 'z' || ch >= 'A' && ch <= 'Z')) {
+				result = false;
+				break;
+			}
 		}
+		return result;
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("이름을 입력해주세요.");
-		String name = getUserInput();
-		isEmpty(name);
+		
+		Scanner kb = new Scanner(System.in);
+		System.out.println("영문 이름을 입력해주세요.");
+		String name = kb.nextLine();
+		
+		if(name != null && !name.trim().isEmpty()) {
+			if(checkName(name)) {
+				System.out.println("입력하신 이름은: "+name);
+			} else {
+				System.out.println("이름에 표현 불가능한 문자가 포함되어 있습니다.");
+			}
+		} else {
+			System.out.println("공백입니다.");
+		}
 	}
 }

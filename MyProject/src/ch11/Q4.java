@@ -29,7 +29,7 @@ public class Q4 {
 		// Map은 Collection을 implements하는 class가 아니기 때문에
 		// iterator를 사용하려면 Set으로 번저 변환 해야 함.
 		Set<Integer> set  = players.keySet();
-		//.keySet 이용 key를 기준으로 중복값없게 set형성
+		//.keySet 이용: key를 기준으로 중복값없게 set형성
 		
 		Iterator<Integer> itr = set.iterator();
 		while(itr.hasNext()) {
