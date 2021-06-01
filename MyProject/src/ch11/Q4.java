@@ -8,7 +8,6 @@ public class Q4 {
 	public static void main(String[] args) {
 		
 		HashMap<Integer, FootballPlayer> players = new HashMap<>();
-
 		players.put(7, new FootballPlayer("손흥민", 7, "토트넘", 30));
 		players.put(10, new FootballPlayer("디발라", 10, "유벤투스", 29));
 		players.put(10, new FootballPlayer("케인", 10, "토트넘", 29));
