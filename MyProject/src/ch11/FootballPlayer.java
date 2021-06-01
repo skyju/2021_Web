@@ -90,7 +90,6 @@ public class FootballPlayer implements Comparable<FootballPlayer> {
                result = this.number - o.getNumber();
             }
         }
-        
         return result;
     }
 }
