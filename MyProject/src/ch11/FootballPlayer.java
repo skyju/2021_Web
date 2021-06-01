@@ -1,11 +1,48 @@
 package ch11;
 
 public class FootballPlayer implements Comparable<FootballPlayer>{
-	String name;
-	int number;
-	String team;
-	int age;
-	
+	private String name;
+	private int number;
+	private String team;
+	private int age;
+	 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public String getTeam() {
+		return team;
+	}
+
+	public void setTeam(String team) {
+		this.team = team;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "FootballPlayer [name=" + name + ", number=" + number + ", team=" + team + ", age=" + age + "]";
+	}
+
 	public FootballPlayer(String name, int number, String team, int age) {
 		this.name = name;
 		this.number = number;
@@ -21,7 +58,6 @@ public class FootballPlayer implements Comparable<FootballPlayer>{
 		System.out.println("나 이: "+age);
 		System.out.println("============");
 	}
-	
 	
 	// 문제 2번
 	@Override
