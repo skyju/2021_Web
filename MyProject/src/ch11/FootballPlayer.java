@@ -33,6 +33,7 @@ public class FootballPlayer implements Comparable<FootballPlayer>{
 	public boolean equals(Object obj) {
 		boolean result = false;
 		if(obj != null && obj instanceof FootballPlayer) {
+			//arg를 형변환 먼저함
 			FootballPlayer fp = (FootballPlayer)obj;
 			if( this.team.equals(fp.team) && 
 				this.name.equals(fp.name) &&
