@@ -29,10 +29,7 @@ public class Q1 {
 		try {
 			System.out.println("id를 입력해주세요.");
 			String id = getUserInput();
-			Q1 user1 = new Q1(id);
-			String id2 = getUserInput();
-			Q1 user2 = new Q1(id2);
-			
+			Q1 user = new Q1(id);
 		} catch (BadIdInputException e) {
 			System.out.println(e.getMessage());
 		}
