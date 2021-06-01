@@ -30,7 +30,6 @@ public class Q1 extends Person {
 		Person person2 = new Q1("아무개", "8806081889566");
 		person2.hello();
 		
-		person2.equals(person1);
-		
+		person2.equals(person1);	
 	}
 }
