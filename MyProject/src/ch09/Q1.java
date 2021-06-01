@@ -10,16 +10,16 @@ public class Q1 extends Person {
 
 	@Override
 	public boolean equals(Object obj) {
+		
+		boolean result = false;
+		
 		if(obj != null && obj instanceof Person) {
 			if(this.personNumber.equals(((Person) obj).getPersonNumber())) {
 				System.out.println("전에 저장한 사람과 같은 사람입니다.");
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
+				result = true;
+			} 
+		} 
+		return result;
 	}
 
 	public static void main(String[] args) {

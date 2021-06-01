@@ -13,7 +13,7 @@ public class IteratorTest {
 		list.add("First");
 		list.add("Second");
 		list.add("Third");
-		list.add("Fourth");
+		list.add("First");
 		
 		//일반 for문
 		for(int i = 0 ; i < list.size() ; i++) {
