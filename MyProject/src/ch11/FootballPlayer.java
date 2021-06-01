@@ -1,6 +1,6 @@
 package ch11;
 
-public class FootballPlayer implements Comparable<FootballPlayer>{
+public class FootballPlayer implements Comparable<FootballPlayer> {
 	private String name;
 	private int number;
 	private String team;
@@ -83,28 +83,17 @@ public class FootballPlayer implements Comparable<FootballPlayer>{
 	// 문제 3번
 	@Override
 	public int compareTo(FootballPlayer o) {
-		//team 비교
-		if(this.team.compareTo(o.team) > 0) {
-			return 1;
-		} else if (this.team.compareTo(o.team) < 0) {
-			return -1;
-		} else { //team이 같은경우 name 비교
-			if(this.name.compareTo(o.name) > 0) {
-				return 1;
-			} else if (this.name.compareTo(o.name) < 0) {
-				return -1;
-			} else { //team과 name이 같은 경우 number비교
-				if(this.number > o.number) {
-					return 1;
-				} else if (this.number < o.number) {
-					return -1;
-				} else { //모두 같은 경우
-					return 0;
-				}
-			}
-		}
-	}
-	
-	
-	
+        int result = team.compareTo(o.getTeam());
+        if(result == 0){
+            result = name.compareTo(o.getName());
+            if(result == 0){
+                if (number > o.getNumber()){
+                    result = 1;
+                }else {
+                    result = -1;
+                }
+            }
+        }
+        return result;
+    }
 }
