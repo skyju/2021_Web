@@ -83,17 +83,14 @@ public class FootballPlayer implements Comparable<FootballPlayer> {
 	// 문제 3번
 	@Override
 	public int compareTo(FootballPlayer o) {
-        int result = team.compareTo(o.getTeam());
+        int result = this.team.compareTo(o.getTeam());
         if(result == 0){
-            result = name.compareTo(o.getName());
+            result = this.name.compareTo(o.getName());
             if(result == 0){
-                if (number > o.getNumber()){
-                    result = 1;
-                }else {
-                    result = -1;
-                }
+               result = this.number - o.getNumber();
             }
         }
+        
         return result;
     }
 }
