@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class ObjectSerializable {
 
@@ -18,6 +19,17 @@ public class ObjectSerializable {
 			out.writeObject(new Circle(1,2,3.4));
 			out.writeObject(new Circle(3,5,7.9));
 			out.writeObject("Hello"); //String instance
+			
+			/**/
+			ArrayList<Circle> list = new ArrayList<>();
+			list.add(new Circle(1,2,3.4));
+			list.add(new Circle(3,5,7.9));
+			list.add(new Circle(4,2,7.9));
+			list.add(new Circle(5,3,2.3));
+			list.add(new Circle(6,8,1.5));
+			out.writeObject(list);
+			/**/
+			
 			out.close();
 			System.out.println("인스턴스 저장 완료");
 			
@@ -28,6 +40,14 @@ public class ObjectSerializable {
 			Circle c1 = (Circle)in.readObject();
 			Circle c2 = (Circle)in.readObject();
 			String str = (String)in.readObject();
+			
+			/**/
+			ArrayList<Circle> list2 = (ArrayList<Circle>)in.readObject();
+			for(Circle c : list2) {
+				c.showData();
+			}
+			/**/
+			
 			in.close();
 			System.out.println("인스턴스 복원 완료");
 			
@@ -55,7 +75,7 @@ class Circle implements Serializable { //ex.io.Circle
 	
 	int x;
 	int y;
-	double r;
+	transient double r;
 	
 	public Circle(int x, int y, double r) {
 		this.x = x;
@@ -64,7 +84,7 @@ class Circle implements Serializable { //ex.io.Circle
 	}
 	
 	public void showData() {
-		System.out.println("원점 ["+x+","+y+"]");
+		System.out.print("원점 ["+x+","+y+"]");
 		System.out.println("반지름: "+r);
 	}
 }
