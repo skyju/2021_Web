@@ -34,7 +34,7 @@ public class Q4 {
 		Iterator<Integer> itr = set.iterator();
 		while(itr.hasNext()) {
 			System.out.println(players.get(itr.next()));
-			//map의 값 가져 오는 명령어 gets
+			//map의 key를 기준으로 값을 가져 오는 명령어 get
 		}
 		
 	}
