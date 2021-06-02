@@ -25,7 +25,7 @@ public class BufferFileCopy2 {
 			int readLen = 0;
 			
 			while(true) {
-				readLen = input.read(buf);
+				readLen = input.read(buf); // 완료시점 > -1 반환
 				
 				// 탈출의 조건 : 파일의 모든 데이터를 읽은 경우
 				if(readLen == -1) {
