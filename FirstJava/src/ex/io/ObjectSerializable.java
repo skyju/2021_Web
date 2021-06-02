@@ -43,9 +43,6 @@ public class ObjectSerializable {
 			
 			/**/
 			ArrayList<Circle> list2 = (ArrayList<Circle>)in.readObject();
-			for(Circle c : list2) {
-				c.showData();
-			}
 			/**/
 			
 			in.close();
@@ -55,6 +52,9 @@ public class ObjectSerializable {
 			System.out.println("복원된 인스턴스 출력");
 			c1.showData();
 			c2.showData();
+			for(Circle c : list2) {
+				c.showData();
+			}
 			System.out.println(str);
 			
 		} catch (FileNotFoundException e) {
