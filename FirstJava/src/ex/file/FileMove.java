@@ -7,7 +7,8 @@ public class FileMove {
 	public static void main(String[] args) {
 		
 //		File myFile = new File("D:\\myjava", "origin.pdf");
-		File myFile = new File("D:\\myjava\\origin.pdf");
+		File myFile = new File("D:"+File.separator+"myjava"+File.separator+"origin.pdf");
+//		System.out.println(myFile); //원본파일 경로 저장
 		
 		if(!myFile.exists()) {
 			System.out.println("원본 파일이 준비되어 있지 않습니다.");
@@ -15,7 +16,7 @@ public class FileMove {
 			return;
 		}
 		
-		File newDir = new File("D:\\yourjava");
+		File newDir = new File("D:"+File.separator+"yourjava");
 		System.out.println("1. exist ?:"+newDir.exists());
 		
 		if(!newDir.exists()) {
