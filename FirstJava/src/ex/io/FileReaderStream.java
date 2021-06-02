@@ -16,6 +16,7 @@ public class FileReaderStream {
 			Reader in = new FileReader("hyper.txt");
 			
 			char[] cbuf = new char[10];
+			@SuppressWarnings("unused")
 			int readLen = 0;
 			
 			readLen = in.read(cbuf, 0, cbuf.length);
