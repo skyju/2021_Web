@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Scanner;
 
-public class Memo implements Serializable {
+public class Q1 implements Serializable {
 	
 	public static void main(String[] args) {
 		
