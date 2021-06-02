@@ -11,8 +11,9 @@ public class Q4 {
 		
 		
 		//방법1
-		long difference = (today.getTimeInMillis()-birth.getTimeInMillis())/1000;
-		System.out.println("태어난 후 지금까지"+difference/(24*60*60)+"일이 지났습니다.");
+		long difference = (today.getTimeInMillis()-birth.getTimeInMillis())
+				/(1000L*60*60*24);
+		System.out.println("태어난 후 지금까지"+difference+"일이 지났습니다.");
 		
 		
 		//방법2
