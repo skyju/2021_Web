@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
-public class FileWritterStream {
+public class FileWriterStream {
 	public static void main(String[] args) {
 		//문자 단위 저장을 위한 출력 스트림
 		//Writer > FileWriter : 파일에 문자를 쓰기
