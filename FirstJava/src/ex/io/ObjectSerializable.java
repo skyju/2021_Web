@@ -32,6 +32,7 @@ public class ObjectSerializable {
 			System.out.println("인스턴스 복원 완료");
 			
 			// 복원 출력
+			System.out.println("복원된 인스턴스 출력");
 			c1.showData();
 			c2.showData();
 			System.out.println(str);
@@ -40,7 +41,7 @@ public class ObjectSerializable {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) { //ex.io.Circle을 찾음
 			e.printStackTrace();
 		}
 		
@@ -64,6 +65,6 @@ class Circle implements Serializable { //ex.io.Circle
 	
 	public void showData() {
 		System.out.println("원점 ["+x+","+y+"]");
-		System.out.println("반지름 ["+r+"]");
+		System.out.println("반지름: "+r);
 	}
 }
