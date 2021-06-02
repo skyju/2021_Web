@@ -1,4 +1,4 @@
-package test;
+package ex.arrayInheritance;
 
 public class Product {
 	final int price;

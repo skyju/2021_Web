@@ -1,4 +1,4 @@
-package test;
+package ex.arrayInheritance;
 
 public class ArrayEx {
 	public static int[] addAllArray(int[] ar, int addVal) {

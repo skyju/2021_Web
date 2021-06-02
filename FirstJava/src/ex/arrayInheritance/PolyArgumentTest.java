@@ -1,4 +1,4 @@
-package test;
+package ex.arrayInheritance;
 
 class PolyArgumentTest {
 	public static void main(String args[]) {

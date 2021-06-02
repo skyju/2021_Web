@@ -1,4 +1,4 @@
-package test4_Iterator;
+package ex.collection;
 
 import java.util.*;
 
