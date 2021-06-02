@@ -1,4 +1,4 @@
-package homwork.array;
+package homework.array;
 
 public class ArrayQ3 {
 	

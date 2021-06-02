@@ -1,4 +1,4 @@
-package homwork.array;
+package homework.array;
 
 import java.util.*;
 
