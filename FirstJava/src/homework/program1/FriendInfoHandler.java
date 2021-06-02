@@ -1,32 +1,22 @@
-package test3;
+package homework.program1;
 
 import java.util.*;
 
-public class FriendInfoHandler {
+public class FriendInfoHandler { // 데이터(객체)를 배열로 저장하고, 관리하는 기능
 	
-	// 2021-05_31
-	// 배열 > 컬렉션
-	// private Friend[] friends;
-	// private int numOfFriends;// 배열의 index, 정보 갯수, 카운트 될 것임
-	// ArrayList가 기능을 다 해주기 때문에 count용 정수 필요없음
+	private Friend[] myFriends;
+	private int numOfFriends; // 배열의 index, 정보 갯수, 카운트 될 것임
 	
-	ArrayList<Friend> friends;
-	
-	public FriendInfoHandler(int num) {
-		friends = new ArrayList<Friend>(num);
+	public FriendInfoHandler(int num) { //num은 배열의 사이즈 > 인스턴스 생성
+		myFriends = new Friend[num];
+		numOfFriends = 0; //? 0에서 시작해야 add할 때마다 카운트가 올라가지
 	}
 	
 	private void addFriendInfo(Friend fren) {
-		// 배열에 요소 추가 
-		// friends[numOfFriends++] = fren;
-		
-		// 컬랙션 : List에 요소 추가
-		friends.add(fren);
-		System.out.println("정보가 저장되었습니다.");
-		System.out.println("------------------");
+		myFriends[numOfFriends++] = fren;
 	}
 	
-	// 사용자로부터 친구의 정보를 입력받아서 인스턴스 생성, 배열에 저장
+	//사용자로부터 친구의 정보를 입력받아서 인스턴스 생성, 배열에 저장
 	public void addFriend(int choice) {// 1 고교 2 대학
 		String name, phoneNum, address, job, major;
 		Scanner scanner = new Scanner(System.in);
@@ -47,18 +37,17 @@ public class FriendInfoHandler {
 			major = scanner.nextLine();
 			addFriendInfo(new UnivFriend(name, phoneNum, address, major));
 		}
+		System.out.println("입력 완료!\n");
+		
 	}
 	
 	public void showAllData() {
 		System.out.println("------------------");
 		System.out.println("친구의 정보를 출력합니다.");
 		System.out.println("------------------");
-		// 2021-05-31: 수정
-		// 요소의 저장방식이 배열 > 컬렉션 : 반복문 수정
-		if(friends.size() > 0) {
-			for(int i = 0 ; i < friends.size() ; i++) {
-				//friends[i].showInfo();
-				friends.get(i).showInfo();
+		if(numOfFriends > 0) {
+			for(int i = 0 ; i < numOfFriends ; i++) {
+				myFriends[i].showData();
 				System.out.println("------------------");
 			}
 		} else {
@@ -71,10 +60,9 @@ public class FriendInfoHandler {
 		System.out.println("------------------");
 		System.out.println("친구의 기본 정보를 출력합니다.");
 		System.out.println("------------------");
-		if(!friends.isEmpty()) { // 비었으면 true가 나오므로 부정해줘야함
-			for(int i = 0 ; i < friends.size() ; i++) {
-				//friends[i].showBasicInfo();
-				friends.get(i).showBasicInfo();
+		if(numOfFriends > 0) {
+			for(int i = 0 ; i < numOfFriends ; i++) {
+				myFriends[i].showBasicInfo();
 				System.out.println();
 			}
 		} else {

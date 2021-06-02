@@ -1,4 +1,4 @@
-package test3;
+package homework.program2;
 
 public abstract class Friend implements ShowData{
 	

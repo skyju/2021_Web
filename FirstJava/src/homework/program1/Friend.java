@@ -1,4 +1,4 @@
-package test2;
+package homework.program1;
 
 public class Friend {
 	

@@ -1,4 +1,4 @@
-package homework2_inheritance;
+package homework.inheritance;
 
 class Car {
 	int gasolineGauge;
