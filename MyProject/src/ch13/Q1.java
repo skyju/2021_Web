@@ -18,8 +18,6 @@ public class Q1 {
 
 class gameThread extends Thread {
 	
-	int min=1;
-	int max=100;
 	Random random = new Random();
 	int correct = random.nextInt(99)+1; // 1~100사이의 랜덤 숫자를 정답으로 생성
 	
