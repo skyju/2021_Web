@@ -16,7 +16,10 @@ public class Q1 implements Serializable {
 	public static void main(String[] args) {
 		
 		Calendar date = Calendar.getInstance();
-		String today = "[작성 날짜]:" +date.get(Calendar.MONTH)+"월  "+date.get(Calendar.DATE)+"일";
+		String today = "[작성 날짜]:"
+				+date.get(Calendar.YEAR)+"년 "
+				+date.get(Calendar.MONTH)+"월  "
+				+date.get(Calendar.DATE)+"일";
 		String header;
 		String content;
 			
@@ -36,7 +39,8 @@ public class Q1 implements Serializable {
 				header = kb.nextLine();
 				System.out.print("내용을 입력해주세요: ");
 				content = kb.nextLine();
-				BufferedWriter out = new BufferedWriter(new FileWriter(newFile+File.separator+header+".txt"));
+				BufferedWriter out = new BufferedWriter
+						(new FileWriter(newFile+File.separator+header+".txt"));
 				out.write(today+"\n제목: "+header+'\n'+"내용: "+content);
 				out.close();
 				System.out.println("나가고 싶으시면 exit을, 계속 입력하고 싶으시면 아무키나 입력해주세요.");
@@ -46,7 +50,8 @@ public class Q1 implements Serializable {
 			
 			System.out.println("읽고 싶은 파일의 제목을 입력해주세요.");
 			header = kb.nextLine();
-			BufferedReader in = new BufferedReader(new FileReader(newFile+File.separator+header+".txt"));
+			BufferedReader in = new BufferedReader
+					(new FileReader(newFile+File.separator+header+".txt"));
 			
 			String str = null;
 			while(true) {
