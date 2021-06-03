@@ -4,20 +4,18 @@ import java.util.*;
 
 public class Q2 {
 	
-	static File originFile;
-	static File newDir;
-	
 	public static void main(String[] args) {
 		
-		System.out.println("[알림] 파일 복사 프로그램을 실행합니다.");
+		File originFile;
+		File newDir;
 		Scanner kb = new Scanner(System.in);
 		
+		System.out.println("[알림] 파일 복사 프로그램을 실행합니다.");
 		System.out.println("[입력] 복사할 파일의 경로를 입력해주세요"
-				+ "\n(확장자 명까지 입력): ");
-		String originPath = kb.nextLine();
+				+ "\n(확장자 명까지 입력해주세요.): ");
 		
 		//원본 파일 객체 생성
-		originFile = new File(originPath);
+		originFile = new File(kb.nextLine());
 		
 		if(!originFile.exists()) {
 			System.out.println("[알림] 입력 된 경로에 원본 파일이 준비되어 있지 않습니다.");
@@ -25,18 +23,18 @@ public class Q2 {
 			return;
 		}
 		
+		System.out.println("[입력] 파일을 옮길 새로운 경로를 입력해주세요");
 		
-		System.out.println("[입력] 파일을 옮길 새로운 경로를 입력해주세요"
-				+ "\n(대상 폴더가 없을 시, 자동으로 생성됩니다.) ");
-		String newPath = kb.nextLine();
-	
-		newDir = new File(newPath);
+		//새로운 경로 설정
+		newDir = new File(kb.nextLine());
+		
 		if(!newDir.exists()) {
-			newDir.mkdir();
-			System.out.println("[알림] 대상 경로에 폴더가 존재하지 않아 새로운 폴더를 생성했습니다.");
+			System.out.println("[알림] 올바르지 않은 경로입니다.");
+			System.out.println("      프로그램을 종료합니다.");
+			return;
 		}
 		
-		copyFileThread ct = new copyFileThread();
+		copyFileThread ct = new copyFileThread(originFile, newDir);
 		ct.start();
 	}
 
@@ -44,13 +42,20 @@ public class Q2 {
 
 class copyFileThread extends Thread {
 	
+	File originFile;
+	File newDir;
+	
+	public copyFileThread(File a, File b) {
+		originFile = a;
+		newDir = b;
+	}
 	@Override
 	public void run() {
 		try {
 			BufferedInputStream filtterInput = new BufferedInputStream
-					(new FileInputStream(Q2.originFile));
+					(new FileInputStream(originFile));
 			BufferedOutputStream filtterOutput = new BufferedOutputStream(
-					new FileOutputStream(Q2.newDir));
+					new FileOutputStream(new File(newDir, originFile.getName()+"")));
 
 			int copyByteSize = 0;
 			int bData = -1;
