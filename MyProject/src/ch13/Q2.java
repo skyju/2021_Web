@@ -12,7 +12,7 @@ public class Q2 {
 		
 		System.out.println("[알림] 파일 복사 프로그램을 실행합니다.");
 		System.out.println("[입력] 복사할 파일의 경로를 입력해주세요"
-				+ "\n(확장자 명까지 입력해주세요.): ");
+				+ "\n      (확장자 명까지 입력해주세요.): ");
 		
 		//원본 파일 객체 생성
 		originFile = new File(kb.nextLine());
