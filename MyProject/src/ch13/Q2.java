@@ -18,7 +18,7 @@ public class Q2 {
 			//원본 파일 객체 생성
 			originFile = new File(kb.nextLine());	
 			if(!originFile.exists()) {
-				System.out.println("[알림] 입력 된 경로에 원본 파일이 준비되어 있지 않습니다. 다시 입력해주세요.");
+				System.out.println("[알림] 입력 된 경로에 원본 파일이 준비되어 있지 않습니다. 다시 입력해주세요.\n");
 				continue;
 			} 
 		}
@@ -27,7 +27,7 @@ public class Q2 {
 			//새로운 경로 설정
 			newDir = new File(kb.nextLine());
 			if(!newDir.exists()) {
-				System.out.println("[알림] 올바르지 않은 경로입니다. 다시 입력해주세요.");
+				System.out.println("[알림] 올바르지 않은 경로입니다. 다시 입력해주세요.\n");
 				continue;
 			} else {
 				copyFileThread ct = new copyFileThread(originFile, newDir);
