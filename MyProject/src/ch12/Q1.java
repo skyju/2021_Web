@@ -43,7 +43,7 @@ public class Q1 implements Serializable {
 						(new FileWriter(newFile+File.separator+header+".txt"));
 				out.write(todayString+"\n제목: "+header+'\n'+"내용: "+content);
 				out.close();
-				System.out.println("나가고 싶으시면 exit을, 계속 입력하고 싶으시면 아무키나 입력해주세요.");
+				System.out.println("나가고 싶으시면 exit을, 계속 메모를 쓰고 싶으시면 아무키나 입력해주세요.");
 				exit = kb.nextLine();
 			}
 			System.out.println("쓰기 완료");
@@ -66,7 +66,7 @@ public class Q1 implements Serializable {
 					System.out.println(str);
 				}
 				in.close();
-				System.out.println("나가고 싶으시면 exit을, 계속 입력하고 싶으시면 아무키나 입력해주세요.");
+				System.out.println("나가고 싶으시면 exit을, 계속 메모를 읽고 싶으시면 아무키나 입력해주세요.");
 				exit2 = kb.nextLine();
 			}
 			System.out.println("메모장 읽기 완료");
