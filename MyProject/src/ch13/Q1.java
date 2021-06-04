@@ -32,7 +32,6 @@ class gameThread extends Thread {
 					throw new InputMismatchException();
 				} else if(answer == correct) {
 					System.out.println("정답입니다! 프로그램을 종료합니다.");
-					kb.close();
 					System.exit(0);
 				} else if (answer > correct) {
 					System.out.println("정답보다 큰 숫자입니다.");
