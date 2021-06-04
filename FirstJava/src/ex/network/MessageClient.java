@@ -24,6 +24,7 @@ public class MessageClient {
 			String PushMsg = ""; // 
 			
 			while(!PushMsg.equals("exit")) {
+				System.out.println("Server의 말을 기다리는 중 ...");
 				acceptMsg = din.readUTF();
 				System.out.println("Server Msg: "+acceptMsg);
 				
@@ -31,14 +32,12 @@ public class MessageClient {
 				PushMsg = kb.nextLine();
 				dout.writeUTF(PushMsg);
 			}
-
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			Util.close(s);
 		}
-		
 	}
 
 }

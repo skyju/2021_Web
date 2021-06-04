@@ -7,6 +7,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
+//책에 Thread 이용해서 multiChatting 하는 예제 해볼 것
+
 public class MessageServer {
 
 	public static void main(String[] args) {
@@ -26,6 +28,7 @@ public class MessageServer {
 							//그럼 close할 때 null을 어떻게 close?
 			System.out.println("client 접속");
 			System.out.println("=================");
+			System.out.println("채팅을 시작합니다. 나가려면 exit을 입력해주세요.");
 			
 			din = new DataInputStream(s.getInputStream());
 			dout = new DataOutputStream(s.getOutputStream());
