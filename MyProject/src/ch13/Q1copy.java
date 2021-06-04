@@ -25,21 +25,21 @@ class gameThread2 extends Thread {
 		Scanner kb = new Scanner(System.in);
 		while(true) {
 			try {
-			CountDownThread2 ct = new CountDownThread2();
-			ct.start();
-			int answer = Integer.parseInt(JOptionPane.showInputDialog("정답을 입력해주세요."));
-				if(answer <= 0 || answer >= 100) {
-					throw new NumberFormatException();
-				} else if(answer == correct) {
-					System.out.println("정답입니다! 프로그램을 종료합니다.");
-					System.exit(0);
-				} else if (answer > correct) {
-					System.out.println("정답보다 큰 숫자입니다.");
-					continue;
-				} else if (answer < correct) {
-					System.out.println("정답보다 작은 숫자입니다.");
-					continue;
-				}
+				CountDownThread2 ct = new CountDownThread2();
+				ct.start();
+				int answer = Integer.parseInt(JOptionPane.showInputDialog("정답을 입력해주세요."));
+					if(answer <= 0 || answer >= 100) {
+						throw new NumberFormatException();
+					} else if(answer == correct) {
+						System.out.println("정답입니다! 프로그램을 종료합니다.");
+						System.exit(0);
+					} else if (answer > correct) {
+						System.out.println("정답보다 큰 숫자입니다.");
+						continue;
+					} else if (answer < correct) {
+						System.out.println("정답보다 작은 숫자입니다.");
+						continue;
+					}
 				Q1copy.chk = true;
 			} catch (NumberFormatException e) {
 				System.out.println("[경고] 정답은 1과 100 사이의 정수로만 입력해주세요.");
@@ -64,7 +64,7 @@ class CountDownThread2 extends Thread {
 			}
 			System.out.println("남은시간: "+ i+"초");
 			try {
-				sleep(1000);
+				CountDownThread2.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
