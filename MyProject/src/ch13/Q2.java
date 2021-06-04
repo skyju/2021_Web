@@ -7,7 +7,7 @@ public class Q2 {
 	public static void main(String[] args) {
 		
 		File originFile = new File("");
-		File newDir = new File("");
+		File newFile = new File("");
 		
 		Scanner kb = new Scanner(System.in);
 		System.out.println("[알림] 파일 복사 프로그램을 실행합니다.");
@@ -21,13 +21,13 @@ public class Q2 {
 				System.out.println("[알림] 입력 된 경로에 원본 파일이 준비되어 있지 않습니다. 다시 입력해주세요.\n");
 			} 
 		}
-		while(!newDir.exists()) {
+		while(!newFile.exists()) {
 			System.out.println("[입력] 파일을 옮길 새로운 경로를 입력해주세요");
 			//새로운 경로 설정
 			String folder = kb.nextLine();
-			newDir = new File(folder, originFile.getName());
-			File reFile = new File(folder);
-			if(!reFile.exists()) {
+			newFile = new File(folder, originFile.getName());
+			File newDir = new File(folder);
+			if(!newDir.exists()) {
 				System.out.println("[알림] 올바르지 않은 경로입니다. 다시 입력해주세요.\n");
 			} else {
 				copyFileThread ct = new copyFileThread(originFile, newDir);
