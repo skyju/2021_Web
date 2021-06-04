@@ -24,8 +24,10 @@ public class Q2 {
 		while(!newDir.exists()) {
 			System.out.println("[입력] 파일을 옮길 새로운 경로를 입력해주세요");
 			//새로운 경로 설정
-			newDir = new File(kb.nextLine());
-			if(!newDir.exists()) {
+			String folder = kb.nextLine();
+			newDir = new File(folder, originFile.getName());
+			File reFile = new File(folder);
+			if(!reFile.exists()) {
 				System.out.println("[알림] 올바르지 않은 경로입니다. 다시 입력해주세요.\n");
 			} else {
 				copyFileThread ct = new copyFileThread(originFile, newDir);
@@ -50,7 +52,7 @@ class copyFileThread extends Thread {
 			BufferedInputStream filtterInput = new BufferedInputStream
 					(new FileInputStream(originFile));
 			BufferedOutputStream filtterOutput = new BufferedOutputStream(
-					new FileOutputStream(new File(newDir, originFile.getName()+"")));
+					new FileOutputStream(newDir));
 
 			int copyByteSize = 0;
 			int bData = -1;
