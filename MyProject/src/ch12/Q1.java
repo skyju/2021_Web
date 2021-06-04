@@ -16,12 +16,13 @@ public class Q1 implements Serializable {
 	public static void main(String[] args) {
 		
 		Calendar date = Calendar.getInstance();
-		String today = "[작성 날짜]:"
-				+date.get(Calendar.YEAR)+"년 "
-				+date.get(Calendar.MONTH)+"월  "
-				+date.get(Calendar.DATE)+"일";
+		String year = date.get(Calendar.YEAR)+"년 ";
+		String month = date.get(Calendar.MONTH)+"월  ";
+		String day = date.get(Calendar.DATE)+"일";
+		String todayString = "[작성 날짜] "+year+month+day;
 		String header;
 		String content;
+		Scanner kb = new Scanner(System.in);
 			
 		File newFile = new File("D:"+File.separator+"memo");
 		
@@ -31,7 +32,6 @@ public class Q1 implements Serializable {
 		}
 		
 		try {
-			Scanner kb = new Scanner(System.in);
 			System.out.println("메모장 쓰기 시작");
 			String exit = "";
 			while(!exit.equals("exit")) {
@@ -41,26 +41,35 @@ public class Q1 implements Serializable {
 				content = kb.nextLine();
 				BufferedWriter out = new BufferedWriter
 						(new FileWriter(newFile+File.separator+header+".txt"));
-				out.write(today+"\n제목: "+header+'\n'+"내용: "+content);
+				out.write(todayString+"\n제목: "+header+'\n'+"내용: "+content);
 				out.close();
 				System.out.println("나가고 싶으시면 exit을, 계속 입력하고 싶으시면 아무키나 입력해주세요.");
 				exit = kb.nextLine();
 			}
 			System.out.println("쓰기 완료");
 			
-			System.out.println("읽고 싶은 파일의 제목을 입력해주세요.");
-			header = kb.nextLine();
-			BufferedReader in = new BufferedReader
-					(new FileReader(newFile+File.separator+header+".txt"));
-			
-			String str = null;
-			while(true) {
-				str = in.readLine();
-				if(str == null) {
-					break;
+			System.out.println("메모장 읽기 시작");
+			String exit2 = "";
+			while(!exit2.equals("exit")) {
+				System.out.println("파일의 제목을 입력해주세요.");
+				header = kb.nextLine();
+				
+				BufferedReader in = new BufferedReader
+						(new FileReader(newFile+File.separator+header+".txt"));
+				
+				String str = null;
+				while(true) {
+					str = in.readLine();
+					if(str == null) {
+						break;
+					}
+					System.out.println(str);
 				}
-				System.out.println(str);
+				in.close();
+				System.out.println("나가고 싶으시면 exit을, 계속 입력하고 싶으시면 아무키나 입력해주세요.");
+				exit2 = kb.nextLine();
 			}
+			System.out.println("메모장 읽기 완료");
 			
 			
 		} catch (FileNotFoundException e) {
