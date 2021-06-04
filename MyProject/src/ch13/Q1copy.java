@@ -2,17 +2,16 @@ package ch13;
 
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 public class Q1copy {
 	
 	public static boolean chk = false;
 	
 	public static void main(String[] args) {
 		
-		CountDownThread2 ct = new CountDownThread2();
 		gameThread2 gt = new gameThread2();
 		gt.start();
-		ct.start();
-	
 	}
 }
 
@@ -26,10 +25,11 @@ class gameThread2 extends Thread {
 		Scanner kb = new Scanner(System.in);
 		while(true) {
 			try {
-			System.out.println("정답은? : ");
-			int answer = kb.nextInt();
+			CountDownThread2 ct = new CountDownThread2();
+			ct.start();
+			int answer = Integer.parseInt(JOptionPane.showInputDialog("정답을 입력해주세요."));
 				if(answer <= 0 || answer >= 100) {
-					throw new InputMismatchException();
+					throw new NumberFormatException();
 				} else if(answer == correct) {
 					System.out.println("정답입니다! 프로그램을 종료합니다.");
 					System.exit(0);
@@ -41,7 +41,7 @@ class gameThread2 extends Thread {
 					continue;
 				}
 				Q1copy.chk = true;
-			} catch (InputMismatchException e) {
+			} catch (NumberFormatException e) {
 				System.out.println("[경고] 정답은 1과 100 사이의 정수로만 입력해주세요.");
 				System.exit(0);
 			} 
@@ -52,17 +52,19 @@ class gameThread2 extends Thread {
 
 class CountDownThread2 extends Thread {
 
+	static int i;
+	
 	@Override
 	public void run() {
 		System.out.println("[1~100] 사이의 숫자를 입력해주세요.");
 		System.out.println("**10초 안에 값을 입력해야 합니다.**");
-		for(int i = 10; i > 0 ; i--) {
+		for(i = 10; i > 0 ; i--) {
 			if(Q1copy.chk) {
 				System.exit(0);
 			}
-			System.out.println("              남은시간: "+ i+"초");
+			System.out.println("남은시간: "+ i+"초");
 			try {
-				CountDownThread.sleep(1000);
+				sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
