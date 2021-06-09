@@ -14,6 +14,7 @@ public class UserHandler {
 	
 	private void addUserInfo(UserInfo users) {
 		user[numOfUser++] = users;
+		//Userinfo 객체 만들어질 때마다 user인덱스에 0번부터 차례로 들어감
 	}
 	
 	public void addInfo() {
