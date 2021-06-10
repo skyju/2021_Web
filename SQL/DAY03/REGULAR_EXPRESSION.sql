@@ -2,12 +2,6 @@
 -- 정규 표현식 (REGULAR EXPRESSION - REGEXP_)
 -- https://ko.wikipedia.org/wiki/%EC%A0%95%EA%B7%9C_%ED%91%9C%ED%98%84%EC%8B%9D 참고
 
--- (1) REGEXP_LIKE(문자열, 패턴, ...) : LIKE과 유사, 정규식을 사용할 수 있는 LIKE
--- (2) REGEXP_COUNT: 패턴에 일치하는 문자열 갯수 카운트
--- (3) REGEXP_INSTR: 문자열 내에서 패턴에 일치하는 시작 위치를 찾아줌
--- (4) REGEXP_SUBSTR: 문자열 내에서 패턴에 일치하는 문자열을 추출
--- (5) REGEXP_REPLACE: 문자열 내에서 패턴에 일치하는 문자열을 다른 문자열로 대체
-
 -- [:digit] 숫자의 묶음을 나타내는 숫자 클래스 0~9, -- [0-9] = [[:digit:]]
 -- [:alpha] 알파벳을 뜻하는 문자 클래스
 -- [:upper] 대문자
@@ -15,6 +9,16 @@
 -- [:alnum] 대소문자 구분하지 않고, 영숫자 \w, -- [\w] = [[:alnum:]] 
 
 -- 유의할 점: or을 대체하는 |는 되지만, &는 정규표현식에 없음
+
+
+
+-- Oracle의 정규 표현식 사용 법  
+-- (1) REGEXP_LIKE(문자열, 패턴, ...) : LIKE과 유사, 정규식을 사용할 수 있는 LIKE
+-- (2) REGEXP_COUNT: 패턴에 일치하는 문자열 갯수 카운트
+-- (3) REGEXP_INSTR: 문자열 내에서 패턴에 일치하는 시작 위치를 찾아줌
+-- (4) REGEXP_SUBSTR: 문자열 내에서 패턴에 일치하는 문자열을 추출
+-- (5) REGEXP_REPLACE: 문자열 내에서 패턴에 일치하는 문자열을 다른 문자열로 대체
+
 
 
 -- (1) REGEXP_LIKE(source_char, pattern [, match_param])
