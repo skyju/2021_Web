@@ -1,241 +1,188 @@
--- 2021.06.09
+-- 2021.06.09, 06.10
 -- SQL Basic: SELECT 
 
--- 계정 HR이 권한을 가진 테이블 객체 리스트
-SELECT * FROM TAB;
-
--- 테이블의 정보를 검색 : 컬럼의 이름, NULL허용 유무, 타입, 사이즈
-DESC DEPT;
+-- 1) TAB
+    --  계정 HR이 권한을 가진 테이블 객체 리스트
+    SELECT * FROM TAB;
 
 
---EMP 테이블과 DEPT 테이블을 이용해서 풀이해 주세요.
-​-- 테이블에서 원하는 행의 컬럼의 값을 추출하는것
--- select {컬럼명,...} from 테이블 이름 where 조건 -> 원하는 행, 열을 표현 -> 결과 : 테이블
+-- 2) DESC: DESCIRBE
+    -- 테이블의 정보를 검색 : 컬럼의 이름, NULL허용 유무, 타입, 사이즈
+    DESC DEPT;
 
 
---1. 덧셈연산자를 이용하여 모든 사원에 대해서 $300의 급여 인상을 계산한 후 사원의 이름, 급여, 인상된 급여를 출력하시오.
+-- 3) SELECT 
+    -- select {컬럼명,...} from 테이블 이름 where 조건 -> 원하는 행, 열을 표현 -> 결과 : 테이블
 
-select ename, sal, sal+300 as addsal
-from emp
-;
-
-
---2. 사원의 이름, 급여, 연간 총 수입을 
---   총 수입이 많은 것부터 작은 순으로 출력하시오, 
---   연간 총수입은 월급에 12를 곱한 후 $100의 상여금을 더해서 계산하시오.
-
-select ename, sal, sal*12+100 as income
-from emp
-order by income desc
-;
-​
-
---3. 급여가 2000을 넘는 사원의
---   이름과 급여를 표현, 
---   급여가 많은 것부터 작은 순으로 출력하시오.
-
-select ename, sal
-from emp
-where sal > 2000
-order by sal desc
-;
-
-​
---4. 사원번호가 7788인 사원의 이름과 부서번호를 출력하시오.
-
-select ename, deptno
-from emp
-where empno=7788
-;
-
-​
---5. 급여가 2000에서 3000 사이에 포함되지 않는 사원의 -> 범위 : between 또는 논리연산
---   이름과 급여를 출력하시오.
-
-select ename, sal
-from emp
-where sal not between 2000 and 3000
-;
-
-select ename, sal 
-from emp
-where not ( sal>=2000 and sal<=3000 )
-;
+    --(1). 덧셈연산자사용하기
+        select ename, sal, sal+300 as addsal
+        from emp;
 
 
---6. 1981년 2월 20일 부터 1981년 5월 1일 사이에 입사한 사원의 -> 날짜의 범위
---   이름, 담당업무, 입사일을 출력하시오.
+    --(2). ORDER BY 컬럼 [ASC|DESC] 
+        -- 결과 행의 정렬
+        -- ASC: 오름차순: DEFAULT라서 명기 안함
+        select ename, sal, sal*12+100 as income
+        from emp
+        order by income desc;
+        
+    ​    -- DESC: 내림차순:
+        select ename, sal
+        from emp
+        where sal > 2000
+        order by sal desc;
 
-select ename, job, hiredate
-from emp
-where hiredate between '81/02/20' and '81/05/01'
-;
-​
 
---7. 부서번호가 20 및 30에 속한 사원의  -> 행의 조건
---   이름과 부서번호를 출력,            -> 출력 컬럼
---   이름을 기준(내림차순)으로 영문자순으로 출력하시오.  --> 정렬
-
-select ename, deptno
-from emp
---where deptno=20 or deptno=30
-where deptno in (20, 30)
-order by ename desc
-;
-
--- 이름이 'SCOTT'인 사원을 출력
-select *
-from emp
-where ename = 'SCOTT';
-
--- 소문자로 검색하면 인식 못함
-select *
-from emp
-where ename = 'scott';
-
--- 날짜 타입의 데이터 비교시에도 작은 따옴표를 사용해야 함
-select *
-from emp
-where hiredate = '96/11/17';
+​    --(3). 비교연산자 
+        -- 주의사항: 문자열 비교 시 ''사용, (자바와 달리 문자열 검색에 SINGLE QUOTE)
+        
+        -- 사원번호가 7788인 사원의 이름과 부서번호를 출력하시오.
+        select ename, deptno
+        from emp
+        where empno=7788;
+    
+        -- 이름이 'SCOTT'인 사원을 출력
+        select *
+        from emp
+        where ename = 'SCOTT';
+    
+        -- (#주의#)비교 연산은 정확하게 비교해야 함
+        -- 예를 들어 소문자로 검색하면 인식 못함
+        select *
+        from emp
+        where ename = 'scott';
+    
+        -- 날짜 타입의 데이터 비교시에도 작은 따옴표를 사용해야 함
+        select *
+        from emp
+        where hiredate = '96/11/17';
 
 ​
---8. 사원의 급여가 2000에서 3000사이에 포함되고  --> 조건 1   and
---   부서번호가 20 또는 30인 사원의             --> 조건 2
---   이름, 급여와 부서번호를 출력, 
---   이름순(오름차순)으로 출력하시오. 
+    --(4). 범위연산자
+        -- 1) 논리연산자: <=, <, >, >=
+        -- 2) BETWENN A AND B : A 이상 B 이하
+        
+        -- 2000이상 3000 이하의 급여를 받는 직원 리스트
+        
+        -- BETWEEN을 사용한다면
+        SELECT ENAME, JOB, SAL, SAL*1.1 AS ADDSAL
+        FROM EMP
+        WHERE SAL BETWEEN 2000 AND 3000;
+        
+        -- 논리연산자를 사용한다면
+        select ename, sal 
+        from emp
+        where not ( sal>=2000 and sal<=3000 );
 
-select ename, sal, deptno
-from emp
-where (sal>=2000 and sal<=3000) and (deptno=20 or deptno=30)
-order by ename 
-;
-
--- 논리 연산자: and, or, not
--- 10번 부서의 관리자를 찾아 출력
-select *
-from emp
-where deptno = 10 and job = 'MANAGER';
-
--- 10번 부서의 직원들과 관리자들의 리스트를 출력
-SELECT *
-FROM EMP
-WHERE DEPTNO = 10 OR JOB = 'MANAGER'
-ORDER BY DEPTNO ASC;
-
--- 10번 부서의 직원을 제외한 나머지 직원들 출력 (20,30)
-SELECT *
-FROM EMP
-WHERE NOT DEPTNO = 10
-ORDER BY DEPTNO ASC;
-
---11. 커미션을 받을 수 있는 자격이 되는 
---    사원의 이름, 급여, 커미션을 출력하되 
---    급여 및 커미션을 기준으로 내림차순 정렬하여 표시하시오.
-
-select ename, sal, comm
-from emp
-where comm is not null and comm>0
-order by sal desc, comm desc
-;
+        -- 날짜에도 적용해서 기간 검색을 할 수 있음
+        SELECT *
+        FROM EMP
+        WHERE HIREDATE BETWEEN '81/01/01' AND '81/12/31';
 
 
--- 범위 연산을 할 때
-    -- 1) 논리연산자
-    -- 2) BETWENN A AND B : A 이상 B 이하
--- 2000이상 3000 이하의 급여를 받는 직원 리스트
-SELECT ENAME, JOB, SAL, SAL*1.1 AS ADDSAL
-FROM EMP
-WHERE SAL BETWEEN 2000 AND 3000;
+    --(5). 논리연산자: and, or, not
+    
+        -- AND 연산
+        -- 10번 부서의 관리자를 찾아 출력
+        select *
+        from emp
+        where deptno = 10 and job = 'MANAGER';
+    
+        -- OR 연산
+        -- 10번 부서의 직원들과 관리자들의 리스트를 출력
+        SELECT *
+        FROM EMP
+        WHERE DEPTNO = 10 OR JOB = 'MANAGER'
+        ORDER BY DEPTNO ASC;
+    
+        -- NOT 연산
+        -- 10번 부서의 직원을 제외한 나머지 직원들 출력 (20,30)
+        SELECT *
+        FROM EMP
+        WHERE NOT DEPTNO = 10
+        ORDER BY DEPTNO ASC;
+    
+    
+    --(6). IN연산자 : 여러개의 OR 연산자 사용시 대체 가능
+    
+        -- 커미션이 300 또는 500 또는 1400
+        SELECT *
+        FROM EMP
+        WHERE COMM IN(300,500,1400);
+    
+        -- 부서번호가 20 및 30에 속한 사원의  -> 행의 조건
+        -- 이름과 부서번호를 출력, 이름을 기준으로 내림차순
+        select ename, deptno
+        from emp
+        --where deptno=20 or deptno=30
+        where deptno in (20, 30)
+        order by ename desc;
+    
+    
+    --(7). LIKE연산자
+        -- %와일드카드, _문자 하나 와일드카드(자리수)
+        
+        -- ENAME LIKE 'F%' -> F로 시작하는 문자열
+        -- ENAME LIKE '%F' -> F로 끝나는 문자열
+        -- ENAME LIKE '%F%' -> F를 포함하는 문자열
+        -- 예를들어 'java' 단어를 포함하는 지 > title like '%java%'
+        
+        -- 1981년도에 입사한 사원의 이름과 입사일을 출력하시오.
+        select ename, hiredate
+        from emp
+        where hiredate like '81%';
 
--- 날짜에도 적용해서 기간 검색할 수 있음
-SELECT *
-FROM EMP
-WHERE HIREDATE BETWEEN '81/01/01' AND '81/12/31';
+        -- F로 시작하는 이름을 가진 사원 검색
+        select *
+        from emp
+        where ename like 'F%';
 
-SELECT *
-FROM EMP
-WHERE HIREDATE >= '81/01/01' AND HIREDATE <= '81/12/31'
-ORDER BY HIREDATE;
+        -- 중간에 LA가 들어가는 이름을 가진 사원 검색
+        SELECT *
+        FROM EMP
+        WHERE ENAME LIKE '%LA%';
 
--- 연산자 IN -> 여러개의 OR 연산자 사용시 대체 가능
--- 커미션이 300 또는 500 또는 1400
-SELECT *
-FROM EMP
-WHERE COMM IN(300,500,1400);
-
-
---9. 1981년도에 입사한 사원의 이름과 입사일을 출력하시오. (like 연산자와 와일드카드 사용)
--- '81/01/01'  -> 81로 시작 뒤에 오는 문자열은 0이상의 문자열이 올 수 있는 조건
--- like '81%'
-
-select ename, hiredate
-from emp
-where hiredate like '81%'
-;
-
--- ENAME LIKE 'F%' -> F로 시작하는 문자열
--- ENAME LIKE '%F' -> F로 끝나는 문자열
--- ENAME LIKE '%F%' -> F를 포함하는 문자열
--- 'java' 단어를 포함하는 지 > title like '%java%'
-
--- F로 시작하는 이름을 가진 사원 검색
-select *
-from emp
-where ename like 'F%';
-
--- 중간에 LA가 들어가는 이름을 가진 사원 검색
-SELECT *
-FROM EMP
-WHERE ENAME LIKE '%LA%';
-
--- 자리수 패턴: 컬럼의 값이 자리수가 정해져 있고 값이 패턴이 있는 경우
--- 사원의 이름의 두 번째 문자에 A를 포함하는 사원의 리스트
-SELECT *
-FROM EMP
-WHERE ENAME LIKE '_A%';
-
---10. 관리자가 없는 사원의 이름과 담당 업무를 출력하시오.
--- null : 있는것도 아니고 없는것도 아닌 데이터 연산의 결과도 null , 비교연산 불가, 산술연산 불가
--- is null / is not null
-
-select ename, job 
-from emp
-where mgr is null
-;
+        -- 자리수 패턴: 컬럼의 값이 자리수가 정해져 있고 값이 패턴이 있는 경우
+        -- 사원의 이름의 두 번째 문자에 A를 포함하는 사원의 리스트
+        SELECT *
+        FROM EMP
+        WHERE ENAME LIKE '_A%';
 ​
-​
---12. 이름의 세번째 문자가 R인 사원의 이름을 표시하시오.
---   OOROOOOOO -> like '__R%'
+        --이름에 A와 E를 모두 포함하고 있는 사원의 이름을 표시하시오.
+        select ename
+        from emp
+        where ename like '%A%' and ename like '%E%';
+    ​
 
-select ename
-from emp
-where ename like '__R%'
---where ename like '__R___'
-;
+    --(8) IS NULL 과 IS NOT NULL 연산자
+        -- NULL값을 확인하는 연산자
+        -- null : 있는것도 아니고 없는것도 아닌 데이터 연산의 결과도 null , 비교연산 불가, 산술연산 불가
+        -- 따라서 = NULL과 같이 비교할 수 없음
+        
+        -- 커미션이 등록되어 있지 않은 사원의 리스트(0은 안보임)
+        SELECT *
+        FROM EMP
+        WHERE COMM IS NULL;
+        
+        -- 커미션이 등록되어 있는 사원의 리스트(0도 보임)
+        SELECT *
+        FROM EMP
+        WHERE COMM IS NOT NULL
+        ORDER BY COMM;
+
+        -- 커미션을 받을 수 있는 자격이 되는 
+        -- 사원의 이름, 급여, 커미션을 출력하되 
+        -- 급여 및 커미션을 기준으로 내림차순 정렬하여 표시하시오.
+        select ename, sal, comm
+        from emp
+        where comm is not null and comm>0
+        order by sal desc, comm desc;
 
 
---13. 이름에 A와 E를 모두 포함하고 있는 사원의 이름을 표시하시오.
-
-select ename
-from emp
-where ename like '%A%' and ename like '%E%'
-;
-​
-
---14. 담당업무가 CLERK, 또는 SALESMAN이면서  -- (or) and
---    급여가 $1600, $950 또는 $1300이 아닌 사원의  -- not (or) 
---    이름, 담당업무, 급여를 출력하시오.
-
-select ename, job, sal
-from emp
-where ( job in ('CLERK', 'SALESMAN') ) and ( sal not in(1600, 950, 1300) )
-;
-
-
---15. 커미션이 $500 이상인 사원의 이름과 급여 및 커미션을 출력하시오.
-
-select ename, sal, comm
-from emp
-where comm>=500 
-;
-
+    -- (+) 응용문제
+    -- 담당업무가 CLERK, 또는 SALESMAN이면서  -- (or) and
+    -- 급여가 $1600, $950 또는 $1300이 아닌 사원의  -- not (or) 
+    -- 이름, 담당업무, 급여를 출력하시오.
+    select ename, job, sal
+    from emp
+    where ( job in ('CLERK', 'SALESMAN') ) and ( sal not in(1600, 950, 1300) );
