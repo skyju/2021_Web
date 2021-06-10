@@ -35,16 +35,17 @@ SELECT ENAME, JOB, HIREDATE
 FROM EMP
 WHERE HIREDATE BETWEEN '81/02/20' AND '81/05/01';
 
--- 7. 부서번호가 20 및 30에 속한 사원의 이름과 부서번호를 출력, 이름을 기준(내림차순)으로 영문자순으로 출력하시오.
+-- 7. 부서번호가 20 및(이나 = or) 30에 속한 사원의 이름과 부서번호를 출력, 이름을 기준(내림차순)으로 영문자순으로 출력하시오.
 SELECT ENAME, DEPTNO
 FROM EMP
+-- WHERE DEPTNO = 10 OR DEPTNO = 30
 WHERE DEPTNO IN(20,30)
 ORDER BY ENAME DESC;
 
 -- 8. 사원의 급여가 2000에서 3000사이에 포함되고 부서번호가 20 또는 30인 사원의 이름, 급여와 부서번호를 출력, 이름순(오름차순)으로 출력하시오.
 SELECT ENAME, SAL, DEPTNO
 FROM EMP
-WHERE SAL BETWEEN 2000 AND 3000 AND (DEPTNO IN(20,30))
+WHERE (SAL BETWEEN 2000 AND 3000) AND (DEPTNO IN(20,30))
 ORDER BY ENAME;
 
 -- 9. 1981년도에 입사한 사원의 이름과 입사일을 출력하시오. (like 연산자와 와일드카드 사용)
