@@ -14,7 +14,7 @@
 
 -- Oracle의 정규 표현식 사용 법  
 -- (1) REGEXP_LIKE(문자열, 패턴, ...) : LIKE과 유사, 정규식을 사용할 수 있는 LIKE
--- (2) REGEXP_COUNT: 패턴에 일치하는 문자열 갯수 카운트
+-- (2) REGEXP_COUNT: 패턴에 일치하는 문자열 갯수 카운트 -- 6/10
 -- (3) REGEXP_INSTR: 문자열 내에서 패턴에 일치하는 시작 위치를 찾아줌
 -- (4) REGEXP_SUBSTR: 문자열 내에서 패턴에 일치하는 문자열을 추출
 -- (5) REGEXP_REPLACE: 문자열 내에서 패턴에 일치하는 문자열을 다른 문자열로 대체
@@ -80,8 +80,6 @@ WHERE REGEXP_LIKE(PHONE_NUMBER, '([[:digit:]]{3})\.([0-9]{3})\.([0-9]{4})');
 
 
 
-
-
 -- (2) REGEXP_COUNT: 패턴에 일치하는 문자열 갯수 카운트
                     -- 기존의 COUNT()함수는 ROW갯수를 세는 함수고, 
                     -- 정규표현식 COUNT는 하나의 문자열 내에서 반복문자열의 갯수를 셈
@@ -89,3 +87,9 @@ WHERE REGEXP_LIKE(PHONE_NUMBER, '([[:digit:]]{3})\.([0-9]{3})\.([0-9]{4})');
                     
 -- REGEXP_COUNT(soure_char, pattern [,position [, match_param]])
 
+-- 전화번호 포맷이 999.999.999와 일치하는 데이터 찾기
+SELECT PHONE_NUMBER
+FROM EMPLOYEES
+WHERE REGEXP_COUNT(PHONE_NUMBER, '([[:digit:]]{3})\.([0-9]{3})\.([0-9]{4})')=1;
+
+-- 
