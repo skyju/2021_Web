@@ -31,6 +31,12 @@
         from emp
         where sal > 2000
         order by sal desc;
+        
+        -- 급여를 기준으로 내림차순 정렬을 하고, 
+        -- 급여가 같을 경우 사원 이름을 기준으로 오름차순 정렬
+        SELECT *
+        FROM EMP
+        ORDER BY SAL DESC, ENAME ASC;
 
 
 ​    --(3). 비교연산자 
@@ -60,7 +66,7 @@
 ​
     --(4). 범위연산자
         -- 1) 논리연산자: <=, <, >, >=
-        -- 2) BETWENN A AND B : A 이상 B 이하
+        -- 2) BETWEEN A AND B : A 이상 B 이하
         
         -- 2000이상 3000 이하의 급여를 받는 직원 리스트
         
