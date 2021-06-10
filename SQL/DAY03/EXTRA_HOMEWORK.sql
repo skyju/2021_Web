@@ -55,4 +55,4 @@ WHERE NAME LIKE '김%';
 -- (7) 성이‘김’씨이고 이름이 ‘아’로 끝나는 고객의 이름과 주소
 SELECT NAME, ADDRESS
 FROM CUSTOMER
-WHERE NAME LIKE '김%' AND NAME LIKE '%아';
+WHERE NAME LIKE '김%아';
