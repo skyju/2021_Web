@@ -4,22 +4,48 @@ import java.util.Scanner;
 
 public class Driver {
 	public static void main(String[] args) {
-		Scanner kb = new Scanner(System.in);
-		System.out.println("이름을 입력해주세요: ");
-		String name1 = kb.nextLine();
-		System.out.println("전화번호를 입력해주세요: ");
-		String phoneN1 = kb.nextLine();
-		System.out.println("이메일을 입력해주세요: ");
-		String email1 = kb.nextLine();
-		System.out.println("주소를 입력해주세요: ");
-		String address1 = kb.nextLine();
-		System.out.println("생년월일을 입력해주세요: ");
-		String birth1 = kb.nextLine();
-		System.out.println("그룹을 입력해주세요: ");
-		String group = kb.nextLine();
-		Contact c = new Contact(name1, phoneN1, email1, address1, 
-				birth1, group);
 		
-		System.out.println(c);
+		SmartPhone sp = new SmartPhone(10);
+		
+		Scanner kb = new Scanner(System.in);
+
+		while (true) {
+			printMenu();
+			int menu = kb.nextInt();
+			switch(menu) {
+			case Menu.SAVE_INFO:
+				sp.addInfo();
+				break;
+			case Menu.FIND_INFO:
+				sp.findInfo();
+				break;
+			case Menu.UPDATE_INFO:
+				sp.updateInfo();
+				break;
+			case Menu.REMOVE_INFO:
+				sp.removeInfo();
+				break;
+			case Menu.SHOWUP_INFO:
+				sp.showList();
+				break;
+			case Menu.EXIT:
+				System.out.println("종료합니다.");
+				System.exit(0);
+			default: 
+				System.err.println("잘못된 번호입니다.");
+			}
+		}//while
+	}//main
+	
+	public static void printMenu() {
+        System.out.println( "\n===== <메뉴> =====" );
+        System.out.println( Menu.SAVE_INFO+". 연락처 저장" );
+        System.out.println( Menu.FIND_INFO+". 연락처 검색" );
+        System.out.println( Menu.UPDATE_INFO+". 연락처 수정" );
+        System.out.println( Menu.REMOVE_INFO+". 연락처 삭제" );
+        System.out.println( Menu.SHOWUP_INFO+". 연락처 전체 보기" );
+        System.out.println( Menu.EXIT+". 종료" );
+        System.out.println( "=================" );
+        System.out.print( ">> 메뉴 : " );
 	}
 }

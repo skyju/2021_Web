@@ -61,13 +61,12 @@ public class Contact {
 	
 	@Override
 	public String toString() {
-		return "Contact \n[name=" + name 
-				+ "\n phoneNum=" + phoneNum 
-				+ "\n email=" + email 
-				+ "\n address=" + address
-				+ "\n birth=" + birth 
-				+ "\n group=" + group + "]";
+		return  " 연락처 \n[이름: " + this.getName()
+				+ "\n 전화번호: " + this.getPhoneNum()
+				+ "\n 이메일: " + this.getEmail()
+				+ "\n 주소: " + this.getEmail()
+				+ "\n 생년월일: " + this.getBirth()
+				+ "\n 그룹: " + this.getGroup() + "]";
 	}
-	
-	
+
 }
