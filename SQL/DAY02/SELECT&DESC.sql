@@ -128,6 +128,17 @@ FROM EMP
 WHERE NOT DEPTNO = 10
 ORDER BY DEPTNO ASC;
 
+--11. 커미션을 받을 수 있는 자격이 되는 
+--    사원의 이름, 급여, 커미션을 출력하되 
+--    급여 및 커미션을 기준으로 내림차순 정렬하여 표시하시오.
+
+select ename, sal, comm
+from emp
+where comm is not null and comm>0
+order by sal desc, comm desc
+;
+
+
 -- 범위 연산을 할 때
     -- 1) 논리연산자
     -- 2) BETWENN A AND B : A 이상 B 이하
@@ -139,12 +150,19 @@ WHERE SAL BETWEEN 2000 AND 3000;
 -- 날짜에도 적용해서 기간 검색할 수 있음
 SELECT *
 FROM EMP
-WHERE HIREDATE BETWEEN '1997/01/01' AND '1997/12/31';
+WHERE HIREDATE BETWEEN '81/01/01' AND '81/12/31';
 
 SELECT *
 FROM EMP
-WHERE HIREDATE >= '1997/01/01' AND HIREDATE <= '1997/12/31'
+WHERE HIREDATE >= '81/01/01' AND HIREDATE <= '81/12/31'
 ORDER BY HIREDATE;
+
+-- 연산자 IN -> 여러개의 OR 연산자 사용시 대체 가능
+-- 커미션이 300 또는 500 또는 1400
+SELECT *
+FROM EMP
+WHERE COMM IN(300,500,1400);
+
 
 --9. 1981년도에 입사한 사원의 이름과 입사일을 출력하시오. (like 연산자와 와일드카드 사용)
 -- '81/01/01'  -> 81로 시작 뒤에 오는 문자열은 0이상의 문자열이 올 수 있는 조건
@@ -155,6 +173,27 @@ from emp
 where hiredate like '81%'
 ;
 
+-- ENAME LIKE 'F%' -> F로 시작하는 문자열
+-- ENAME LIKE '%F' -> F로 끝나는 문자열
+-- ENAME LIKE '%F%' -> F를 포함하는 문자열
+-- 'java' 단어를 포함하는 지 > title like '%java%'
+
+-- F로 시작하는 이름을 가진 사원 검색
+select *
+from emp
+where ename like 'F%';
+
+-- 중간에 LA가 들어가는 이름을 가진 사원 검색
+SELECT *
+FROM EMP
+WHERE ENAME LIKE '%LA%';
+
+-- 자리수 패턴: 컬럼의 값이 자리수가 정해져 있고 값이 패턴이 있는 경우
+-- 사원의 이름의 두 번째 문자에 A를 포함하는 사원의 리스트
+SELECT *
+FROM EMP
+WHERE ENAME LIKE '_A%';
+
 --10. 관리자가 없는 사원의 이름과 담당 업무를 출력하시오.
 -- null : 있는것도 아니고 없는것도 아닌 데이터 연산의 결과도 null , 비교연산 불가, 산술연산 불가
 -- is null / is not null
@@ -163,18 +202,7 @@ select ename, job
 from emp
 where mgr is null
 ;
-
 ​
---11. 커미션을 받을 수 있는 자격이 되는 
---    사원의 이름, 급여, 커미션을 출력하되 
---    급여 및 커미션을 기준으로 내림차순 정렬하여 표시하시오.
-
-select ename, sal, comm
-from emp
-where comm is not null and comm>0
-order by sal desc, comm desc
-;
-
 ​
 --12. 이름의 세번째 문자가 R인 사원의 이름을 표시하시오.
 --   OOROOOOOO -> like '__R%'
