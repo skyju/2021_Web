@@ -7,7 +7,7 @@ FROM EMP;
 
 SELECT *
 FROM EMP
-WHERE REGEXP_SUBSTR(HIREDATE, '\d', 4) = 4;
+WHERE REGEXP_SUBSTR(HIREDATE, '\d\d', 4) = 01;
 
 -- 18. MOD 함수를 사용하여 사원번호가 짝수인 사람만 출력하시오.
 
