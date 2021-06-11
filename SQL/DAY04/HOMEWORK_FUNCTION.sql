@@ -24,7 +24,7 @@ ORDER BY HIREDATE;
 -- 20. 올해 몇 칠이 지났는지 출력하시오. 
 -- 현재날짜에서 올해 1월 1일을 뺀 결과를 출력하고 TO_DATE 함수를 사용하여 데이터 형을 일치 시키시오.
 
-SELECT SYSDATE - (TO_DATE('2021/01/01', 'YYYY/MM/DD'))
+SELECT SYSDATE - (TO_DATE('2021/01/01'))
 FROM DUAL;
 
 -- 21. 사원들의 상관 사번을 출력하되 상관이 없는 사원에 대해서는 NULL 값 대신 0으로 출력하시오.
