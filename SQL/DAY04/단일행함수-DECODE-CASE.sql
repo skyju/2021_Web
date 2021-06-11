@@ -35,3 +35,16 @@ select ename, sal,
                     'MANAGER', sal*1.15,
                     'CLERK', sal*1.2) as upsal
 from emp;
+
+
+
+-- CASE함수: 분기할 때 사용 >자바의 IF ELSE와 유사 
+-- case when 조건식 then 참일 때 값
+select ename, deptno,
+    case when deptno = 10 then 'accounting'
+         when deptno = 20 then 'research'
+         when deptno = 30 then 'salesman'
+         when deptno = 40 then 'operations'
+    end as deptname
+from emp
+order by deptno desc;
