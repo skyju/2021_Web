@@ -55,7 +55,7 @@ GROUP BY JOB;
 
 -- 25. COUNT(*) 함수를 이용하여 담당업무가 동일한 사원 수를 출력하시오.
 
-SELECT JOB, COUNT(*) AS "담당업무 사원 수"
+SELECT JOB, COUNT(*) AS EMPNUM
 FROM EMP
 GROUP BY JOB;
 
@@ -83,7 +83,7 @@ ORDER BY MIN(SAL) DESC;
 -- 29. 각 부서에 대해 부서번호, 사원 수, 부서 내의 모든 사원의 평균 급여를 출력하시오. 
 -- 평균 급여는 소수점 둘째 자리로 반올림 하시오.
 
-SELECT DEPTNO, COUNT(*) AS "사원 수", ROUND(AVG(SAL),2) AS "부서 별 평균 급여"
+SELECT DEPTNO, COUNT(*) AS EMPNUM, ROUND(AVG(SAL),2) AS AVGSAL
 FROM EMP
 GROUP BY DEPTNO;
 
