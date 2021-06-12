@@ -34,7 +34,7 @@ SELECT E.ENAME, E.EMPNO, M.ENAME AS MGRNAME
 FROM EMP E, EMP M
 WHERE E.MGR = M.EMPNO(+)
 ORDER BY E.EMPNO DESC;
--- (+) OUTER JOIN, KING PRINT
+-- (+): OUTER JOIN, KING PRINT
 
 -- 40. SELF JOIN을 사용하여 지정한 사원의 이름, 부서번호, 
 -- 지정한 사원과 동일한 부서에서 근무하는 사원을 출력하시오. ( SCOTT )
