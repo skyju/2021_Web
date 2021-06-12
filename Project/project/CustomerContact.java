@@ -43,17 +43,20 @@ public class CustomerContact extends Contact {
 		this.item = item; 
 		this.jobGrade = jobGrade;
 	}
-	
+
 	@Override
-	public String toString() {
-		return  " 연락처 \n[이름: " + this.getName()
-				+ "\n 전화번호: " + this.getPhoneNum()
-				+ "\n 이메일: " + this.getEmail()
-				+ "\n 주소: " + this.getEmail()
-				+ "\n 생년월일: " + this.getBirth()
-				+ "\n 그룹: " + this.getGroup()
-				+ "\n 거래처명: " + this.getCustCompanyName()
-				+ "\n 거래품목: " + this.getItem()
-				+ "\n 직급: " + this.getJobGrade() + "]";
+	public void showData() {
+		System.out.println("연락처 정보를 출력합니다.");
+        System.out.println( "=================" );
+		System.out.println("이름  : " + this.getName());
+		System.out.println("전화번호: " + this.getPhoneNum());
+		System.out.println("이메일: " + this.getPhoneNum());
+		System.out.println("주소  : " + this.getAddress());
+		System.out.println("생년월일: " + this.getBirth());
+		System.out.println("그룹  : " + this.getGroup());
+		System.out.println("거래처명: " + this.getCustCompanyName());
+		System.out.println("거래품목: " + this.getItem());
+		System.out.println("직급  : " + this.getJobGrade());
+        System.out.println( "=================" );
 	}
 }

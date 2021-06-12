@@ -4,7 +4,7 @@ public class CompanyContact extends Contact {
 	
 	private String companyName;
 	private String deptName;
-	private String gobGrade;
+	private String jobGrade;
 
 	
 	public String getCompanyName() {
@@ -23,12 +23,12 @@ public class CompanyContact extends Contact {
 		this.deptName = deptName;
 	}
 
-	public String getGobGrade() {
-		return gobGrade;
+	public String getJobGrade() {
+		return jobGrade;
 	}
 
-	public void setGobGrade(String gobGrade) {
-		this.gobGrade = gobGrade;
+	public void setGobGrade(String jobGrade) {
+		this.jobGrade = jobGrade;
 	}
 
 	public CompanyContact(String name, 
@@ -39,24 +39,25 @@ public class CompanyContact extends Contact {
 			String group,
 			String companyName,
 			String deptName,
-			String gobGrade) {
+			String jobGrade) {
 		super(name, phoneNum, email, address, birth, group);
 		this.companyName = companyName;
 		this.deptName = deptName; 
-		this.gobGrade = gobGrade;
+		this.jobGrade = jobGrade;
 	}
 
 	@Override
-	public String toString() {
-		return  " 연락처 \n[이름: " + this.getName()
-				+ "\n 전화번호: " + this.getPhoneNum()
-				+ "\n 이메일: " + this.getEmail()
-				+ "\n 주소: " + this.getEmail()
-				+ "\n 생년월일: " + this.getBirth()
-				+ "\n 그룹: " + this.getGroup()
-				+ "\n 소속회사: " + this.getCompanyName()
-				+ "\n 부서명: " + this.getDeptName()
-				+ "\n 직급: " + this.getGobGrade() + "]";
+	public void showData() {
+		System.out.println("연락처 정보를 출력합니다.");
+		System.out.println("이름  : " + this.getName());
+		System.out.println("전화번호: " + this.getPhoneNum());
+		System.out.println("이메일: " + this.getPhoneNum());
+		System.out.println("주소  : " + this.getAddress());
+		System.out.println("생년월일: " + this.getBirth());
+		System.out.println("그룹  : " + this.getGroup());
+		System.out.println("소속회사: " + this.getCompanyName());
+		System.out.println("부서명 : " + this.getDeptName());
+		System.out.println("직급  : " + this.getJobGrade());
 	}
 
 }

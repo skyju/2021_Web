@@ -1,6 +1,6 @@
 package project;
 
-public abstract class Contact implements ShowDatas {
+public abstract class Contact implements ShowData {
 	private String name;
 	private String phoneNum;
 	private String email;
@@ -56,17 +56,18 @@ public abstract class Contact implements ShowDatas {
 		this.email = email;
 		this.address = address;
 		this.birth = birth;
-		this.group = group;
+		this.group = group;	
 	}
 	
-	@Override
-	public String toString() {
-		return  " 연락처 \n[이름: " + this.getName()
-				+ "\n 전화번호: " + this.getPhoneNum()
-				+ "\n 이메일: " + this.getEmail()
-				+ "\n 주소: " + this.getEmail()
-				+ "\n 생년월일: " + this.getBirth()
-				+ "\n 그룹: " + this.getGroup() + "]";
-	}
-
+	public abstract void showData();
+	
+//	@Override
+//	public String toString() {
+//		return  " 연락처 \n[이름: " + this.getName()
+//				+ "\n 전화번호: " + this.getPhoneNum()
+//				+ "\n 이메일: " + this.getEmail()
+//				+ "\n 주소: " + this.getEmail()
+//				+ "\n 생년월일: " + this.getBirth()
+//				+ "\n 그룹: " + this.getGroup() + "]";
+//	}
 }

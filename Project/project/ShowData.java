@@ -1,6 +1,6 @@
 package project;
 
-public interface ShowDatas {
+public interface ShowData {
 	public void showData();
 }
 
