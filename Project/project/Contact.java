@@ -1,6 +1,6 @@
 package project;
 
-public class Contact {
+public abstract class Contact implements ShowDatas {
 	private String name;
 	private String phoneNum;
 	private String email;

@@ -29,10 +29,43 @@ public class SmartPhone {
 		String address = kb.nextLine();
 		System.out.println("생년월일을 입력해주세요: ");
 		String birth = kb.nextLine();
-		System.out.println("그룹을 입력해주세요: ");
-		String group = kb.nextLine();
-		addContactInfo(new Contact(name, phoneN, email, address, birth, group));
-		System.out.println("저장 완료하였습니다.");
+		System.out.println("그룹을 선택해주세요");
+		System.out.println("1. 회사");
+		System.out.println("2. 거래처");
+		System.out.println("3. 직접입력");
+		int menu = kb.nextInt();
+		switch (menu) {
+		case 1: 
+			String group = "회사";
+			System.out.println("회사명을 입력해주세요.");
+			String companyName = kb.nextLine();
+			System.out.println("부서명을 입력해주세요.");
+			String deptName = kb.nextLine();
+			System.out.println("직급을 입력해주세요.");
+			String gobGrade = kb.nextLine();
+			addContactInfo(new CompanyContact(
+					name, phoneN, email, address, birth, group
+					, companyName, deptName, gobGrade));
+			System.out.println("저장 완료하였습니다.");
+		case 2:
+			String group = "거래처";
+			System.out.println("거래처명을 입력해주세요.");
+			String custCompanyName = kb.nextLine();
+			System.out.println("거래품목을 입력해주세요.");
+			String item = kb.nextLine();
+			System.out.println("직급을 입력해주세요.");
+			String gobGrade = kb.nextLine();
+			addContactInfo(new CustomerContact(
+					name, phoneN, email, address, birth, group
+					, custCompanyName, item, gobGrade));
+			System.out.println("저장 완료하였습니다.");
+		case 3:
+			System.out.println("그룹을 입력해주세요: ");
+			String group = kb.nextLine();
+			addContactInfo(new Contact(name, phoneN, email, address, birth, group));
+			System.out.println("저장 완료하였습니다.");
+		default: System.out.println("잘못입력하셨습니다"); //나중에 예외처리
+		}
 	}
 	
 	void findInfo() { //연락처 검색
