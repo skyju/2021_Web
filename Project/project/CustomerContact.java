@@ -3,7 +3,6 @@ package project;
 public class CustomerContact extends Contact {
 	private String custCompanyName;
 	private String item;
-	private String jobGrade;
 	
 	public String getCustCompanyName() {
 		return custCompanyName;
@@ -21,14 +20,6 @@ public class CustomerContact extends Contact {
 		this.item = item;
 	}
 
-	public String getJobGrade() {
-		return jobGrade;
-	}
-
-	public void setJobGrade(String jobGrade) {
-		this.jobGrade = jobGrade;
-	}
-
 	public CustomerContact(String name, 
 			String phoneNum, 
 			String email, 
@@ -41,7 +32,7 @@ public class CustomerContact extends Contact {
 		super(name, phoneNum, email, address, birth, group);
 		this.custCompanyName = cutCompanyName;
 		this.item = item; 
-		this.jobGrade = jobGrade;
+		setJobGrade(jobGrade);
 	}
 
 	@Override

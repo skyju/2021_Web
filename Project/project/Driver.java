@@ -37,7 +37,7 @@ public class Driver {
 			} catch(InputMismatchException e) {
 				System.out.println("메뉴는 숫자로만 입력해주세요.");
 				kb.nextLine(); 
-				//버퍼 비우기
+				//버퍼 비우기 ??
 				// nextInt는 공백을 못받기 때문에 \r을 받을 때까지 입력받음
 				// 그러나 엔터는 \r\n이기 때문에, 버퍼에 \n이 남아있음.
 				// 버퍼가 비어야 새로 입력받을 수 있기 때문에

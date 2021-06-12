@@ -7,6 +7,7 @@ public abstract class Contact implements ShowData {
 	private String address;
 	private String birth;
 	private String group;
+	private String jobGrade;
 	
 	public String getName() {
 		return name;
@@ -44,7 +45,13 @@ public abstract class Contact implements ShowData {
 	public void setGroup(String group) {
 		this.group = group;
 	}
-
+	
+	public String getJobGrade() {
+		return jobGrade;
+	}
+	public void setJobGrade(String jobGrade) {
+		this.jobGrade = jobGrade;
+	}
 	public Contact(String name, 
 				   String phoneNum, 
 				   String email, 
@@ -60,14 +67,4 @@ public abstract class Contact implements ShowData {
 	}
 	
 	public abstract void showData();
-	
-//	@Override
-//	public String toString() {
-//		return  " 연락처 \n[이름: " + this.getName()
-//				+ "\n 전화번호: " + this.getPhoneNum()
-//				+ "\n 이메일: " + this.getEmail()
-//				+ "\n 주소: " + this.getEmail()
-//				+ "\n 생년월일: " + this.getBirth()
-//				+ "\n 그룹: " + this.getGroup() + "]";
-//	}
 }

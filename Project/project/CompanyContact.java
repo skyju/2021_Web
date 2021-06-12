@@ -4,8 +4,6 @@ public class CompanyContact extends Contact {
 	
 	private String companyName;
 	private String deptName;
-	private String jobGrade;
-
 	
 	public String getCompanyName() {
 		return companyName;
@@ -23,14 +21,6 @@ public class CompanyContact extends Contact {
 		this.deptName = deptName;
 	}
 
-	public String getJobGrade() {
-		return jobGrade;
-	}
-
-	public void setGobGrade(String jobGrade) {
-		this.jobGrade = jobGrade;
-	}
-
 	public CompanyContact(String name, 
 			String phoneNum, 
 			String email, 
@@ -43,12 +33,13 @@ public class CompanyContact extends Contact {
 		super(name, phoneNum, email, address, birth, group);
 		this.companyName = companyName;
 		this.deptName = deptName; 
-		this.jobGrade = jobGrade;
+		setJobGrade(jobGrade);
 	}
 
 	@Override
 	public void showData() {
 		System.out.println("연락처 정보를 출력합니다.");
+		System.out.println( "=================" );
 		System.out.println("이름  : " + this.getName());
 		System.out.println("전화번호: " + this.getPhoneNum());
 		System.out.println("이메일: " + this.getPhoneNum());
@@ -58,6 +49,7 @@ public class CompanyContact extends Contact {
 		System.out.println("소속회사: " + this.getCompanyName());
 		System.out.println("부서명 : " + this.getDeptName());
 		System.out.println("직급  : " + this.getJobGrade());
+		System.out.println( "=================" );
 	}
 
 }

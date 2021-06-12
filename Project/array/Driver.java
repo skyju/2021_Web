@@ -29,7 +29,6 @@ public class Driver {
 			default: 
 				System.err.println("잘못된 번호입니다.");
 			}
-			kb.close();
 		}
 	}
 	
