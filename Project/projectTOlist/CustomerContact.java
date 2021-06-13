@@ -1,4 +1,4 @@
-package project;
+package projectTOlist;
 
 public class CustomerContact extends Contact {
 	private String custCompanyName;
@@ -41,7 +41,7 @@ public class CustomerContact extends Contact {
         System.out.println( "=================" );
 		System.out.println(" 1. 이름  : " + this.getName());
 		System.out.println(" 2. 전화번호: " + this.getPhoneNum());
-		System.out.println(" 3. 이메일: " + this.getPhoneNum());
+		System.out.println(" 3. 이메일: " + this.getEmail());
 		System.out.println(" 4. 주소  : " + this.getAddress());
 		System.out.println(" 5. 생년월일: " + this.getBirth());
 		System.out.println(" 6. 그룹  : " + this.getGroup());
