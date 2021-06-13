@@ -42,6 +42,8 @@ public class Driver {
 				// 그러나 엔터는 \r\n이기 때문에, 버퍼에 \n이 남아있음.
 				// 버퍼가 비어야 새로 입력받을 수 있기 때문에
 				// \n을 입력받아 처리할 수 있는 nextLine으로 버퍼 비움	
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}//while
 	}//main
