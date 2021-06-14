@@ -1,4 +1,4 @@
-package projectTOlist;
+package projectIOstream;
 
 public interface Menu {
 	int SAVE_INFO = 1;

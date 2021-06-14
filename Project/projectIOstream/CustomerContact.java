@@ -1,4 +1,4 @@
-package projectTOlist;
+package projectIOstream;
 
 public class CustomerContact extends Contact {
 	private String custCompanyName;

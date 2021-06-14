@@ -1,4 +1,4 @@
-package projectTOlist;
+package projectIOstream;
 
 import java.util.*;
 

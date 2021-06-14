@@ -1,4 +1,4 @@
-package projectTOlist;
+package projectIOstream;
 
 public class MyMadeException extends Exception {
 	public MyMadeException(String msg) {

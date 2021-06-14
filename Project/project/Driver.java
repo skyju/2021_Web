@@ -5,7 +5,7 @@ import java.util.*;
 public class Driver {
 	public static void main(String[] args) {
 		
-		SmartPhone sp = new SmartPhone(10);	
+		SmartPhone sp = new SmartPhone();	
 		Scanner kb = new Scanner(System.in);
 	
 		while (true) {
@@ -27,6 +27,9 @@ public class Driver {
 					break;
 				case Menu.SHOWUP_INFO:
 					sp.showList();
+					break;
+				case Menu.REMOVE_ALL_INFO:
+					sp.removeAllList();
 					break;
 				case Menu.EXIT:
 					System.out.println("종료합니다.");
@@ -57,6 +60,7 @@ public class Driver {
         System.out.println( Menu.UPDATE_INFO+". 연락처 수정" );
         System.out.println( Menu.REMOVE_INFO+". 연락처 삭제" );
         System.out.println( Menu.SHOWUP_INFO+". 연락처 전체 보기" );
+        System.out.println( Menu.REMOVE_ALL_INFO+". 연락처 전체 삭제");
         System.out.println( Menu.EXIT+". 종료" );
         System.out.println( "=================" );
         System.out.print( ">> 메뉴 : " );

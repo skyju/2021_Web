@@ -1,6 +1,5 @@
 package ex.io;
 
-//ctrl shift o 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

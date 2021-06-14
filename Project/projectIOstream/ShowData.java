@@ -1,4 +1,4 @@
-package projectTOlist;
+package projectIOstream;
 
 public interface ShowData {
 	public void showData();
