@@ -103,10 +103,17 @@ WHERE DEPTNO IN (SELECT DEPTNO
                 
 -- 54. 부서위치가 DALLAS인 사원의 이름과 부서번호 및 담당업무를 표시하시오.
 
--- NATURAL JOIN으로 풀이
+-- NATURAL JOIN으로 풀이(더 간단함)
 SELECT ENAME, DEPTNO, JOB
 FROM EMP NATURAL JOIN DEPT
 WHERE LOC = 'DALLAS';
+
+-- SUB QUERY를 이용하여 풀이
+SELECT ENAME, DEPTNO, JOB
+FROM EMP E
+WHERE DEPTNO = (SELECT DEPTNO
+                FROM DEPT D
+                WHERE LOC = 'DALLAS');
 
 -- 55. KING에게 보고하는 사원의 이름과 급여를 표시하시오.
 
