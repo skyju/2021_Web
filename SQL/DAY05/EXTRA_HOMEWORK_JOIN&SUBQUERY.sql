@@ -48,8 +48,7 @@
     
     SELECT NAME, SUM(SALEPRICE) AS PAY
     FROM CUSTOMER NATURAL JOIN ORDERS
-    GROUP BY CUSTID;
-    -- 동명이인이 있을 수 있으므로 NAME으로 묶지 않음
+    GROUP BY NAME;
     
 -- (11) 고객의 이름과 고객이 구매한 도서 목록
 
