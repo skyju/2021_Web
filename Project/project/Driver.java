@@ -18,26 +18,10 @@ public class Driver {
 			newFolder.mkdir();
 			System.out.println("새 폴더를 생성했습니다.");
 		}
+		sp.loadingFile();
 		
-		try {
-			File file = new File("D:"+File.separator+"Contact"
-					+File.separator+"contact.ser");
-			if(file.exists()) {
-				ObjectInputStream in = new ObjectInputStream(
-						new FileInputStream(
-								"D:"+File.separator+"Contact"
-										+File.separator+"contact.ser"));
-				.
-				in.close();
-				System.out.println("이전에 저장했던 정보를 로딩했습니다.");
-			}
-		} catch(IOException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
 		while (true) {
 			try {
-				
 				printMenu();
 				int menu = kb.nextInt();
 				switch(menu) {

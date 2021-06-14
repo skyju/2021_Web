@@ -388,6 +388,7 @@ public class SmartPhone implements Serializable{
 			File file = new File("D:"+File.separator+"Contact"
 					+File.separator+"contact.ser");
 			if(file.exists()) {
+				System.out.println("이전에 저장한 정보가 있습니다.");
 				ObjectInputStream in = new ObjectInputStream(
 						new FileInputStream(
 								"D:"+File.separator+"Contact"
