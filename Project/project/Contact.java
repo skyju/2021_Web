@@ -1,6 +1,8 @@
 package project;
 
-public abstract class Contact implements ShowData {
+import java.io.Serializable;
+
+public abstract class Contact implements ShowData, Serializable {
 	private String name;
 	private String phoneNum;
 	private String email;

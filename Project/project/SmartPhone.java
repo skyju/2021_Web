@@ -1,9 +1,16 @@
 package project;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.*;
 import java.util.regex.Pattern;
 
-public class SmartPhone {
+public class SmartPhone implements Serializable{
 	
 	Scanner kb = new Scanner(System.in);
 	
@@ -359,4 +366,42 @@ public class SmartPhone {
 		}
 	}
 	
+	void savingFile() {
+		try {
+			System.out.println("파일을 저장중입니다.");
+			ObjectOutputStream out = new ObjectOutputStream(
+					new FileOutputStream(
+							"D:"+File.separator+"Contact"
+									+File.separator+"contact.ser"));
+			out.writeObject(contact);
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("연락처 정보를 파일로 저장했습니다.");
+	}
+	
+	void loadingFile() {
+		try {
+			File file = new File("D:"+File.separator+"Contact"
+					+File.separator+"contact.ser");
+			if(file.exists()) {
+				ObjectInputStream in = new ObjectInputStream(
+						new FileInputStream(
+								"D:"+File.separator+"Contact"
+										+File.separator+"contact.ser"));
+				contact = (ArrayList<Contact>)in.readObject();
+				in.close();
+				System.out.println("파일을 로드했습니다.");
+			} else {
+				System.out.println("이전에 저장한 정보가 존재하지 않습니다.");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

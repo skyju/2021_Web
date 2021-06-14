@@ -1,6 +1,11 @@
 package project;
 
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Driver {
 	public static void main(String[] args) {
@@ -8,8 +13,31 @@ public class Driver {
 		SmartPhone sp = new SmartPhone();	
 		Scanner kb = new Scanner(System.in);
 	
+		File newFolder = new File("D:"+File.separator+"Contact");
+		if(!newFolder.exists()) {
+			newFolder.mkdir();
+			System.out.println("새 폴더를 생성했습니다.");
+		}
+		
+		try {
+			File file = new File("D:"+File.separator+"Contact"
+					+File.separator+"contact.ser");
+			if(file.exists()) {
+				ObjectInputStream in = new ObjectInputStream(
+						new FileInputStream(
+								"D:"+File.separator+"Contact"
+										+File.separator+"contact.ser"));
+				.
+				in.close();
+				System.out.println("이전에 저장했던 정보를 로딩했습니다.");
+			}
+		} catch(IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
 		while (true) {
 			try {
+				
 				printMenu();
 				int menu = kb.nextInt();
 				switch(menu) {
@@ -31,6 +59,12 @@ public class Driver {
 				case Menu.REMOVE_ALL_INFO:
 					sp.removeAllList();
 					break;
+				case Menu.SAVE_FILE:
+					sp.savingFile();
+					break;
+				case Menu.FILE_LOAD:
+					sp.loadingFile();
+					break;
 				case Menu.EXIT:
 					System.out.println("종료합니다.");
 					System.exit(0);
@@ -49,6 +83,8 @@ public class Driver {
 				e.printStackTrace();
 			}
 		}//while
+		
+		
 	}//main
 	
 	public static void printMenu() {
@@ -61,6 +97,8 @@ public class Driver {
         System.out.println( Menu.REMOVE_INFO+". 연락처 삭제" );
         System.out.println( Menu.SHOWUP_INFO+". 연락처 전체 보기" );
         System.out.println( Menu.REMOVE_ALL_INFO+". 연락처 전체 삭제");
+        System.out.println( Menu.SAVE_FILE+". 파일 저장");
+        System.out.println( Menu.FILE_LOAD+". 파일 로드");
         System.out.println( Menu.EXIT+". 종료" );
         System.out.println( "=================" );
         System.out.print( ">> 메뉴 : " );
