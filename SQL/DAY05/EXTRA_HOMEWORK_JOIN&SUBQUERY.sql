@@ -66,7 +66,7 @@
                        
     SELECT NAME
     FROM CUSTOMER NATURAL JOIN ORDERS
-    GROUP BY CUSTID
+    GROUP BY NAME
     HAVING AVG(SALEPRICE) > (SELECT AVG(SALEPRICE)
                              FROM ORDERS);
     
