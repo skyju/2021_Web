@@ -2,7 +2,7 @@
 
 -- (5) 박지성이구매한도서의출판사수
 
-    SELECT COUNT(PUBLISHER)
+    SELECT COUNT(DISTINCT PUBLISHER)
     FROM ORDERS NATURAL JOIN BOOK
     WHERE CUSTID = (SELECT CUSTID
                     FROM CUSTOMER
@@ -32,7 +32,7 @@
 
 -- (8) 주문하지 않은 고객의 이름(부속질의사용)
 
-    -- 부속질의? WHERE 절에 작성하는 것
+    -- 부속질의: WHERE 절에 작성하는 것
     SELECT NAME
     FROM CUSTOMER C
     WHERE NOT EXISTS (SELECT *
