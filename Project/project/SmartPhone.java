@@ -331,8 +331,10 @@ public class SmartPhone implements Serializable{
 		}
 	}
 	
-	void removeAllList() {
-		if(contact.size() > 0) {
+	void removeAllList() { //수정중
+		File file = new File("D:"+File.separator+"Contact"
+				+File.separator+"contact.ser");
+		if(contact.size() > 0 | file.exists()) {
 			System.out.println("정말로 연락처를 전체 삭제하시겠습니까?");
 			System.out.println( "=================" );
 			System.out.println("1. 예");
@@ -341,7 +343,7 @@ public class SmartPhone implements Serializable{
 			String answer = kb.nextLine();
 			isEmpty(answer);
 			if(answer.equals(String.valueOf(1))) {
-				contact.clear();
+				file.delete();
 				System.out.println("연락처를 전부 삭제했습니다.");
 			} else if (answer.equals(String.valueOf(2))) {
 				System.out.println("연락처를 삭제하지 않습니다.");

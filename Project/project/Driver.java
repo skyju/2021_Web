@@ -44,10 +44,12 @@ public class Driver {
 					sp.removeAllList();
 					break;
 				case Menu.SAVE_FILE:
-					sp.savingFile();
+					savingFile sv = new savingFile(sp);
+					sv.start();
 					break;
 				case Menu.FILE_LOAD:
-					sp.loadingFile();
+					loadingFile ld = new loadingFile(sp);
+					ld.start();
 					break;
 				case Menu.EXIT:
 					System.out.println("종료합니다.");
@@ -86,5 +88,27 @@ public class Driver {
         System.out.println( Menu.EXIT+". 종료" );
         System.out.println( "=================" );
         System.out.print( ">> 메뉴 : " );
+	}
+}
+
+class savingFile extends Thread {
+	SmartPhone sp;
+	
+	savingFile(SmartPhone sp) {
+		this.sp = sp;
+	}
+	public void run() {
+		sp.savingFile();
+	}
+}
+
+class loadingFile extends Thread {
+	SmartPhone sp;
+	
+	loadingFile(SmartPhone sp) {
+		this.sp = sp;
+	}
+	public void run() {
+		sp.loadingFile();
 	}
 }
