@@ -110,9 +110,9 @@ WHERE LOC = 'DALLAS';
 
 -- SUB QUERY를 이용하여 풀이
 SELECT ENAME, DEPTNO, JOB
-FROM EMP E
+FROM EMP
 WHERE DEPTNO = (SELECT DEPTNO
-                FROM DEPT D
+                FROM DEPT
                 WHERE LOC = 'DALLAS');
 
 -- 55. KING에게 보고하는 사원의 이름과 급여를 표시하시오.
@@ -127,10 +127,17 @@ WHERE MGR = (SELECT EMPNO
 
 -- 56. RESEARCH 부서의 사원에 대한 부서번호, 사원이름 및 담당 업무를 표시하시오.
 
+-- NATURAL JOIN으로 풀이(더 간단함)
 SELECT DEPTNO, ENAME, JOB
 FROM EMP NATURAL JOIN DEPT
 WHERE DNAME = 'RESEARCH';
 ​
+-- SUB QUERY를 이용하여 풀이
+SELECT DEPTNO, ENAME, JOB
+FROM EMP
+WHERE DEPTNO = (SELECT DEPTNO
+                FROM DEPT
+                WHERE DNAME = 'RESEARCH');
 
 -- 57. 평균 월급보다 많은 급여를 받고
 -- 이름에 M이 포함된 사원과 같은 부서에서 근무하는 사원의 
