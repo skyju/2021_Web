@@ -50,6 +50,14 @@
     FROM CUSTOMER NATURAL JOIN ORDERS
     GROUP BY NAME;
     
+    -- SUB QUERY 활용
+    SELECT (SELECT NAME 
+            FROM CUSTOMER C
+            WHERE C.CUSTID = O.CUSTID) AS NAME,
+            SUM(SALEPRICE)
+    FROM ORDERS O
+    GROUP BY O.CUSTID;
+    
 -- (11) 고객의 이름과 고객이 구매한 도서 목록
 
     SELECT NAME, BOOKNAME
@@ -60,7 +68,7 @@
     SELECT * 
     FROM BOOK NATURAL JOIN ORDERS
     WHERE PRICE - SALEPRICE = (SELECT MAX(PRICE-SALEPRICE)
-                              FROM BOOK NATURAL JOIN ORDERS);
+                               FROM BOOK NATURAL JOIN ORDERS);
 
 -- (13) 도서의 판매액 평균보다 자신의 구매액 평균이 더 높은 고객의 이름
                        
