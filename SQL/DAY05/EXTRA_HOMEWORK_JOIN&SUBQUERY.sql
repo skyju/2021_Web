@@ -59,7 +59,7 @@
     
     SELECT * 
     FROM BOOK NATURAL JOIN ORDERS
-    WHERE PRICE- SALEPRICE = (SELECT MAX(PRICE-SALEPRICE)
+    WHERE PRICE - SALEPRICE = (SELECT MAX(PRICE-SALEPRICE)
                               FROM BOOK NATURAL JOIN ORDERS);
 
 -- (13) 도서의 판매액 평균보다 자신의 구매액 평균이 더 높은 고객의 이름
