@@ -153,8 +153,8 @@ ORDER BY SAL;
 SELECT EMPNO, ENAME
 FROM EMP
 WHERE DEPTNO IN (SELECT DEPTNO
-                FROM EMP
-                WHERE ENAME LIKE '%K%');
+                 FROM EMP
+                 WHERE ENAME LIKE '%K%');
                 
 -- 54. 부서위치가 DALLAS인 사원의 이름과 부서번호 및 담당업무를 표시하시오.
 
