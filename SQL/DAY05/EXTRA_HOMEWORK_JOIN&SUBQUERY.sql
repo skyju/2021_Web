@@ -58,7 +58,7 @@
     GROUP BY NAME;
     
     -- 위의 코드는, 동명이인이 있을 시 문제가 될 수 있기 때문에
-    -- 그룹을 PK와 함께 묶음으로써 문제 해결 가능
+    -- 그룹을 PK와 함께 묶어서 풀이할 수 있음
     SELECT CUSTID, NAME, SUM(SALEPRICE) AS PAY
     FROM CUSTOMER NATURAL JOIN ORDERS
     GROUP BY CUSTID, NAME;
