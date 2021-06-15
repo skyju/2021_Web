@@ -52,9 +52,16 @@
 
 -- (10) 고객의 이름과 고객 별 구매액
     
+    -- 첫 번째 풀이
     SELECT NAME, SUM(SALEPRICE) AS PAY
     FROM CUSTOMER NATURAL JOIN ORDERS
     GROUP BY NAME;
+    
+    -- 위의 코드는, 동명이인이 있을 시 문제가 될 수 있기 때문에
+    -- 그룹을 PK와 함께 묶음으로써 문제 해결 가능
+    SELECT CUSTID, NAME, SUM(SALEPRICE) AS PAY
+    FROM CUSTOMER NATURAL JOIN ORDERS
+    GROUP BY CUSTID, NAME;
     
     -- SUB QUERY 활용
     SELECT (SELECT NAME 
