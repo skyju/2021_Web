@@ -1,7 +1,8 @@
 -- 1 마당서점의 고객이 요구하는 다음 질문에 대해 SQL문을 작성하시오.
 
 -- (5) 박지성이구매한도서의출판사수
-
+    
+    -- COUNT에는 항상 DISTINCT를 고려해야 할 것을 주의
     SELECT COUNT(DISTINCT PUBLISHER)
     FROM ORDERS NATURAL JOIN BOOK
     WHERE CUSTID = (SELECT CUSTID
