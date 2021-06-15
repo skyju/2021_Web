@@ -13,8 +13,9 @@ import java.util.regex.Pattern;
 public class SmartPhone implements Serializable{
 	
 	Scanner kb = new Scanner(System.in);
-	
 	ArrayList<Contact> contact;
+	File file = new File("C:"+File.separator+"Contact"
+			+File.separator+"contact.ser");
 	
 	public SmartPhone() {
 		contact = new ArrayList<Contact>();
@@ -303,6 +304,7 @@ public class SmartPhone implements Serializable{
 		        String answer = kb.nextLine();
 		        isEmpty(answer);
 		        if(answer.equals(String.valueOf(1))) {
+					file.delete();
 					contact.remove(0);
 					System.out.println("연락처를 삭제했습니다.");
 		        } else if (answer.equals(String.valueOf(2))) {
@@ -331,9 +333,7 @@ public class SmartPhone implements Serializable{
 		}
 	}
 	
-	void removeAllList() { //수정중
-		File file = new File("D:"+File.separator+"Contact"
-				+File.separator+"contact.ser");
+	void removeAllList() {
 		if(contact.size() > 0 | file.exists()) {
 			System.out.println("정말로 연락처를 전체 삭제하시겠습니까?");
 			System.out.println( "=================" );
@@ -342,8 +342,10 @@ public class SmartPhone implements Serializable{
 			System.out.println( "=================" );
 			String answer = kb.nextLine();
 			isEmpty(answer);
+			
 			if(answer.equals(String.valueOf(1))) {
 				file.delete();
+				contact.removeAll(contact);
 				System.out.println("연락처를 전부 삭제했습니다.");
 			} else if (answer.equals(String.valueOf(2))) {
 				System.out.println("연락처를 삭제하지 않습니다.");
@@ -372,9 +374,7 @@ public class SmartPhone implements Serializable{
 		try {
 			System.out.println("파일을 저장중입니다.");
 			ObjectOutputStream out = new ObjectOutputStream(
-					new FileOutputStream(
-							"D:"+File.separator+"Contact"
-									+File.separator+"contact.ser"));
+					new FileOutputStream(file));
 			out.writeObject(contact);
 			out.close();
 		} catch (IOException e) {
@@ -387,14 +387,10 @@ public class SmartPhone implements Serializable{
 	
 	void loadingFile() {
 		try {
-			File file = new File("D:"+File.separator+"Contact"
-					+File.separator+"contact.ser");
 			if(file.exists()) {
 				System.out.println("이전에 저장한 정보가 있습니다.");
 				ObjectInputStream in = new ObjectInputStream(
-						new FileInputStream(
-								"D:"+File.separator+"Contact"
-										+File.separator+"contact.ser"));
+						new FileInputStream(file));
 				contact = (ArrayList<Contact>)in.readObject();
 				in.close();
 				System.out.println("파일을 로드했습니다.");

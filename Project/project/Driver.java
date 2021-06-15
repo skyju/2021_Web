@@ -13,7 +13,7 @@ public class Driver {
 		SmartPhone sp = new SmartPhone();	
 		Scanner kb = new Scanner(System.in);
 	
-		File newFolder = new File("D:"+File.separator+"Contact");
+		File newFolder = new File("C:"+File.separator+"Contact");
 		if(!newFolder.exists()) {
 			newFolder.mkdir();
 			System.out.println("새 폴더를 생성했습니다.");
