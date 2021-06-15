@@ -35,6 +35,12 @@ FROM EMP
 WHERE SAL = (SELECT MIN(SAL)
              FROM EMP);
              
+-- MIN함수 쓰지 않고 ALL 사용
+SELECT ENAME, JOB, SAL
+FROM EMP
+WHERE SAL <= ALL (SELECT SAL
+                  FROM EMP);
+             
 -- SELF JOIN으로 풀이
 SELECT E1.ENAME, E1.JOB, E1.SAL
 FROM EMP E1, EMP E2
@@ -52,11 +58,33 @@ HAVING AVG(SAL) = (SELECT MIN(AVG(SAL))
 
 -- 47. 각 부서의 최소 급여를 받는 사원의 이름, 급여, 부서번호를 표시하시오.
 
+-- 첫 번째 풀이
 SELECT ENAME, SAL, DEPTNO
 FROM EMP
 WHERE SAL IN (SELECT MIN(SAL)
               FROM EMP
               GROUP BY DEPTNO);
+-- IN연산자 주의해야함 예를들어 
+-- 10번 부서의 최소급여가 100,
+-- 20번 부서의 최소급여가 200
+-- 30번 부서의 최소급여가 500 인경우,
+-- 10번 부서에 급여를 200 받는 사원도 존재하는 경우
+-- IN연산자에 걸려서 문제가 됨
+
+-- 수업답안
+SELECT ENAME, SAL, DEPTNO
+FROM EMP E1
+WHERE SAL IN (SELECT MIN(SAL)
+              FROM EMP E2
+              WHERE E1.DEPTNO = E2.DEPTNO)-- 이처럼 상관관계 처리 해야함
+;
+
+-- INLINE SUB QUERY로 변경해서 풀이
+SELECT E1.ENAME, E1.SAL, E1.DEPTNO
+FROM EMP E1, (SELECT DEPTNO, MIN(SAL) AS MINSAL
+              FROM EMP
+              GROUP BY DEPTNO) E2
+WHERE E1.SAL = E2.MINSAL;
 
 -- 48. 담당업무가 ANALYST 인 사원보다 급여가 적으면서 업무가 ANALYST가 아닌 사원들을 표시
 -- (사원번호, 이름, 담당 업무, 급여)하시오.
@@ -80,6 +108,13 @@ WHERE NOT EMPNO IN (SELECT MGR
                     FROM EMP M
                     WHERE E.EMPNO = M.MGR);
 
+-- NOT EXISTS 사용 가능
+SELECT ENAME
+FROM EMP E
+WHERE NOT EXISTS (SELECT *
+                  FROM EMP M
+                  WHERE E.EMPNO = M.MGR);
+
 -- 50. 부하직원이 있는 사원의 이름을 표시하시오.
 
 SELECT ENAME
@@ -87,6 +122,13 @@ FROM EMP E
 WHERE EMPNO IN (SELECT MGR
                 FROM EMP M
                 WHERE E.EMPNO = M.MGR);
+                
+-- 마찬가지로 EXISTS 사용가능
+SELECT ENAME
+FROM EMP E
+WHERE EXISTS (SELECT *
+              FROM EMP M
+              WHERE E.EMPNO = M.MGR);
 ​
 -- 51. BLAKE와 동일한 부서에 속한 사원의 이름과 입사일을 표시하는 질의를 작성하시오.(단 BLAKE는 제외)
 
