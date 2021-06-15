@@ -27,6 +27,12 @@
                                       WHERE CUSTID = (SELECT CUSTID 
                                                       FROM CUSTOMER 
                                                       WHERE NAME = '박지성')));
+    -- NATURAL JOIN으로 가독성 좋게 변경                                    
+    SELECT BOOKNAME
+    FROM BOOK
+    WHERE BOOKNAME NOT IN (SELECT BOOKNAME
+                           FROM BOOK NATURAL JOIN ORDERS NATURAL JOIN CUSTOMER
+                           WHERE NAME = '박지성');
 
 -- 2 마당서점의 운영자와 경영자가 요구하는 다음 질문에 대해 SQL 문을 작성하시오.
 
