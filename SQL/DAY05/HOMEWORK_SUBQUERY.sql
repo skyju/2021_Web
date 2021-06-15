@@ -34,6 +34,12 @@ SELECT ENAME, JOB, SAL
 FROM EMP
 WHERE SAL = (SELECT MIN(SAL)
              FROM EMP);
+             
+-- SELF JOIN으로 풀이
+SELECT E1.ENAME, E1.JOB, E1.SAL
+FROM EMP E1, EMP E2
+GROUP BY E1.ENAME, E1.JOB, E1.SAL
+HAVING E1.SAL = MIN(E2.SAL);
 
 -- 46. 평균급여가 가장 적은 직급의 직급 이름과 직급의 평균을 구하시오.
 
