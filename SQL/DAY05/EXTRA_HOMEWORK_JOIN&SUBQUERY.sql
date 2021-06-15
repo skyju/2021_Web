@@ -40,7 +40,7 @@
                                       WHERE CUSTID = (SELECT CUSTID 
                                                       FROM CUSTOMER 
                                                       WHERE NAME = '박지성')));
-    -- NATURAL JOIN으로 가독성 좋게 변경                                    
+    -- NATURAL JOIN으로 가독성, 효율 좋게 변경                                    
     SELECT BOOKNAME
     FROM BOOK
     WHERE BOOKID NOT IN (SELECT BOOKID
@@ -57,6 +57,17 @@
     WHERE NOT EXISTS (SELECT *
                       FROM ORDERS O
                       WHERE C.CUSTID = O.CUSTID);
+                      
+    -- 다른 풀이
+    SELECT NAME
+    FROM ORDERS O RIGHT OUTER JOIN CUSTOMER C
+    ON O.CUSTID = C.CUSTID 
+    WHERE O.ORDERID IS NULL;
+    
+    -- 부속질의 인데 NOT EXISTS 말고 NOT IN 사용해보기
+    SELECT NAME
+    FROM CUSTOMER
+    WHERE CUSTID NOT IN (SELECT CUSTID FROM ORDERS);
 
 -- (9) 주문금액의 총액과 주문의 평균금액
     
@@ -76,7 +87,7 @@
     FROM CUSTOMER NATURAL JOIN ORDERS
     GROUP BY CUSTID, NAME;
     
-    -- SUB QUERY만 활용
+    -- SUB QUERY만 활용 : 스칼라 부속질의
     SELECT (SELECT NAME 
             FROM CUSTOMER C
             WHERE C.CUSTID = O.CUSTID) AS NAME,
@@ -98,9 +109,9 @@
 
 -- (13) 도서의 판매액 평균보다 자신의 구매액 평균이 더 높은 고객의 이름
                        
-    SELECT NAME
+    SELECT CUSTID, NAME
     FROM CUSTOMER NATURAL JOIN ORDERS
-    GROUP BY NAME
+    GROUP BY CUSTID, NAME
     HAVING AVG(SALEPRICE) > (SELECT AVG(SALEPRICE)
                              FROM ORDERS);
     
