@@ -8,6 +8,11 @@
     WHERE CUSTID = (SELECT CUSTID
                     FROM CUSTOMER
                     WHERE NAME = '박지성');
+    
+    -- JOIN으로만 풀이
+    SELECT COUNT(DISTINCT PUBLISHER)
+    FROM ORDERS NATURAL JOIN BOOK NATURAL JOIN CUSTOMER
+    WHERE NAME = '박지성';
 
 -- (6) 박지성이 구매한 도서의 이름, 가격, 정가와 판매 가격의 차이
     
@@ -17,7 +22,7 @@
                     FROM CUSTOMER
                     WHERE NAME = '박지성');
     
-    -- JOIN으로만 풀 수도 있음
+    -- JOIN으로만 풀이
     SELECT BOOKNAME, SALEPRICE, PRICE-SALEPRICE AS GAPPRICE
     FROM ORDERS NATURAL JOIN BOOK NATURAL JOIN CUSTOMER
     WHERE NAME = '박지성';
