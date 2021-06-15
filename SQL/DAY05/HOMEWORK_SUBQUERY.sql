@@ -13,7 +13,7 @@ WHERE JOB = (SELECT JOB
 -- SELF JOIN으로 풀이
 SELECT E.EMPNO, E.ENAME, E.JOB
 FROM EMP E, EMP N
-WHERE N.EMPNO = 7788 AND E.JOB = N.JOB;
+WHERE N.EMPNO = 7788 AND E.JOB = N.JOB AND E.EMPNO != 7788;
 
 -- 44. 사원번호가 7499인 사원보다 급여가 많은 사원을 표시하시오. 사원이름과 담당 업무
 
