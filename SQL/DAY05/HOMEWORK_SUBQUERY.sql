@@ -22,6 +22,11 @@ FROM EMP
 WHERE SAL > (SELECT SAL
              FROM EMP
              WHERE EMPNO = 7499);
+
+-- SELF JOIN으로 풀이
+SELECT E1.ENAME, E1.JOB
+FROM EMP E1, EMP E2
+WHERE E1.SAL > E2. SAL AND E2.EMPNO = 7499;
 ​
 -- 45. 최소급여를 받는 사원의 이름, 담당업무 및 급여를 표시하시오. (그룹함수 사용)
 
