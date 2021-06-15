@@ -16,6 +16,11 @@
     WHERE CUSTID = (SELECT CUSTID
                     FROM CUSTOMER
                     WHERE NAME = '박지성');
+    
+    -- JOIN으로만 풀 수도 있음
+    SELECT BOOKNAME, SALEPRICE, PRICE-SALEPRICE AS GAPPRICE
+    FROM ORDERS NATURAL JOIN BOOK NATURAL JOIN CUSTOMER
+    WHERE NAME = '박지성';
 
 -- (7) 박지성이 구매하지 않은 도서의 이름
     
