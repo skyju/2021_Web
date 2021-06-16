@@ -91,12 +91,12 @@
 
     -- (1) 튜플 삽입: 모든 ATTRIBUTE에 값 넣기
     INSERT INTO PHONEINFO_COM 
-    VALUES(1, 'ACOMPANY', 1);
+    VALUES(1, 'A_COMPANY', 1);
     
     -- (2) 튜플 삽입: 특정 ATTRIBUTE에 값 넣기 
     -- 이 테이블은, 모든 ATTRIBUTE가 NOT NULL이기 때문에, 모든 ATTRIBUTE를 기입해야함
     INSERT INTO PHONEINFO_COM (IDX, FR_C_COMPANY, FR_REF) 
-    VALUES(2, 'BCOMPANY', 2);
+    VALUES(2, 'B_COMPANY', 2);
     
     -- (+) 이처럼 기본키 값만 다르면 외래키는 중복해서 들어갈 수 있기 때문에 
     -- 이상한 데이터가 들어갈 수 있는 가능성이 있어서, 기본키값을 여러 값의 복합키로 만들어 사용할 수 있음 
