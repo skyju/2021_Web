@@ -1,2 +1,2 @@
-# java205
-Bitcamp JAVA 수업 내용
+# BITCAMP 205
+Bitcamp 수업 내용
