@@ -1,0 +1,134 @@
+<데이터베이스(DB)>
+- 공용 데이터
+- 통합된 데이터 : 최소한의 중복, 중복의 통제
+- 저장된 데이터
+- 운영 데이터
+
+<DB의 특징>
+- 실시간 접근성: 실시간 처리 및 응답
+- 계속적인 변화: 갱신, 삽입, 삭제 등 동적 특성
+- 동시 공용: 여러 사용자가 동시에 사용
+- 내용(값)에 의한 참조 <-> 위치나 주소 참조
+
+<데이터 제어 기능>
+- 일관성, 무결성, 보안 유지
+	- 백업과 파손 회복
+	- 인증과 보안
+	- 병행제어
+
+<DBMS 사용 용어 정리>
+테이블(table) - 릴레이션(relation) - 파일(file)
+내포(intension) - 스키마(schema) - 헤더(header) - 구조(structure)
+외연(extension) - 인스턴스(instance) - 데이터(data)
+행(row) - 튜플(tuple) - 레코드(record)
+열(column) - 속성(attribute) - 필드(field)
+도메인(domain): 속성이 가질 수 있는 값의 범위 
+
+<함수 분류>
+1. 단일행 함수 
+	(1) 숫자함수:
+		ABS: 절대값
+		FLOOR: 소수점 아래를 절사
+		ROUND(컬럼, 자리수): 특정 자리수에서 반올림
+		TRUNC: 특정 자리수에서 절사
+		MOD: 입력받은 수를 나눈 나머지 값 반환
+	(2) 문자함수:
+		LOWER & UPPER
+		SUBSTR(컬럼, 자리수, 개수)
+		TRIM: 잘라내고 남은 문자 반환
+		REPLACE
+	(3) 날짜 함수:
+		SYSDATE
+		MONTHS_BETWEEN
+		ADD_MONTHS
+	(4) 형 변환 함수:
+		TO_CHAR
+		TO_NUMBER
+		TO_DATE
+		날짜 형식: AM, A.M, HH, HH24, MI, SS
+		숫자 형식: 0,9,L(지역 별 통화기호), . , ,
+	(5) DECODE 함수: SWITCH CASE문과 같은 기능 
+		DECODE (표현식 조건1, 결과1, 조건2, 결과2 ...)
+	(6) CASE 함수: IF ELSE와 같은 기능
+		CASE 표현식 WHEN 조건1 THEN 결과1
+
+2. 그룹함수
+	(1) 수학함수: 
+		SUM
+		AVG
+		COUNT >DISTINCT 꼭 고려
+		MAX, MIN
+		STDDEV, VARIANCE
+	
+<DBMS의 명령문 분류>
+DQL - data query language : select, desc...  
+	
+	1) desc : 특정 테이블을 묘사해달라는 요청
+		desc * tablename;
+	2) tab : 지금 접속한 계정이 권한을 가진 테이블 객체 모두 보기
+		select * from tab; 
+	3) distinct : 중복 제거, 컬럼명 앞에 작성
+	
+	4) order by [asc | desc] : ascending or descending data
+	
+	5) group by & having  : grouping & group의 조건 설정
+
+	6) 연산자 정리 
+		1. 비교 연산자: =
+		2. 범위 연산자: >, <, ... 또는 between
+		3. 논리 연산자: and, or, not
+		4. in 연산자: 여러개의 or을 대체 
+		5. like 연산자: %는 와일드카드, _는 한자리 의미
+		6. IS NULL 연산자 & IS NOT NULL 연산자
+	
+	7) oracle의 정규식 이용
+		1. regexp_like(원본문자열, 패턴 [, i|c])
+		2. regexp_count(원본문자열, 패턴 [, 시작인덱스 , i|c])
+		3. regexp_substr(원본문자열, 패턴 [, 시작인덱스, 개수, i|c, 서브패턴])
+		4. regexp_instr
+		5. regexp_replace
+
+<RDBMS의 제약조건>
+- 개체 무결성: 서로 다른 두 튜플은 같을 수 없다
+		기본키 값은 언제, 어느 때고 NULL일 수 없다
+- 참조 무결성: 외래키 값은 피 참조 릴레이션의 기본키 값이거나 NULL값이다
+		추가 지정을 통해 NOT NULL 제약을 걸 수 있다
+- 도메인 무결성: 속성 값은 해당 속성 도메인에 속한 값 중 하나여야 한다.
+
+<JOIN>
+1. 카티샨 프로덕트: 가능한 모든 쌍을 생성하는 조인 : 조인 조건 기술X
+2. 동등 조인(EQUI JOIN) : 조인 조건이 = 인 경우
+3. 쎄타 조인(NON_EQUI JOIN): =이 아닌 일반적 조인 조건 통칭... ex) >, <..
+4. SELF 조인: 자기 자신과 조인하는 경우
+
+ANSI-JOIN
+1. CROSS JOIN: 카티샨 프로덕트와 같음
+2. [INNER] JOIN: 일반적인 조인조건 기술, ON에 조인 조건 기술
+	USING(공통속성, 같은이름) 사용하기도 함
+3. NATURAL JOIN: 조인 조건을 기술하지 않아도, 
+	알아서 테이블의 공통 속성을 조건으로 삼아서 조인함
+4. OUTER JOIN : LEFT, RIGHT, FULL OUTER JOIN이 있으며, 
+	명기 하지 않고 WHERE절에 표현하고자 하는 칼럼의 반대쪽,
+	그러니까 NULL값을 가지는 위치에 (+)를 붙여 사용하기도 함
+
+<SUB QUERY>
+
+1. SELECT절에 기입: 스칼라 부속질의: scalar subquery
+2. FROM절에 기입: 인라인 뷰: inline view, table subquery
+3. WHERE절에 기입: 중첩질의: nested subquery, predicate subquery
+	- IN, NOT IN사용
+	- ALL 사용
+	- ANY, SOME 사용
+	- EXISTS, NOT EXISTS 사용
+
+
+
+
+DDL - data definition language : create, alter, drop, rename, truncate 
+: ddl은 하는 순간 자동 commit 되기 때문에 roll back 불가능
+
+DML - data manipulation language: insert, update, delete
+
+TCL - transaction control language: commit, rollback, savepoint
+
+DCL - data control language: 권한 제어: grant, revoke, deny

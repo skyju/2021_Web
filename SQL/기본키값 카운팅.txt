@@ -1,0 +1,33 @@
+유저가 기입할 때마다 자동으로 기본키 값이 1식 증가하게 만드는 방법
+
+Ms Sql: identity
+My Sql : auto increment <-이전의 값을 참조하여 1씩 증가하여 넣는 방식이기 
+때문에 중간값을 삭제하더라도 마지막 값을 이어서 넣는다.
+따라서 변경이 빈번하면 값이 계속 계속 커지고, 연속적인 값을 갖게 하기 힘듬
+
+Oracle : Sequence 이용
+
+-- user_seq라는 이름의 시퀀스를 생성
+CREATE SEQUENCE USER_SEQ 
+-- 시작값은 1
+START WITH 1 
+-- 증가 값은 1
+INCREMENT BY 1 
+-- 최종값은 9999
+MAXVALUE 9999 
+-- maxvalue이후 다시 1부터 시작을 원하면 cycle, 아니면 no cycle
+NOCYCLE 
+-- cache를 이용할 경우 cache, 아닐시 nocache
+NOCACHE;
+
+
+시퀀스를 생성해놓은 후에는 다음과 같이 사용
+
+INSERT INO TABLE (CODE)
+VALUES(USER_SEQ.NEXTVAL);
+
+> NEXTVAL 함수를 사용하면 값이 중복되지 않고 증가하게 만들 수 있음
+
+SEQUECE는 일단 실행되면 값이 증가하기 때문에
+만약 중간에 회원가입 실패, 튜플삭제 등이 이루어진다면
+IDX값이 일정하지 않을 수 있음 
