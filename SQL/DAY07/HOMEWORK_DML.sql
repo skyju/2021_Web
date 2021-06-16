@@ -88,6 +88,11 @@
     ON B.IDX = U.FR_REF
     FULL OUTER JOIN PHONEINFO_COM C
     ON B.IDX = C.FR_REF;
+    
+    -- 또는 아래처럼 작성할 수 있음
+    SELECT * 
+    FROM PHONEINFO_BASIC B, PHONEINFO_UNIV U, PHONEINFO_COM C
+    WHERE B.IDX = U.FR_REF(+) AND B.IDX = C.FR_REF(+);
 
     -- (1) 튜플 삽입: 모든 ATTRIBUTE에 값 넣기
     INSERT INTO PHONEINFO_COM 
