@@ -32,6 +32,7 @@
 -- (7) 박지성이 구매하지 않은 도서의 이름
     
     -- SUB QUERY로만 풀이 - (원리 파악하기 용이)
+    -- MINUS : 차집합 연산자, MY SQL에서는 EXCEPT로 사용
     SELECT BOOKNAME
     FROM BOOK MINUS (SELECT BOOKNAME 
                      FROM BOOK 
