@@ -98,6 +98,11 @@
     INSERT INTO PHONEINFO_COM (IDX, FR_C_COMPANY, FR_REF) 
     VALUES(2, 'BCOMPANY', 2);
     
+    -- (+) 이처럼 기본키 값만 다르면 외래키는 중복해서 들어갈 수 있기 때문에 
+    -- 이상한 데이터가 들어갈 수 있는 가능성이 있어서, 기본키값을 여러 값의 복합키로 만들어 사용할 수 있음 
+    INSERT INTO PHONEINFO_COM VALUES (3, 'C_COMPANY', 2);
+    -- 외래키 값이 똑같은, SCOTT에대한 값이지만 데이터가 또 들어감
+    
     -- (3) 튜플 업데이트: IDX 1번의 회사를 C_COMPANY로 변경하기
     UPDATE PHONEINFO_COM 
     SET FR_C_COMPANY = 'C_COMPANY'

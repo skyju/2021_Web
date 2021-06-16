@@ -2,6 +2,12 @@
 
 -- DML
 
+--     <CRUD>
+-- INSERT : C REATE
+-- SELECT : R EAD
+-- UPDATE : U PDATE
+-- DELETE : D ELETE
+
 -- 데이터 입력 : 행단위 입력
 -- INSERT INTO 테이블명(컬럼명, ...) VALUES (데이터, 데이터, ...)
 -- 입력하고자 하는 컬럼과 입력 데이터의 개수는 일치해야 한다.
