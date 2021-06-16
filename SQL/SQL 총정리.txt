@@ -45,10 +45,13 @@
 		TO_CHAR
 		TO_NUMBER
 		TO_DATE
+
 		날짜 형식: AM, A.M, HH, HH24, MI, SS
-		숫자 형식: 0,9,L(지역 별 통화기호), . , ,
+		숫자 형식: 0,9,L(지역 별 통화기호), 단위구분(,), 소수점(.), 통화기호($)...
+
 	(5) DECODE 함수: SWITCH CASE문과 같은 기능 
 		DECODE (표현식 조건1, 결과1, 조건2, 결과2 ...)
+
 	(6) CASE 함수: IF ELSE와 같은 기능
 		CASE 표현식 WHEN 조건1 THEN 결과1
 
@@ -61,24 +64,29 @@
 		STDDEV, VARIANCE
 	
 <DBMS의 명령문 분류>
-DQL - data query language : select, desc...  
+(C)REATE
+(R)EAD
+(U)PDATE
+(D)ELETE
+
+DQL - data query language : SELECT, DESC...
 	
-	1) desc : 특정 테이블을 묘사해달라는 요청
+	1) DESC : 특정 테이블을 묘사해달라는 요청
 		desc * tablename;
-	2) tab : 지금 접속한 계정이 권한을 가진 테이블 객체 모두 보기
+	2) TAB : 지금 접속한 계정이 권한을 가진 테이블 객체 모두 보기
 		select * from tab; 
-	3) distinct : 중복 제거, 컬럼명 앞에 작성
+	3) DISTINCT : 중복 제거, 컬럼명 앞에 작성
 	
-	4) order by [asc | desc] : ascending or descending data
+	4) ORDER BY [asc | desc] : ascending or descending data
 	
-	5) group by & having  : grouping & group의 조건 설정
+	5) GROUP BY & HAVING  : grouping & group의 조건 설정
 
 	6) 연산자 정리 
 		1. 비교 연산자: =
-		2. 범위 연산자: >, <, ... 또는 between
-		3. 논리 연산자: and, or, not
-		4. in 연산자: 여러개의 or을 대체 
-		5. like 연산자: %는 와일드카드, _는 한자리 의미
+		2. 범위 연산자: >, <, ... 또는 BETWEEN
+		3. 논리 연산자: AND, OR, NOT
+		4. IN 연산자: 여러개의 or을 대체 
+		5. LIKE 연산자: %는 와일드카드, _는 한자리 의미
 		6. IS NULL 연산자 & IS NOT NULL 연산자
 	
 	7) oracle의 정규식 이용
@@ -121,14 +129,14 @@ DQL - data query language : select, desc...
 	- EXISTS, NOT EXISTS 사용
 
 
-DDL - data definition language : create, alter, drop, rename, truncate
-DCL - data control language: 권한 제어: grant, revoke, deny
+DDL - data definition language : CREATE, ALTER, DROP, TRUNCATE, RENAME
+DCL - data control language: 권한 제어: GRANT, REVOKE, DENY
 : DDL, DCL은 하는 순간 자동 commit 되기 때문에 roll back 불가능
 : 따라서 원칙적으로 DDL, DCL, DML은 분리해서 작성하는 습관이 중요하다.
 
-DML - data manipulation language: insert, update, delete
+DML - data manipulation language: INSERT, UPDATE, DELETE
 
-TCL - transaction control language: commit, rollback, savepoint
+TCL - transaction control language: COMMIT, ROLLBACK, SAVEPOINT
 
 
 <View>
