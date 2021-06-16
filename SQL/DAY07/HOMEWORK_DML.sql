@@ -28,10 +28,15 @@
     SET FR_ADDRESS = (SELECT FR_ADDRESS FROM PHONEINFO_BASIC WHERE FR_NAME = 'JOHN')
     WHERE FR_NAME = 'SCOTT';
     
-    -- (5) 튜플 삭제: 모든 튜플 삭제하기
+    -- (5) 튜플 업데이트: 모든 튜플의 ATTRIBUTE값을 한번에 업데이트 하기
+    -- WHERE 절을 작성하지 않음
+    UPDATE PHONEINFO_BASIC
+    SET FR_REGDATE = DEFAULT;
+    
+    -- (6) 튜플 삭제: 모든 튜플 삭제하기
     DELETE FROM PHONEINFO_BASIC;
     
-    -- (6) 튜플 삭제: 특정 튜플 삭제하기
+    -- (7) 튜플 삭제: 특정 튜플 삭제하기
     DELETE FROM PHONEINFO_BASIC WHERE FR_NAME = 'SCOTT';
     
 -- 2. PHONEINFO_UNIV 테이블의 SELECT, UPDATE, DELETE, INSERT 하는 SQL
