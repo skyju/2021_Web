@@ -23,8 +23,6 @@ DROP VIEW EMP_VIEW_30;
 
 
 
-
-
 -- 인라인 뷰 (FROM절에 들어가는 SUB QUERY)
 -- 사원 중에 입사일이 빠른 사람 5명만을 얻어 오는 질의문을 작성해 봅시다.
 -- TOP-N을 구하기 위해서는 ROWNUM과 인라인 뷰가 사용됩니다.
@@ -59,4 +57,15 @@ FROM (SELECT * FROM EMP ORDER BY ENAME);
 
 
 
+-- 입사일 기준으로 정렬한 뷰를 생성하여 활용하기
+CREATE OR REPLACE VIEW VIEW_HIR
+AS
+SELECT * FROM EMP ORDER BY HIREDATE;
 
+SELECT ROWNUM, ENAME, HIREDATE
+FROM VIEW_HIR;
+
+SELECT ROWNUM, ENAME, HIREDATE
+FROM VIEW_HIR
+WHERE ROWNUM < 6
+ORDER BY ENAME;
