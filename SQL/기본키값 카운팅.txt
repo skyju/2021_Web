@@ -8,7 +8,7 @@ My Sql : auto increment <-이전의 값을 참조하여 1씩 증가하여 넣는
 Oracle : Sequence 이용
 
 -- user_seq라는 이름의 시퀀스를 생성
-CREATE SEQUENCE USER_SEQ 
+CREATE SEQUENCE user_seq
 -- 시작값은 1
 START WITH 1 
 -- 증가 값은 1
@@ -28,6 +28,6 @@ VALUES(USER_SEQ.NEXTVAL);
 
 > NEXTVAL 함수를 사용하면 값이 중복되지 않고 증가하게 만들 수 있음
 
-SEQUECE는 일단 실행되면 값이 증가하기 때문에
+SEQUECE는 auto increment와 마찬가지로 일단 실행되면 값이 증가하기 때문에
 만약 중간에 회원가입 실패, 튜플삭제 등이 이루어진다면
 IDX값이 일정하지 않을 수 있음 
