@@ -1,0 +1,36 @@
+-- 06.16
+-- Sequence
+
+-- SEQUENCE 생성하기
+CREATE SEQUENCE PIB_IDX_PK;
+
+CREATE SEQUENCE PIB_IDX_PK
+START WITH 1
+INCREMENT BY 1;
+
+-- SEQUENCE 삭제하기
+DROP SEQUENCE PIB_IDX_PK;
+
+-- CURRVAL & NEXTVAL 
+SELECT PIB_IDX_PK.CURRVAL 
+FROM DUAL;
+
+SELECT PIB_IDX_PK.NEXTVAL
+FROM DUAL;
+
+-- INSERT문에 넣어보기
+INSERT INTO phoneinfo_basic
+VALUES (PIB_IDX_PK.NEXTVAL, 'PARK', '010-1234-1234', 'PARK@NAVER.COM', 'LONDON', SYSDATE);
+
+-- 확인하기
+SELECT *
+FROM phoneinfo_basic;
+
+-- 삭제했다가 다시 넣어보기
+DELETE FROM phoneinfo_basic;
+
+--> 시퀀스 값은 삭제했다가 넣어도 계속 증가함
+
+
+
+
