@@ -101,7 +101,7 @@ DQL - data query language : select, desc...
 3. 쎄타 조인(NON_EQUI JOIN): =이 아닌 일반적 조인 조건 통칭... ex) >, <..
 4. SELF 조인: 자기 자신과 조인하는 경우
 
-ANSI-JOIN
+<ANSI-JOIN>
 1. CROSS JOIN: 카티샨 프로덕트와 같음
 2. [INNER] JOIN: 일반적인 조인조건 기술, ON에 조인 조건 기술
 	USING(공통속성, 같은이름) 사용하기도 함
@@ -112,7 +112,6 @@ ANSI-JOIN
 	그러니까 NULL값을 가지는 위치에 (+)를 붙여 사용하기도 함
 
 <SUB QUERY>
-
 1. SELECT절에 기입: 스칼라 부속질의: scalar subquery
 2. FROM절에 기입: 인라인 뷰: inline view, table subquery
 3. WHERE절에 기입: 중첩질의: nested subquery, predicate subquery
@@ -122,13 +121,26 @@ ANSI-JOIN
 	- EXISTS, NOT EXISTS 사용
 
 
-
-
-DDL - data definition language : create, alter, drop, rename, truncate 
-: ddl은 하는 순간 자동 commit 되기 때문에 roll back 불가능
+DDL - data definition language : create, alter, drop, rename, truncate
+DCL - data control language: 권한 제어: grant, revoke, deny
+: DDL, DCL은 하는 순간 자동 commit 되기 때문에 roll back 불가능
+: 따라서 원칙적으로 DDL, DCL, DML은 분리해서 작성하는 습관이 중요하다.
 
 DML - data manipulation language: insert, update, delete
 
 TCL - transaction control language: commit, rollback, savepoint
 
-DCL - data control language: 권한 제어: grant, revoke, deny
+
+<View>
+뷰는 물리적인 테이블을 근거한 논리적 가상테이블
+뷰는 파생 객체로서 기본테이블에 대한 하나의 쿼리문
+DBMS를 설계할 때
+정보 보안, 권한의 문제로 뷰를 사용함 (어떤 계정은 어떤 뷰만 볼 수 있게)
+
+CREATE [OR REPLACE] [FORCE|NOFORCE] VIEW view_name
+[(alias, alias, ...)]
+[WITH CHECK OPTION] -- 해당 뷰를 통해 볼 수 있는 범위내에서만 UPDATE, INSERT가 가능
+[WITH READ ONLY] -- SELECT만 가능하고 DML불가능 
+;
+보통 CREATE OR REPLACE VIEW 라고 많이 씀
+
