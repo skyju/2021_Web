@@ -32,5 +32,21 @@ DELETE FROM phoneinfo_basic;
 --> 시퀀스 값은 삭제했다가 넣어도 계속 증가함
 
 
+--> NEXTVAL은 어떻게 초기화하나?
+--> 권한만 있다면 스퀀스를 DROP하고 다시 CREATE 해도 되고,
+
+--> 아니면 현재 값을 확인하고
+SELECT LAST_NUMBER FROM USER_SEQUENCES WHERE SEQUENCE_NAME = 'PIB_IDX_PK';
+
+--> 시퀀스의 INCREMENT를 현재 값만큼 빼도록 설정합니다.
+ALTER SEQUENCE PIB_IDX_PK INCREMENT BY -1;
+
+--> 시퀀스의 NEXTVAL값을 조회합니다.
+SELECT PIB_IDX_PK.NEXTVAL FROM DUAL;
+
+--> 시퀀스의 INCREMENT를 다시 1로 설정합니다.
+ALTER SEQUENCE PIB_IDX_PK INCREMENT BY 1;
+
+
 
 
