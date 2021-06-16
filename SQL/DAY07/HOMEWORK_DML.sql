@@ -11,10 +11,12 @@
     -- (1) 튜플 삽입: 모든 ATTRIBUTE에 값 넣기
     INSERT INTO PHONEINFO_BASIC 
     VALUES(1,'JOHN', '010-1234-1234', 'JOHN@GMAIL.COM', 'SEOUL', DEFAULT);
+    INSERT INTO PHONEINFO_BASIC
+    VALUES(1,'MATT', '010-1111-1111', 'MATT@GMAIL.COM', 'INCHEON', DEFAULT);
     
     -- (2) 튜플 삽입: 특정 ATTRIBUTE에 값 넣기
     INSERT INTO PHONEINFO_BASIC (IDX, FR_NAME, FR_PHONENUMBER, FR_EMAIL) 
-    VALUES(2, 'SCOTT', '010-1234-4567', 'SCOTT@NAVER.COM');
+    VALUES(3, 'SCOTT', '010-1234-4567', 'SCOTT@NAVER.COM');
     
     -- (3) 튜플 업데이트: (2)에서 넣지 않은 주소와 등록시간 넣어보기
     UPDATE PHONEINFO_BASIC 
@@ -101,11 +103,11 @@
     -- (2) 튜플 삽입: 특정 ATTRIBUTE에 값 넣기 
     -- 이 테이블은, 모든 ATTRIBUTE가 NOT NULL이기 때문에, 모든 ATTRIBUTE를 기입해야함
     INSERT INTO PHONEINFO_COM (IDX, FR_C_COMPANY, FR_REF) 
-    VALUES(2, 'B_COMPANY', 2);
+    VALUES(2, 'B_COMPANY', 3);
     
     -- (+) 이처럼 기본키 값만 다르면 외래키는 중복해서 들어갈 수 있기 때문에 
     -- 이상한 데이터가 들어갈 수 있는 가능성이 있어서, 기본키값을 여러 값의 복합키로 만들어 사용할 수 있음 
-    INSERT INTO PHONEINFO_COM VALUES (3, 'C_COMPANY', 2);
+    INSERT INTO PHONEINFO_COM VALUES (3, 'C_COMPANY', 3);
     -- 외래키 값이 똑같은, SCOTT에대한 값이지만 데이터가 또 들어감
     
     -- (3) 튜플 업데이트: IDX 1번의 회사를 C_COMPANY로 변경하기
