@@ -1,6 +1,7 @@
 package dept;
 
 import java.util.Scanner;
+import java.util.concurrent.SynchronousQueue;
 
 public class DeptMain {
 
@@ -39,7 +40,8 @@ public class DeptMain {
 					manager.deptDelete();
 					break;
 				case 5:
-					System.exit(0);
+					System.out.println("프로그램을 종료합니다.");
+					return;
 				default:
 					System.out.println("잘못된 입력입니다.");
 				}

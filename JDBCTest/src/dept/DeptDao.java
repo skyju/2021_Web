@@ -22,8 +22,7 @@ public class DeptDao {
 		return dao;
 	}
 	
-	// 1. DEPT 테이블을 전체 조회하는 메서드
-	// 반환 타입은 List<Dept>
+	// 1. SELECT 메소드: 반환타입: List
 	// 매개변수  - Connection 객체 : Statement 객체 만들기 위해
 	ArrayList<Dept> getDeptList(Connection con) {
 		
@@ -57,15 +56,12 @@ public class DeptDao {
 		return list;
 	}
 
-	// 2. DEPT 테이블에 데이터를 저장하는 메서드
-	// 반영 횟수 반환
-	// 사용자로부터 데이터 받기 > Dept 객체
+	// 2. INSERT 메소드 : 반환타입: 반영 횟수
 	int insertDept(Connection con, Dept dept){
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
 		try {
-			// 전달 받은 Dept 객체의 데이터로 DEPT 테이블에 저장-> 결과 값을 반환
 			String insertSql = "INSERT INTO DEPT VALUES (DEPT01_DEPTNO_SEQ.NEXTVAL, ?, ?)";
 			pstmt = con.prepareStatement(insertSql);
 			pstmt.setString(1, dept.getDname());
@@ -87,9 +83,7 @@ public class DeptDao {
 		return result;
 	}
 
-	// 3. DEPT 테이블의 데이터를 수정하는 메서드
-	// 수정된 행의 개수 반환
-	// 사용자로부터 데이터 받기 > Dept 객체
+	// 3. UPDATE 메소드: 반환타입: 반영횟수
 	int updateDept(Connection con, Dept dept) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -118,9 +112,7 @@ public class DeptDao {
 		return result;
 	}
 	
-	// 4. DEPT 테이블의 데이터를 삭제하는 메서드
-	// 삭제된 행의 개수 반환
-	// 사용자로부터 deptno를 받아서 처리
+	// 4. DELETE 메소드: 반환타입: 반영횟수
 	int deleteDept(Connection con, int deptno) {
 		int result = 0;
 		PreparedStatement pstmt = null;
