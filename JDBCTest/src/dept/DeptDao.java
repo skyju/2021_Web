@@ -31,12 +31,11 @@ public class DeptDao {
 		
 		Statement stmt = null;
 		ResultSet rs = null;
-		
 		try {
 			stmt = con.createStatement();
-			String sql = "select * from dept order by deptno";
+			String sql = "SELECT * FROM DEPT ORDER BY DEPTNO";
 			rs = stmt.executeQuery(sql);
-			//데이터를 dept객체로 생성 > list에 저장
+			
 			while(rs.next()){
 				list.add(new Dept(rs.getInt(1), rs.getString(2), rs.getString(3)));
 			}
@@ -54,6 +53,7 @@ public class DeptDao {
 				e.printStackTrace();
 			}
 		}
+		
 		return list;
 	}
 

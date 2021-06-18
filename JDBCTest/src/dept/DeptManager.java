@@ -20,7 +20,7 @@ public class DeptManager {
 		kb = new Scanner(System.in);
 	}
 
-	Connection connecting() {
+	private Connection connecting() {
 		Connection con = null;
 		try {
 			con = DriverManager.getConnection(url, user, password);
@@ -34,7 +34,6 @@ public class DeptManager {
 	// DAO에서 데이터 리스트를 받고 출력 처리
 	void deptList() {
 		Connection con = connecting();
-		
 		List<Dept> list = dao.getDeptList(con);
 		
 		System.out.println("부서 정보 리스트");
