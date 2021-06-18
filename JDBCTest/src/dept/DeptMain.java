@@ -1,7 +1,6 @@
 package dept;
 
 import java.util.Scanner;
-import java.util.concurrent.SynchronousQueue;
 
 public class DeptMain {
 
