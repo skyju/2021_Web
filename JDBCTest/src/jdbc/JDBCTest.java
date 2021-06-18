@@ -1,10 +1,14 @@
 package jdbc;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class JDBCTest {
+	
+	static Connection con = null;
+	static Statement stmt = null;
 
 	public static void main(String[] args) {
 		System.out.println("test start");
@@ -18,15 +22,38 @@ public class JDBCTest {
 			String user = "hr";
 			String pw = "tiger";
 			
-			Connection con = DriverManager.getConnection(jdbcUrl, user, pw);
-			System.out.println("DB에 접속했습니다.");
-			con.close();
+			con = DriverManager.getConnection(jdbcUrl, user, pw);
+			System.out.println("데이터베이스 연결 성공!");
+			
+			//3. java.sql.Statement, java.sql.PreparedStatement, 
+			// java.sql.ResultSet, 
+			// executeQuery, executeUpdate
+
+			stmt = con.createStatement();
+			stmt.executeQuery("");
 			
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 클래스를 찾지 못함!");
 			e.printStackTrace();
 		} catch (SQLException e) {
+			System.out.println("데이터베이스 연결 실패!");
 			e.printStackTrace();
+		} finally {
+			// 4. close
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}	
+			}
+			if(stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 
