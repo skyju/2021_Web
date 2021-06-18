@@ -36,7 +36,6 @@ public class DeptManager {
 		Connection con = connecting();
 		List<Dept> list = dao.getDeptList(con);
 		
-		System.out.println("부서 정보 리스트");
 		System.out.println("-------------------------------");
 		System.out.println("부서번호 \t 부서이름\t 부서위치");
 		System.out.println("-------------------------------");
