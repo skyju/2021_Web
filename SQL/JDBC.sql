@@ -18,3 +18,12 @@ INCREMENT BY 10;
 DELETE FROM DEPT01 WHERE DEPTNO = ?;
 
 UPDATE DEPT01 SET DNAME = ?, LOC = ? WHERE DEPTNO = ?;
+
+select DEPT01_DEPTNO_SEQ.nextval from dual;
+
+select * from dept;
+COMMIT;
+
+INSERT INTO DEPT VALUES(50, 'MARKETING', 'SEOUL');
+
+delete from dept where deptno = 50;
