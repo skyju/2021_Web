@@ -7,7 +7,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class DeptDAO {
+public class DeptDao {
+	// 싱글톤 패턴: 여러개의 인스턴스를 생성하지 못하도록 하는  디자인 패턴
+	// 외부 클래스 또는 인스턴스에서 해당 클래스로 인스턴스를 생성하지 못하도록 처리
+	
+	// 어떻게?:
+	
+	//1. 클래스 내부에서 인스턴스를 만들고 (자기자신) 
+	private DeptDao() {/*private 생성자 > 외부에서 호출 할 수 없음*/}
+	private static DeptDao dao = new DeptDao(); //클래스 내부라 private 생성자 호출 가능
+	
+	//2. 메소드를 통해서 반환하도록 처리
+	public static DeptDao getInstance() {
+		return dao;
+	}
 	
 	// 1. DEPT 테이블을 전체 조회하는 메서드
 	// 반환 타입은 List<Dept>
@@ -119,7 +132,7 @@ public class DeptDAO {
 			pstmt.setInt(1, deptno);
 			result = pstmt.executeUpdate();
 
-		} catch (SQLException e) {
+		} catch (SQLException e) { // 보통 예외 던지지 않고, 여기서 처리함
 			e.printStackTrace();
 		} finally {
 			if(pstmt != null) {
