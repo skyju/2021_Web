@@ -13,11 +13,11 @@ public class DeptDao {
 	
 	// 어떻게?:
 	
-	//1. 클래스 내부에서 인스턴스를 만들고 (자기자신) 
-	private DeptDao() {/*private 생성자 > 외부에서 호출 할 수 없음*/}
+	//1. 외부에서 클래스를 생성하지 못하도록, 생성자를 막고
+	private DeptDao() {}
+	//2. 클래스 내부에서 인스턴스를 만들고 (자기자신) 
 	private static DeptDao dao = new DeptDao(); //클래스 내부라 private 생성자 호출 가능
-	
-	//2. 메소드를 통해서 반환하도록 처리
+	//3. 메소드를 통해서 반환하도록 처리
 	public static DeptDao getInstance() {
 		return dao;
 	}
