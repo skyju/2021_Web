@@ -49,7 +49,9 @@ public class DeptManager {
 	
 	// 데이터 입력
 	// 사용자에게 scanner 클래스로 입력받아 > dao insertDept 메소드로 저장
-	void deptInsert() {
+	void deptInsert() { 
+		// 여러개를 입력받을 때 여기서 while처리를 하는 것이고, 
+		// 이 안의 컨넥션을 가지고 중간에 롤백하게끔 try catch문 넣어도됨
 		Connection con = connecting();
 		
 		System.out.println("부서 정보 입력을 시작합니다.");
