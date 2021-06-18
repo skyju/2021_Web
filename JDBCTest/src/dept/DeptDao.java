@@ -68,7 +68,6 @@ public class DeptDao {
 			// 전달 받은 Dept 객체의 데이터로 DEPT 테이블에 저장-> 결과 값을 반환
 			String insertSql = "INSERT INTO DEPT VALUES (DEPT01_DEPTNO_SEQ.NEXTVAL, ?, ?)";
 			pstmt = con.prepareStatement(insertSql);
-			
 			pstmt.setString(1, dept.getDname());
 			pstmt.setString(2, dept.getLoc());
 				
