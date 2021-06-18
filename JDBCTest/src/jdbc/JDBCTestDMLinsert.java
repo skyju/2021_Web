@@ -6,8 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
-public class JDBCTestEmp {
+public class JDBCTestDMLinsert {
 
 	public static void main(String[] args) {
 		
@@ -34,36 +35,53 @@ public class JDBCTestEmp {
 			con = DriverManager.getConnection(jdbcUrl, user, pw);
 			System.out.println("데이터베이스 연결 성공!");
 			
-			// 3. SQL처리
-			// 사원 번호, 사원 이름, 직급, 연봉, 부서이름, 부서위치
+			// transaction:
+			// auto-commit이 default임, 설정하려면
+			con.setAutoCommit(false);
 			
-			// (1). Statement
-				stmt = con.createStatement();
-				
-			// (2). SQL 작성
-				String sql = "select empno, ename, job, sal, dname, loc from emp, dept "
-						+ "where emp.deptno = dept.deptno";
+			
+			// 3. SQL처리
+			// 사용자에게 정보를 받아 부서 데이터를 입력하는 프로그램을 만들어보자
+			
+			// (1). SQL 작성
+			String sql = 
+			"INSERT INTO DEPT01 VALUES (DEPT01_DEPTNO_SEQ.NEXTVAL, ?, ?)";
+			
+			// (2). PreparedStatement
+			pstmt = con.prepareStatement(sql);
+			
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("부서 정보 입력을 시작합니다.");
+			System.out.println("입력할 부서명을 입력해주세요.");
+			String dname = scanner.nextLine();
+			System.out.println("입력할 지역명을 입력해주세요.");
+			String loc = scanner.nextLine();
+			pstmt.setString(1, dname);
+			pstmt.setString(2, loc);
 				
 			// (3). Result Set 객체로 데이터 받기
-				rs = stmt.executeQuery(sql);
-				
-			// (4). 출력
-				while(rs.next()) {
-					System.out.println(rs.getInt(1)+"\t"
-									  +rs.getString(2)+"\t"
-									  +rs.getString(3)+"\t"
-									  +rs.getInt(4)+"\t"
-									  +rs.getString(5)+"\t"
-									  +rs.getString(6));
-				}
-				
-				
-				
+			int result = pstmt.executeUpdate();
+			
+			if(result > 0) {
+				System.out.println("입력되었습니다.");
+			} else {
+				System.out.println("입력 실패했습니다.");
+			}
+			
+			//트랜잭션 완료
+			con.commit();
+			System.out.println("커밋했습니다.");
+			
+			
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 클래스를 찾지 못함!");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println("데이터베이스 연결 실패!");
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		} finally {
 			// 4. close
