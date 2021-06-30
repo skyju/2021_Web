@@ -1,0 +1,19 @@
+h1{
+    background-color: black;
+    color:white;
+}
+div {
+    background-color: yellowgreen;
+    margin-top: 10px;
+    height: 50px;
+}
+
+span {
+    background-color: yellow;
+    margin-right: 10px;
+    width: 100px;
+    height: 100px;
+}
+.signup{
+    background-color: teal;
+}

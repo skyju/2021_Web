@@ -22,7 +22,7 @@ public class Driver {
 		
 		while (true) {
 			try {
-				printMenu();
+				Show.printMenu();
 				int menu = kb.nextInt();
 				switch(menu) {
 				case Menu.SAVE_INFO:
@@ -44,11 +44,11 @@ public class Driver {
 					sp.removeAllList();
 					break;
 				case Menu.SAVE_FILE:
-					savingFile sv = new savingFile(sp);
+					SavingFile sv = new SavingFile(sp);
 					sv.start();
 					break;
 				case Menu.FILE_LOAD:
-					loadingFile ld = new loadingFile(sp);
+					LoadingFile ld = new LoadingFile(sp);
 					ld.start();
 					break;
 				case Menu.EXIT:
@@ -60,55 +60,9 @@ public class Driver {
 			} catch(InputMismatchException e) {
 				System.out.println("메뉴는 숫자로만 입력해주세요.");
 				kb.nextLine(); 
-				//버퍼 비우기 ??
-				// nextInt는 공백을 못받기 때문에 \r을 받을 때까지 입력받음
-				// 그러나 엔터는 \r\n이기 때문에, 버퍼에 \n이 남아있음.
-				// 버퍼가 비어야 새로 입력받을 수 있기 때문에
-				// \n을 입력받아 처리할 수 있는 nextLine으로 버퍼 비움	
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}//while
-		
-		
 	}//main
-	
-	public static void printMenu() {
-		System.out.println();
-        System.out.println( "=================" );
-        System.out.println( "<연락처 관리 프로그램>" );
-        System.out.println( Menu.SAVE_INFO+". 연락처 저장" );
-        System.out.println( Menu.FIND_INFO+". 연락처 검색" );
-        System.out.println( Menu.UPDATE_INFO+". 연락처 수정" );
-        System.out.println( Menu.REMOVE_INFO+". 연락처 삭제" );
-        System.out.println( Menu.SHOWUP_INFO+". 연락처 전체 보기" );
-        System.out.println( Menu.REMOVE_ALL_INFO+". 연락처 전체 삭제");
-        System.out.println( Menu.SAVE_FILE+". 파일 저장");
-        System.out.println( Menu.FILE_LOAD+". 파일 로드");
-        System.out.println( Menu.EXIT+". 종료" );
-        System.out.println( "=================" );
-        System.out.print( ">> 메뉴 : " );
-	}
-}
-
-class savingFile extends Thread {
-	SmartPhone sp;
-	
-	savingFile(SmartPhone sp) {
-		this.sp = sp;
-	}
-	public void run() {
-		sp.savingFile();
-	}
-}
-
-class loadingFile extends Thread {
-	SmartPhone sp;
-	
-	loadingFile(SmartPhone sp) {
-		this.sp = sp;
-	}
-	public void run() {
-		sp.loadingFile();
-	}
 }
