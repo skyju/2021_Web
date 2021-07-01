@@ -2,7 +2,7 @@ package project;
 
 import java.io.Serializable;
 
-public abstract class Contact implements ShowData, Serializable {
+public abstract class Contact implements Serializable {
 	private String name;
 	private String phoneNum;
 	private String email;
