@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--head : 웹 문서의 추가적인 속성들을 정의-->
+
+<head>
+    <!-- meta: 문서의 추가적인 속성 -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 문서의 제목 -->
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- h1~h6 : 제목 태그 : 글자를 굵게 표현 & 글자 크기 -->
+    <!-- pre: 그대로 출력, &nbsp 공백하나 -->
+    <h1>
+        <pre>header - 
+        이렇게 
+                            이상하게 출력            
+                                h1</pre>
+    </h1>
+    <h2>header - h1</h2>
+    <h3>header - &nbsp&nbsp&nbsp&nbsp h1</h3>
+    <h4>header - h1</h4>
+    <h5>header - &lt; &gt; h1</h5>
+    <line></line>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Eligendi fugit, magnam id aspernatur dolore
+        doloremque provident sint pariatur,
+        hic laboriosam consequatur voluptatum et numquam
+        necessitatibus voluptatibus, assumenda aliquam
+        repellat tenetur.
+        <br>
+        Lorem ipsum dolor, <br> sit amet consectetur adipisicing elit. Placeat sint voluptates, ex libero tenetur nemo
+        fugiat quisquam. Porro, aliquam. Odit ad ullam culpa, laboriosam delectus earum? Earum eaque provident nemo.
+        <br>
+        ipsum
+    </p>
+    <form action="#" method="get">
+        <fieldset>
+            <legend>회원가입 폼</legend>
+            <table>
+                <tr>
+                    <th><label for="userid">아이디</label></th>
+                    <td><input type="email" id="userid" name="userid"></td>
+                </tr>
+                <tr>
+                    <th><label for="pw">비밀번호</label></th>
+                    <td><input type="password" id="pw" name="pw"></td>
+                </tr>
+                <tr>
+                    <th><label for="username">이름</label></th>
+                    <td><input type="text" id="username" name="username"></td>
+                </tr>
+                <tr>
+                    <th><label for="userPhoto">사진</label></th>
+                    <td><input type="file" id="userPhoto" name="userPhoto"></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><input type="submit" value="회원가입"></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</body>
+
+</html>
