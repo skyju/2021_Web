@@ -26,9 +26,6 @@ a {
 .text_right{
     text-align: right;
 }
-.font_size_200p {
-    font-size: 200%;
-}
 .div_algin_center {
     margin: 0 auto;
 }
@@ -77,11 +74,11 @@ nav input[type=text] {
     padding: 0 10px;
 }
 nav input[type=button] {
-    margin-top: 1.5px;
+    margin-top: 0.4px;
     float: right;
     border-radius: 0 10px 10px 0;
     width: 50px;
-    height: 20px;
+    height: 22px;
     padding: 0 10px;
 }
 
@@ -98,7 +95,6 @@ section {
 #wrap p {
     padding-left: 15px;
     padding-bottom: 13px;
-    font-size: 0.6em;
 }
 #wrap h4{
     padding-top: 15px;
@@ -115,13 +111,12 @@ aside {
 }
 aside ul{
     margin: 7px;
-    font-size:50%;
     padding-bottom: 7px;
 }
 aside ul li {
     list-style-type: none;
     margin: 7px;
-    font-size:13px;
+    font-size:15px;
 }
 
 /*footer 관련*/
