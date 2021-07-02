@@ -134,4 +134,5 @@ section input[type="button"]{
 footer p{
     font-size: 11px;
     color:#737373;
+    padding-bottom: 10px;
 }

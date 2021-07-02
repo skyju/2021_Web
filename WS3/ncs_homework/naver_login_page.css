@@ -46,6 +46,8 @@ header{
 .login_form{
     margin-left: 20px;
     margin-right: 20px;
+    max-width: 600px;
+    margin: 0 auto;
     overflow: hidden;
     border: transparent;
     border-bottom: 1px solid #dadada;
@@ -117,13 +119,16 @@ header{
 }
 .qr_area{
     display: table;
+    max-width: 600px;
     table-layout: fixed;
     width: 100%;
     text-align: center;
     margin-bottom: 15px;
+    margin: 0 auto;
 }
 .qr_area .item{
     display: table-cell;
+    padding-bottom: 20px;
 }
 .qr_area .item:last-child{
     padding-left:5px;
@@ -148,6 +153,7 @@ header{
 }
 footer img{
     padding-bottom: 20px;
+    max-width: 600px;
     display: block;
     margin: 0 auto;
     width: 100%;
@@ -156,4 +162,5 @@ footer .plus p, footer .plus p a{
     display:inline;
     font-size: 12px;
     color: #cecece;
+    padding-bottom: 20px;
 }

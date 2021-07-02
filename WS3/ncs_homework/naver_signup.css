@@ -10,6 +10,7 @@
 .table{
     display: table;
     width: 100%;
+    table-layout: fixed;
 }
 .table .table_cell{
     display: table-cell;
@@ -113,6 +114,7 @@ label{
 }
 
 .final_singup{
+    padding-top: 20px;
     padding-bottom: 25px;
 }
 footer{
