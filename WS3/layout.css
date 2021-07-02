@@ -41,10 +41,6 @@ header {
     margin-top: 30px;
 }
 
-header h3 {
-    text-align-last: auto;
-}
-
 /*nav 관련*/
 nav {
     border-top: 1px solid   hsl(0, 0%, 73%);
@@ -95,7 +91,7 @@ section {
     padding-left: 15px;
     padding-bottom: 13px;
 }
-#wrap h4{
+#wrap h2{
     padding-top: 15px;
     padding-left: 15px;
 }
