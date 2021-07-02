@@ -74,7 +74,6 @@ nav input[type=text] {
     padding: 0 10px;
 }
 nav input[type=button] {
-    margin-top: 0.4px;
     float: right;
     border-radius: 0 10px 10px 0;
     width: 50px;
