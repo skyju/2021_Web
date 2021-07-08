@@ -1,7 +1,6 @@
 
 // 회원의 정보: 아이디, 비밀번호, 이름
 // Member -> 생성자 함수를 정의
-
 function Member(id, pw, name) {
     this.userID = id;
     this.pw = pw;
@@ -22,28 +21,34 @@ let members = []; //new Array();
 // setItem('members', JSON.stringify(members))
 
 
-// submit 이벤트 연결
 window.onload = function () {
-    //localStorage에 저장된 데이터가 있는지 확인, localStorage.getItem('members') 없으면 null 반환
+
+    //localStorage에 저장된 데이터가 있는지 확인
     if (localStorage.getItem('members') == null) {
         // 배열 members를 저장
-        // localStorage.setItem('members', JSON.stringify(members)); ??
+        localStorage.setItem('members', JSON.stringify(members));
     } else {
-        members = JSON.parse(localStorage.getItem('members')); //JSON문자열 -> 객체로 반환
+        members = JSON.parse(localStorage.getItem('members')); // JSON문자열 -> 객체로 반환
         setList();
     }
 
+    // 아래처럼 변경
+    // if (!(localStorage.getItem('members') == null)) {
+    //     members = JSON.parse(localStorage.getItem('members')); // JSON문자열 -> 객체로 반환
+    //     setList();
+    // }
+
     // 사용자가 입력한 값 캐스팅
-    let userID = document.querySelector('#userID');
-    let pw = document.querySelector('#pw');
-    let repw = document.querySelector('#repw');
-    let userName = document.querySelector('#userName');
+    let userID = document.getElementById('userID');
+    let pw = document.getElementById('pw');
+    let repw = document.getElementById('repw');
+    let userName = document.getElementById('userName');
 
     // regForm casting
     let regForm = document.getElementById('regForm');
 
+    // submit 이벤트 연결
     regForm.onsubmit = function () {
-
         if (userID.value.trim().length < 1) {
             //alert('아이디를 입력해주세요');
             document.querySelector('#userID+div.msg').innerHTML = '필수 항목 입니다.';
@@ -83,6 +88,7 @@ window.onload = function () {
         // 리스트 세팅
         setList();
 
+        // 지금은 필요 X
         return false;
     }
 
@@ -144,10 +150,10 @@ function deleteMember(index) {
         members.splice(index, 1);
         // 삭제 현황을 localStorage에 배열 통째로 저장
         localStorage.setItem('members', JSON.stringify(members));
-
-        // 안되는 이유:
-        // 배열 요소가 아니라 key값 참조해서 삭제, (members 통째로 날라감)
+        
         // localStorage.removeItem('members');
+        // 배열 요소가 아니라 key값 참조해서 삭제, (members 통째로 날라감)
+        // 안되는 이유:
 
         alert('삭제되었습니다.');
         setList();
@@ -156,14 +162,14 @@ function deleteMember(index) {
 
 function editMember(index) {
     // 수정 폼 영역이 노출되어야 한다
-    document.querySelector('#editFormArea').style.display = 'block';
+    document.getElementById('editFormArea').style.display = 'block';
 
     // editForm의 태그들의 value  값을 세팅
-    let editUserId = document.querySelector('#editId');
-    let editPw = document.querySelector('#editPw');
-    let editRepw = document.querySelector('#editRepw');
-    let editName = document.querySelector('#editName');
-    let editIdx = document.querySelector('#index');
+    let editUserId = document.getElementById('editId');
+    let editPw = document.getElementById('editPw');
+    let editRepw = document.getElementById('editRepw');
+    let editName = document.getElementById('editName');
+    let editIdx = document.getElementById('index');
 
     // 이전 데이터를 폼에 세팅
     editUserId.value = members[index].userID;
@@ -177,14 +183,14 @@ function editMember(index) {
     //     document.querySelector('#editFormArea').style.display = 'none';
     // }
 
-    document.querySelector('#div_close').onmouseover = function () {
-        document.querySelector('#div_close').style.background = 'thistle';
+    document.getElementById('div_close').onmouseover = function () {
+        document.getElementById('div_close').style.background = 'thistle';
     }
-    document.querySelector('#div_close').onmouseout = function () {
-        document.querySelector('#div_close').style.background = 'none';
+    document.getElementById('div_close').onmouseout = function () {
+        document.getElementById('div_close').style.background = 'none';
     }
 
-    document.querySelector('#editForm').onsubmit = function () {
+    document.getElementById('editForm').onsubmit = function () {
         // let member = new Member(editUserId, editPw, editName);
         if (editPw.value != editRepw.value) {
             alert('비밀번호가 일치하지 않습니다.');
@@ -204,7 +210,7 @@ function editMember(index) {
         setList();
 
         this.reset;
-        document.querySelector('#editFormArea').style.display = 'none';
+        document.getElementById('editFormArea').style.display = 'none';
 
         return false;
     }
@@ -212,5 +218,5 @@ function editMember(index) {
 
 function editMemberClose() {
     this.reset;
-    document.querySelector('#editFormArea').style.display = 'none';
+    document.getElementById('editFormArea').style.display = 'none';
 }
