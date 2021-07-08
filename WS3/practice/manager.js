@@ -7,31 +7,29 @@ function Member(id, pw, name) {
     this.pw = pw;
     this.userName = name;
 }
-// 객체가 가지는 메소드는 공통으로 사용 ->
-// prototype
 
-Member.prototype.makeHtml = function () {
-    return '[id: ' + this.userID + ' , pw: ' + this.pw + ' , name: ' + this.userName + ']'
-}
+// // 객체가 가지는 메소드는 공통으로 사용 ->
+// // prototype
+// Member.prototype.makeHtml = function () {
+//     return '[id: ' + this.userID + ' , pw: ' + this.pw + ' , name: ' + this.userName + ']'
+// }
 
 // 회원 정보 저장 배열
 let members = []; //new Array();
+
 // 배열 -> JSON(문자열) -> localStorage에 저장, 수정, 삭제
+// getItem('members', JSON.stringify(members)) -> 배열 전체를 문자열화해서 해당 배열명의 배열에 저장
 // setItem('members', JSON.stringify(members))
 
 
-// 사용자가 입력한 정보를 가지고 Member객체를 생성
 // submit 이벤트 연결
-
 window.onload = function () {
-    //localStorage에 저장된 데이터가 있는지 확인하고
-    //localStorage.getItem('members') 없으면 null 반환
+    //localStorage에 저장된 데이터가 있는지 확인, localStorage.getItem('members') 없으면 null 반환
     if (localStorage.getItem('members') == null) {
         // 배열 members를 저장
-        localStorage.setItem('members', JSON.stringify(members));
+        // localStorage.setItem('members', JSON.stringify(members)); ??
     } else {
-        members = JSON.parse(localStorage.getItem('members'));
-        //JSON문자열 -> 객체로 반환
+        members = JSON.parse(localStorage.getItem('members')); //JSON문자열 -> 객체로 반환
         setList();
     }
 
@@ -116,7 +114,7 @@ function setList() {
 
     let tbody = '';
     console.log(members.length);
-    
+
     if (members.length < 1) {
         tbody += '<tr>';
         tbody += '  <td colspan="5">회원이 없습니다.</td>';
@@ -138,10 +136,7 @@ function setList() {
 }
 
 function deleteMember(index) {
-    // 배열의 index 요소를 삭제
-    // index에서 시작해서 count 만큼의 요소를 삭제하고 남은 요소를 반환
-    // splice(index, 1)
-
+    // splice(index, 1): index에서 시작해서 count 만큼의 요소를 삭제하고 남은 요소를 반환
     let member = members[index]
     if (confirm('삭제하시겠습니까?')) {
 
@@ -160,7 +155,6 @@ function deleteMember(index) {
 }
 
 function editMember(index) {
-
     // 수정 폼 영역이 노출되어야 한다
     document.querySelector('#editFormArea').style.display = 'block';
 
@@ -178,9 +172,16 @@ function editMember(index) {
     editName.value = members[index].userName;
     editIdx.value = index;
 
-    document.querySelector('#div_close').onclick = function () {
-        this.reset;
-        document.querySelector('#editFormArea').style.display = 'none';
+    // document.querySelector('#div_close').onclick = function () {
+    //     this.reset;
+    //     document.querySelector('#editFormArea').style.display = 'none';
+    // }
+
+    document.querySelector('#div_close').onmouseover = function () {
+        document.querySelector('#div_close').style.background = 'thistle';
+    }
+    document.querySelector('#div_close').onmouseout = function () {
+        document.querySelector('#div_close').style.background = 'none';
     }
 
     document.querySelector('#editForm').onsubmit = function () {
@@ -197,14 +198,19 @@ function editMember(index) {
         members[editIdx.value].userName = editName.value;
         alert('수정되었습니다.');
 
-        this.reset;
-        document.querySelector('#editFormArea').style.display = 'none';
-
         // 수정 현황을 localStorage에 저장
         localStorage.setItem('members', JSON.stringify(members));
 
         setList();
 
+        this.reset;
+        document.querySelector('#editFormArea').style.display = 'none';
+
         return false;
     }
+}
+
+function editMemberClose() {
+    this.reset;
+    document.querySelector('#editFormArea').style.display = 'none';
 }
