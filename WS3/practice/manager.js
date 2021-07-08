@@ -88,18 +88,6 @@ window.onload = function () {
         return false;
     }
 
-    // function removeInfo(userID) {
-    //     userID.addEventListener('focus', function () {
-    //         document.querySelector('#userID+div.msg').innerHTML = '';
-    //         document.querySelector('#userID+div.msg').style.display = 'none';
-    //     });
-    // }
-
-    // removeInfo(userID);
-    // removeInfo(pw);
-    // removeInfo(repw);
-    // removeInfo(userName);
-
     userID.addEventListener('focus', function () {
         document.querySelector('#userID+div.msg').innerHTML = '';
         document.querySelector('#userID+div.msg').style.display = 'none';
@@ -127,7 +115,8 @@ window.onload = function () {
 function setList() {
 
     let tbody = '';
-
+    console.log(members.length);
+    
     if (members.length < 1) {
         tbody += '<tr>';
         tbody += '  <td colspan="5">회원이 없습니다.</td>';
@@ -156,14 +145,17 @@ function deleteMember(index) {
     let member = members[index]
     if (confirm('삭제하시겠습니까?')) {
 
-        // members.splice(index, 1);
-        // // 삭제 현황을 localStorage에 저장
-        // localStorage.setItem('members', JSON.stringify(members));
+        // 배열 삭제
+        members.splice(index, 1);
+        // 삭제 현황을 localStorage에 배열 통째로 저장
+        localStorage.setItem('members', JSON.stringify(members));
 
-        localStorage.removeItem('members', JSON.stringify(member));
+        // 안되는 이유:
+        // 배열 요소가 아니라 key값 참조해서 삭제, (members 통째로 날라감)
+        // localStorage.removeItem('members');
 
         alert('삭제되었습니다.');
-        window.location.reload();
+        setList();
     }
 }
 
