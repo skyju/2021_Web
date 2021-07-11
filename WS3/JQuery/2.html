@@ -35,25 +35,42 @@
                 $('#menu>li').removeClass('floatLeft');
             });
 
+            // remove() 문서 객체를 제거합니다
+            $('#btn03').click(function () {
+                $('#menu').remove();
+            });
+
+            // empty() 문서 객체 내부를 비웁니다
+            $('#btn04').click(function () {
+                $('#menu').empty();
+            });
+
 
             // attr() 속성과 관련한 모든 기능을 수행
 
             // 속성의 값을 반환하는 메소드
             var srcPath = $('img').attr('src');
-            console.log('이미지 경로', srcPath);
+            console.log('이미지 경로는', srcPath);
 
             // 속성의 값을 정의
             //$('.img').attr('width', 200);
+
+            // 이미지가 여러개 있는 경우
+
+            // 점점 넓이가 커지게 만들기
             // $('.img').attr('width', function(index){
             //     return (index+1)*100;
-            // });
+            // }); 
+            
+            // 넓이는 고정해놓고 점점 높이가 커지게 만들기
             $('img').attr({
                 width: 100,
                 height: function (index) {
-                    return (1 + index) * 100;
+                    return (index+1) * 100; //(index 0번에서 안나오니까)
                 }
             });
 
+            // 위의 속성 없애기
             $('img').removeAttr('height');
 
 
@@ -67,6 +84,8 @@
             // $('h1').css('background', function(index){
             //     return colors[index];
             // });
+
+            // 속성을 2개 조정하고 싶을 때
             $('h1').css({
                 color: 'green',
                 backgroundColor: function (index) {
@@ -74,44 +93,35 @@
                 }
             });
 
+            // 처음 하나만 가져옴 <-> querySeletorAll이 아님
             var strHtml = $('h1').html();
             console.log('html() : ', strHtml);
 
             console.log($('#menu').html());
             console.log($('#menu').text());
 
+            // 문서 내부 수정
+            $('div').html(function (index, html) {
+                console.log(index, html);
+                $(this).html(html+'!!');
+            });
 
             $('div').html(function (index, html) {
                 console.log(index, html);
                 $(this).html('<h1>' + html + index + '!!!!! </h1>');
             });
 
-            $('#btn03').click(function () {
-                $('#menu').remove();
-            });
-
-            $('#btn04').click(function () {
-                $('#menu').empty();
-            });
-
         });
-
     </script>
 </head>
-
 <body>
-
-
     <div>DIV - 0</div>
     <div>DIV - 0</div>
     <div>DIV - 0</div>
-
 
     <h1 class="title">header - 0</h1>
     <h1>header - 1</h1>
     <h1>header - 2</h1>
-
-
 
     <img class="img" src='../images/cats.jpg'>
     <img class="img" src='../images/cats.jpg'>
@@ -129,5 +139,4 @@
     <button id="btn03">메뉴 삭제</button>
     <button id="btn04">내용 삭제</button>
 </body>
-
 </html>

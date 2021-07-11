@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            //appentTo(태그) 사용하기!
+
+            // 동적 html 요소 생성
+            let hello = $('<h1></h1>').html('Hello~!!!');
+            // 요소를 추가
+            hello.appendTo('body');
+
+            // 같은 방식으로!
+            let hellojs = $('<h1>Hello~!! js~?</h1>');
+            hellojs.appendTo('body');
+
+            // body태그에 이미지 추가하기~
+
+            //$('<img>').attr('src','../mini1.jpg')
+            // .attr('width', 100).appendTo('body');
+            $('<img>').attr({
+                src : '../images/cats.jpg',
+                width : 200
+            }).appendTo('body');
+
+
+            // appendTo 말고 append 사용해보기
+
+            let html1 = '<a href="#">test</a>';
+            let html2 = '<p>TEST</p>';
+            let html3 = '<div>DIV-0</div><div>DIV-1</div><div>DIV-2</div>';
+
+            $('body').append('<h3 style="color:red">Hello~!!! JS</h3>');
+            $('body').append(html1, html2, html3, '<hr>');
+
+            // 배열생성
+            let links = [
+                { name: '네이버', url: 'http://www.naver.com' },
+                { name: '다음', url: 'http://www.daum.net' },
+                { name: '카카오', url: 'http://www.kakao.com' }
+            ];
+
+            $('div').append(function(index){
+                return '<h3><a href="'+links[index].url+'">'
+                    +links[index].name+'</a></h3>';
+            });
+
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
