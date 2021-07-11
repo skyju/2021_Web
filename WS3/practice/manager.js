@@ -86,7 +86,7 @@ window.onload = function () {
         this.reset();
 
         // 리스트 세팅
-        setList();
+        setList(); // 함수는 호이스팅 되는데 굳이 여기서 또 불러야 하는지 질문
 
         // 지금은 필요 X
         return false;

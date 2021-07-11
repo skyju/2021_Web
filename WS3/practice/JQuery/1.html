@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ready, value, each</title>
+    <style>
+        #wrap {
+            overflow: hidden;
+        }
+
+        .title {
+            background-color: crimson;
+            color: floralwhite;
+            float: left;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script>
+        //window.onload = fn(){}와 같음
+        $(document).ready(function () {
+
+            //jQuery는 $('선택자').css(실행내용);
+            // $('casting').val('cating value String');
+            //$('*').css('color', 'red');
+            // chaining
+            $('input').css('background-color', 'green').css('color', 'blue');
+
+
+            /////////////////value get, set/////////////////
+            // var value = document.querySelector('#userID').value;
+            var value = $('input[type=text]').val(); // get 메소드
+            console.log(value);
+
+            $('input[type=text]').val('안녕');
+            $('input:text').val('안녕하세요');
+
+            // 5초 후에 select의 선택 항목의 value값을 확인
+            setTimeout(function () {
+                var selVal = $('select>option:selected').val();
+                console.log(selVal);
+
+                var chk = $('input:checkbox:checked').val();
+                console.log(chk);
+
+            }, 5000);
+
+            /////////////////odd, even, filter, first, last/////////////////
+            $('table tr:odd').css('background-color', '#DDD');
+            //$('table tr:even').css('background-color', '#AAA');
+            // filter 메소드를 이용해서 탐색
+            $('table tr').filter(':even').css('background-color', '#AAA');
+            $('table tr:first').css('background-color', '#000').css('color', '#FFF');
+            $('table tr:last').css('background-color', '#FFF')
+
+
+            /////////////////배열 .each()/////////////////
+            // $.each(배열원본, callback : 
+            // 배열의 하나의 요소를 처리하는 함수, 매개변수 배열의 index 값, 요소 데이터)
+
+            // 배열생성
+            var links = [
+                { name: '네이버', url: 'http://www.naver.com' },
+                { name: '다음', url: 'http://www.daum.net' },
+                { name: '카카오', url: 'http://www.kakao.com' }
+            ];
+
+            var output = '';
+
+            $.each(links, function (index, item) {
+                console.log(index, item.name);
+                output += '<a href="' + item.url + '">' + item.name + '</a>\n';
+            });
+
+            console.log(output);
+
+            console.log($('body').html());  // getter
+
+            // innerHTML 과 같은 역할 html();
+            //document.body.innerHTML=output;
+            // $('body').html(output); // setter
+            $('#links').html(output);
+
+            $('h1').each(function (index, item) {
+                console.log(index, item.innerHTML);
+                console.log(index, $(item).html());
+            });
+
+            // h1태그 전부에 class="title" 부여
+            $('h1').addClass('title');
+
+
+
+            $('h2').filter(function (index) {
+                return index % 3 == 0; //0과 3의 배수들
+            }).css({
+                backgroundColor: 'black',
+                color: 'white'
+            });
+
+
+            // end() -> 문서 객체 선택을 한 단계 뒤로 돌립니다.
+            $('h3').css('background', 'orange')
+            .filter(':even').css('color', 'white')//h3중 짝수들만 컬러 화이트
+            .end().filter(':odd').css('color','red');
+            //end로 필터하나 풀어서 h3중에, 홀수들만 골라서 컬러 레드줌 
+
+
+            // eq() -> 해당 index element 선택
+            $('h2').eq(3).css('background', 'orange');
+
+            $('h3').last().css('background', 'blue');
+            $('h3').first().css('background', 'green');
+
+            // add() -> 문서 객체를 추가적으로 선택
+            $('h3').css('background', 'gray').add('h2').css('float', 'left');
+            // h3색깔 변경하고, h2까지 선택해서 둘다 float left함
+        });
+    </script>
+</head>
+
+<body>
+    <input id="userID" type="text" value="hello">
+
+    <select>
+        <option value="21">2021</option>
+        <option>2020</option>
+        <option>2019</option>
+    </select>
+
+    개인정보 보호정책 보기 <input type="checkbox" value="ok">
+
+    <table border="1">
+        <tr>
+            <th>thead 1</th>
+            <th>thead 2</th>
+        </tr>
+        <tr>
+            <td>tbody 1 - 1</td>
+            <td>tbody 1 - 2</td>
+        </tr>
+        <tr>
+            <td>tbody 2 - 1</td>
+            <td>tbody 2 - 2</td>
+        </tr>
+        <tr>
+            <td>111</td>
+            <td>222</td>
+        </tr>
+        <tr>
+            <td>tfoot - 1 </td>
+            <td>tfoot - 2 </td>
+        </tr>
+    </table>
+
+    <div id="links"></div>
+
+    <div id="wrap">
+        <h1>header - 0</h1>
+        <h1>header - 1</h1>
+        <h1>header - 2</h1>
+        <h1>header - 3</h1>
+        <h1>header - 4</h1>
+    </div>
+
+    <h2>header - 0</h2>
+    <h2>header - 1</h2>
+    <h2>header - 2</h2>
+    <h2>header - 3</h2>
+    <h2>header - 4</h2>
+    <h2>header - 5</h2>
+    <h2>header - 6</h2>
+
+    <h3>header - 0</h3>
+    <h3>header - 1</h3>
+    <h3>header - 2</h3>
+    <h3>header - 3</h3>
+    <h3>header - 4</h3>
+
+</body>
+
+</html>
