@@ -20,25 +20,20 @@ let members = []; //new Array();
 // getItem('members', JSON.stringify(members)) -> 배열 전체를 문자열화해서 해당 배열명의 배열에 저장
 // setItem('members', JSON.stringify(members))
 
+// JSON 문법
+// GET! : JSON.parse(localStorage.getItem('key값')); -> 문자열을 가져오므로 객체로 변환
+// SET! : localStorage.setItem('key값', JSON.stringify(객체)) -> 객체를 문자열로 반환/
 
 window.onload = function () {
 
     //localStorage에 저장된 데이터가 있는지 확인
-    if (localStorage.getItem('members') == null) {
-        // 배열 members를 저장
-        localStorage.setItem('members', JSON.stringify(members));
-    } else {
+    if (localStorage.getItem('members')) {
         members = JSON.parse(localStorage.getItem('members')); // JSON문자열 -> 객체로 반환
         setList();
     }
 
-    // 아래처럼 변경
-    // if (!(localStorage.getItem('members') == null)) {
-    //     members = JSON.parse(localStorage.getItem('members')); // JSON문자열 -> 객체로 반환
-    //     setList();
-    // }
-
     // 사용자가 입력한 값 캐스팅
+     //let id = $('id'); // 3. (key, value)인거 까지는 이해, value를 못담는 거 질문
     let userID = document.getElementById('userID');
     let pw = document.getElementById('pw');
     let repw = document.getElementById('repw');

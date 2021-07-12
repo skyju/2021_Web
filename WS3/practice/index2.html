@@ -6,9 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="index2.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
     <script src="manager2.js"></script>
 </head>
-
 <body>
     <header>
         <div id="header">
@@ -19,63 +21,69 @@
         <div id="joinMemberArea">
             <fieldset>
                 <legend>회원등록</legend>
-                    <form>
-                        <table>
-                            <tr>
-                                <td>
-                                    <label for="id">아이디(이메일)</label>
-                                    <input type="text" id="id">
-                                </td>
-                                <td>
-                                    <label for="pw">비밀번호</label>
-                                    <input type="password" id="pw">
-                                </td>
-                                <td>
-                                    <label for="repw">비밀번호 확인</label>
-                                    <input type="password" id="repw">
-                                </td>
-                                <td>
-                                    <lable for="name">이름</lable>
-                                    <input type="text" id="name">
-                                </td>
-                                <td>
-                                    <input type="submit">
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
+                <form>
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="id">아이디(이메일)</label>
+                                <input type="text" id="id">
+                                <div id="necessary"></div>
+                            </td>
+                            <td>
+                                <label for="pw">비밀번호</label>
+                                <input type="password" id="pw">
+                                <div id="necessary"></div>
+                            </td>
+                            <td>
+                                <label for="repw">비밀번호 확인</label>
+                                <input type="password" id="repw">
+                                <div id="necessary"></div>
+                            </td>
+                            <td>
+                                <lable for="name">이름</lable>
+                                <input type="text" id="name">
+                                <div id="necessary"></div>
+                            </td>
+                            <td>
+                                <input type="submit" value="등록">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
             </fieldset>
         </div>
         <div id="viewMemberArea">
             <fieldset>
                 <legend>회원리스트</legend>
-                    <form>
-                        <table>
-                            <thead id="thead">
-                                <tr>
-                                    <td>index</td>
-                                    <td>아이디(이메일)</td>
-                                    <td>비밀번호</td>
-                                    <td>이름</td>
-                                </tr>
-                            </thead>
-                            <tbody id="tbody">
+                <form>
+                    <table>
+                        <thead id="thead">
+                            <tr>
+                                <td id=managerI>index</td>
+                                <td>아이디(이메일)</td>
+                                <td>비밀번호</td>
+                                <td>이름</td>
+                                <td id="manager">관리</td>
+                            </tr>
+                        </thead>
+                        <tbody id="list">
 
-                            </tbody>
-                        </table>
-                    </form>
+                        </tbody>
+                    </table>
+                </form>
             </fieldset>
         </div>
         <div id="editMemberArea" style="display: none;">
             <fieldset>
                 <legend>데이터 수정</legend>
-                <div id="close">닫기</div>
+                <div id="close"><input type="button" id="closebutton" value="닫기"></div>
                 <form>
                     <table>
                         <tr>
                             <td>
                                 <label for="editId">아이디(이메일)</label>
                                 <input type="text" id="editId" disabled>
+                                <input type="hidden" id="index">
                             </td>
                         </tr>
                         <tr>
@@ -94,6 +102,11 @@
                             <td>
                                 <label for="editName">이름</label>
                                 <input type="text" id="editName" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="수정">
                             </td>
                         </tr>
                     </table>
