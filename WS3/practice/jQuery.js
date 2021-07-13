@@ -40,6 +40,14 @@ $(document).ready(function () {
             $('#pw+#necessary').css('display', 'block');
             $('#pw+#necessary').html('<p>필수 입력 사항입니다.</p>');
             return false;
+        } else if (pw.val().length < 8 || pw.val().length > 30) {
+            $('#pw+#necessary').css('display', 'block');
+            $('#pw+#necessary').html('<p>비밀번호는 8자 이상 30자 이하여야 합니다.</p>');
+            return false;
+        } else if (pw.val().search(/[0-9]/g) < 0 || pw.val().search(/[a-z]/ig) < 0) {
+            $('#pw+#necessary').css('display', 'block');
+            $('#pw+#necessary').html('<p>비밀번호는 영어와 숫자를 모두 포함해야 합니다.</p>')
+            return false;
         }
 
         if (repw.val().length < 1) {
@@ -53,7 +61,7 @@ $(document).ready(function () {
             $('#name+#necessary').html('<p>필수 입력 사항입니다.</p>');
             return false;
         } else {
-            let regexp = /^(\w+|[가-힣]+)$/;
+            let regexp = /^[a-zA-Z가-힣]+$/gm;
             if (!regexp.test(name.val())) {
                 $('#name+#necessary').css('display', 'block');
                 $('#name+#necessary').html('<p>잘못된 입력입니다.</p>');
@@ -132,16 +140,30 @@ function editMember(i) {
     $('#closebutton').mouseleave(function () {
         $('#closebutton').css('background', 'rgb(184, 200, 245)');
     });
-
     $('#closebutton').click(function () {
         $('#editMemberArea').css('display', 'none');
     });
 
     $('#editMemberArea').submit(function () {
+
+        if ($('#editPw').val().length < 8 || $('#editPw').val().length > 30) {
+            alert('비밀번호는 8자 이상 30자 이하여야 합니다.');
+            return false;
+        } else if ($('#editPw').val().search(/[0-9]/g) < 0 || $('#editPw').val().search(/[a-z]/ig) < 0) {
+            alert('비밀번호는 영어와 숫자를 모두 포함해야 합니다.');
+            return false;
+        }
+
         if ($('#editPw').val() != $('#editRepw').val()) {
             alert('비밀번호가 일치하지 않습니다.');
             return false;
         }
+
+        if (!(/^[a-zA-Z가-힣]+$/gm.test($('#editName').val()))) {
+            alert('이름은 영문 또는 한글로 입력해주세요.');
+            return false;
+        }
+
         if (!confirm('수정하시겠습니까?')) {
             return false;
         }
