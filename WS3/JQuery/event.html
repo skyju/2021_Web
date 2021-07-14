@@ -68,7 +68,8 @@
             // 여기 질문
             $('a').click(function(e){
                 alert('a tag click');
-
+                
+                // e가 null이면 뒤에 꺼 실행해서 윈도우 객체를 받아옴
                 let event = e || window.event;
 
                 // 이벤트 전달 제거
