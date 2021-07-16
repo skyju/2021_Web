@@ -23,7 +23,7 @@
         <div id="joinMemberArea">
             <fieldset>
                 <legend>회원등록</legend>
-                <form action="memberList.jsp" method="post">
+                <form action="login.jsp" method="post">
                     <table>
                         <tr>
                             <td>
