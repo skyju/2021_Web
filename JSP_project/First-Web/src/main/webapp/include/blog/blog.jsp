@@ -8,23 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Literata" rel="stylesheet">
-    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/layout.css">
 </head>
 
 <body>
-    <%@ include file="header.jsp" %>
+    <%@ include file="module/header.jsp" %>
     <nav class="div_algin_center">
-        <%@ include file="nav.jsp" %>
+        <%@ include file="module/nav.jsp" %>
     </nav>
     <div id="wrap" class="div_algin_center">
         <section class="text_left">
-            <%@ include file="article.jsp" %>
+            <%@ include file="module/article.jsp" %>
         </section>
         <aside class="text_center">
-            <%@ include file="aside_category.jsp" %>
-            <%@ include file="aside_latest.jsp" %>
+            <%@ include file="module/aside_category.jsp" %>
+            <%@ include file="module/aside_latest.jsp" %>
         </aside>
     </div>
-   <%@ include file="footer.jsp" %>
+   <%@ include file="module/footer.jsp" %>
 </body>
 </html>
