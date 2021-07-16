@@ -11,12 +11,12 @@
 </script>
 </head>
 <body>
-	<%@ include file="include/header.jsp" %>
-<hr>
-	<%@ include file="include/nav.jsp" %>
-<div id="wrap">
-	<%@ include file="include/news.jsp" %>
-	<%@ include file="include/shopping.jsp" %>
-</div>
+	<h1>AAA</h1>
 </body>
 </html>
+<%-- <jsp:forward page="bb.jsp"/> 
+--%>
+<jsp:forward page="include/footer.jsp">
+	<jsp:param name="email" value="test@gmail.com"/>
+	<jsp:param name="tel" value="010-0000-0000"/>
+</jsp:forward>
