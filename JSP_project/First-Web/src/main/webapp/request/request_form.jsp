@@ -16,7 +16,7 @@
 	<hr>
 	<!--데이터를 처리할 위치로 전송
 	: input요소에 !!name!! 속성을 반드시 정의해줘야함-->
-	<form action="request_result.jsp" type="get">
+	<form action="request_result.jsp" method="post">
 	<table>
 		<tr>
 			<td>이름</td>
