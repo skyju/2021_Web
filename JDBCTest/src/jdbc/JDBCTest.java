@@ -23,13 +23,15 @@ public class JDBCTest {
 		System.out.println("test start");
 		try {
 			// 1. 드라이버 로드
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			//Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("드라이버 로드 성공!");
 			
 			// 2. 연결
-			String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
-			String user = "hr";
-			String pw = "tiger";
+			//String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+			String jdbcUrl = "jdbc:mysql://localhost:3306/project?serverTimezone";
+			String user = "bit";
+			String pw = "bit";
 			
 			con = DriverManager.getConnection(jdbcUrl, user, pw);
 			System.out.println("데이터베이스 연결 성공!");
