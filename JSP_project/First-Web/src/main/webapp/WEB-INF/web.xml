@@ -30,24 +30,11 @@
 		<exception-type>java.lang.NullPointerException</exception-type>
 		<location>/error/errorTypeNull.jsp</location>
 	</error-page>
-
-	<!-- 드라이버 로드 서블릿 등록/설정 -->
-	<servlet>
-		<servlet-name>DriverLoader</servlet-name>
-		<servlet-class>ncs.DriverLoader</servlet-class>
-		<init-param>
-  			<param-name>driver</param-name>
-  			<param-value>com.mysql.cj.jdbc.Driver</param-value>
-  		</init-param>
-  		<load-on-startup>1</load-on-startup>
-	</servlet>
 	
-	<!--
 	<servlet>
 		<servlet-name>Loader</servlet-name>
 		<servlet-class>jdbc.util.Loader</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	 -->
 	
 </web-app>

@@ -1,4 +1,4 @@
-package ncs;
+package jdbc;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

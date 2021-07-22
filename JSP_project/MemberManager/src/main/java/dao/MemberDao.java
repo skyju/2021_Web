@@ -1,4 +1,4 @@
-package ncs;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import jdbc.util.JdbcUtil;
+import domain.Member;
+import util.CloseUtil;
 
 public class MemberDao {
 	private MemberDao() {}
@@ -35,8 +35,8 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(stmt);
+			CloseUtil.close(rs);
+			CloseUtil.close(stmt);
 		}
 		return list;
 	}
@@ -44,20 +44,48 @@ public class MemberDao {
 	public int insertMember(Connection con, Member member) {
 		int resultCnt = 0;
 		PreparedStatement pstmt = null;
-		String sql = "insert into member values (default, ?, ?, ?, ?)";
+		String sql = "insert into member values (default, ?, ?, ?, default)";
 		try{
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,  member.getId());
 			pstmt.setString(2,  member.getPw());
 			pstmt.setString(3,  member.getName());
-			pstmt.setTimestamp(4,  member.getDate());
 			
 			resultCnt = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JdbcUtil.close(pstmt);
+			CloseUtil.close(pstmt);
 		}
 		return resultCnt;
+	}
+	
+	public Member selectByIdPw(Connection con, String id, String pw) {
+		PreparedStatement pstmt = null;
+		ResultSet rs=  null;
+		Member member = null;
+		
+		String sql = "select * from member where id = ? and pw = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				member =  new Member();
+				member.setIdx(rs.getInt("idx"));
+				member.setId(rs.getString("id"));
+				member.setPw(rs.getString("pw"));
+				member.setName(rs.getString("name"));
+				member.setDate(rs.getTimestamp("singdate"));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			CloseUtil.close(pstmt);
+			CloseUtil.close(rs);
+		}
+		return member;
 	}
 }

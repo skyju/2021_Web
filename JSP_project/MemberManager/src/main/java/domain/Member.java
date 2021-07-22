@@ -1,4 +1,4 @@
-package ncs;
+package domain;
 
 import java.sql.Timestamp;
 
