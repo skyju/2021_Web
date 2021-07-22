@@ -8,7 +8,6 @@
 		3.1 있다면!!! -> request.getAttribute("member")
 		3.2 없다면!!! -> new member.Member() -> request.setAttribute("member", new member.Member());
  -->    
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,10 +19,8 @@
 </script>
 </head>
 <body>
-
 		<%= member %>
 		<br>
 		<%= member.getName() %>
-	
 </body>
 </html>
