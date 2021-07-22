@@ -3,6 +3,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 	<display-name>First-Web</display-name>
+	<!-- /contextPath/ 요청일 때 찾을 자원의 파일 이름 -->
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
@@ -11,14 +12,9 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
-	<servlet>
-		<servlet-name>Loader</servlet-name>
-		<servlet-class>jdbc.util.Loader</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
+	
 	<!-- 에러페이지 등록 -->
 	<!-- http 상태 코드로 등록 -->
-
 	<error-page>
 		<error-code>404</error-code>
 		<location>/error/error404.jsp</location>
@@ -35,14 +31,23 @@
 		<location>/error/errorTypeNull.jsp</location>
 	</error-page>
 
-	<!-- 서블릿 등록 -->
+	<!-- 드라이버 로드 서블릿 등록/설정 -->
 	<servlet>
-		<servlet-name>nowServlet</servlet-name>
-		<servlet-class>firstweb.NowServlet</servlet-class>
+		<servlet-name>DriverLoader</servlet-name>
+		<servlet-class>ncs.DriverLoader</servlet-class>
+		<init-param>
+  			<param-name>driver</param-name>
+  			<param-value>com.mysql.cj.jdbc.Driver</param-value>
+  		</init-param>
+  		<load-on-startup>1</load-on-startup>
 	</servlet>
-	<!-- -->
-	<servlet-mapping>
-		<servlet-name>nowServlet</servlet-name>
-		<url-pattern>/now</url-pattern>
-	</servlet-mapping>
+	
+	<!--
+	<servlet>
+		<servlet-name>Loader</servlet-name>
+		<servlet-class>jdbc.util.Loader</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	 -->
+	
 </web-app>
