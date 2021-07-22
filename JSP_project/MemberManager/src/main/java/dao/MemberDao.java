@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import domain.Member;
 import util.CloseUtil;
 
@@ -88,4 +89,39 @@ public class MemberDao {
 		}
 		return member;
 	}
+	
+	public int deleteMember(Connection con, int idx) {
+		int resultCnt = 0;
+		PreparedStatement pstmt = null;
+		String sql = "delete from member where idx = ?";
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,  idx);
+			resultCnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			CloseUtil.close(pstmt);
+		}
+		return resultCnt;
+	}
+	
+	public int updateMember(Connection con, Member member) {
+		int resultCnt = 0;
+		PreparedStatement pstmt = null;
+		String sql = "update member set id = ?, pw = ?, name = ? where idx = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getId());
+			pstmt.setString(2, member.getPw());
+			pstmt.setInt(3, member.getIdx());
+			resultCnt = pstmt.executeUpdate();	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			CloseUtil.close(pstmt);
+		}
+		return resultCnt;
+	}
+	
 }

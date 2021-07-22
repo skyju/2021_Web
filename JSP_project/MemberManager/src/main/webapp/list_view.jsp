@@ -55,8 +55,8 @@
 			<td><%= list.get(i).getName( )%></td>
 			<td><%= list.get(i).getDate() %></td>
 			<td>
-				<a href="#">수정</a> 
-				<a href="#">삭제</a>
+				<a href="editForm.jsp">수정</a> 
+				<a href="javascript:delMember(<%=list.get(i).getIdx()%>)">삭제</a>
 			</td>
 		</tr>
 	<%
@@ -67,7 +67,7 @@
 	<script>
 		function delMember(idx){
 			if(confirm('정말 삭제하시겠습니까?')){
-				//location.href = ''+idx;
+				location.href = 'deleteMember.jsp';
 			}
 		}
 	</script>

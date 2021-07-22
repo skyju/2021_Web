@@ -25,7 +25,7 @@
 			
 			if(member != null) {
 				// 여기까지 왔을 떄가 로그인 성공, session에 저장
-				//session.setAttribute("member", member);
+				session.setAttribute("member", member);
 				session.setAttribute("loginInfo", member.toLoginInfo());
 				loginChk = true;
 			}
