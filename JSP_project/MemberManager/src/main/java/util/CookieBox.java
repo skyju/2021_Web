@@ -62,6 +62,9 @@ public class CookieBox {
 	
 	// 이름으로 쿠키가 존재하는지 확인하는 메서드
 	public boolean existCookie(String name) {
-		return cookieMap.get(name) ==  null ;
+		// HashMap에서 get(key)하면, value값 가져옴
+		// cookieMap에서 key값은 이름이고 value값은 Cookie객체
+		// cookie 이름으로 Cookie객체를 찾아보고, null일 경우 false 반환, null이 아닐 경우 true 반한
+		return cookieMap.get(name) != null ;
 	}
 }

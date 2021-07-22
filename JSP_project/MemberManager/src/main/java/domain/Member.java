@@ -50,4 +50,14 @@ public class Member {
 	public void setDate(Timestamp date) {
 		this.date = date;
 	}
+
+	@Override
+	public String toString() {
+		return "Member [idx=" + idx + ", id=" + id + ", pw=" + pw + ", name=" + name + ", date=" + date + "]";
+	}
+	
+	// Member -> LoginInfo(민감하지 않은 정보만 노출) 반환해주는 method 
+	public LoginInfo toLoginInfo() {
+		return new LoginInfo(this.idx, this.id, this.name);
+	}
 }

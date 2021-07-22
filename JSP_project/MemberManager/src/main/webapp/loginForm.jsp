@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>로그인</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css">
 <style>
 </style>
@@ -27,7 +27,7 @@
 			<table>
 				<tr>
 					<th>ID</th>
-					<td><input type="text" name="id"></td>
+					<td><input type="text" name="id" value=<%=reid%>></td>
 				</tr>
 				<tr>
 					<th>PW</th>
@@ -47,6 +47,5 @@
 			</table>
 		</form>
 	</div>
-
 </body>
 </html>

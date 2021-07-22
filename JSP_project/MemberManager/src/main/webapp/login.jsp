@@ -2,6 +2,7 @@
 <%@page import="util.ConnectionProvider"%>
 <%@page import="dao.MemberDao"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="util.ConnectionProvider"%>
 <%@page import="domain.Member"%>
 <%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,8 +16,8 @@
 	String reid = request.getParameter("reid");
 	
 	Connection con = null;
-	
 	boolean loginChk = false;
+	
 	if(id != null && pw != null & id.trim().length() > 2 && pw.trim().length() > 2) {
 		try{
 			con = ConnectionProvider.getConnection();
@@ -24,7 +25,8 @@
 			
 			if(member != null) {
 				// 여기까지 왔을 떄가 로그인 성공, session에 저장
-				session.setAttribute("member", member);
+				//session.setAttribute("member", member);
+				session.setAttribute("loginInfo", member.toLoginInfo());
 				loginChk = true;
 			}
 		} catch(SQLException e) {
@@ -34,7 +36,7 @@
 
 	// ID 저장을 위한 쿠키 설정
 	// reid 값의 유무 체크
-	if(reid!=null && reid.equals("on")){
+	if(reid != null && reid.equals("on")) {
 		// 쿠키 저장: 사용자 ID를 저장(1년)
 		response.addCookie(CookieBox.createCookie("reid", id, "/", 60*60*24*365));
 	} else {
@@ -43,15 +45,8 @@
 	}
 	
 	if(loginChk) {
-%>
-<script>
-	alert('로그인 되었습니다.');
-	//location.href="<%=request.getContextPath()%>/index.jsp";
-<%
-	response.sendRedirect("index.jsp");
-%>
-</script>
-<%
+		//쿠키까지 전부 처리하고 보내기 위해서
+		response.sendRedirect("index.jsp");
 	} else {
 %>
 <script>

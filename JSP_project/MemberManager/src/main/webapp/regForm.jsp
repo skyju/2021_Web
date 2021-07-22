@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="<%= request.getContextPath()%>/css/default.css">
 </head>
 <body>
-
 	<%@ include file="/WEB-INF/frame/header.jsp"%>
 	<%@ include file="/WEB-INF/frame/nav.jsp"%>
 

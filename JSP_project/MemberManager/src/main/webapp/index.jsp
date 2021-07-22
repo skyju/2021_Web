@@ -18,7 +18,7 @@
 	<%@ include file="/WEB-INF/frame/nav.jsp"%>
 
 	<div class="contents">
-		<h1>Index</h1>
+		<h1>시작 화면</h1>
 	</div>
 
 </body>

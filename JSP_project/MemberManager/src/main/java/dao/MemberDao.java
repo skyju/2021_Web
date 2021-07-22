@@ -78,7 +78,7 @@ public class MemberDao {
 				member.setId(rs.getString("id"));
 				member.setPw(rs.getString("pw"));
 				member.setName(rs.getString("name"));
-				member.setDate(rs.getTimestamp("singdate"));
+				member.setDate(rs.getTimestamp("signdate"));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
