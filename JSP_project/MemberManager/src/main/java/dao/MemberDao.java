@@ -63,9 +63,8 @@ public class MemberDao {
 	
 	public Member selectByIdPw(Connection con, String id, String pw) {
 		PreparedStatement pstmt = null;
-		ResultSet rs=  null;
+		ResultSet rs = null;
 		Member member = null;
-		
 		String sql = "select * from member where id = ? and pw = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -86,6 +85,22 @@ public class MemberDao {
 		} finally {
 			CloseUtil.close(pstmt);
 			CloseUtil.close(rs);
+		}
+		return member;
+	}
+	
+	public Member selectByIdx(Connection con, int idx) {
+		PreparedStatement pstmt = null;
+		Member member = null;
+		String sql = "select * from member where idx = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			CloseUtil.close(pstmt);
 		}
 		return member;
 	}
@@ -114,7 +129,8 @@ public class MemberDao {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getPw());
-			pstmt.setInt(3, member.getIdx());
+			pstmt.setString(3, member.getName());
+			pstmt.setInt(4, member.getIdx());
 			resultCnt = pstmt.executeUpdate();	
 		} catch (SQLException e) {
 			e.printStackTrace();

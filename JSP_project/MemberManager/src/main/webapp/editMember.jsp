@@ -5,22 +5,6 @@
 <%@page import="domain.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	Member member = (Member)session.getAttribute("member");
-	request.setCharacterEncoding("UTF-8");
-	member.setId(request.getParameter("id"));
-	member.setPw(request.getParameter("pw"));
-	member.setName(request.getParameter("name"));
-	
-	Connection con = null;
-	int resultCnt = 0;
-	try{
-		con = ConnectionProvider.getConnection();
-		resultCnt = MemberDao.getInstance().updateMember(con, member);
-	} catch(SQLException e) {
-		e.printStackTrace();
-	}
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,13 +13,34 @@
 <style>
 </style>
 <%
+	Member member = (Member)session.getAttribute("member");
+	request.setCharacterEncoding("UTF-8");
+	member.setId(request.getParameter("id"));
+	member.setPw(request.getParameter("pw"));
+	member.setName(request.getParameter("name"));
+	
+	if(member == null) {
+%>
+<script>
+		alert('다른 회원의 정보는 수정할 수 없습니다.');
+</script>
+<%
+	}
+	Connection con = null;
+	int resultCnt = 0;
+	try{
+		con = ConnectionProvider.getConnection();
+		resultCnt = MemberDao.getInstance().updateMember(con, member);
+		session.setAttribute("member", member);
+		session.setAttribute("loginInfo", member.toLoginInfo());
+	} catch(SQLException e) {
+		e.printStackTrace();
+	}
 	if(resultCnt > 0) {
 %>
 <script>
 	alert('수정되었습니다.');
-	session.setAttribute("member", member);
-	session.setAttribute("loginInfo", member.toLoginInfo());
-	location.href = "member_list.jsp";
+	location.href = "<%=request.getContextPath()%>/";
 </script>
 <%
 	} else {

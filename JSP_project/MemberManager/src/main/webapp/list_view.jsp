@@ -1,3 +1,6 @@
+<%@page import="util.ConnectionProvider"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="dao.MemberDao"%>
 <%@page import="domain.Member"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -56,7 +59,7 @@
 			<td><%= list.get(i).getDate() %></td>
 			<td>
 				<a href="editForm.jsp">수정</a> 
-				<a href="javascript:delMember(<%=list.get(i).getIdx()%>)">삭제</a>
+				<a href="javascript:delMember">삭제</a>
 			</td>
 		</tr>
 	<%
@@ -65,8 +68,8 @@
 	%>
 	</table>
 	<script>
-		function delMember(idx){
-			if(confirm('정말 삭제하시겠습니까?')){
+		function delMember(){
+			if(confirm('정말 삭제하시겠습니까?')) {
 				location.href = 'deleteMember.jsp';
 			}
 		}
