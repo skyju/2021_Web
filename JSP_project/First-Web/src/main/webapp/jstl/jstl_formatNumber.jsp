@@ -19,11 +19,14 @@
 	<fmt:formatNumber value="1000000" /> <br>
 	<fmt:formatNumber value="1000000" groupingUsed="false" /> <br>
 	
+	<hr>
 	<fmt:formatNumber value="${number}"/> <br>
+	
+	<hr>
 	숫자 : <fmt:formatNumber value="${number}" type="number"/> <br>
 	퍼센트 : <fmt:formatNumber value="${number/4000000000}" type="percent"/> <br>
 	통화 : <fmt:formatNumber value="${number}" type="currency" currencySymbol="$"/> <br>
-
 	패턴 : <fmt:formatNumber value="${number*10000}" pattern="000,000.00"/> <br>
+
 </body>
 </html>

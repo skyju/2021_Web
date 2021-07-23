@@ -24,42 +24,41 @@
 
 	<%-- <fmt:timeZone value="HongKong"> --%>
 		<h3>날짜</h3>
-		<fmt:formatDate value="${now}" />
+			<fmt:formatDate value="${now}" />
 		<br>
-		<fmt:formatDate value="${now}" type="date" />
+			<fmt:formatDate value="${now}" type="date" />
 		<br>
-		<fmt:formatDate value="${now}" type="date" dateStyle="full" />
+			<fmt:formatDate value="${now}" type="date" dateStyle="full" /> <!-- 년월일요일 -->
 		<br>
-		<fmt:formatDate value="${now}" type="date" dateStyle="short" />
+			<fmt:formatDate value="${now}" type="date" dateStyle="short" />
 		<br>
 
 		<h3>시간</h3>
-		<fmt:formatDate value="${now}" type="time" />
+			<fmt:formatDate value="${now}" type="time" />
 		<br>
-		<fmt:formatDate value="${now}" type="time" timeStyle="full" />
+			<fmt:formatDate value="${now}" type="time" timeStyle="full" />
 		<br>
-		<fmt:formatDate value="${now}" type="time" timeStyle="short" />
+			<fmt:formatDate value="${now}" type="time" timeStyle="short" />
 		<br>
 
 		<h3>both</h3>
-		<fmt:formatDate value="${now}" type="both" />
+			<fmt:formatDate value="${now}" type="both" />
 		<br>
-		<fmt:formatDate value="${now}" type="both" />
+			<fmt:formatDate value="${now}" type="both" />
 		<br>
-		<fmt:formatDate value="${now}" type="both" dateStyle="full"
-			timeStyle="full" />
+			<fmt:formatDate value="${now}" type="both" dateStyle="full" timeStyle="full" />
 		<br>
 
 		<h3>패턴</h3>
-		<fmt:formatDate value="${now}" pattern="z a h:mm" />
+			<fmt:formatDate value="${now}" pattern="z a h:mm" />
 		<br>
-		<fmt:formatDate value="${now}" pattern="hh:mm:ss" />
+			<fmt:formatDate value="${now}" pattern="hh:mm:ss" />
 		<br>
-		<fmt:formatDate value="${now}" pattern="yyyy-MM-dd h:mm" />
+			<fmt:formatDate value="${now}" pattern="yyyy-MM-dd h:mm" />
 		<br>
-		<fmt:formatDate value="${now}" pattern="yyyy.MM.dd. a h:mm" />
+			<fmt:formatDate value="${now}" pattern="yyyy.MM.dd. a h:mm" />
 		<br>
-		<fmt:formatDate value="${now}" pattern="yyyy.MM.dd. a h:mm"
+			<fmt:formatDate value="${now}" pattern="yyyy.MM.dd. a h:mm"
 			timeZone="HongKong" />
 		<br>
 
