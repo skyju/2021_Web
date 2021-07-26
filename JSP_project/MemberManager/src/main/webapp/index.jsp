@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Hello</title>
 <link rel="stylesheet" href="<c:url value='/css/default.css'/>">
 <style>
 </style>

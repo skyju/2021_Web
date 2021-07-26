@@ -3,7 +3,6 @@
 <%
 	session.invalidate();
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +12,7 @@
 </style>
 <script>
 	alert('로그아웃되었습니다.');
-	location.href = '<%= request.getContextPath()%>/';
+	location.href = 'index.jsp';
 </script>
 </head>
 <body>

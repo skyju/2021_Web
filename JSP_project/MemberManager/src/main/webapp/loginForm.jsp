@@ -18,7 +18,7 @@
 	<div class="contents">
 		<h2>Login</h2>
 		<hr>
-		<form action="<c:url value='/login.jsp'/>" method="post">
+		<form action="<c:url value='login.jsp'/>" method="post">
 			<table>
 				<tr>
 					<th>ID</th>

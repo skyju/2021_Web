@@ -41,7 +41,6 @@
 		// 쿠키값을 저장하지 않는다
 		response.addCookie(CookieBox.createCookie("reid", id, "/", 0));
 	}
-	
 	if(loginChk) {
 		//쿠키까지 전부 처리하고 보내기 위해서
 		response.sendRedirect("index.jsp");
