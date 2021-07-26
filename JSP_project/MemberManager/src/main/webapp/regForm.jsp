@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="<c:url value='/css/default.css'/>">
 </head>
 <body>
-	<%@ include file="/WEB-INF/frame/header.jsp"%>
-	<%@ include file="/WEB-INF/frame/nav.jsp"%>
+	<c:import url="/WEB-INF/frame/header.jsp" />
+	<c:import url="/WEB-INF/frame/nav.jsp" />
 	<div class="contents">
 		<h2>회원가입</h2>
 		<hr>

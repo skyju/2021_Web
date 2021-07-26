@@ -27,8 +27,8 @@
 </script>
 </head>
 <body>
-	<%@ include file="/WEB-INF/frame/header.jsp"%>
-	<%@ include file="/WEB-INF/frame/nav.jsp"%>
+	<c:import url="/WEB-INF/frame/header.jsp" />
+	<c:import url="/WEB-INF/frame/nav.jsp" />
 	<h1 id="list_header">멤버 리스트</h1>
 	<hr>
 	<table border=1>

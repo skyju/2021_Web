@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>내 페이지</title>
 <link rel="stylesheet" href="<c:url value='/css/default.css'/>">
-<c:url value="/loginForm.jsp" var="loginForm"/>
 <c:if test="${loginInfo eq null}">
 	<script>
 		alert('로그인이 필요한 페이지입니다. \n로그인 후 사용해주세요.');
@@ -20,8 +19,8 @@
 </head>
 </head>
 <body>
-	<%@ include file="/WEB-INF/frame/header.jsp"%>
-	<%@ include file="/WEB-INF/frame/nav.jsp"%>
+	<c:import url="/WEB-INF/frame/header.jsp" />
+	<c:import url="/WEB-INF/frame/nav.jsp" />
 	<div class="contents">
 		<h2>My Page</h2>
 		<hr>

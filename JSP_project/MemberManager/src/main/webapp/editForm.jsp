@@ -1,3 +1,4 @@
+<%@page import="domain.Member"%>
 <%@page import="dao.MemberDao"%>
 <%@page import="domain.LoginInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -26,8 +27,8 @@ Member member = (Member) session.getAttribute("member");
 </script>
 </head>
 <body>
-	<%@ include file="/WEB-INF/frame/header.jsp"%>
-	<%@ include file="/WEB-INF/frame/nav.jsp"%>
+	<c:import url="/WEB-INF/frame/header.jsp" />
+	<c:import url="/WEB-INF/frame/nav.jsp" />
 	<h1 id="list_header">정보 수정 페이지</h1>
 	<hr>
 	<h3>수정할 정보를 입력해주세요</h3>
