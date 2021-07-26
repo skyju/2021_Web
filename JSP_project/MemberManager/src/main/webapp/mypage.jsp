@@ -18,7 +18,7 @@
 	location.href = "<%=request.getContextPath()%>/loginForm.jsp";
 </script>
 </head>
-<%	
+<%
 	} else {
 %>
 </head>
@@ -28,11 +28,17 @@
 	<div class="contents">
 		<h2>My Page</h2>
 		<hr>
-		<h3>
+		<h3>내정보</h3>
+		<h5>
+		이름: 
 <%
-	out.print(loginInfo);
+	out.print(loginInfo.getName());
 %>
-		</h3>
+		아이디:
+<%
+	out.print(loginInfo.getId());
+%>
+		</h5>
 	</div>
 </body>
 </html>

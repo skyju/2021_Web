@@ -45,7 +45,6 @@
 			<th>비밀번호</th>
 			<th>이름</th>
 			<th>가입일</th>
-			<th>관리</th>
 		</tr>
 		
 	<%
@@ -59,7 +58,7 @@
 			<td><%= list.get(i).getDate() %></td>
 			<td>
 				<a href="editForm.jsp">수정</a> 
-				<a href="javascript:delMember">삭제</a>
+				<a href="javascript:delMember()">삭제</a>
 			</td>
 		</tr>
 	<%

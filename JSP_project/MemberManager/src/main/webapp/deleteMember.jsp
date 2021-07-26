@@ -23,7 +23,7 @@
 	} else {
 		%>
 		<script>
-			alert("해당 데이터를 찾지 못했습니다.");
+			alert("권한이 없습니다.");
 			history.go(-1);
 		</script>
 		<%
