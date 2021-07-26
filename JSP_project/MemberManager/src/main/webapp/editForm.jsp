@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="<c:url value='/css/default.css'/>">
 <%
 Member member = (Member) session.getAttribute("member");
-session.setAttribute("orginMember", member);
 %>
 <c:if test="${member eq null}">
 	<script>
