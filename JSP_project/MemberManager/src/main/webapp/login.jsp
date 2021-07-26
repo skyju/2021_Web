@@ -5,12 +5,10 @@
 <%@page import="util.ConnectionProvider"%>
 <%@page import="domain.Member"%>
 <%@page import="util.CookieBox"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	// 사용자가 전달한 데이터를 받고 -> DB에서 확인 -> 로그인 처리 -> Session에 저장
 	// reid 확인 하고 값을 받아오면 쿠키 설정
-	
 	String id = request.getParameter("id");
 	String pw = request.getParameter("pw");
 	String reid = request.getParameter("reid");

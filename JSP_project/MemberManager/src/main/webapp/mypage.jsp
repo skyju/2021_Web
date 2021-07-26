@@ -1,26 +1,23 @@
 <%@page import="domain.LoginInfo"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>내 페이지</title>
-<link rel="stylesheet" href="<%= request.getContextPath()%>/css/default.css">
+<link rel="stylesheet" href="<c:url value='/css/default.css'/>">
+<c:url value="/loginForm.jsp" var="loginForm"/>
+<c:if test="${loginInfo eq null}">
+	<script>
+		alert('로그인이 필요한 페이지입니다. \n로그인 후 사용해주세요.');
+		location.href = "${loginForm}";
+	</script>
+</c:if>
 <%
-	//session 정보 가져오기
 	LoginInfo loginInfo = (LoginInfo)session.getAttribute("loginInfo");
-
-	if(loginInfo == null ) {
 %>
-<script>
-	alert('로그인이 필요한 페이지입니다. \n로그인 후 사용해주세요.');
-	location.href = "<%=request.getContextPath()%>/loginForm.jsp";
-</script>
 </head>
-<%
-	} else {
-%>
 </head>
 <body>
 	<%@ include file="/WEB-INF/frame/header.jsp"%>
@@ -29,19 +26,26 @@
 		<h2>My Page</h2>
 		<hr>
 		<h3>내정보</h3>
-		<h5>
-		이름: 
-<%
-	out.print(loginInfo.getName());
-%>
-		아이디:
-<%
-	out.print(loginInfo.getId());
-%>
-		</h5>
+		<table border=1>
+			<tr>
+				<th>내 이름</th>
+				<th>아이디</th>
+				<th>수정하기</th>
+				<th>탈퇴하기</th>
+			</tr>
+			<tr>
+				<td>${loginInfo.getName()}</td>
+				<td>${loginInfo.getId()}</td>
+				<td><a href="editForm.jsp">수정</a> </td>
+				<td><a href="javascript:delMember()">탈퇴</a></td>
+		</table>
 	</div>
+	<script>
+		function delMember(){
+			if(confirm('정말 삭제하시겠습니까?')) {
+				location.href = 'deleteMember.jsp';
+			}
+		}
+	</script>
 </body>
 </html>
-<%
-	}
-%>

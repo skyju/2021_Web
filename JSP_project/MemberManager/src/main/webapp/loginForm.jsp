@@ -1,17 +1,12 @@
 <%@page import="util.CookieBox"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%
-	CookieBox box = new CookieBox(request);
-	String reid = box.existCookie("reid") ? box.getCookieValue("reid") : "";
-	String checked = box.existCookie("reid") ? "checked" : "";
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css">
+<link rel="stylesheet" href="<c:url value='/css/default.css'/>">
 <style>
 </style>
 <script>
@@ -23,11 +18,11 @@
 	<div class="contents">
 		<h2>Login</h2>
 		<hr>
-		<form action="login.jsp" method="post">
+		<form action="<c:url value='/login.jsp'/>" method="post">
 			<table>
 				<tr>
 					<th>ID</th>
-					<td><input type="text" name="id" value=<%=reid%>></td>
+					<td><input type="text" name="id" value="${cookie.reid.value}"></td>
 				</tr>
 				<tr>
 					<th>PW</th>
@@ -36,7 +31,7 @@
 				<tr>
 					<th></th>
 					<td>
-						<input type="checkbox" name="reid" value="on" <%=checked%>> 
+						<input type="checkbox" name="reid" value="on" ${cookie.reid.value ne null ? 'checked':''}> 
 						아이디 기억하기
 						</td>
 				</tr>

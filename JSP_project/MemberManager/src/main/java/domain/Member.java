@@ -1,6 +1,11 @@
 package domain;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
+
+import dao.MemberDao;
 
 public class Member {
 	
@@ -59,5 +64,17 @@ public class Member {
 	// Member -> LoginInfo(민감하지 않은 정보만 노출) 반환해주는 method 
 	public LoginInfo toLoginInfo() {
 		return new LoginInfo(this.idx, this.id, this.name);
+	}
+	
+	public List<Member> getMemberList() {
+		Connection conn = null;
+		try {
+			conn = util.ConnectionProvider.getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			util.CloseUtil.close(conn);
+		}
+		return MemberDao.getInstance().getMemberList(conn);
 	}
 }

@@ -6,10 +6,8 @@
     pageEncoding="UTF-8"%>
 <%
 	Member member = (Member)session.getAttribute("member");
-	
 	int resultCnt = 0;
 	Connection con = null;
-	
 	con = ConnectionProvider.getConnection();
 	resultCnt = MemberDao.getInstance().deleteMember(con, member.getIdx());
 
@@ -17,7 +15,7 @@
 		%>
 		<script>
 			alert('삭제되었습니다.');
-			location.href = 'member_list.jsp';
+			location.href = 'logout.jsp';
 		</script>
 		<%
 	} else {
@@ -28,5 +26,4 @@
 		</script>
 		<%
 	}
-	
 %>

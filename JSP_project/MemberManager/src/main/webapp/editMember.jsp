@@ -3,29 +3,13 @@
 <%@page import="dao.MemberDao"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="domain.Member"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>정보 수정 처리중</title>
-<style>
-</style>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	Member member = (Member)session.getAttribute("member");
-	request.setCharacterEncoding("UTF-8");
 	member.setId(request.getParameter("id"));
 	member.setPw(request.getParameter("pw"));
 	member.setName(request.getParameter("name"));
 	
-	if(member == null) {
-%>
-<script>
-		alert('다른 회원의 정보는 수정할 수 없습니다.');
-</script>
-<%
-	}
 	Connection con = null;
 	int resultCnt = 0;
 	try{
@@ -52,7 +36,3 @@
 <%
 	}
 %>
-</head>
-<body>
-</body>
-</html>

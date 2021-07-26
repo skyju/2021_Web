@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css">
 <%	
 	Member member = (Member)session.getAttribute("member");
+	session.setAttribute("orginMember", member);
 	if(member == null ) {
 %>
 <script>
