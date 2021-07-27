@@ -19,6 +19,8 @@ select * from project.guestbook_msg order by regdate desc limit 0, 3;
 -- 전체 게시물 개수
 select count(*) from project.guestbook_msg;
 
+select * from project.guestbook_msg where msgid = 1 and password = '1111';
+
 
 -- DML
 insert into project.guestbook_msg (guestname, password, msg) 

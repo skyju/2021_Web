@@ -155,4 +155,23 @@ public class MsgDao {
 		}
 		return resultCnt;
 	}
+	
+	//UPDATE 메세지 수정
+	public int updateMsg(Connection conn, Msg msg) throws SQLException {
+		int resultCnt = 0;
+		PreparedStatement pstmt = null;
+		
+		String updateSql = "update guestbook_msg set guestname = ?, msg = ? where msgid = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(updateSql);
+			pstmt.setString(1, msg.getGuestname());
+			pstmt.setString(2, msg.getMsg());
+			pstmt.setInt(3, msg.getMsgid());
+			resultCnt = pstmt.executeUpdate();
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		return resultCnt;
+	}
 }
