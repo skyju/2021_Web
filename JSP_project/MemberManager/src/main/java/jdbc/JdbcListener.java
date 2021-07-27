@@ -15,7 +15,7 @@ public class JdbcListener implements ServletContextListener {
 		
 		try {
 			ServletContext context = sce.getServletContext();
-			String drivers = context.getInitParameter("jdbcdriver");
+			String drivers = context.getInitParameter("driver");
 
 			StringTokenizer tokenizer = new StringTokenizer(drivers, ",");
 			while (tokenizer.hasMoreTokens()) {

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +38,7 @@
 			<th>아이디</th>
 			<th>비밀번호</th>
 			<th>이름</th>
-			<th>가입일</th>
+			<th>가입일시</th>
 		</tr>
 		<c:if test="${result ne null and not empty result}">
 			<c:forEach items="${result}" var="member">
@@ -46,7 +47,7 @@
 					<td>${member.id}</td>
 					<td>${member.pw}</td>
 					<td>${member.name }</td>
-					<td>${member.date}</td>
+					<td><fmt:formatDate value="${member.date}" pattern="yyyy-MM-dd HH:mm" timeZone="UTC+9"/></td>
 				</tr>
 			</c:forEach>
 		</c:if>
