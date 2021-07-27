@@ -6,13 +6,12 @@
 <%
 	//데이터 받고 > Service에 요청 > Dao
 	String mid = request.getParameter("mid");
-	int msgid = Integer.parseInt(mid);
 	String pw = request.getParameter("password");
 	
 	int resultCnt = 0;
 	
 	try {
-		resultCnt = DeleteMsgService.getInstance().deleteMessage(msgid, pw);
+		resultCnt = DeleteMsgService.getInstance().deleteMessage(Integer.parseInt(mid), pw);
 	} catch (MsgNotFoundException e) {
 %>
 <script>

@@ -36,13 +36,13 @@ public class DeleteMsgService {
 
 			msg = dao.selectMsgByMid(conn, mid);
 			if (msg == null) {
-				throw new MsgNotFoundException("해당 게시물이 존재하지 않음");
+				throw new MsgNotFoundException(mid);
 			} else {
 				if (msg.getPassword().equals(pw)) {
 					resultCnt = dao.deleteMsg(conn, msg);
 					conn.commit();
 				} else {
-					throw new NotMatchPwException("비밀번호가 맞지 않음");
+					throw new NotMatchPwException();
 				}
 			}
 		} catch (SQLException e) {
