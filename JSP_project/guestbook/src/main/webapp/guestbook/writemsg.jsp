@@ -1,9 +1,6 @@
 <%@page import="guest.service.WriteMsgService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("utf-8");
-%>
 <jsp:useBean id="msgRequest" class="guest.domain.MsgRequest"/>
 <jsp:setProperty property="*" name="msgRequest"/>
 <%

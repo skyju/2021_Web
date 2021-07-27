@@ -11,6 +11,9 @@
 </script>
 </head>
 <body>
-<jsp:forward page="/guestbook/list.jsp"></jsp:forward>
+<%	
+String contextPath = request.getContextPath();
+response.sendRedirect(contextPath+"/guestbook/list.jsp"); 
+%>
 </body>
 </html>
