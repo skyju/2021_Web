@@ -20,7 +20,6 @@ public class WriteMsgService {
 	public int writeMsg(MsgRequest requestMsg) { //insert
 		int resultCnt = 0;
 		
-		// 트랜젝션 처리를 위해서 생성
 		Connection conn = null;
 		MsgDao dao = null;
 		
@@ -30,10 +29,12 @@ public class WriteMsgService {
 			conn.setAutoCommit(false);
 			// true- > 자동커밋 // Spring, Mybatis에서는 안씀
 
+			// 사용자한테 필수 입력값만 입력받은 후, Msg객체로 변환하여 DB에 넣음
 			Msg msg = requestMsg.toMsg();
 			resultCnt = dao.writeMsg(conn, msg);
 			
 			conn.commit();
+			
 		} catch (SQLException e) {
 			JdbcUtil.rollback(conn);
 			e.printStackTrace();

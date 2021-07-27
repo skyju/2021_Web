@@ -21,7 +21,6 @@ div.paging {
 }
 </style>
 <script>
-	
 </script>
 </head>
 <body>
@@ -45,6 +44,7 @@ div.paging {
 			</tr>
 		</table>
 	</form>
+	
 	<hr>
 	<c:if test="${listView.msgList ne null and not empty listView.msgList}">
 		<c:forEach items="${listView.msgList}" var="msg">

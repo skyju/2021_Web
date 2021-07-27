@@ -22,31 +22,42 @@ public class MsgListService {
 	}
 	
 	public MsgListView getMsgList(int pageNum) {
-		MsgListView listView = null;
+		// MsgListView 객체를 생성하는 데 필요한 것
 		
+		// 1. List<Msg> : dao selectMsgList(conn, 시작위치, 페이지당 수용할 msg개수)
+		// 2. 전체 msg개수 : dao- selectAllCount(conn)
+		
+		// 3. 페이지당 수용할 msg개수: 위에 final로 선언
+		// 4. 현재 페이지 : 매개변수로 받음 (list.jsp에서 1로 설정)
+		
+		// 5. DB SELECT 시작위치 : (현재페이지 -1) * 페이지당 수용할 msg개수 (1일때 0, 3일때 6)
+		// 6. DB SELECT 끝위치 : 시작위치 + 페이지당 수용할 msg 개수
+		int firstRow = (pageNum - 1) * msgCntPerPage;
+		int lastRow = firstRow + msgCntPerPage;
+		
+		
+		MsgListView listView = null;
 		Connection conn = null;
 		MsgDao dao = null;
-		List<Msg> msgList = null;
+		List<Msg> list = null;
 		
 		try {
 			conn = ConnectionProvider.getConnection();
 			dao = MsgDao.getInstance();
 			conn.setAutoCommit(false);
 			
-			// 전체 게시물의 개수
+			// SELECT: List<Msg>
+			// SELECT: 전체 msg개수
+			list = dao.selectMsgList(conn, firstRow, msgCntPerPage);
 			int totalMsgCnt = dao.selectAllCount(conn);
-			System.out.println("전체 게시물 개수:"+totalMsgCnt);
 			
-			int firstRow = (pageNum - 1) * msgCntPerPage;
-			// 페이지에 표현할 메시지 객체들(List<Msg>)
-			msgList = dao.selectMsgList(conn, firstRow, msgCntPerPage);
-			System.out.println("msg List:"+msgList);
-			
-			listView = new MsgListView(
-					msgList, totalMsgCnt, 
+			// MsgListView객체 생성
+			listView = new MsgListView(list, totalMsgCnt, 
 					msgCntPerPage, pageNum, 
-					firstRow, firstRow+msgCntPerPage);
+					firstRow, lastRow);
+			
 			conn.commit();
+			
 		} catch (SQLException e) {
 			JdbcUtil.rollback(conn);
 			e.printStackTrace();

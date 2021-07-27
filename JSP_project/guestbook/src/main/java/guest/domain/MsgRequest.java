@@ -29,14 +29,9 @@ public class MsgRequest {
 		this.msg = msg;
 	}
 
+	// 필수 입력값 3가지만 가지고 Msg 객체로 만들기
 	public Msg toMsg() {
 		return new Msg(guestname, password, msg);
 	}
 
-	@Override
-	public String toString() {
-		return "MsgRequest [guestname=" + guestname + ", password=" + password + ", msg=" + msg + "]";
-	}
-	
-	
 }
