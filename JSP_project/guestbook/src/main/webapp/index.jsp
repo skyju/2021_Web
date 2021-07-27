@@ -11,6 +11,6 @@
 </script>
 </head>
 <body>
-
+<jsp:forward page="/guestbook/list.jsp"></jsp:forward>
 </body>
 </html>
