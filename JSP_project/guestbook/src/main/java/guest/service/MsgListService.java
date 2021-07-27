@@ -21,25 +21,24 @@ public class MsgListService {
 		return service;
 	}
 	
-	public MsgListView getMsgList(int pageNum) {
+	public MsgListView getMsgList(int currentPageNum) {
 		// MsgListView 객체를 생성하는 데 필요한 것
 		
-		// 1. List<Msg> : dao selectMsgList(conn, 시작위치, 페이지당 수용할 msg개수)
-		// 2. 전체 msg개수 : dao- selectAllCount(conn)
+		// 1. List<Msg> msgList : dao : selectMsgList(conn, 시작위치, 페이지당 수용할 msg개수) : limit
+		// 2. msgTotalCnt : 전체 msg개수 : dao : selectAllCount(conn)
 		
-		// 3. 페이지당 수용할 msg개수: 위에 final로 선언
-		// 4. 현재 페이지 : 매개변수로 받음 (list.jsp에서 1로 설정)
+		// 3. msgCntPerPage : 페이지당 수용할 msg개수: 위에 final로 선언
+		// 4. currentPageNum : 현재 페이지 : 매개변수로 받음 (list.jsp에서 1로 설정)
 		
-		// 5. DB SELECT 시작위치 : (현재페이지 -1) * 페이지당 수용할 msg개수 (1일때 0, 3일때 6)
+		// 5. DB SELECT 시작위치 : (현재페이지 -1) * 페이지당 수용할 msg개수
 		// 6. DB SELECT 끝위치 : 시작위치 + 페이지당 수용할 msg 개수
-		int firstRow = (pageNum - 1) * msgCntPerPage;
+		int firstRow = (currentPageNum - 1) * msgCntPerPage;
 		int lastRow = firstRow + msgCntPerPage;
 		
-		
-		MsgListView listView = null;
 		Connection conn = null;
 		MsgDao dao = null;
-		List<Msg> list = null;
+		MsgListView listView = null;
+		List<Msg> msgList = null;
 		
 		try {
 			conn = ConnectionProvider.getConnection();
@@ -48,12 +47,13 @@ public class MsgListService {
 			
 			// SELECT: List<Msg>
 			// SELECT: 전체 msg개수
-			list = dao.selectMsgList(conn, firstRow, msgCntPerPage);
-			int totalMsgCnt = dao.selectAllCount(conn);
+			msgList = dao.selectMsgList(conn, firstRow, msgCntPerPage);
+			int msgTotalCnt = dao.selectAllCount(conn);
 			
 			// MsgListView객체 생성
-			listView = new MsgListView(list, totalMsgCnt, 
-					msgCntPerPage, pageNum, 
+			listView = new MsgListView(
+					msgList, msgTotalCnt, 
+					msgCntPerPage, currentPageNum, 
 					firstRow, lastRow);
 			
 			conn.commit();

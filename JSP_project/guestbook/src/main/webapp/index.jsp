@@ -12,8 +12,7 @@
 </head>
 <body>
 <%	
-String contextPath = request.getContextPath();
-response.sendRedirect(contextPath+"/guestbook/list.jsp"); 
+response.sendRedirect(request.getContextPath()+"/guestbook/list.jsp"); 
 %>
 </body>
 </html>
