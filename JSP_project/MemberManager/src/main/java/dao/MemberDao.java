@@ -12,13 +12,10 @@ import domain.Member;
 import util.CloseUtil;
 
 public class MemberDao {
-	private MemberDao() {
-	}
-
+	private MemberDao() {}
 	private static MemberDao dao = new MemberDao();
-
 	public static MemberDao getInstance() {
-		return dao == null ? new MemberDao() : dao;
+		return dao;
 	}
 
 	public List<Member> getMemberList(Connection con) {
@@ -33,8 +30,12 @@ public class MemberDao {
 			list = new ArrayList<Member>();
 
 			while (rs.next()) {
-				list.add(new Member(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getTimestamp(5)));
+				list.add(new Member(rs.getInt(1), 
+						rs.getString(2), 
+						rs.getString(3), 
+						rs.getString(4),
+						rs.getTimestamp(5),
+						rs.getString(6)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

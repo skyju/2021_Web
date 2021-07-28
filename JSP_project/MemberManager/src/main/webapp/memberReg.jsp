@@ -3,7 +3,7 @@
 <%-- <jsp:useBean id="member" class="domain.Member" />
 <jsp:setProperty property="*" name="member" /> --%>
 <%
-	int resultCnt = MemberRegService.getInstance().regMember(member);
+	int resultCnt = MemberRegService.getInstance().regMember(request);
 	if (resultCnt > 0) {
 %>
 <script>
