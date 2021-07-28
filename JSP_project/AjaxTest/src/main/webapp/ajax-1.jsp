@@ -9,6 +9,13 @@
 <style>
 </style>
 <script>
+	
+	// Ajax: 클라이언트와 서버 측의 데이터 전송 및 처리를 비동기적으로 처리
+	// 기본 
+	//		- $.ajax(options);
+	//		- $.ajax(url, options(type, async, timeout, 
+	//					complete, success, error ... ));
+
 	$(document).ready(function(){
 		// alert("ready");
 		

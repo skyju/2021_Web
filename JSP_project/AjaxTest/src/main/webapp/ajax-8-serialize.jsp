@@ -15,6 +15,9 @@
 			
 			console.log($(this).serialize());
 			console.log($(this).serializeArray());
+			//$().serialize(): form태그 내의 name 속성 값들을 모두 가지고 옴(문자열로)
+			//$().serializeArray(): 위와 같은데, 객체(배뎔)로 가지고옴
+			//$().param(): 객체 내용을 요청 매개변수의 문자열로 만듦
 			
 			$.ajax({
 				url : 'parameter.jsp',

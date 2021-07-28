@@ -13,14 +13,17 @@
 		//alert("ready");
 		
 		$.ajax({
+			
 			url : 'data.xml',
 			success : function(data){
 				
 				$(data).find('product').each(function(){
+					
 					var pname = $(this).find('name').text();
 					var price = $(this).find('price').text();
 					var html = '<h3>이름 : '+pname+', 가격 : '+price+'</h3>';
 					$('body').append(html);
+					
 				});
 				
 			}
