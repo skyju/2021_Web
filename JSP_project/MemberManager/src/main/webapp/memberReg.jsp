@@ -1,25 +1,9 @@
-<%@page import="domain.Member"%>
-<%@page import="java.time.LocalDateTime"%>
-<%@page import="java.sql.Timestamp"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="util.ConnectionProvider"%>
-<%@page import="dao.MemberDao"%>
-<%@page import="java.sql.Connection"%>
+<%@page import="service.MemberRegService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:useBean id="member" class="domain.Member" />
-<jsp:setProperty property="*" name="member" />
+<%-- <jsp:useBean id="member" class="domain.Member" />
+<jsp:setProperty property="*" name="member" /> --%>
 <%
-	int resultCnt = 0;
-	Connection con = null;
-	MemberDao dao = null;
-	
-	try {
-		con = ConnectionProvider.getConnection();
-		dao = MemberDao.getInstance();
-		resultCnt = dao.insertMember(con, member);
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
+	int resultCnt = MemberRegService.getInstance().regMember(member);
 	if (resultCnt > 0) {
 %>
 <script>

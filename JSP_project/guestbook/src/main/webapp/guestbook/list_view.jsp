@@ -24,7 +24,7 @@ div.paging {
 </script>
 </head>
 <body>
-	<form action="writemsg.jsp" method="post">
+	<form action="writemsg.jsp" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>이름</td>
@@ -37,6 +37,11 @@ div.paging {
 			<tr>
 				<td>메시지</td>
 				<td><textarea name="msg" rows="10" cols="30"></textarea></td>
+			</tr>
+			<tr>
+			<tr>
+				<td>파일업로드</td>
+				<td><input type="file" name="file1"></td>
 			</tr>
 			<tr>
 				<td></td>

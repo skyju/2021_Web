@@ -12,10 +12,13 @@ import domain.Member;
 import util.CloseUtil;
 
 public class MemberDao {
-	private MemberDao() {}
+	private MemberDao() {
+	}
+
 	private static MemberDao dao = new MemberDao();
+
 	public static MemberDao getInstance() {
-		return dao == null? new MemberDao() : dao;
+		return dao == null ? new MemberDao() : dao;
 	}
 
 	public List<Member> getMemberList(Connection con) {
@@ -30,8 +33,8 @@ public class MemberDao {
 			list = new ArrayList<Member>();
 
 			while (rs.next()) {
-				list.add(new Member(rs.getInt(1), rs.getString(2), rs.getString(3),
-						rs.getString(4), rs.getTimestamp(5)));
+				list.add(new Member(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getTimestamp(5)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -41,17 +44,26 @@ public class MemberDao {
 		}
 		return list;
 	}
-	
+
 	public int insertMember(Connection con, Member member) {
 		int resultCnt = 0;
 		PreparedStatement pstmt = null;
-		String sql = "insert into member values (default, ?, ?, ?, default)";
-		try{
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1,  member.getId());
-			pstmt.setString(2,  member.getPw());
-			pstmt.setString(3,  member.getName());
-			
+		String sql = "insert into member values (default, ?, ?, ?, default, ?)";
+		String sql2 = "insert into member values (default, ?, ?, ?, default, default)";
+		try {
+
+			if (member.getPhoto() != null) {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, member.getId());
+				pstmt.setString(2, member.getPw());
+				pstmt.setString(3, member.getName());
+				pstmt.setString(4, member.getPhoto());
+			} else {
+				pstmt = con.prepareStatement(sql2);
+				pstmt.setString(1, member.getId());
+				pstmt.setString(2, member.getPw());
+				pstmt.setString(3, member.getName());
+			}
 			resultCnt = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -60,7 +72,7 @@ public class MemberDao {
 		}
 		return resultCnt;
 	}
-	
+
 	public Member selectByIdPw(Connection con, String id, String pw) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -71,16 +83,16 @@ public class MemberDao {
 			pstmt.setString(1, id);
 			pstmt.setString(2, pw);
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				member =  new Member();
+
+			if (rs.next()) {
+				member = new Member();
 				member.setIdx(rs.getInt("idx"));
 				member.setId(rs.getString("id"));
 				member.setPw(rs.getString("pw"));
 				member.setName(rs.getString("name"));
 				member.setDate(rs.getTimestamp("signdate"));
 			}
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			CloseUtil.close(pstmt);
@@ -88,7 +100,7 @@ public class MemberDao {
 		}
 		return member;
 	}
-	
+
 	public Member selectByIdx(Connection con, int idx) {
 		PreparedStatement pstmt = null;
 		Member member = null;
@@ -104,14 +116,14 @@ public class MemberDao {
 		}
 		return member;
 	}
-	
+
 	public int deleteMember(Connection con, int idx) {
 		int resultCnt = 0;
 		PreparedStatement pstmt = null;
 		String sql = "delete from member where idx = ?";
-		try{
+		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1,  idx);
+			pstmt.setInt(1, idx);
 			resultCnt = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -120,7 +132,7 @@ public class MemberDao {
 		}
 		return resultCnt;
 	}
-	
+
 	public int updateMember(Connection con, Member member) {
 		int resultCnt = 0;
 		PreparedStatement pstmt = null;
@@ -131,7 +143,7 @@ public class MemberDao {
 			pstmt.setString(2, member.getPw());
 			pstmt.setString(3, member.getName());
 			pstmt.setInt(4, member.getIdx());
-			resultCnt = pstmt.executeUpdate();	
+			resultCnt = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -139,5 +151,5 @@ public class MemberDao {
 		}
 		return resultCnt;
 	}
-	
+
 }
