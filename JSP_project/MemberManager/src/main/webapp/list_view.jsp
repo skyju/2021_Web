@@ -43,7 +43,10 @@
 		<c:if test="${result ne null and not empty result}">
 			<c:forEach items="${result}" var="member">
 				<tr>
-					<td>${member.idx}</td>
+					<td>
+						<img src="<c:url value="/upload/${member.photo}"/>" style="width: 50px">
+						${member.idx}
+					</td>
 					<td>${member.id}</td>
 					<td>${member.pw}</td>
 					<td>${member.name }</td>
