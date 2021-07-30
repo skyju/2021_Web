@@ -71,7 +71,7 @@ public class LoginCommandImpl implements Command {
 	
 	@Override
 	public String getPage(HttpServletRequest request, HttpServletResponse response) {
-		boolean loginChk = login(request, response);
+		login(request, response);
 		request.setAttribute("loginChk", loginChk);
 		return "/WEB-INF/views/login.jsp";
 	}
