@@ -14,12 +14,13 @@ import util.ConnectionProvider;
 public class IdCheckCommandImpl implements Command {
 	
 	String cntCheck;
+	String id;
 	
 	public String idCheck(HttpServletRequest request) {
 		//String result = "N";
 		
 		int cnt = 0;
-		String id = request.getParameter("id");
+		id = request.getParameter("id");
 		
 		Connection conn = null;
 		MemberDao dao = null;

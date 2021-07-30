@@ -22,7 +22,6 @@ public class MemberEditCommandImpl implements Command {
 		
 		try {
 			conn = ConnectionProvider.getConnection();
-			member.setId(request.getParameter("id"));
 			member.setPw(request.getParameter("pw"));
 			member.setName(request.getParameter("name"));
 			

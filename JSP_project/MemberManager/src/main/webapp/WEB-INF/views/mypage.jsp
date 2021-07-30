@@ -40,7 +40,7 @@
 			</tr>
 			<tr>
 				<th>수정하기</th>
-				<td><a href="editForm.do">수정</a> </td>
+				<td><a href="editForm.do?id=${result.id}">수정</a> </td>
 			</tr>
 			<tr>
 				<th>탈퇴하기</th>

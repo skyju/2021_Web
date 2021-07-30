@@ -10,29 +10,19 @@
 <meta charset="UTF-8">
 <title>정보 수정 페이지</title>
 <link rel="stylesheet" href="<c:url value='/css/default.css'/>">
+<%-- <link rel="stylesheet" href="<c:url value='/css/idcheck.css'/>"> --%>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="<c:url value='/js/ajax_idcheck.js'/>"></script>
-<c:if test="${member eq null}">
+<%-- <script src="<c:url value='/js/ajax_idcheck.js'/>"></script> --%>
+<%-- 
+<script> var loginchk; </script>
+<c:if test="${member.id eq id}">
 	<script>
-		alert('로그인이 필요한 페이지입니다. \n로그인 후 사용해주세요.');
-		location.href = "loginForm.jsp";
+		loginchk = true;
+		$('#msg').addClass('display_none');
 	</script>
 </c:if>
+ --%>
 </head>
-<style>
-	.display_none {
-		display: none;
-	}
-	.color_blue {
-		color: blue;
-	}
-	.color_red {
-		color: red;
-	}
-	#loadingimg {
-		height : 20px;
-	}
-</style>
 </head>
 <body>
 	<c:import url="/WEB-INF/frame/header.jsp" />
@@ -45,9 +35,9 @@
 			<tr>
 				<th>아이디</th>
 				<td>
-					<input type="text" name="id" id="id" value="${member.id}">
-					<span id="msg" class="display_none"></span>
-					<img id="loadingimg" class="display_none" alt="loading" src="<c:url value="/image/loading.gif"/>"> 
+					<input type="text" name="id" id="id" value="${member.id}" disabled="disabled">
+					<%-- <span id="msg" class="display_none"></span>
+					<img id="loadingimg" class="display_none" alt="loading" src="<c:url value="/image/loading.gif"/>">  --%>
 				</td>
 			</tr>
 			<tr>

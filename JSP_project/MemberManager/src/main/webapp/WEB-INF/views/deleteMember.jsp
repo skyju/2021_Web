@@ -9,7 +9,7 @@
 <c:if test="${result>0}">
 	<script>
 		alert('삭제되었습니다.');
-		location.href = "logout.jsp";
+		location.href = "logout.do";
 	</script>
 </c:if>
 <c:if test="${result eq 0}">

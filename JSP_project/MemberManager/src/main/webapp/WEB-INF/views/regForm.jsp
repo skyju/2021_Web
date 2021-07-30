@@ -5,24 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원 가입 폼</title>
+<link rel="stylesheet" href="<c:url value='/css/default.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/idcheck.css'/>">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="<c:url value='/js/ajax_idcheck.js'/>"></script>
-<link rel="stylesheet" href="<c:url value='/css/default.css'/>"> 
 <!-- 코어테그: 절대경로, 그냥 src 해서 참조할 경우: 브라우저 기준으로 상대경로 -->
-<style>
-	.display_none {
-		display: none;
-	}
-	.color_blue {
-		color: blue;
-	}
-	.color_red {
-		color: red;
-	}
-	#loadingimg {
-		height : 20px;
-	}
-</style>
 </head>
 <body>
 	<c:import url="/WEB-INF/frame/header.jsp" />
@@ -37,7 +24,7 @@
 					<td>
 						<input type="text" name="id" id="id">
 						<span id="msg" class="display_none"></span>
-						<img id="loadingimg" class="display_none" alt="loading" src="<c:url value="/image/loading.gif"/>"> 
+						<img id="loadingimg" class="display_none" alt="loading" src="<c:url value='/image/loading.gif'/>">
 					</td>
 				</tr>
 				<tr>
