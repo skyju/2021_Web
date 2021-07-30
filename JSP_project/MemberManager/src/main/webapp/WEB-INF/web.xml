@@ -3,7 +3,7 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
-	
+
 	<display-name>MemberManager</display-name>
 	<!-- /contextPath/ -> 요청일때 찾을 자원의 파일이름 -->
 	<welcome-file-list>
@@ -11,15 +11,9 @@
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	<!-- 드라이버 로드 서블릿 등록/설정 -->
-	<!-- <servlet> 
-			<servlet-name>DriverLoader</servlet-name> 
-			<servlet-class>jdbc.DriverLoader</servlet-class> 
-			<init-param> 
-				<param-name>driver</param-name>
-				<param-value>com.mysql.cj.jdbc.Driver</param-value> 
-			</init-param> 
-			<load-on-startup>1</load-on-startup> 
-		</servlet> -->
+	<!-- <servlet> <servlet-name>DriverLoader</servlet-name> <servlet-class>jdbc.DriverLoader</servlet-class> 
+		<init-param> <param-name>driver</param-name> <param-value>com.mysql.cj.jdbc.Driver</param-value> 
+		</init-param> <load-on-startup>1</load-on-startup> </servlet> -->
 
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
@@ -57,4 +51,19 @@
 	<listener>
 		<listener-class>jdbc.JdbcListener</listener-class>
 	</listener>
+
+	<servlet>
+		<servlet-name>FrontController</servlet-name>
+		<servlet-class>controller.FrontController</servlet-class>
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>/WEB-INF/command.aa</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FrontController</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
 </web-app>
