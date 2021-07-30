@@ -64,6 +64,11 @@
 	<servlet-mapping>
 		<servlet-name>FrontController</servlet-name>
 		<url-pattern>*.do</url-pattern>
+		<!-- 
+		/: 전체경로 : 뒤에있는 전체를 문자열로 (확장자 포함)
+		이렇게 했을 시 문제: css파일도 경로를 잡아줘야함
+		/*: 확장자 앞에 있는 명이나 확장자명 처리할 때 (필터는 이렇게 잡음)
+		-->
 	</servlet-mapping>
 
 </web-app>
