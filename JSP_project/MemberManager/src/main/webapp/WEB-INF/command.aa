@@ -11,3 +11,4 @@
 /loginForm.do=service.LoginFormCommandImpl
 /mypage.do=service.MypageViewCommandImpl
 /regForm.do=service.MemberRegFormCommandImpl
+/idcheck.do=service.IdCheckCommandImpl

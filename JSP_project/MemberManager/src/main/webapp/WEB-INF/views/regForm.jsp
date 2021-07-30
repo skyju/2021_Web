@@ -20,7 +20,7 @@
 			// ajax 비동기 통신 -> id를 서버로 보내고 사용가능 유무의 응답 코드를 받는다.
 			$.ajax({
 				
-				url: 'idcheck.jsp',
+				url: 'idcheck.do',
 				type: 'post',
 				data: {
 					id:$(this).val()
@@ -32,11 +32,11 @@
 					// data : Y / N
 					if(data == 'Y'){
 						$('#msg').html('사용가능');
-						${'#msg'}.addClass('color_blue');
+						$('#msg').addClass('color_blue');
 						$('#msg').removeClass('display_none');
 					} else {
 						$('#msg').html('사용불가능');
-						${'#msg'}.addClass('color_red');
+						$('#msg').addClass('color_red');
 						$('#msg').removeClass('display_none');
 					}
 				},
@@ -52,8 +52,6 @@
 			});
 			
 		});
-		
-		
 		
 	});
 </script>
