@@ -2,18 +2,23 @@ package member.main;
 
 import java.util.Scanner;
 
-import member.dao.MemberDao;
-import member.domain.RegRequest;
-import member.service.ChangePasswordService;
-import member.service.MemberRegService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 
-public class MainForMemberManager {
+import member.domain.RegRequest;
+import member.service.ChangePasswordService2;
+import member.service.MemberRegService2;
+
+public class SpringMain3 {
 	
-	//static MemberDao dao = new MemberDao();
-	
-	static Assembler assembler = new Assembler();
+	static ApplicationContext ctx;
 
 	public static void main(String[] args) {
+		
+		//ctx = new GenericXmlApplicationContext("classpath:appCtx1.xml");
+		//ctx = new GenericXmlApplicationContext("classpath:appCtx2.xml");
+		//ctx = new GenericXmlApplicationContext("classpath:appCtx3.xml");
+		ctx = new GenericXmlApplicationContext("classpath:appCtx5.xml");
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -44,12 +49,14 @@ public class MainForMemberManager {
 	private static void processChangePw(String[] values) {
 		
 		//ChangePasswordService service = new ChangePasswordService(dao);
-		ChangePasswordService service = assembler.getPasswordService();
+		//ChangePasswordService service = assembler.getPasswordService();
+		//ChangePasswordService service = ctx.getBean("changePwService", ChangePasswordService.class);
+		ChangePasswordService2 service = ctx.getBean("changePwService", ChangePasswordService2.class);
 		
 		try {
 			service.changePassword(values[1], values[2], values[3]);
 			
-			System.out.println("Password is successfully changed!!");
+			System.out.println("비밀번호를 변경했습니다.!!");
 			
 		} catch (Exception e) {
 			//e.printStackTrace();
@@ -60,10 +67,14 @@ public class MainForMemberManager {
 	}
 
 	private static void processNewMember(String[] values) {
-		// MemberRegService �̿��ؼ� ���� ����
+		// MemberRegService 이용해서 정보 저장
 		
 		//MemberRegService service = new MemberRegService(dao);
-		MemberRegService service = assembler.getRegService();
+		//MemberRegService service = assembler.getRegService();
+		//MemberRegService service = ctx.getBean("regService", MemberRegService.class);
+		MemberRegService2 service = ctx.getBean("regService", MemberRegService2.class);
+		
+		
 		RegRequest request = new RegRequest();
 		request.setEmail(values[1]);
 		request.setName(values[2]);
@@ -71,7 +82,7 @@ public class MainForMemberManager {
 		request.setConfirmPassword(values[4]);
 		
 		if(!request.isPasswordEqualToConfirmPassword()) {
-			System.out.println("It is not matched that your new Password and new Password");
+			System.out.println("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
 			return;
 		}
 		
@@ -84,6 +95,8 @@ public class MainForMemberManager {
 			//e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
+		
+		
 		
 	}
 

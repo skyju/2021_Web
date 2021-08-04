@@ -15,7 +15,9 @@ public class SpringMain1 {
 
 	public static void main(String[] args) {
 		
-		ctx = new GenericXmlApplicationContext("classpath:appCtx1.xml");
+		//ctx = new GenericXmlApplicationContext("classpath:appCtx1.xml");
+		//ctx = new GenericXmlApplicationContext("classpath:appCtx2.xml");
+		ctx = new GenericXmlApplicationContext("classpath:appCtx3.xml");
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -23,9 +25,9 @@ public class SpringMain1 {
 			printMenu();
 			
 			String command = sc.nextLine();
-			// ÇÁ·Î±×·¥ÀÇ Á¾·á ºĞ±â
+			// í”„ë¡œê·¸ë¨ì˜ ì¢…ë£Œ ë¶„ê¸°
 			if(command.equalsIgnoreCase("exit")) {
-				System.out.println("ÇÁ·Î±×·¥ Á¾·á");
+				System.out.println("í”„ë¡œê·¸ë¨ ì¢…ë£Œ");
 				return;
 			}
 			
@@ -52,7 +54,7 @@ public class SpringMain1 {
 		try {
 			service.changePassword(values[1], values[2], values[3]);
 			
-			System.out.println("ºñ¹Ğ¹øÈ£¸¦ º¯°æÇß½À´Ï´Ù.!!");
+			System.out.println("ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³€ê²½í–ˆìŠµë‹ˆë‹¤.!!");
 			
 		} catch (Exception e) {
 			//e.printStackTrace();
@@ -63,7 +65,7 @@ public class SpringMain1 {
 	}
 
 	private static void processNewMember(String[] values) {
-		// MemberRegService ÀÌ¿ëÇØ¼­ Á¤º¸ ÀúÀå
+		// MemberRegService ì´ìš©í•´ì„œ ì •ë³´ ì €ì¥
 		
 		//MemberRegService service = new MemberRegService(dao);
 		//MemberRegService service = assembler.getRegService();
@@ -75,28 +77,32 @@ public class SpringMain1 {
 		request.setConfirmPassword(values[4]);
 		
 		if(!request.isPasswordEqualToConfirmPassword()) {
-			System.out.println("ºñ¹Ğ¹øÈ£¿Í ºñ¹Ğ¹øÈ£ È®ÀÎÀÌ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+			System.out.println("ë¹„ë°€ë²ˆí˜¸ì™€ ë¹„ë°€ë²ˆí˜¸ í™•ì¸ì´ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			return;
 		}
 		
 		try {
 			service.regMember(request);
-			System.out.println("µî·ÏµÇ¾ú½À´Ï´Ù!!");
+			
+			System.out.println("ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤!!");
+			
 		} catch (Exception e) {
 			//e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		
+		
+		
 	}
 
 	static void printMenu() {
 		System.out.println();
-		System.out.println("¸í·É¾î »ç¿ë¹ı");
+		System.out.println("ëª…ë ¹ì–´ ì‚¬ìš©ë²•");
 		System.out.println("-------------------------------");
-		System.out.println("new ÀÌ¸ŞÀÏ ÀÌ¸§ ºñ¹Ğ¹øÈ£ ºñ¹Ğ¹øÈ£È®ÀÎ");
+		System.out.println("new ì´ë©”ì¼ ì´ë¦„ ë¹„ë°€ë²ˆí˜¸ ë¹„ë°€ë²ˆí˜¸í™•ì¸");
 		System.out.println("new king@gmail.com KING 123 123");
-		System.out.println("È¸¿ø ¼öÁ¤ ----------------------");
-		System.out.println("change ÀÌ¸ŞÀÏ ÇöÀçºñ¹ø »õ·Î¿îºñ¹ø");
+		System.out.println("íšŒì› ìˆ˜ì • ----------------------");
+		System.out.println("change ì´ë©”ì¼ í˜„ì¬ë¹„ë²ˆ ìƒˆë¡œìš´ë¹„ë²ˆ");
 		System.out.println("change king@gmail.com 123 0000");
 		System.out.println("-------------------------------");
 	}

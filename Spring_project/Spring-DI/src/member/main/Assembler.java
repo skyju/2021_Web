@@ -9,23 +9,23 @@ import member.service.MemberRegService;
 
 public class Assembler {
 
-	// ÄÁÅ×ÀÌ³Ê : ÀÎ½ºÅÏ½º¸¦ °ü¸® -> »ı¼º, º¸°ü, ½ÇÇà, ÇÊ¿äÇÑ °´Ã¼¸¦ ¹İÈ¯, ¼Ò¸ê
-	// Á¶¸³±â Å¬·¡½ºÀÇ ¿ªÇÒ
-	// °¢°¡ÀÇ ÀÎ½ºÅÏ½º¸¦ »ı¼º
-	// ÀÇÁ¸ ÁÖÀÔÀ» ÇØÁØ´Ù.
-	// ÇÊ¿äÇÑ °´Ã¼¸¦ ¹İÈ¯ ÇØÁÖ´Â ±â´É
+	// ì»¨í…Œì´ë„ˆ : ì¸ìŠ¤í„´ìŠ¤ë¥¼ ê´€ë¦¬ -> ìƒì„±, ë³´ê´€, ì‹¤í–‰, í•„ìš”í•œ ê°ì²´ë¥¼ ë°˜í™˜, ì†Œë©¸
+	// ì¡°ë¦½ê¸° í´ë˜ìŠ¤ì˜ ì—­í• 
+	// ê°ê°€ì˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ìƒì„±
+	// ì˜ì¡´ ì£¼ì…ì„ í•´ì¤€ë‹¤.
+	// í•„ìš”í•œ ê°ì²´ë¥¼ ë°˜í™˜ í•´ì£¼ëŠ” ê¸°ëŠ¥
 
 	private MemberDao dao;
 	private MemberRegService regService;
 	private ChangePasswordService passwordService;
-	
+
 	private GuestDao gDao;
 
 	public Assembler() {
-		// ÀÎ½ºÅÏ½º¸¦ »ı¼º -> ÀÇÁ¸ ÁÖÀÔ
+		// ì¸ìŠ¤í„´ìŠ¤ë¥¼ ìƒì„± -> ì˜ì¡´ ì£¼ì…
 		dao = new MemberDao();
 		gDao = new GuestDao();
-		
+
 		regService = new MemberRegService(dao);
 		passwordService = new ChangePasswordService(dao);
 	}

@@ -42,12 +42,12 @@ public class Member {
 		return regDate;
 	}
 	
-	// ºñ¹Ð¹øÈ£ º¯°æ ¸Þ¼­µå
+	// ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ ë©”ì†Œë“œ
 	public void changePw(String oldPw, String newPw) throws Exception {
 		if(this.password.equals(oldPw)) {
 			this.password=newPw;
 		} else {
-			throw new Exception("ºñ¹Î¹øÈ£ ºÒÀÏÄ¡!");
+			throw new Exception("It is not matching your own password!");
 		}
 	}
 }

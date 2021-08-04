@@ -39,7 +39,7 @@ public class RegRequest {
 		this.name = name;
 	}
 	
-	// ºñ¹Ğ¹øÈ£¿Í È®ÀÎ ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏ´ÂÁö ¿©ºÎ È®ÀÎ ¸Ş¼Òµå
+	// ë¹„ë°€ë²ˆí˜¸ì™€ í™•ì¸ ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ëŠ”ì§€ ì—¬ë¶€ í™•ì¸ ë©”ì†Œë“œ
 	public boolean isPasswordEqualToConfirmPassword() {
 		return password.equals(confirmPassword);
 	}
