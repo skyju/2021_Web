@@ -42,6 +42,7 @@ public class SpringMain3 {
 			if(command.startsWith("change")) {
 				String[] values = command.split(" ");
 				processChangePw(values);
+				continue;
 			}
 		}
 	}

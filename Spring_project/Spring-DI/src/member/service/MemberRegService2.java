@@ -14,9 +14,9 @@ import member.domain.RegRequest;
 
 public class MemberRegService2 {
 	
-	//@Autowired
-	//@Qualifier("member1")
-	@Resource(name = "guestDao")
+	@Autowired
+	@Qualifier("member")
+	//@Resource(name = "guestDao")
 	private Dao dao ;
 	
 	public void regMember(RegRequest request) throws Exception {

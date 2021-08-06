@@ -8,7 +8,7 @@
 
 	<!-- MemberRegService bean 등록 -->
 	<bean id="regService" class="member.service.MemberRegService">
-		<constructor-arg ref="memberDao" />
+		<constructor-arg ref="memberDao" /> <!-- 위에서 만든 빈 주입 -->
 	</bean>
 	
 	<!-- 기본형 타입의 데이터 주입 -->

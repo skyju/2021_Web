@@ -10,31 +10,22 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<!-- 애너테이션을 사용가능하도록 설정 -->
 	<annotation-driven />
 
-<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-	<resources mapping="/css/**" location="/css/" />
+	<resources mapping="/css/**" location="/css/"/>
+	<resources mapping="/js/**" location="/js/"/>
+	<resources mapping="/images/**" location="/images/"/>
+	<resources mapping="/uploadfile/**" location="/uploadfile/"/>
+	<!-- * 두개 쓰는게 약속 -->
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<!-- view resolver (뷰 리졸버, 뷰 해석기) -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<!-- 뷰(jsp)의 접두어, 접미어 설정: 파일명만 작성하면 되도록 세팅 -->
-		<!-- 접두어(디렉토리) -->
 		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<!-- 접미어(확장자) -->
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- 자동 bean 등록 : 애노테이션 찾아서 bean 생성 -->
-	<!-- 
-				@Component  : 일반 객체
-				@Controller	: 기능 Controller
-				@Service		: Service 
-				@Repository	: DAO
-	 -->
-	<context:component-scan base-package="com.bitcamp.firstSpring" />
-	
+	<context:component-scan base-package="com.bitcamp.member" />
 	
 </beans:beans>
