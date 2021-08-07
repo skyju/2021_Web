@@ -45,7 +45,7 @@ public class RegService {
 				member.setPhoto(report.getPhoto().getOriginalFilename());
 				newFile = saveFile(request, report.getPhoto());
 			} else {
-				member.setPhoto("photo");
+				member.setPhoto("");
 			}
 			resultCnt = dao.insertMember(conn, member);
 
@@ -64,16 +64,13 @@ public class RegService {
 		return resultCnt;
 	}
 	
-	// 사용자 업로드한 파일을 저장하는 메소드
 	private File saveFile(
 			HttpServletRequest request, 
 			MultipartFile file
 			) throws IllegalStateException, IOException {
-		// 저장 경로 : 시스템 경로
+		
 		String saveDir = request.getSession().getServletContext().getRealPath(UPLOAD_URI);
-		// 새롭게 저장할 파일
 		File newFile = new File(saveDir, file.getOriginalFilename());
-		// 파일 저장
 		file.transferTo(newFile);
 		
 		return newFile;
