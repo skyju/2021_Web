@@ -33,7 +33,6 @@ public class RegService {
 		Connection conn = null;
 		File newFile = null;
 		
-		//자동주입안되는중
 		System.out.println(report);
 		
 		try {
