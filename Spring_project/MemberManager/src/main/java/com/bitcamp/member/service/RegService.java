@@ -33,8 +33,6 @@ public class RegService {
 		Connection conn = null;
 		File newFile = null;
 		
-		System.out.println(report);
-		
 		try {
 			conn = ConnectionProvider.getConnection();
 			Member member = new Member(); // domain도 repository처리하는지 나중에 질문
@@ -53,6 +51,7 @@ public class RegService {
 
 			
 		} catch (SQLException | IllegalStateException | IOException e) {
+			//예외처리 질문
 			e.printStackTrace();
 			if(newFile != null & newFile.exists()) {
 				newFile.delete();
