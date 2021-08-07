@@ -41,4 +41,10 @@ public class Report {
 		this.report = report;
 	}
 
+	@Override
+	public String toString() {
+		return "Report [sno=" + sno + ", sname=" + sname + ", report=" + report + "]";
+	}
+	
+	
 }

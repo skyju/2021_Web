@@ -1,4 +1,4 @@
-package com.bitcamp.firstSpring;
+package com.bitcamp.firstSpring.upload;
 
 import org.springframework.stereotype.Repository;
 

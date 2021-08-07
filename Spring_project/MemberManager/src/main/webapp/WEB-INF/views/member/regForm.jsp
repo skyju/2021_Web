@@ -7,7 +7,7 @@
 <title>회원 가입 폼</title>
 <%@ include file="/WEB-INF/frame/header.jsp"%>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="<c:url value='/js/ajax_idcheck.js'/>"></script>
+<!-- <script src="<c:url value='/js/ajax_idcheck.js'/>"></script> -->
 <!-- 코어테그: 절대경로, 그냥 src 해서 참조할 경우: 브라우저 기준으로 상대경로 -->
 </head>
 <body>
@@ -15,14 +15,16 @@
 	<div class="contents">
 		<h2>회원가입</h2>
 		<hr>
-		<form action="memberReg.do" method="post" enctype="multipart/form-data"> 
+		<form 
+			  action="<c:url value='/member/reg'/>" 
+				method="post"
+				enctype="multipart/form-data"> 
 			<table>
 				<tr>
 					<td>아이디</td>
 					<td>
-						<input type="text" name="id" id="id">
+						<input type="text" name="id" id="id" required="required">
 						<span id="msg" class="display_none"></span>
-						<img id="loadingimg" class="display_none" alt="loading" src="<c:url value='/image/loading.gif'/>">
 					</td>
 				</tr>
 				<tr>
