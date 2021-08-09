@@ -38,7 +38,7 @@ public class LoginService {
 		reid = request.getParameter("reid");
 		cookieChk(response);
 
-		if (id != null && pw != null & id.trim().length() > 2 && pw.trim().length() > 2) {
+		if (id != null && pw != null && id.trim().length() > 2 && pw.trim().length() > 2) {
 			try {
 				conn = ConnectionProvider.getConnection();
 				Member member = dao.selectByIdPw(conn, id, pw);
