@@ -17,7 +17,10 @@
 			<table>
 				<tr>
 					<th>ID</th>
-					<td><input type="text" name="id" value="${cookie.reid.value}"></td>
+					<td>
+					<input type="text" name="id" value="${cookie.reid.value}">
+					<input type="hidden" name="redirectUri" value="${param.referer}">
+					</td>
 				</tr>
 				<tr>
 					<th>PW</th>

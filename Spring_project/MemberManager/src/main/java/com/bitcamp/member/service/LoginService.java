@@ -70,5 +70,13 @@ public class LoginService {
 			}
 		}
 	}
-
+	
+	public boolean chkURI(String uri) {
+		boolean chk = true;
+		
+		if(!uri.startsWith("/member")) {
+			chk = false;
+		}
+		return chk;
+	}
 }

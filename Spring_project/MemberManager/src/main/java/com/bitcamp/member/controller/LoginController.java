@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,8 +22,13 @@ public class LoginController {
 	@Qualifier("loginservice") //get
 	private LoginService loginservice;
 	
+	
 	@RequestMapping(method = RequestMethod.GET)
-	public String loginForm() {
+	public String loginForm(
+			@RequestHeader(value="referer", required = false) String redirectUri,
+			Model model
+			) {
+		model.addAttribute("redirectUri", redirectUri);
 		return "member/loginForm";
 	}
 	
@@ -33,11 +39,20 @@ public class LoginController {
 			Model model,
 			@RequestParam("id") String id,
 			@RequestParam("pw") String pw,
-			@RequestParam("reid") String reid
+			@RequestParam(value="reid", required = false) String reid,
+			@RequestParam(value = "redirectUri", required = false) String redirectUri
 			) {
 		boolean loginChk = loginservice.login(request, response, id, pw, reid);
 		model.addAttribute("loginChk", loginChk);
-		return "member/login";
+		
+		String view = "member/login";
+		
+		if(loginservice.chkURI(redirectUri) && loginChk) {
+				redirectUri = redirectUri.substring(request.getContextPath().length());
+				view = "redirect:"+redirectUri;
+		}
+		return view;
 	}
+	
 	
 }

@@ -11,5 +11,6 @@
 			<li><a href='<c:url value="/member/list_view"/>'>회원리스트</a></li>
 		</c:if>
 		<li><a href='<c:url value="/member/mypage"/>'>마이페이지</a></li>
+		<li><a href='<c:url value="/board/list"/>'>방명록</a></li>
 	</ul>
 </nav>
