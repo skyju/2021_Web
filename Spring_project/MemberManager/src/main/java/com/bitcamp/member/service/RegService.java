@@ -35,7 +35,8 @@ public class RegService {
 		
 		try {
 			conn = ConnectionProvider.getConnection();
-			Member member = new Member(); // domain도 repository처리하는지 나중에 질문
+			Member member = new Member();
+			//new 안할 수 있나 고민해보기
 			
 			member.setId(report.getId());
 			member.setPw(report.getPw());

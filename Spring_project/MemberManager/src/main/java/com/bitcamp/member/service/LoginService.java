@@ -33,8 +33,6 @@ public class LoginService {
 
 		Connection conn = null;
 
-		// 사용자가 전달한 데이터를 받고 -> DB에서 확인 -> 로그인 처리 -> Session에 저장
-		// reid 확인 하고 값을 받아오면 쿠키 설정
 		id = request.getParameter("id");
 		pw = request.getParameter("pw");
 		reid = request.getParameter("reid");
@@ -46,7 +44,6 @@ public class LoginService {
 				Member member = dao.selectByIdPw(conn, id, pw);
 
 				if (member != null) {
-					// 여기까지 왔을 떄가 로그인 성공, session에 저장
 					request.getSession().setAttribute("member", member);
 					loginChk = true;
 				}
@@ -59,8 +56,6 @@ public class LoginService {
 
 	public void cookieChk(HttpServletResponse response) {
 
-		// ID 저장을 위한 쿠키 설정
-		// reid 값의 유무 체크
 		if (reid != null && reid.equals("on")) {
 			// 쿠키 저장: 사용자 ID를 저장(1년)
 			try {
