@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/member/logout")
 public class LogoutController {
 
-	// @Autowired
-	// private LoginService loginservice;
-
 	@RequestMapping(method = RequestMethod.GET)
 	public String logout() {
 		return "member/logout";

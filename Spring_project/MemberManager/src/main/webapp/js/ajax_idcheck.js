@@ -1,9 +1,5 @@
 $(document).ready(function() {
 	
-	//console.log(typeof(loginchk));
-	
-	//if (typeof (loginchk) == 'undefined' || loginchk != true) {
-		
 		console.log('진입');
 		
 		$('#id').focusin(function() {
@@ -16,7 +12,7 @@ $(document).ready(function() {
 		$('#id').focusout(function() {
 			// ajax 비동기 통신 -> id를 서버로 보내고 사용가능 유무의 응답 코드를 받는다.
 			$.ajax({
-				url: 'idcheck.do',
+				url: 'idcheck',
 				type: 'post',
 				data: {
 					id: $(this).val()
@@ -41,12 +37,9 @@ $(document).ready(function() {
 					console.log(request);
 					console.log(status);
 					console.log(error);
-				},
-				complete: function() {
-					$('#loadingimg').addClass('display_none');
 				}
 			});
 
 		});
-	//}
+
 });

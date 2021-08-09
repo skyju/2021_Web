@@ -7,8 +7,8 @@
 <title>회원 가입 폼</title>
 <%@ include file="/WEB-INF/frame/header.jsp"%>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<!-- <script src="<c:url value='/js/ajax_idcheck.js'/>"></script> -->
-<!-- 코어테그: 절대경로, 그냥 src 해서 참조할 경우: 브라우저 기준으로 상대경로 -->
+<script src="<c:url value='/js/ajax_idcheck.js'/>"></script>
+<link rel="stylesheet" href="<c:url value='/css/idcheck.css'/>">
 </head>
 <body>
 	<c:import url="/WEB-INF/frame/nav.jsp" />

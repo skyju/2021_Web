@@ -4,22 +4,27 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.bitcamp.member.service.MemberListViewService;
+import com.bitcamp.member.service.DeleteService;
 
 @Controller
-@RequestMapping("/member/list_view")
-public class ListViewController {
+@RequestMapping("/member/delete")
+public class DeleteController {
 	
 	@Autowired
-	MemberListViewService service;
+	private DeleteService deleteservice;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String listView(HttpServletRequest request) {
-		service.viewList(request);
-		return "member/list_view";
+	public String delete(
+			HttpServletRequest request, 
+			Model model
+			) {
+		int result = deleteservice.delete(request);
+		model.addAttribute("result", result);
+		return "member/delete";
 	}
-
+	
 }
