@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bitcamp.member.service.LoginService;
 
@@ -29,10 +30,13 @@ public class LoginController {
 	public String login(
 			HttpServletRequest request, 
 			HttpServletResponse response,
-			Model model
+			Model model,
+			@RequestParam("id") String id,
+			@RequestParam("pw") String pw,
+			@RequestParam("reid") String reid
 			) {
-		boolean loginChk = loginservice.login(request, response);
-		request.setAttribute("loginChk", loginChk);
+		boolean loginChk = loginservice.login(request, response, id, pw, reid);
+		model.addAttribute("loginChk", loginChk);
 		return "member/login";
 	}
 	

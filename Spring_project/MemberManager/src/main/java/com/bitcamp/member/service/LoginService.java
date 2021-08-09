@@ -25,18 +25,16 @@ public class LoginService {
 	MemberDao dao;
 	
 	boolean loginChk = false;
-	String id;
-	String pw;
-	String reid;
 
-	public boolean login(HttpServletRequest request, HttpServletResponse response) {
-
+	public boolean login(
+			HttpServletRequest request, 
+			HttpServletResponse response,
+			String id,
+			String pw,
+			String reid) {
+		
 		Connection conn = null;
-
-		id = request.getParameter("id");
-		pw = request.getParameter("pw");
-		reid = request.getParameter("reid");
-		cookieChk(response);
+		cookieChk(response, reid, id);
 
 		if (id != null && pw != null && id.trim().length() > 2 && pw.trim().length() > 2) {
 			try {
@@ -54,7 +52,7 @@ public class LoginService {
 		return loginChk;
 	}
 
-	public void cookieChk(HttpServletResponse response) {
+	public void cookieChk(HttpServletResponse response, String reid, String id) {
 
 		if (reid != null && reid.equals("on")) {
 			// 쿠키 저장: 사용자 ID를 저장(1년)
