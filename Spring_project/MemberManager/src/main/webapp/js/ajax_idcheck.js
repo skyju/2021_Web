@@ -1,7 +1,5 @@
 $(document).ready(function() {
 	
-		console.log('진입');
-		
 		$('#id').focusin(function() {
 			$('#msg').addClass('display_none');
 			$('#msg').removeClass('color_blue');

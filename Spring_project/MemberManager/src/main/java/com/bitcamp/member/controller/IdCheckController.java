@@ -22,8 +22,7 @@ public class IdCheckController {
 			HttpServletRequest request, 
 			Model model
 			) {
-		String result = idchkservice.idCheck(request);
-		model.addAttribute("result", result);
+		model.addAttribute("result", idchkservice.idCheck(request));
 		return "member/idcheck";
 	}
 	
