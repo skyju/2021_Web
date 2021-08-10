@@ -36,7 +36,6 @@ public class RegService {
 		try {
 			conn = ConnectionProvider.getConnection();
 			Member member = new Member();
-			//new 안할 수 있나 고민해보기
 			
 			member.setId(report.getId());
 			member.setPw(report.getPw());
@@ -70,6 +69,8 @@ public class RegService {
 			) {
 		
 		String path = request.getSession().getServletContext().getRealPath(UPLOAD_URI);
+		
+		System.out.println(path);
 		
 		File newDir = new File(path);
 		if(!newDir.exists()) {

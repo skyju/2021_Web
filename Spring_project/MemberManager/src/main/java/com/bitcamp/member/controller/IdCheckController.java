@@ -18,7 +18,7 @@ public class IdCheckController {
 	private IdCheckService idchkservice;
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String delete(
+	public String idCheck(
 			HttpServletRequest request, 
 			Model model
 			) {
