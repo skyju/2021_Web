@@ -17,9 +17,6 @@ $(document).ready(function() {
 				data: {
 					id: $(this).val()
 				},
-				beforeSend: function() {
-					$('#loadingimg').removeClass('display_none');
-				},
 				success: function(data) {
 					// data : Y / N
 					if (data == 'Y') {

@@ -5,12 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>내 페이지</title>
-<c:if test="${result eq null}">
-	<script>
-		alert('로그인이 필요한 페이지입니다. \n로그인 후 사용해주세요.');
-		location.href = '<c:url value="/member/login"/>';
-	</script>
-</c:if>
 </head>
 </head>
 <body>
