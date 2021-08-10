@@ -42,17 +42,16 @@ public class RegService {
 			member.setPw(report.getPw());
 			member.setName(report.getName());
 			
-			if(report.getPhoto() != null) {
-				member.setPhoto(report.getPhoto().getOriginalFilename());
+			if(report.getPhoto() != null && !report.getPhoto().isEmpty()) {
 				newFile = saveFile(request, report.getPhoto());
+				member.setPhoto(newFile.getName());
 			} else {
 				member.setPhoto("");
 			}
-			resultCnt = dao.insertMember(conn, member);
-
 			
-		} catch (SQLException | IllegalStateException | IOException e) {
-			//예외처리 질문
+			resultCnt = dao.insertMember(conn, member);
+			
+		} catch (SQLException | IllegalStateException e) {
 			e.printStackTrace();
 			if(newFile != null & newFile.exists()) {
 				newFile.delete();
@@ -68,11 +67,24 @@ public class RegService {
 	private File saveFile(
 			HttpServletRequest request, 
 			MultipartFile file
-			) throws IllegalStateException, IOException {
+			) {
 		
-		String saveDir = request.getSession().getServletContext().getRealPath(UPLOAD_URI);
-		File newFile = new File(saveDir, file.getOriginalFilename());
-		file.transferTo(newFile);
+		String path = request.getSession().getServletContext().getRealPath(UPLOAD_URI);
+		
+		File newDir = new File(path);
+		if(!newDir.exists()) {
+			newDir.mkdir();
+			System.out.println("저장 폴더를 생성했습니다.");
+		}
+		// 파일 저장 시에 파일 이름이 같으면 덮어쓴다 -> 회원 별 고유한 파일 이름을 만들자!
+		String newFileName = System.currentTimeMillis()+file.getOriginalFilename();
+		File newFile = new File(newDir, newFileName);
+		
+		try {
+			file.transferTo(newFile);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
 		
 		return newFile;
 	}

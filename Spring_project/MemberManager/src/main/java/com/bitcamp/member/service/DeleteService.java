@@ -1,5 +1,6 @@
 package com.bitcamp.member.service;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -15,6 +16,8 @@ import com.bitcamp.member.util.ConnectionProvider;
 @Service
 public class DeleteService {
 	
+	final String UPLOAD_URI = "/uploadfile";
+	
 	@Autowired
 	MemberDao dao;
 
@@ -25,12 +28,20 @@ public class DeleteService {
 		int resultCnt = 0;
 		Member member = new Member();
 		Connection conn = null;
+		File file = null;
 		
 		try {
 			conn = ConnectionProvider.getConnection();
 			member = (Member)request.getSession().getAttribute("member");
 			
+			String path = request.getSession().getServletContext().getRealPath(UPLOAD_URI);
+			file = new File(path+"/"+member.getPhoto());
+			if(file.exists()) {
+				file.delete();
+			}
+			
 			resultCnt = dao.deleteMember(conn, member.getIdx());
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassCastException e) {
