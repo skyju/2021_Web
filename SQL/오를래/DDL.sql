@@ -74,6 +74,28 @@ CREATE TABLE final.crewComment (
     constraint fk_crewIdx_to_crewComment foreign key (crewIdx) references final.crew(crewIdx)
 );
 
+-- 팔로우
+CREATE TABLE final.follow (
+	`followIdx` INTEGER NOT NULL auto_increment,
+    `followDate` timestamp default current_timestamp,
+    `memberIdx` INTEGER NOT NULL,
+    `memberIdx2` INTEGER NOT NULL,
+    constraint pk_followIdx primary key (followIdx),
+    constraint fk_myMemberIdx foreign key (memberIdx) references final.member(memberIdx),
+    constraint fk_followMemberIdx foreign key (memberIdx2) references final.member(memberIdx)
+);
+
+-- 좋아요
+CREATE TABLE final.like (
+	`likeIdx` INTEGER NOT NULL auto_increment,
+    `likeDate` timestamp default current_timestamp,
+	`memberIdx` INTEGER NOT NULL,
+    `boardIdx` INTEGER NOT NULL,
+    constraint pk_likeIdx primary key (likeIdx),
+    constraint fk_myMemberIdx_to_like foreign key (memberIdx) references final.member(memberIdx),
+    constraint fk_boardIdx foreign key (boardIdx) references final.photoboard(boardIdx)
+);
+
 -- 드랍테이블
 drop table final.member;
 
@@ -83,3 +105,6 @@ drop table final.crewComment;
 
 DROP TABLE IF EXISTS final.PhotoBoard;
 DROP TABLE IF EXISTS final.PhotoBoardComment;
+
+DROP TABLE IF EXISTS final.follow;
+DROP TABLE IF EXISTS final.like;

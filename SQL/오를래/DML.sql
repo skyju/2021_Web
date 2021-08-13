@@ -30,11 +30,20 @@ insert into final.crewreg (memberIdx, crewIdx) values (2, 1);
 insert into final.crewComment (crewComment, memberIdx, crewIdx) 
 values ('이크루 구려요', 2, 1);
 
--- select문 모아놓음
+-- 팔로우 insert
+insert into final.follow (memberIdx, memberIdx2) 
+values (1,2);
 
+-- 좋아요 insert
+insert into final.like (memberIdx, boardIdx)
+values (2,1);
+
+-- select문 모아놓음
 select * from final.member;
 select * from final.photoBoard;
 select * from final.photoBoardComment;
 select * from final.crew;
 select * from final.crewreg;
 select * from final.crewComment;
+select * from final.follow;
+select * from final.like;
