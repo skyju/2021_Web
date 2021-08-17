@@ -51,7 +51,7 @@
 		$('#memberid').focusout(function() {
 			// ajax 비동기 통신 > id를 서버로 보내고 사용 가능 유무의 응답 코드를 받는다 -> 화면에 메시지 출력
 			$.ajax({
-				url : 'http://localhost:8080/op/member/idCheck',
+				url : 'http://localhost:8080/member/member/idCheck',
 				type : 'post',
 				data : {
 					mid : $(this).val()
@@ -89,13 +89,13 @@
 			var file1 = photoFile[0].files[0];
 			//console.log(file1);
 			var formData = new FormData();
-			formData.append("memberid", $('#memberid').val());
-			formData.append("password", $('#password').val());
-			formData.append("membername", $('#membername').val());
+			formData.append("memberid", $('#id').val());
+			formData.append("password", $('#pw').val());
+			formData.append("membername", $('#name').val());
 			formData.append("photo", file1);
 			console.log(formData);
 			$.ajax({
-				url : '/op/members/reg1',
+				url : '/member/members/reg1',
 				type : 'post',
 				data : formData,
 				enctype : 'multipart/form-data',

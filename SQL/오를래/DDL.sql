@@ -42,6 +42,7 @@ CREATE TABLE final.PhotoBoardComment (
 CREATE TABLE final.crew (
 	`crewIdx` INTEGER NOT NULL auto_increment,
 	`crewName` VARCHAR(50) NOT NULL,
+    `crewPhoto` VARCHAR(100) NULL,
 	`crewDiscription` TEXT NOT NULL,
 	`crewCreatedate` timestamp default current_timestamp,
 	`crewTag` varchar(200) NULL,
