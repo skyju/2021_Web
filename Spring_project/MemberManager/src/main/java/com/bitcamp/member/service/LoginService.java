@@ -1,52 +1,47 @@
 package com.bitcamp.member.service;
 
 import java.io.UnsupportedEncodingException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.bitcamp.member.dao.MemberDao;
+import com.bitcamp.member.dao.Dao;
+import com.bitcamp.member.dao.JdbcTemplateMemberDao;
 import com.bitcamp.member.domain.Member;
-import com.bitcamp.member.util.ConnectionProvider;
 import com.bitcamp.member.util.CookieBox;
 
-
 @Service
-@Qualifier("loginservice") //set
+@Qualifier("loginservice") // set
 public class LoginService {
-	
+
 	@Autowired
-	MemberDao dao;
+	private SqlSessionTemplate template;
 	
+	private Dao dao;
+
 	boolean loginChk = false;
 
 	public boolean login(
 			HttpServletRequest request, 
-			HttpServletResponse response,
-			String id,
-			String pw,
-			String reid) {
-		
-		Connection conn = null;
+			HttpServletResponse response, 
+			String id, 
+			String pw, 
+			String reid
+			) {
+
 		cookieChk(response, reid, id);
-
+		dao = template.getMapper(Dao.class);
+		
 		if (id != null && pw != null && id.trim().length() > 2 && pw.trim().length() > 2) {
-			try {
-				conn = ConnectionProvider.getConnection();
-				Member member = dao.selectByIdPw(conn, id, pw);
-
-				if (member != null) {
-					request.getSession().setAttribute("member", member);
-					loginChk = true;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+			Member member = dao.selectByIdPw(id, pw);
+			if (member != null) {
+				request.getSession().setAttribute("member", member);
+				loginChk = true;
 			}
 		}
 		return loginChk;
@@ -70,11 +65,11 @@ public class LoginService {
 			}
 		}
 	}
-	
+
 	public boolean chkURI(String uri) {
 		boolean chk = true;
-		
-		if(!uri.startsWith("/member")) {
+
+		if (!uri.startsWith("/member")) {
 			chk = false;
 		}
 		return chk;

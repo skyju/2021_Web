@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.bitcamp.member.domain.*;
@@ -15,7 +17,7 @@ import com.bitcamp.member.util.*;
 
 @Repository
 public class MemberDao {
-
+	
 	public List<Member> getMemberList(Connection con) {
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -33,8 +35,8 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			CloseUtil.close(rs);
-			CloseUtil.close(stmt);
+			//CloseUtil.close(rs);
+			//CloseUtil.close(stmt);
 		}
 		return list;
 	}
@@ -62,7 +64,7 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			CloseUtil.close(pstmt);
+			//CloseUtil.close(pstmt);
 		}
 		return resultCnt;
 	}
@@ -84,8 +86,8 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			CloseUtil.close(pstmt);
-			CloseUtil.close(rs);
+			//CloseUtil.close(pstmt);
+			//CloseUtil.close(rs);
 		}
 		return member;
 	}
@@ -101,7 +103,7 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			CloseUtil.close(pstmt);
+			//CloseUtil.close(pstmt);
 		}
 		return member;
 	}
@@ -126,8 +128,8 @@ public class MemberDao {
 				}
 				
 			} finally {
-				CloseUtil.close(rs);
-				CloseUtil.close(pstmt);
+				//CloseUtil.close(rs);
+				//CloseUtil.close(pstmt);
 			}
 			
 			return cnt;
@@ -144,7 +146,7 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			CloseUtil.close(pstmt);
+			//CloseUtil.close(pstmt);
 		}
 		return resultCnt;
 	}
@@ -163,7 +165,7 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			CloseUtil.close(pstmt);
+			//CloseUtil.close(pstmt);
 		}
 		return resultCnt;
 	}

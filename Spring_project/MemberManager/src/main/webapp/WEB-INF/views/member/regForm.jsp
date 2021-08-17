@@ -8,6 +8,7 @@
 <%@ include file="/WEB-INF/frame/header.jsp"%>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="<c:url value='/js/ajax_idcheck.js'/>"></script>
+<script src="<c:url value='/js/ajax_reg.js'/>"></script>
 <link rel="stylesheet" href="<c:url value='/css/idcheck.css'/>">
 </head>
 <body>
@@ -41,7 +42,7 @@
 				</tr>
 				<tr>
 					<td>프로필 사진</td>
-					<td><input type="file" name="photo"></td>
+					<td><input type="file" name="photo" id="photo"></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -53,5 +54,13 @@
 			</table>
 		</form>
 	</div>
+	
+	<div>
+			ajax로 회원 가입 <input type="button" value="회원가입" id="btnReg1">
+	</div>
+	<div>
+			ajax로 Json 전송 회원 가입 <input type="button" value="회원가입" id="btnReg2">
+	</div>
+	
 </body>
 </html>

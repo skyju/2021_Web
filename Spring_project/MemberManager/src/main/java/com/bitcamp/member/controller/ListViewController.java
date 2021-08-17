@@ -1,12 +1,15 @@
 package com.bitcamp.member.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bitcamp.member.domain.Member;
+import com.bitcamp.member.domain.SearchType;
 import com.bitcamp.member.service.MemberListViewService;
 
 @Controller
@@ -17,8 +20,19 @@ public class ListViewController {
 	MemberListViewService service;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String listView(HttpServletRequest request) {
-		service.viewList(request);
+	public String listView(
+			SearchType searchType,
+			Model model
+			) {
+		
+		List<Member> list = null;
+		if(searchType.getKeyword() !=null 
+				&& searchType.getKeyword().trim().length()>0) {
+			list = service.getMemberList(searchType);
+		} else {
+			list = service.getMemberList();
+		}
+		model.addAttribute("memberList", list);
 		return "member/list_view";
 	}
 
