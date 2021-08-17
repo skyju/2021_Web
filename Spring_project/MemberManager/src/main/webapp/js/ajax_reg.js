@@ -42,11 +42,13 @@ $(document).ready(function () {
 		var pw = $('#pw').val();
 		var username = $('#name').val();
 		var member = {
-			memberid: userid,
-			password: pw,
-			membername: username
+			id: userid,
+			pw: pw,
+			name: username
 		}
+
 		console.log(JSON.stringify(member));
+
 		$.ajax({
 			url: '/member/members/reg2',
 			type: 'post',
