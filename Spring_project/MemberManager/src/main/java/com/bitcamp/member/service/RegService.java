@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bitcamp.member.dao.Dao;
-import com.bitcamp.member.dao.JdbcTemplateMemberDao;
 import com.bitcamp.member.domain.Member;
 import com.bitcamp.member.domain.Report;
 
@@ -25,7 +24,10 @@ public class RegService {
 	@Autowired
 	private SqlSessionTemplate template;
 
-	public int reg(Report report, HttpServletRequest request) {
+	public int reg(
+			Report report, 
+			HttpServletRequest request
+			) {
 
 		int resultCnt = 0;
 		File newFile = null;
@@ -41,6 +43,7 @@ public class RegService {
 				newFile = saveFile(request, report.getPhoto());
 				member.setPhoto(newFile.getName());
 			}
+			
 			dao = template.getMapper(Dao.class);
 			resultCnt = dao.insertMember(member);
 			System.out.println("새롭게 등록된 idx : " + member.getIdx());
@@ -54,7 +57,6 @@ public class RegService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return resultCnt;
 	}
 
@@ -69,12 +71,16 @@ public class RegService {
 			newDir.mkdir();
 			System.out.println("저장 폴더를 생성했습니다.");
 		}
+		
 		// 파일 저장 시에 파일 이름이 같으면 덮어쓴다 -> 회원 별 고유한 파일 이름을 만들자!
 		String newFileName = System.currentTimeMillis() + file.getOriginalFilename();
 		File newFile = new File(newDir, newFileName);
 
 		try {
+			
+			//파일 저장
 			file.transferTo(newFile);
+			
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}

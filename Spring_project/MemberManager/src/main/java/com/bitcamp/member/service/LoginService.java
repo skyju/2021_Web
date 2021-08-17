@@ -11,19 +11,18 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.bitcamp.member.dao.Dao;
-import com.bitcamp.member.dao.JdbcTemplateMemberDao;
 import com.bitcamp.member.domain.Member;
 import com.bitcamp.member.util.CookieBox;
 
 @Service
 @Qualifier("loginservice") // set
 public class LoginService {
-
+	
+	private Dao dao;
+	
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	private Dao dao;
-
 	boolean loginChk = false;
 
 	public boolean login(

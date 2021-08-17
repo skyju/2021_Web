@@ -24,9 +24,8 @@
 	<!-- SqlSessionFactoryBean 등록 -->
 	<bean id="sqlSessionFactoryBean"
 				class="org.mybatis.spring.SqlSessionFactoryBean"
-				p:dataSource-ref="datasource"
-				p:mapperLocations="classpath:com/bitcamp/member/dao/mapper/*.xml"
-	/>
+				p:dataSource-ref="dataSource"
+				p:mapperLocations="classpath:com/bitcamp/member/dao/mapper/*.xml"/>
 	
 	<!-- SqlSessionTemplate 등록 -->
 	<bean id="sqlSessionTemplate"

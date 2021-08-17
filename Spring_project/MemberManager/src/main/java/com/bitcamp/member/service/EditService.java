@@ -2,29 +2,32 @@ package com.bitcamp.member.service;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bitcamp.member.dao.JdbcTemplateMemberDao;
+import com.bitcamp.member.dao.Dao;
 import com.bitcamp.member.domain.Member;
 
 @Service
 public class EditService {
 
+	private Dao dao;
+
 	@Autowired
-	private JdbcTemplateMemberDao dao;
+	private SqlSessionTemplate template;
 
 	public int edit(HttpServletRequest request) {
 
-		int resultCnt = 0;
+		dao = template.getMapper(Dao.class);
+		
 		Member member = (Member) request.getSession().getAttribute("member");
 		member.setPw(request.getParameter("pw"));
 		member.setName(request.getParameter("name"));
 
-		resultCnt = dao.updateMember(member);
 		request.getSession().setAttribute("member", member);
 
-		return resultCnt;
+		return dao.updateMember(member);
 	}
 
 }

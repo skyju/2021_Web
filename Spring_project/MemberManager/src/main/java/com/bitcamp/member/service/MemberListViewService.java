@@ -19,16 +19,12 @@ public class MemberListViewService {
 	private SqlSessionTemplate template;
 
 	public List<Member> getMemberList(){
-		return template.getMapper(Dao.class).selectAll();
+		dao = template.getMapper(Dao.class);
+		return dao.selectAll();
 	}
 
 	public List<Member> getMemberList(SearchType searchType){
-		return template.getMapper(Dao.class).selectMember(searchType);
+		dao = template.getMapper(Dao.class);
+		return dao.selectMember(searchType);
 	}
-	
-	/*
-	public void viewList(HttpServletRequest request) {
-		request.setAttribute("result", dao.getMemberList());
-	}
-	*/
 }

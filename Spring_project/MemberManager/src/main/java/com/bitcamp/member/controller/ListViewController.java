@@ -32,7 +32,9 @@ public class ListViewController {
 		} else {
 			list = service.getMemberList();
 		}
-		model.addAttribute("memberList", list);
+		
+		model.addAttribute("result", list);
+		
 		return "member/list_view";
 	}
 

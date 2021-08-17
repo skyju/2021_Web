@@ -1,19 +1,25 @@
 $(document).ready(function () {
 	$('#btnReg1').click(function () {
 		var photoFile = $('#photo');
-		var file1 = photoFile[0].files[0];
 
-		//console.log(file1);
+		if(photoFile != null){
+			var file1 = photoFile[0].files[0];
+		}
 
 		var formData = new FormData();
 
 		formData.append("id", $('#id').val());
 		formData.append("pw", $('#pw').val());
 		formData.append("name", $('#name').val());
-		formData.append("photo", file1);
+
+		if(file1 != null){
+			formData.append("photo", file1);
+		}
+
 		console.log(formData);
+
 		$.ajax({
-			url: '/members/reg1',
+			url: '/member/members/reg1',
 			type: 'post',
 			data: formData,
 			enctype: 'multipart/form-data',
@@ -21,11 +27,15 @@ $(document).ready(function () {
 			contentType: false,
 			cache: false,
 			success: function (data) {
-				console.log(data);
+				if(data==1){
+					alert('회원가입이 완료되었습니다.');
+					location.href = '/member/index';
+				} else if(data==0){
+					alert("중복된 아이디입니다.");
+				}
 			}
 		});
 	});
-
 
 	$('#btnReg2').click(function () {
 		var userid = $('#id').val();
@@ -36,17 +46,20 @@ $(document).ready(function () {
 			password: pw,
 			membername: username
 		}
-
 		console.log(JSON.stringify(member));
-
 		$.ajax({
-			url: '/members/reg2',
+			url: '/member/members/reg2',
 			type: 'post',
 			data: JSON.stringify(member),
 			dataType: 'json',
 			contentType: 'application/json',
 			success: function (data) {
-				console.log(data);
+				if(data==1){
+					alert('회원가입이 완료되었습니다.');
+					location.href = '/member/index';
+				} else if(data==0){
+					alert("중복된 아이디입니다.");
+				}
 			}
 		});
 	});

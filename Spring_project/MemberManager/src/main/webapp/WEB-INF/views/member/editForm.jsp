@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>정보 수정 페이지</title>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
 </head>
 <body>

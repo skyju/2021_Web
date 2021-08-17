@@ -7,24 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원 목록</title>
-<style>
-	td {
-		text-align: center;
-		padding: 5px 10px;
-	}
-	button {
-		margin: 5px 0;
-	}
-	#list_header {
-		padding-left: 15px;
-	}
-	table {
-		padding-top: 10px;
-		padding-left: 15px;
-	}
-</style>
-<script>
-</script>
+<link rel="stylesheet" href="<c:url value='/css/listview.css'/>">
 </head>
 <body>
 	<c:import url="/WEB-INF/frame/header.jsp" />
@@ -33,7 +16,8 @@
 	<hr>
 	<table border=1>
 		<tr>
-			<th>회원번호</th>	
+			<th>회원번호</th>
+			<th>프로필사진</th>
 			<th>아이디</th>
 			<th>비밀번호</th>
 			<th>이름</th>
@@ -42,9 +26,9 @@
 		<c:if test="${result ne null and not empty result}">
 			<c:forEach items="${result}" var="member">
 				<tr>
+					<td>${member.idx}</td>
 					<td>
 						<img src="<c:url value="/uploadfile/${member.photo}"/>" style="width: 50px">
-						${member.idx}
 					</td>
 					<td>${member.id}</td>
 					<td>${member.pw}</td>
@@ -54,5 +38,7 @@
 			</c:forEach>
 		</c:if>
 	</table>
+	<footer>
+	</footer>
 </body>
 </html>

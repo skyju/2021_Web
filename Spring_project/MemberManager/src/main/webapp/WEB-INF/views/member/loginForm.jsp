@@ -35,7 +35,7 @@
 				</tr>
 				<tr>
 					<th></th>
-					<td><input type="submit"></td>
+					<td><input type="submit" value="로그인"></td>
 				</tr>
 			</table>
 		</form>
