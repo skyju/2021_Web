@@ -42,16 +42,16 @@
 <script>
 	$(document).ready(function(){
 		
-		$('#memberid').focusin(function() {
+		$('#id').focusin(function() {
 			$('#msg').addClass('display_none');
 			$('#msg').removeClass('color_blue');
 			$('#msg').removeClass('color_red');
 			$(this).val('');
 		});
-		$('#memberid').focusout(function() {
+		$('#id').focusout(function() {
 			// ajax 비동기 통신 > id를 서버로 보내고 사용 가능 유무의 응답 코드를 받는다 -> 화면에 메시지 출력
 			$.ajax({
-				url : 'http://localhost:8080/member/member/idCheck',
+				url : 'http://localhost:8080/member/member/idcheck',
 				type : 'post',
 				data : {
 					mid : $(this).val()
@@ -86,13 +86,21 @@
 		$('#submit').click(function(){
 			
 			var photoFile = $('#photo');
-			var file1 = photoFile[0].files[0];
+			
+			if(photoFile != null){
+				var file1 = photoFile[0].files[0];
+			}
+			
 			//console.log(file1);
 			var formData = new FormData();
-			formData.append("memberid", $('#id').val());
-			formData.append("password", $('#pw').val());
-			formData.append("membername", $('#name').val());
-			formData.append("photo", file1);
+			formData.append("id", $('#id').val());
+			formData.append("pw", $('#pw').val());
+			formData.append("name", $('#name').val());
+			
+			if(file1 != null){
+				formData.append("photo", file1);
+			}
+			
 			console.log(formData);
 			$.ajax({
 				url : '/member/members/reg1',
@@ -121,9 +129,9 @@
 			
 			$('#regform').removeClass('display_none');
 			$('#msg').addClass('display_none');
-			$('#memberid').val('');
-			$('#password').val('');
-			$('#membername').val('');
+			$('#id').val('');
+			$('#pw').val('');
+			$('#name').val('');
 			$('#photo').val('');
 			
 		});
@@ -145,10 +153,10 @@
 					
 					var html = '<div class="card">';
 					html += 'idx : ' + item.idx + '<br>';
-					html += '아이디 : ' + item.memberid + '<br>';
-					html += '이름 : ' + item.membername + '<br>';
-					html += '사진 : <img src="http://localhost:8080/member/uploadfile/' + item.memberphoto + '"><br>';
-					html += '등록일 : ' + item.regdate + '<br>';
+					html += '아이디 : ' + item.id + '<br>';
+					html += '이름 : ' + item.name + '<br>';
+					html += '사진 : <img src="http://localhost:8080/member/uploadfile/' + item.photo + '"><br>';
+					html += '등록일 : ' + item.date + '<br>';
 					html += '</div>';
 					$('#memberlist').append(html);
 				});
@@ -170,18 +178,18 @@
 			<table>
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="memberid" id="memberid">
+					<td><input type="text" name="id" id="id">
 						<span id="msg" class="display_none"></span> 
 						<img id="loadingimg" class="display_none" alt="loading"
 						src="http://locahost:8080/member/images/loading.gif"></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="password" name="password" id="password"></td>
+					<td><input type="password" name="pw" id="pw"></td>
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td><input type="text" name="membername" id="membername"></td>
+					<td><input type="text" name="name" id="name"></td>
 				</tr>
 				<tr>
 					<td>사진</td>
