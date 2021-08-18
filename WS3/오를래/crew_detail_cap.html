@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>크루 상세 보기</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        .nav {
+            display: inline;
+            font-size: 15x;
+            padding-left: 10px;
+        }
+
+        header {
+            display: inline-block;
+            padding-top: 50px;
+        }
+
+        .header {
+            border-bottom: 1px solid rgb(220, 220, 220);
+        }
+
+        h1 {
+            position: absolute;
+            top: 12px;
+            left: 27px;
+            font-size: 20px;
+            padding-left: 10px;
+        }
+
+        nav {
+            display: inline-block;
+            position: absolute;
+            top: 12px;
+            right: 27px;
+        }
+
+        #profile {
+            height: 25px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+
+
+        .section {
+            background-color: rgb(240, 240, 240);
+        }
+
+        p {
+            font-size: 13px;
+        }
+
+        section {
+            padding: 80px 50px 100px 50px;
+        }
+
+        .box {
+            padding: 20px 0 20px 0;
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid rgb(220, 220, 220);
+        }
+
+        .crew_section,
+        .crew_information {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .crew_section {
+            padding: 10px 10px 30px 10px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .crew_img {
+            padding-right: 10px;
+            width: 350px;
+        }
+
+        #crew_info {
+            padding-left: 10px;
+            width: 40%;
+            min-width: 300px;
+        }
+
+        #crew_info h3 {
+            font-size: 16px;
+            font-weight: bold;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            border-bottom: 1px solid rgb(220, 220, 220);
+            margin-bottom: 0;
+        }
+
+        .crew_introduction,
+        .crew_hashtag {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            border-bottom: 1px solid rgb(220, 220, 220);
+            margin-bottom: 0;
+        }
+
+        .crew_information {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            justify-content: center;
+            justify-content: center;
+            border-bottom: 1px solid rgb(220, 220, 220);
+            margin-bottom: 0;
+        }
+
+        .crew_information span {
+            padding-left: 13px;
+            padding-right: 13px;
+            text-align: center;
+        }
+
+        .crew_information p,
+        .crew_information img {
+            padding-top: 7px;
+            margin-bottom: 0;
+        }
+
+        .crew_captain,
+        .crew_number {
+            border-right: 1px solid rgb(220, 220, 220);
+        }
+
+        .edit_btn {
+            display: flex;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .edit_btn button {
+            width: 150px;
+            background-color: rgb(70, 70, 70);
+            font-size: 15px;
+        }
+
+        .comment_section {
+            padding: 10px 10px 10px 10px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .comment_section>table {
+            border-top: 1px solid rgb(220, 220, 220);
+            border-bottom: 1px solid rgb(220, 220, 220);
+            width: 80%;
+        }
+
+        .comment_section td {
+            padding-top: 7px;
+        }
+
+        .comment_section img {
+            margin-left: 15px;
+        }
+
+        .comment_section p {
+            margin-bottom: 0;
+        }
+
+        .comment_section .content {
+            text-align: left;
+        }
+
+        .comment_section .date {
+            margin-right: 15px;
+        }
+
+        .comment_section ul {
+            padding-bottom: 10px;
+        }
+
+        #nickname {
+            min-width: 50px;
+        }
+
+        .pagination {
+            justify-content: center;
+            margin-bottom: 0;
+        }
+
+        .page-link {
+            padding: .20rem .40rem;
+            font-size: 11px;
+            color: grey;
+        }
+
+        .input_section {
+            margin: 0 auto;
+            padding: 10px 10px 10px 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .input_section input[type="text"] {
+            width: 70%;
+            max-width: 600px;
+            margin-right: 13px;
+            font-size: 13px;
+        }
+
+        .input_section input[type="submit"] {
+            width: 10%;
+            font-size: 15px;
+            border-color: rgb(221, 221, 221);
+        }
+
+        .btn1 {
+            color: rgb(73, 149, 248);
+            font-weight: bold;
+        }
+
+        .footer {
+            padding-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <header>
+            <span id="logo">
+                <h1>오를래</h1>
+            </span>
+        </header>
+        <nav>
+            <span class="nav">MAIN</span>
+            <span class="nav">HIKING</span>
+            <span class="nav">CREW</span>
+            <span class="nav">FEED</span>
+            <span class="nav"><img id="profile" src="default.jpg"></span>
+        </nav>
+    </div>
+    <div class="section">
+        <section>
+            <div class="box">
+                <div class="crew_section">
+                    <div class="crew_box">
+                        <img class="crew_img" src="hiking.jpg">
+                    </div>
+                    <div class="crew_box" id="crew_info">
+                        <h3>크루이름</h3>
+                        <p class="crew_introduction">크루소개글. 안녕하세요~ 산타자 크루입니다. 함께 산을 오를 사람을 모집합니다. 반갑습니다.
+                            안녕하세요~ 산타자 크루입니다. 함께 산을 오를 사람을 모집합니다. 반갑습니다.
+                        </p>
+                        <p class="crew_hashtag">#20대 #30대 #서울 #쉬엄쉬엄</p>
+                        <div class="crew_information">
+                            <span class="crew_captain">
+                                <p>크루장</p>
+                                <img id="profile" src="default.jpg">
+                            </span>
+                            <span class="crew_number">
+                                <p> 크루원</p>
+                                <p>200</p>
+                            </span>
+                            <span class="crew_comment_number">
+                                <p>댓글</p>
+                                <p>130</p>
+                            </span>
+                        </div>
+                        <div class="edit_btn">
+                            <button class="btn btn-secondary">크루 관리</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment_section">
+                    <table class="comment_table">
+                        <tr>
+                            <td>
+                                <img id="profile" src="default.jpg">
+                            </td>
+                            <td>
+                                <p id="nickname">닉네임</p>
+                            </td>
+                            <td>
+                                <p class="content">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                            </td>
+                            <td>
+                                <p class="date">21-08-18 03:23</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img id="profile" src="default.jpg">
+                            </td>
+                            <td>
+                                <p id="nickname">닉네임</p>
+                            </td>
+                            <td>
+                                <p class="content">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                            </td>
+                            <td>
+                                <p class="date">21-08-18 03:23</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img id="profile" src="default.jpg">
+                            </td>
+                            <td>
+                                <p id="nickname">닉네임</p>
+                            </td>
+                            <td>
+                                <p class="content">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                            </td>
+                            <td>
+                                <p class="date">21-08-18 03:23</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" href="#">&lt</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">&gt</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="input_section">
+                    <input type="text" class="form-control">
+                    <input type="submit" value="게시" class="btn1 btn-light form-control">
+                </div>
+            </div>
+        </section>
+    </div>

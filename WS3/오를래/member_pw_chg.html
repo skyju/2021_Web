@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 변경</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        .header {
+            border-bottom: 1px solid rgb(220, 220, 220);
+        }
+
+        header {
+            display: inline-block;
+            padding-top: 50px;
+        }
+
+        .nav {
+            display: inline;
+            font-size: 15x;
+            padding-left: 10px;
+        }
+
+        h1 {
+            position: absolute;
+            top: 12px;
+            left: 27px;
+            font-size: 20px;
+            padding-left: 10px;
+        }
+
+        nav {
+            display: inline-block;
+            position: absolute;
+            top: 12px;
+            right: 27px;
+        }
+
+        #profile {
+            height: 25px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+
+
+
+
+        .section {
+            padding: 50px 0 100% 0;
+            background-color: rgb(240, 240, 240);
+        }
+
+        .box {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .nav2 {
+            text-align: left;
+            width: 20%;
+            min-width: 150px;
+            background-color: white;
+            padding: 10px 0 0 30px;
+            border: 1px solid rgb(220, 220, 220);
+            border-radius: 8px 0 0 8px;
+        }
+
+        .nav2 ul,
+        .nav2 ol {
+            padding-left: 0;
+        }
+
+        .nav2 ol {
+            padding-top: 15px;
+        }
+
+        .text_bold {
+            font-weight: bold;
+        }
+
+        .edit_section {
+            width: 70%;
+            background-color: white;
+            padding: 35px 100px 35px 100px;
+            border-top: 1px solid rgb(220, 220, 220);
+            border-bottom: 1px solid rgb(220, 220, 220);
+            border-right: 1px solid rgb(220, 220, 220);
+            border-radius: 0 8px 8px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        #profile2 {
+            height: 45px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        #id {
+            font-size: 19px;
+        }
+
+        .edit_section p {
+            margin-bottom: 0;
+            font-size: 15px;
+        }
+
+        .edit_section a {
+            text-decoration: none;
+            font-weight: bold;
+            color: rgb(7, 143, 233)
+        }
+
+        .edit_section label {
+            font-weight: bold;
+            min-width: 130px;
+            font-size: 15px;
+        }
+
+        .edit_section input {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-size: 11px;
+            height: 35px;
+        }
+
+        .edit_section input[type="submit"] {
+            margin-top: 30px;
+            background-color: rgb(70, 70, 70);
+            max-width: 200px;
+            height: 40px;
+            font-size: 15px;
+        }
+
+        .pw_link {
+            margin-top: 20px;
+            color: rgb(0, 153, 255)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <header>
+            <span id="logo">
+                <h1>오를래</h1>
+            </span>
+        </header>
+        <nav>
+            <span class="nav">MAIN</span>
+            <span class="nav">HIKING</span>
+            <span class="nav">CREW</span>
+            <span class="nav">FEED</span>
+            <span class="nav"><img id="profile" src="default.jpg"></span>
+        </nav>
+    </div>
+    <div class="section">
+        <div class="box">
+            <div class="nav2">
+                <ul>
+                    <ol>
+                        프로필편집
+                    </ol>
+                    <ol class="text_bold">
+                        비밀번호 변경
+                    </ol>
+                    <ol>
+                        로그아웃
+                    </ol>
+                </ul>
+            </div>
+            <div class="edit_section">
+                <form>
+                    <table>
+                        <tr>
+                            <td>
+                                <img id="profile2" src="default.jpg">
+                            </td>
+                            <td>
+                                <p id="id" class="text_bold">idid1234</p>
+                            </td>
+                        </tr>
+                        <tr>
+                        </tr>
+                            <td>
+                                <br>
+                            </td>
+                        <tr>
+                            <td>
+                                <label for="pw">이전 비밀번호</label>
+                            </td>
+                            <td>
+                                <input type="password" id="pw" name="pw" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="newpw">새 비밀번호</label>
+                            </td>
+                            <td>
+                                <input type="password" id="newpw" name="newpw" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="newpw2">새 비밀번호 확인</label>
+                            </td>
+                            <td>
+                                <input type="password" id="newpw2" name="newpw2" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" value="비밀번호 변경" class="form-control btn-secondary">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <a href="#">
+                                    <p class="pw_link">비밀번호를 잊으셨나요?</p>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
