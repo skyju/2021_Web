@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,7 @@ public class RestController {
 	private RegService regService;
 	
 	@RequestMapping("/members/{id}")
+	@CrossOrigin
 	public Member getMember(
 			@PathVariable("id") int idx
 			) {
@@ -36,16 +38,19 @@ public class RestController {
 	}
 	
 	@GetMapping("/members")
+	@CrossOrigin
 	public List<Member> getMembers(){
 		return restService.getMembers();
 	}
 	
 	@GetMapping("/members1")
+	@CrossOrigin
 	public Map<Integer, Member> getMembers1(){
 		return restService.getMembers1();
 	}
 	
 	@PostMapping("/members/reg1")
+	@CrossOrigin
 	public String regMember1(
 			Report report,
 			HttpServletRequest request
@@ -54,6 +59,7 @@ public class RestController {
 	}
 	
 	@PostMapping("/members/reg2")
+	@CrossOrigin
 	public String regMember2(
 			@RequestBody Report report,
 			HttpServletRequest request

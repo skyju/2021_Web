@@ -51,7 +51,7 @@
 		$('#id').focusout(function() {
 			// ajax 비동기 통신 > id를 서버로 보내고 사용 가능 유무의 응답 코드를 받는다 -> 화면에 메시지 출력
 			$.ajax({
-				url : 'http://localhost:8080/member/member/idcheck',
+				url : 'http://52.79.178.223:8080/member/member/idcheck',
 				type : 'post',
 				data : {
 					mid : $(this).val()
@@ -103,7 +103,7 @@
 			
 			console.log(formData);
 			$.ajax({
-				url : '/member/members/reg1',
+				url : 'http://52.79.178.223:8080/member/members/reg1',
 				type : 'post',
 				data : formData,
 				enctype : 'multipart/form-data',
@@ -144,7 +144,7 @@
 	
 	function memberList(){
 		$.ajax({
-			url : 'http://localhost:8080/member/members',
+			url : 'http://52.79.178.223:8080/member/members',
 			type : 'GET',
 			success : function(data){
 				console.log(data);
@@ -155,7 +155,7 @@
 					html += 'idx : ' + item.idx + '<br>';
 					html += '아이디 : ' + item.id + '<br>';
 					html += '이름 : ' + item.name + '<br>';
-					html += '사진 : <img src="http://localhost:8080/member/uploadfile/' + item.photo + '"><br>';
+					html += '사진 : <img src="http://52.79.178.223:8080/member/uploadfile/' + item.photo + '"><br>';
 					html += '등록일 : ' + item.date + '<br>';
 					html += '</div>';
 					$('#memberlist').append(html);

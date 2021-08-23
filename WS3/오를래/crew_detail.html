@@ -60,6 +60,8 @@
 
         .section {
             background-color: rgb(240, 240, 240);
+            display: flex;
+            justify-content: center;
         }
 
         p {
@@ -67,7 +69,8 @@
         }
 
         section {
-            padding: 80px 50px 100px 50px;
+            padding: 80px 100px 100px 100px;
+            max-width: 1000px;
         }
 
         .box {
@@ -80,19 +83,24 @@
         .crew_section,
         .crew_information {
             display: flex;
+            justify-content: center;
             flex-direction: row;
             flex-wrap: wrap;
         }
 
         .crew_section {
             padding: 10px 10px 30px 10px;
-            justify-content: center;
-            align-items: center;
+        }
+
+        .crew_box {
+            width: 50%;
         }
 
         .crew_img {
             padding-right: 10px;
-            width: 350px;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
 
         #crew_info {

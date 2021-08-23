@@ -42,11 +42,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					useGeneratedKeys="true"
 					keyProperty="idx">
 					<if test="photo != null">
-							insert into Member (id, pw, name, photo)
+							insert into member (id, pw, name, photo)
 							values (#{id}, #{pw}, #{name}, #{photo})
 					</if>
 					<if test="photo == null">
-							insert into Member (id, pw, name)
+							insert into member (id, pw, name)
 							values (#{id}, #{pw}, #{name})
 					</if>
 	</insert>
