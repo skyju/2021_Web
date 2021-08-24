@@ -27,7 +27,7 @@
             align-content: center;
             justify-content: center;
             align-items: center;
-            min-width: 230px;
+            min-width: 20%;
         }
 
         .action .icon {
@@ -109,10 +109,10 @@
 
         .nav {
             display: flex;
-            min-width: 700px;
             justify-content: center;
             align-content: center;
             align-items: center;
+            padding-right: 30px;
         }
 
         .header .menu a::after,
@@ -225,6 +225,9 @@
 
 
 
+        .display_none {
+            display: none;
+        }
 
         .text_bold {
             font-weight: bold;
@@ -244,21 +247,21 @@
 
         .section {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: center;
         }
 
         p {
             font-size: 13px;
         }
 
-        section {
-            padding: 80px 100px 100px 100px;
-            max-width: 1200px;
-        }
-
         .box {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            margin: 5em 10em 5em 10em;
         }
 
         .card {
@@ -276,14 +279,19 @@
             margin-bottom: 10px;
         }
 
-        .card a {
+        .crew_name_section a {
             text-decoration: none;
             font-size: 13px;
             line-height: 20px;
         }
 
-        .card_name_section .btn {
+        .join_section a {
+            font-size: 14px;
             border-color: rgb(220,220,220);
+        }
+
+        .card_name_section .btn {
+            border-color: rgb(220, 220, 220);
             height: 30px;
         }
 
@@ -429,7 +437,7 @@
         }
 
         .content {
-            max-width: 350px;
+            width: 80%;
         }
 
         .pagination {
@@ -451,13 +459,11 @@
         }
 
         .input_section input[type="text"] {
-            width: 300px;
             margin-right: 13px;
             font-size: 13px;
         }
 
         .input_section input[type="submit"] {
-            width: 70px;
             font-size: 15px;
             border-color: rgb(221, 221, 221);
         }
@@ -471,7 +477,6 @@
             display: flex;
             padding-bottom: 10px;
         }
-
     </style>
     <script>
         function menuToggle() {
@@ -516,7 +521,7 @@
     <div class="section">
         <section>
             <div class="box">
-                <div class="card" style="width: 500px;">
+                <div class="card">
                     <img src="hiking2.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <div class="crew_name_section">
@@ -554,7 +559,8 @@
                                     <td>
                                         <p id="nickname">닉네임</p>
                                         <p class="content">Lorem ipsum dolor sit amet consectetur,
-                                            adipisicing elit. Lasem alsit slikasandra met sln concenstrated ferspon loawe yoose. </p>
+                                            adipisicing elit. Lasem alsit slikasandra met sln concenstrated ferspon
+                                            loawe yoose. </p>
                                         <p class="date">2021.08.18 03:23</p>
                                     </td>
                                 </tr>
@@ -596,8 +602,12 @@
                             </ul>
                         </div>
                         <div class="input_control">
-                            <input type="text" class="form-control">
-                            <input type="submit" value="게시" class="btn1 btn-light form-control">
+                            <div>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div>
+                                <input type="submit" value="게시" class="btn1 btn-light form-control">
+                            </div>
                         </div>
                     </div>
                 </div>
