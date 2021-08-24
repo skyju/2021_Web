@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
         crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/cccee664d4.js" crossorigin="anonymous"></script>
     <style>
         * {
             margin: 0;
@@ -20,45 +21,228 @@
             box-sizing: border-box;
         }
 
-        .nav {
-            display: inline;
-            font-size: 15x;
-            padding-left: 10px;
+        /*header*/
+        .logo {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            min-width: 230px;
         }
 
-        header {
+        .action .icon {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            padding-left: 35px;
+        }
+
+        .action .menu {
+            position: absolute;
+            top: 80px;
+            right: 90px;
+            padding: 20px;
+            backdrop-filter: bulr(10px);
+            background-color: rgba(0, 0, 0, 0.3);
+            box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            border-radius: 15px;
+            transition: 0.5s;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .big-bg {
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+        }
+
+        #home .header h1 {
+            font-size: 1.5rem;
+            display: inline;
+        }
+
+        .action .menu.active {
+            top: 70px;
+            visibility: visible;
+            opacity: 1;
+            margin-right: -20px;
+        }
+
+        .action .menu ul li {
+            list-style: none;
+            margin: -10px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            direction: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action .menu ul li a {
             display: inline-block;
-            padding-top: 50px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: 0.5s;
+        }
+
+        .action .menu ul li:hover a {
+            color: #ff5d94;
         }
 
         .header {
-            border-bottom: 1px solid rgb(220, 220, 220);
+            width: 100%;
+            padding-top: 20px;
+            left: 0;
+            padding-bottom: 10px;
+            line-height: 60px;
+            display: flex;
+            justify-content: space-between;
         }
 
-        h1 {
-            position: absolute;
-            top: 12px;
-            left: 27px;
-            font-size: 20px;
-            padding-left: 10px;
+        .header a {
+            position: relative;
+            text-decoration: none;
+            color: black;
         }
 
-        nav {
-            display: inline-block;
+        .nav {
+            display: flex;
+            min-width: 700px;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+
+        .header .menu a::after,
+        .header .nav a::after {
+            content: "";
             position: absolute;
-            top: 12px;
-            right: 27px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 4px;
+            background: black;
+            transition: all .5s ease-out;
+        }
+
+        .header .menu a::after {
+            bottom: 2px;
+
+        }
+
+        .header a:hover::after {
+            width: 100%;
+        }
+
+        .header:hover {
+            backdrop-filter: bulr(10px);
+            background-color: rgba(255, 255, 255, 0.25);
+            transition: all 0.5s ease;
+            z-index: 100;
+        }
+
+        .nav ul {
+            display: flex;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            list-style: none;
+            font-family: 'Philosopher', sans-serif;
+            margin-bottom: 0;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav ul li {
+            margin-left: 36px;
+        }
+
+        .nav ul li a {
+            columns: #432;
+        }
+
+        /*footer*/
+
+        .footer {
+            padding: 70px 0;
+            background-color: #cac0ae;
+            flex-wrap: wrap;
+            display: flex;
+        }
+
+        .footer-col {
+            width: 30%;
+            text-align: center;
+            padding-left: 50px;
+
+        }
+
+        .footer-col h3 {
+            font-size: 18px;
+            text-transform: capitalize;
+            margin-bottom: 25px;
+            font-weight: 500;
+            position: relative;
+            color: white;
+            font-weight: bold;
+        }
+
+        .footer-col li {
+            list-style: none;
+            padding: 5px;
+        }
+
+        .footer-col h3::before {
+            content: '';
+            position: absolute;
+            left: 10;
+            height: 2px;
+            bottom: -10px;
+            box-sizing: border-box;
+            background-color: white;
+            width: 120px;
+        }
+
+
+        .footer-col ul li a {
+            font-size: 16px;
+            text-transform: capitalize;
+            color: white;
+            display: block;
+            transition: all 0.5s ease;
+            text-decoration: none;
+        }
+
+        .footer-col ul li a:hover {
+            color: #ffffff;
+            padding-left: 20px;
+        }
+
+
+
+
+
+
+        .text_bold {
+            font-weight: bold;
+        }
+
+        .color_blue {
+            color: rgb(73, 149, 248);
         }
 
         #profile {
-            height: 25px;
+            height: 35px;
             border-radius: 50%;
             overflow: hidden;
+            text-align: left;
+            margin: 0;
         }
 
-
         .section {
-            background-color: rgb(240, 240, 240);
             display: flex;
             justify-content: center;
         }
@@ -69,14 +253,38 @@
 
         section {
             padding: 80px 100px 100px 100px;
-            max-width: 1000px;
+            max-width: 1200px;
         }
 
         .box {
-            padding: 20px 0 20px 0;
-            background-color: white;
-            border-radius: 8px;
-            border: 1px solid rgb(220, 220, 220);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card {
+            width: 50%;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 /10%);
+        }
+
+        .card-body {
+            padding: 3rem 3rem;
+        }
+
+        .crew_name_section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .card a {
+            text-decoration: none;
+            font-size: 13px;
+            line-height: 20px;
+        }
+
+        .card_name_section .btn {
+            border-color: rgb(220,220,220);
+            height: 30px;
         }
 
         .crew_section,
@@ -127,24 +335,23 @@
         .crew_introduction,
         .crew_hashtag {
             padding-top: 10px;
-            padding-bottom: 10px;
-            padding-left: 10px;
+            padding-bottom: 15px;
             border-bottom: 1px solid rgb(220, 220, 220);
             margin-bottom: 0;
         }
 
         .crew_information {
-            padding-top: 15px;
-            padding-bottom: 15px;
+            padding-top: 5px;
+            padding-bottom: 5px;
             justify-content: center;
             justify-content: center;
             border-bottom: 1px solid rgb(220, 220, 220);
-            margin-bottom: 0;
+            margin-bottom: 20px;
         }
 
         .crew_information span {
-            padding-left: 13px;
-            padding-right: 13px;
+            padding-left: 30px;
+            padding-right: 30px;
             text-align: center;
         }
 
@@ -159,33 +366,35 @@
             border-right: 1px solid rgb(220, 220, 220);
         }
 
-        .edit_btn {
-            display: flex;
-            margin-top: 20px;
-            justify-content: center;
-        }
-
-        .edit_btn button {
-            width: 150px;
-            background-color: rgb(70, 70, 70);
-            font-size: 15px;
-        }
 
         .comment_section {
+            width: 50%;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, .125);
+            border-radius: .25rem;
             padding: 10px 10px 10px 10px;
             text-align: center;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-content: space-between;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 /10%);
         }
 
         .comment_section>table {
-            border-top: 1px solid rgb(220, 220, 220);
-            border-bottom: 1px solid rgb(220, 220, 220);
-            width: 80%;
+            display: flex;
+        }
+
+        .comment_table {
+            display: flex;
+            flex-direction: column;
         }
 
         .comment_section td {
-            padding-top: 7px;
+            padding: 10px 10px 10px 10px;
+            border-bottom: 0.7px solid rgb(222, 222, 222);
         }
 
         .comment_section img {
@@ -209,11 +418,22 @@
         }
 
         #nickname {
+            text-align: left;
             min-width: 50px;
+            font-weight: bold;
+        }
+
+        .date {
+            text-align: left;
+            color: rgb(182, 182, 182);
+        }
+
+        .content {
+            max-width: 350px;
         }
 
         .pagination {
-            justify-content: center;
+            display: flex;
             margin-bottom: 0;
         }
 
@@ -224,21 +444,20 @@
         }
 
         .input_section {
-            margin: 0 auto;
-            padding: 10px 10px 10px 10px;
             display: flex;
             justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
 
         .input_section input[type="text"] {
-            width: 70%;
-            max-width: 600px;
+            width: 300px;
             margin-right: 13px;
             font-size: 13px;
         }
 
         .input_section input[type="submit"] {
-            width: 10%;
+            width: 70px;
             font-size: 15px;
             border-color: rgb(221, 221, 221);
         }
@@ -248,122 +467,185 @@
             font-weight: bold;
         }
 
-        .footer {
-            padding-top: 50px;
+        .input_control {
+            display: flex;
+            padding-bottom: 10px;
         }
+
     </style>
+    <script>
+        function menuToggle() {
+            const toggleMenu = document.querySelector('.menu');
+            toggleMenu.classList.toggle('active')
+        }
+    </script>
 </head>
 
 <body>
-    <div class="header">
-        <header>
-            <span id="logo">
-                <h1>오를래</h1>
-            </span>
-        </header>
-        <nav>
-            <span class="nav">MAIN</span>
-            <span class="nav">HIKING</span>
-            <span class="nav">CREW</span>
-            <span class="nav">FEED</span>
-            <span class="nav"><img id="profile" src="default.jpg"></span>
-        </nav>
+    <div class="action">
+        <div id="home" class="big-bg">
+            <div class="header wrapper">
+                <div class="logo">
+                    <h1><a href="#">오를래</a></h1>
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li><a href="#">MAIN</a></li>
+                        <li><a href="#">HIKING</a></li>
+                        <li><a href="#">CREW</a></li>
+                        <li><a href="#">COMMUNITY</a></li>
+                        <div class="icon" onclick="menuToggle();">
+                            <a href="#"><i class="far fa-user"></i></a>
+                        </div>
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="#">로그인</a></li>
+                        <li><a href="#">회원가입</a></li>
+                        <li><a href="#">내 크루</a></li>
+                        <li><a href="#">내 피드</a></li>
+                        <li><a href="#">마이페이지</a></li>
+                        <li><a href="#">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
+
+
     <div class="section">
         <section>
             <div class="box">
-                <div class="crew_section">
-                    <div class="crew_box">
-                        <img class="crew_img" src="hiking.jpg">
-                    </div>
-                    <div class="crew_box" id="crew_info">
-                        <h3>크루이름</h3>
-                        <p class="crew_introduction">크루소개글. 안녕하세요~ 산타자 크루입니다. 함께 산을 오를 사람을 모집합니다. 반갑습니다.
-                            안녕하세요~ 산타자 크루입니다. 함께 산을 오를 사람을 모집합니다. 반갑습니다.
+                <div class="card" style="width: 500px;">
+                    <img src="hiking2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="crew_name_section">
+                            <h3 class="card-title">산타</h3>
+                            <a href="#" class="btn btn-sm color_blue text_bold">크루 관리</a>
+                        </div>
+                        <p class="card-text">크루소개글. 안녕하세요~ 산타자 크루입니다. 함께 산을 오를 사람을 모집합니다.
+                            반갑습니다.
                         </p>
                         <p class="crew_hashtag">#20대 #30대 #서울 #쉬엄쉬엄</p>
                         <div class="crew_information">
                             <span class="crew_captain">
-                                <p>크루장</p>
+                                <p class="text_bold">크루장</p>
                                 <img id="profile" src="default.jpg">
                             </span>
                             <span class="crew_number">
-                                <p> 크루원</p>
+                                <p class="text_bold">크루원</p>
                                 <p>200</p>
                             </span>
                             <span class="crew_comment_number">
-                                <p>댓글</p>
+                                <p class="text_bold">댓글</p>
                                 <p>130</p>
                             </span>
-                        </div>
-                        <div class="edit_btn">
-                            <button class="btn btn-secondary">크루 관리</button>
                         </div>
                     </div>
                 </div>
                 <div class="comment_section">
-                    <table class="comment_table">
-                        <tr>
-                            <td>
-                                <img id="profile" src="default.jpg">
-                            </td>
-                            <td>
-                                <p id="nickname">닉네임</p>
-                            </td>
-                            <td>
-                                <p class="content">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-                            </td>
-                            <td>
-                                <p class="date">21-08-18 03:23</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img id="profile" src="default.jpg">
-                            </td>
-                            <td>
-                                <p id="nickname">닉네임</p>
-                            </td>
-                            <td>
-                                <p class="content">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-                            </td>
-                            <td>
-                                <p class="date">21-08-18 03:23</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img id="profile" src="default.jpg">
-                            </td>
-                            <td>
-                                <p id="nickname">닉네임</p>
-                            </td>
-                            <td>
-                                <p class="content">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-                            </td>
-                            <td>
-                                <p class="date">21-08-18 03:23</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4">
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#">&lt</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">&gt</a></li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="input_section">
-                    <input type="text" class="form-control">
-                    <input type="submit" value="게시" class="btn1 btn-light form-control">
+                    <div class="comment_table">
+                        <div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img id="profile" src="default.jpg">
+                                    </td>
+                                    <td>
+                                        <p id="nickname">닉네임</p>
+                                        <p class="content">Lorem ipsum dolor sit amet consectetur,
+                                            adipisicing elit. Lasem alsit slikasandra met sln concenstrated ferspon loawe yoose. </p>
+                                        <p class="date">2021.08.18 03:23</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img id="profile" src="default.jpg">
+                                    </td>
+                                    <td>
+                                        <p id="nickname">닉네임</p>
+                                        <p class="content">Lorem ipsum dolor sit amet consectetur,
+                                            adipisicing elit.</p>
+                                        <p class="date">2021.08.18 03:23</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img id="profile" src="default.jpg">
+                                    </td>
+                                    <td>
+                                        <p id="nickname">닉네임</p>
+                                        <p class="content">Lorem ipsum dolor sit amet consectetur,
+                                            adipisicing elit.</p>
+                                        <p class="date">2021.08.18 03:23</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="input_section">
+                        <div>
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="#">&lt</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                <li class="page-item"><a class="page-link" href="#">&gt</a></li>
+                            </ul>
+                        </div>
+                        <div class="input_control">
+                            <input type="text" class="form-control">
+                            <input type="submit" value="게시" class="btn1 btn-light form-control">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </div>
+
+
+    <div class="footer">
+        <div class="footer-col">
+            <ul>
+                <h3>MY ACCOUNT</h3>
+                <li><a href="#">footer</a></li>
+                <li><a href="#">footer</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <ul>
+                <h3>MY ACCOUNT</h3>
+                <li><a href="#">footer</a></li>
+                <li><a href="#">footer</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <ul>
+                <h3>MY ACCOUNT</h3>
+                <li><a href="#">MY PAGE</a></li>
+                <li><a href="#">MY ORDER</a></li>
+                <li><a href="#">MEMBERSHIP</a></li>
+                <li><a href="#">LOGIN</a></li>
+                <li><a href="#">JOIN US</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <ul>
+                <h3>MY ACCOUNT</h3>
+                <li><a href="#">footer</a></li>
+                <li><a href="#">footer</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <ul>
+                <h3>MY ACCOUNT</h3>
+                <li><a href="#">footer</a></li>
+                <li><a href="#">footer</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
