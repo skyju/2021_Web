@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <section class="login-form">
+        <h1><a href="#">오를래</a></h1>
+        <form action="post">
+            <div class="int-area">
+                <input type="text" name="id" id="id" autocomplete="off" required>
+                <label for="id">ID</label>
+            </div>
+
+            <div class="int-area">
+                <input type="password" name="pw" id="pw" autocomplete="off" required>
+                <label for="pw">PASSWORD</label>
+            </div>
+
+            <div class="remember-id">
+                <input type="checkbox">
+                <div>아이디 기억하기</div>
+            </div>
+
+            <div class="btn-area">
+                <input id="btn" type="submit" value="LOGIN">
+            </div>
+
+        </form>
+
+        <div class="caption">
+            <a href="#">아이디 찾기 &nbsp|&nbsp</a>
+            <a href="#">비밀번호 찾기</a>
+
+        </div>
+
+
+        <!-- 네이버로 로그인 영역 -->
+        <form class="naver-login">
+            <input type="submit" value="네이버 로그인">
+        </form>
+
+        <!-- 회원가입 -->
+        <form class="join-us">
+            <input type="submit" value="JOIN US">
+        </form>
+
+    </section>
+
+
+
+    <Script>
+        let id = $('#id');
+        let pw = $('#pw');
+        let btn = $('#btn');
+
+        $(btn).on('click', function () {
+            if ($(id).val() == "") {
+                $(id).next('label').addClass('warning');
+                setTimeout(function () {
+                    $('label').removeClass('warning');
+                }, 1500);
+
+            }
+            else if ($(pw).val() == "") {
+                $(pw).next('label').addClass('warning');
+                setTimeout(function () {
+                    $('label').removeClass('warning');
+                }, 1500);
+            }
+        });
+
+    </Script>
+
+</body>
+
+</html>

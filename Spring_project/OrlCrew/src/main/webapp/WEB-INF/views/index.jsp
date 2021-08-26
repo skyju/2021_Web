@@ -4,13 +4,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Hello</title>
 </head>
 <body>
-	<c:import url="/WEB-INF/frame/nav.jsp" />
+	<%@ include file="/WEB-INF/frame/meta-header.jsp"%>
 	<div class="contents">
-		<h1>시작 화면</h1>
+		<h1>a</h1>
+		<h1>a</h1>
+		<h1>a</h1>
+		<h1>a</h1>
+		<h1>a</h1>
+		<h1>a</h1>
 	</div>
+	<%@ include file="/WEB-INF/frame/meta-footer.jsp"%>
 </body>
 </html>

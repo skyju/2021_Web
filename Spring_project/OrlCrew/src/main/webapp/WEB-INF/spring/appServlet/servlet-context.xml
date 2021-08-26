@@ -42,6 +42,6 @@
 	</interceptors>
 	-->
 	
-	<context:component-scan base-package="com.orl.crew" />	
+	<context:component-scan base-package="com.orl" />	
 	
 </beans:beans>

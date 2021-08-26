@@ -10,7 +10,8 @@
 	<bean 
 	id="dataSource" 
 	class="com.zaxxer.hikari.HikariDataSource"
-	p:jdbcUrl="jdbc:mysql://minju2021.cuvvpjbo4wqy.ap-northeast-2.rds.amazonaws.com:3306/project?serverTimezone=UTC"
+	p:driverClassName="com.mysql.cj.jdbc.Driver"
+	p:jdbcUrl="jdbc:mysql://minju2021.cuvvpjbo4wqy.ap-northeast-2.rds.amazonaws.com:3306/final?serverTimezone=UTC"
 	p:username="bit" 
 	p:password="bit" 
 	/>
@@ -21,8 +22,9 @@
 	id="sqlSessionFactoryBean"
 	class="org.mybatis.spring.SqlSessionFactoryBean"
 	p:dataSource-ref="dataSource"
-	p:mapperLocations="classpath:com/orl/crew/dao/mapper/*.xml"
+	p:mapperLocations="classpath:com/orl/*/dao/mapper/*.xml"
 	/>
+
 	<!-- mapperlocations에 객체 경로 넣고, 애너테이션으로 @Resource 써줘야함 -->
 	
 	<!-- SqlSessionTemplate 등록 : jdbc template처럼 try/catch 등의 처리를 안하게 method 제공 -->
@@ -32,6 +34,6 @@
 	>
 	<constructor-arg ref="sqlSessionFactoryBean"/>
 	</bean>
-
+	
 
 </beans>
