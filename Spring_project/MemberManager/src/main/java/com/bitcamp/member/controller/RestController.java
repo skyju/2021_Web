@@ -18,7 +18,9 @@ import com.bitcamp.member.domain.Report;
 import com.bitcamp.member.service.RegService;
 import com.bitcamp.member.service.RestService;
 
-@org.springframework.web.bind.annotation.RestController
+@org.springframework.web.bind.annotation.RestController 
+//RestController 말구 그냥 Controller로 쓰면
+//@RequestMapping 밑에 @ResponseBody를 적어야함
 public class RestController {
 	
 	@Autowired

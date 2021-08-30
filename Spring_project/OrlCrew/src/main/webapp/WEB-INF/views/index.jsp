@@ -9,7 +9,7 @@
 <title>Hello</title>
 </head>
 <body>
-	<%@ include file="/WEB-INF/frame/meta-header.jsp"%>
+	<%@ include file="/WEB-INF/frame/default/header.jsp"%>
 	<div class="contents">
 		<h1>a</h1>
 		<h1>a</h1>
@@ -18,6 +18,6 @@
 		<h1>a</h1>
 		<h1>a</h1>
 	</div>
-	<%@ include file="/WEB-INF/frame/meta-footer.jsp"%>
+	<%@ include file="/WEB-INF/frame/default/footer.jsp"%>
 </body>
 </html>

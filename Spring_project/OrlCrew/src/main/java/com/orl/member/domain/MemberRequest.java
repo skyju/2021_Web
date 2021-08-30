@@ -114,6 +114,13 @@ public class MemberRequest {
 	}
 
 	public Timestamp getMemberBirth() throws ParseException {
+		
+		if(month.length()==1) {
+			month = "0"+month;
+		} if(date.length()==1) {
+			date = "0"+date;
+		}
+		
 		String dataFormatString = year+month+date;
 		SimpleDateFormat format =new SimpleDateFormat("yyyyMMdd");
 		Date d = format.parse(dataFormatString);

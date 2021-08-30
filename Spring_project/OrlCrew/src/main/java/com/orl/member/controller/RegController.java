@@ -1,7 +1,5 @@
 package com.orl.member.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,9 +24,8 @@ public class RegController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String reg(
 			MemberRequest memberRequest, 
-			HttpServletRequest request, 
 			Model model) {
-		int result = regservice.reg(memberRequest, request);
+		int result = regservice.reg(memberRequest);
 		model.addAttribute("result", result);
 		return "member/reg";
 	}

@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="/WEB-INF/frame/meta-header.jsp"%>
+<%@ include file="/WEB-INF/frame/default/header.jsp"%>
 </head>
 <body>
 	<div class="section">
 		<div class="box">
-			<%@ include file="/WEB-INF/frame/crew-manage-nav.jsp"%>
+			<%@ include file="/WEB-INF/frame/crew/crew-manage-nav.jsp"%>
 			<div class="edit_section">
 				<label for="crewname">크루명</label>
 				<form>
@@ -39,5 +39,5 @@
 	</div>
 </body>
 </body>
-<%@ include file="/WEB-INF/frame/meta-footer.jsp"%>
+<%@ include file="/WEB-INF/frame/default/footer.jsp"%>
 </html>

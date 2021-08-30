@@ -6,7 +6,7 @@ CREATE TABLE final.member (
    `memberName` VARCHAR(50) NOT NULL ,
    `memberEmail` VARCHAR(40) NOT NULL,
    `memberProfile` VARCHAR(100) NULL,
-   `memberNickname` VARCHAR(50) NOT NULL ,
+   `memberNickname` VARCHAR(50) NOT NULL,
    `memberRegdate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
    `memberBirth` TIMESTAMP NULL,
     constraint pk_memberIdx PRIMARY KEY (memberIdx),
@@ -47,9 +47,11 @@ CREATE TABLE final.crew (
 	`crewCreatedate` timestamp default current_timestamp,
 	`crewTag` varchar(200) NULL,
 	`memberIdx` INTEGER NOT NULL,
+    `memberNickName` VARCHAR(50),
     constraint pk_crewIdx primary key (crewIdx),
     constraint unique_crewName unique key (crewName),
-    constraint fk_memberIdx_to_crewOwner foreign key (memberIdx) references final.member(memberIdx) 
+    constraint fk_memberIdx_to_crewOwner foreign key (memberIdx) references final.member(memberIdx),
+    constraint fk_memberName_to_crewCapName foreign key (memberNickName) references final.member(memberNickName)
 );
 
 -- 크루가입

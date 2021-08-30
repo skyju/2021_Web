@@ -1,7 +1,5 @@
 package com.orl.member.service;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,12 +17,11 @@ public class RegService {
 	private SqlSessionTemplate template;
 
 	public int reg(
-			MemberRequest memberRequest, 
-			HttpServletRequest request
+			MemberRequest memberRequest
 			) {
 
 		int resultCnt = 0;
-
+		
 		try {
 			Member member = new Member();
 

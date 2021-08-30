@@ -22,6 +22,9 @@ values ('별로에여 우우우 별로다', 1, 2);
 insert into final.crew (crewName, crewDiscription, crewTag, memberIdx) 
 values ('우주짱짱산타모임', '산을 짱짱 잘타는 사람만 오시길 바랍니다', '#고수', 1);
 
+insert into final.crew (crewName, crewDiscription, crewTag, memberIdx) 
+values ('우주짱짱산타모임2', '산을 짱짱 잘타는 사람만 오시길 바랍니다2', '#초보', 2);
+
 -- 크루가입 insert
 insert into final.crewreg (memberIdx, crewIdx) values (1, 1);
 insert into final.crewreg (memberIdx, crewIdx) values (2, 1);

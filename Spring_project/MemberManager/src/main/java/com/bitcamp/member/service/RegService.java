@@ -30,24 +30,30 @@ public class RegService {
 			) {
 
 		int resultCnt = 0;
+		
+		//빈 파일객체
 		File newFile = null;
-
 		try {
 			Member member = new Member();
-
 			member.setId(report.getId());
 			member.setPw(report.getPw());
 			member.setName(report.getName());
-
+			
+			
+			//fileupload
 			if (report.getPhoto() != null && !report.getPhoto().isEmpty()) {
 				newFile = saveFile(request, report.getPhoto());
 				member.setPhoto(newFile.getName());
 			}
+			//
 			
+			
+			//db
 			dao = template.getMapper(Dao.class);
 			resultCnt = dao.insertMember(member);
-			System.out.println("새롭게 등록된 idx : " + member.getIdx());
-
+			//
+			
+			
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 			if (newFile != null & newFile.exists()) {
@@ -60,6 +66,7 @@ public class RegService {
 		return resultCnt;
 	}
 
+	//fileupload 핵심로직
 	private File saveFile(HttpServletRequest request, MultipartFile file) {
 
 		String path = request.getSession().getServletContext().getRealPath(UPLOAD_URI);
@@ -67,6 +74,7 @@ public class RegService {
 		System.out.println(path);
 
 		File newDir = new File(path);
+		
 		if (!newDir.exists()) {
 			newDir.mkdir();
 			System.out.println("저장 폴더를 생성했습니다.");
@@ -77,14 +85,12 @@ public class RegService {
 		File newFile = new File(newDir, newFileName);
 
 		try {
-			
 			//파일 저장
 			file.transferTo(newFile);
 			
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
-
 		return newFile;
 	}
 

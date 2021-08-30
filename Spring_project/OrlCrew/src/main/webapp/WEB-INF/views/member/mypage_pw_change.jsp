@@ -10,10 +10,10 @@
 <title>Document</title>
 </head>
 <body>
-	<%@ include file="/WEB-INF/frame/meta-header.jsp"%>
+	<%@ include file="/WEB-INF/frame/default/header.jsp"%>
 	<div class="section">
 		<div class="box">
-			<%@ include file="/WEB-INF/frame/member-mypage-nav.jsp"%>
+			<%@ include file="/WEB-INF/frame/member/member-mypage-nav.jsp"%>
 			<div class="edit_section">
 				<form>
 					<table>
@@ -54,6 +54,6 @@
 			</div>
 		</div>
 	</div>
-	<%@ include file="/WEB-INF/frame/meta-footer.jsp"%>
+	<%@ include file="/WEB-INF/frame/default/footer.jsp"%>
 </body>
 </html>
