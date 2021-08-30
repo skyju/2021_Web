@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.orl.crew.domain.CrewComment;
 import com.orl.crew.domain.CrewCommentInfo;
 import com.orl.crew.domain.CrewInfo;
 import com.orl.crew.service.CrewDetailService;
@@ -38,15 +37,7 @@ public class CrewDetailController {
 		}
 		model.addAttribute("crew", crewinfo);
 		
-		List<CrewComment> list = service.getCrewComment(crewIdx);
-		if(list != null) {
-			for(int i = 0 ; i < list.size() ; i++) {
-				CrewCommentInfo info = list.get(i).CommentToInfo();
-				Member commentMember = service.getCommentMember(list.get(i).getMemberIdx());
-				info.setMemberNickName(commentMember.getMemberNickname());
-				info.setMemberProfile(commentMember.getMemberProfile());
-			}
-		}
+		List<CrewCommentInfo> list = service.getCrewComment(crewIdx);
 		model.addAttribute("commentList", list);
 		
 		return "crew/detail";
