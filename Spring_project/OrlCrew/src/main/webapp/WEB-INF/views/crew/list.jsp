@@ -8,26 +8,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
-<%@ include file="/WEB-INF/frame/default/header.jsp"%>
-
-<link rel="stylesheet" href="<c:url value='/css/crew/crew-list.css'/>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
 	crossorigin="anonymous">
-<script defer src="https://kit.fontawesome.com/cccee664d4.js" crossorigin="anonymous"></script>
 <script defer
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
 	crossorigin="anonymous"></script>
-<script>
-  function menuToggle() {
-    const toggleMenu = document.querySelector('.menu');
-    toggleMenu.classList.toggle('active')
-	}
- </script>
+<%@ include file="/WEB-INF/frame/default/header.jsp"%>
+<link rel="stylesheet" href="<c:url value='/css/crew/crew-list.css'/>">
 </head>
 <body>
 	<div class="section">
@@ -110,8 +102,8 @@
 				
 			</nav>
 			<div class="crew-insert">
-                <a href="<c:url value='/crew/insert'/>">크루 생성하기</a>
-            </div>
+           <a href="<c:url value='/crew/insert'/>">크루 생성하기</a>
+      </div>
 		</div>
 		
 	</div>

@@ -26,7 +26,7 @@
 			<div class="box">
 				<div class="card">
 				
-					<img src="<c:url value='/images/hiking2.jpg'/>" class="card-img-top" alt="...">
+					<img src="<c:url value='/images/crew/${crew.crewPhoto}'/>" class="card-img-top" alt="...">
 						
 					<div class="card-body">
 						<div class="crew_name_section">
