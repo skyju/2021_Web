@@ -57,6 +57,9 @@ function menuToggle() {
     const toggleMenu = document.querySelector('.menu');
     toggleMenu.classList.toggle('active')
 }
+
+
+
 $(document).ready(function () {
     var tag = {};
     var counter = 0;
@@ -100,7 +103,8 @@ $(document).ready(function () {
 
                 // 해시태그가 중복되었는지 확인
                 if (result.length == 0) {
-                    $("#tag-list").append("<li class='tag-item'>" + tagValue + "<span class='del-btn' idx='" + counter + "'>x</span></li>");
+                    $("#tag-list").append("<li class='tag-item'>" + tagValue + "<span class='del-btn' idx='" + counter + "'>x"+
+                    "</span><input type='hidden' name='crewTag' id='rdTag' value='"+tagValue+"'></li>");
                     addTag(tagValue);
                     self.val("");
                 } else {

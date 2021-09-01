@@ -52,6 +52,7 @@ public class CrewInsertService {
 	    	crew.setMemberIdx(member.getMemberIdx());
 	    	crew.setMemberNickName(member.getMemberNickname());
 	    }
+	    
 		dao = template.getMapper(Dao.class);
 		resultCnt = dao.insertCrew(crew);
 		}catch(Exception e) {

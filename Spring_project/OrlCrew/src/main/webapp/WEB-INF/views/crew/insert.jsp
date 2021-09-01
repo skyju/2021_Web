@@ -21,20 +21,21 @@
     <div class="section">
         <div class="box">
             <div class="edit_section">
-                <form method="post" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data" id="tag-form">
                     <table>
                     <div class="create">
                     <h1>생성하기</h1>
                     </div>
+                    
                         <tr>
                             <td>
                                 <label for="crewname">크루명</label>
                             </td>
                             <td>
-                                <input type="text" id="crewname" name="crewName" class="form-control"
-                                    placeholder="원래 크루명이 자동으로 뜨도록 처리">
+                                <input type="text" id="crewname" name="crewName" class="form-control">
                             </td>
                         </tr>
+                        
                         <tr>
                             <td>
                                 <label for="crewname">크루 사진</label>
@@ -45,6 +46,7 @@
                                 <input type="file" id="crewPhoto" name="crewPhoto" class="form-control form-control-lg">
                             </td>
                         </tr>
+                        
                         <tr>
                             <td>
                                 <label for="crewintro">크루 소개글</label>
@@ -54,6 +56,7 @@
                                     placeholder="새로운 크루 소개글을 입력해주세요!">
                             </td>
                         </tr>
+                        
                         <tr>
                             <td>
                                 <div class="tr_hashTag_area">
@@ -61,15 +64,11 @@
                                 </div>
                             </td>
                             <td>
+                                <ul id="tag-list"></ul>
                                 <div class="form-group">
-                                    <input type="hidden" value="" name="=crewTag" id="rdTag" />
+                                    <input type="text" id="tag" size="7" placeholder="#" style="width: 300px;" />
                                 </div>
-
-                                <ul id="tag-list" name="=crewTag"></ul>
-
-                                <div class="form-group">
-                                    <input type="text" id="tag" size="7" placeholder="#" name="=crewTag" style="width: 300px;" />
-                                </div>
+                                
                             </td>
                         </tr>
                         <tr>
