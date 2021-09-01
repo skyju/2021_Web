@@ -1,0 +1,30 @@
+package com.bitcamp.app.member.service;
+
+import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bitcamp.app.member.domain.Member;
+import com.bitcamp.app.member.domain.SearchType;
+import com.bitcamp.app.member.mapper.MemberMapper;
+
+@Service
+public class MemberListViewService {
+
+	private MemberMapper dao;
+
+	@Autowired
+	private SqlSessionTemplate template;
+
+	public List<Member> getMemberList(){
+		dao = template.getMapper(MemberMapper.class);
+		return dao.selectAll();
+	}
+
+	public List<Member> getMemberList(SearchType searchType){
+		dao = template.getMapper(MemberMapper.class);
+		return dao.selectMember(searchType);
+	}
+}

@@ -59,9 +59,9 @@
 						</div>
 						
 						<c:if test="${crew.isReg ne true}">
-						<div class="join_section">
-               <a href="#" class="btn btn-sm btn-light">가입하기</a>
-            </div>
+							<div class="join_section">
+	               <a href="#" class="btn btn-sm btn-light">가입하기</a>
+	            </div>
             </c:if>
 						
 					</div>

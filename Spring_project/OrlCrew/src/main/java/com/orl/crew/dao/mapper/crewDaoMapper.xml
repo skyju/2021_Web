@@ -85,4 +85,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where memberIdx = #{memberIdx}
 	</select>
 	
+	
+	
+	<!-- 용성쓰가 작성 -->
+	<!-- 페이징 처리 -->
+	
+	<select 
+	id="selectCrewPaging"
+	resultType="com.orl.crew.domain.Paging">
+	SELECT * FROM final.crew ORDER BY crewIdx DESC LIMIT #{startPage},#{endPage};
+	</select>
+	
+	<select id="getCrewListCnt" resultType="int">
+		SELECT count(*) as crewIdx FROM crew;
+	</select>
+	
+	<!-- insert -->
+	<insert 
+	id="insertCrew"
+	parameterType="com.orl.crew.domain.Crew"
+	useGeneratedKeys="true" 
+	keyProperty="crewIdx">
+		insert into crew (crewName,crewPhoto,crewDiscription,crewTag,memberIdx,memberNickName)
+		values (#{crewName}, #{crewPhoto}, #{crewDiscription}, #{crewTag}, #{memberIdx}, #{memberNickName})
+	</insert>
+	
 </mapper>

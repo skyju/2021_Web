@@ -1,0 +1,42 @@
+package com.bitcamp.app.member.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.bitcamp.app.member.domain.Member;
+import com.bitcamp.app.member.domain.SearchType;
+import com.bitcamp.app.member.service.MemberListViewService;
+
+@Controller
+public class ListViewController {
+	
+	@Autowired
+	MemberListViewService service;
+	
+	@RequestMapping("/member/list")
+	public String listView(
+			SearchType searchType,
+			Model model
+			) {
+		
+		List<Member> list = null;
+		
+		if(searchType.getKeyword() !=null 
+				&& searchType.getKeyword().trim().length()>0) {
+			list = service.getMemberList(searchType);
+		} else {
+			list = service.getMemberList();
+		}
+		
+		model.addAttribute("result", list);
+		
+		return "member/list";
+	}
+
+}

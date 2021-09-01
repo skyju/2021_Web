@@ -6,10 +6,19 @@ import org.apache.ibatis.annotations.Param;
 
 import com.orl.crew.domain.Crew;
 import com.orl.crew.domain.CrewComment;
+import com.orl.crew.domain.Paging;
 import com.orl.crew.domain.SearchType;
 import com.orl.member.domain.Member;
 
 public interface Dao {
+	
+	int insertCrew(Crew crew);
+	
+	int getCrewListCnt();
+	
+	int getCrewListCnt(Paging paging);
+	
+	//
 	
 	List<Crew> selectAll();
 	

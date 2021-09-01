@@ -103,7 +103,7 @@
 			
 			console.log(formData);
 			$.ajax({
-				url : 'http://52.79.178.223:8080/member/members/reg1',
+				url : 'http://localhost:8081/members/reg1',
 				type : 'post',
 				data : formData,
 				enctype : 'multipart/form-data',
@@ -144,7 +144,7 @@
 	
 	function memberList(){
 		$.ajax({
-			url : 'http://52.79.178.223:8080/member/members',
+			url : 'http://localhost:8081/members',
 			type : 'GET',
 			success : function(data){
 				console.log(data);

@@ -121,11 +121,11 @@ public class CrewInfo {
 		this.crewCommentNum = crewCommentNum;
 	}
 
-	public boolean isReg() {
+	public boolean getIsReg() {
 		return isReg;
 	}
 
-	public void setReg(boolean isReg) {
+	public void setIsReg(boolean isReg) {
 		this.isReg = isReg;
 	}
 	

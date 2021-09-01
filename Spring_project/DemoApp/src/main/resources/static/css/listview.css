@@ -1,0 +1,24 @@
+td {
+	text-align: center;
+	padding: 5px 10px;
+}
+
+button {
+	margin: 5px 0;
+}
+
+#list_header {
+	padding-left: 15px;
+}
+
+table {
+	margin-left: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+footer {
+	margin-bottom: 30px;
+}

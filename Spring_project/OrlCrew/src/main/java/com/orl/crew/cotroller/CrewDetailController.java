@@ -27,14 +27,19 @@ public class CrewDetailController {
 			HttpSession session,
 			Model model
 			) {
+		
 		CrewInfo crewinfo = service.getCrew(crewIdx).crewToCrewInfo();
 		Member member = (Member)session.getAttribute("member");
 		
 		crewinfo.setCrewMemberNum(service.getCrewMemberNum(crewIdx));
 		crewinfo.setCrewCommentNum(service.getCrewCommentNum(crewIdx));
+		
 		if(member != null) {
-			crewinfo.setReg(service.getIsCrewMember(member.getMemberIdx(), crewIdx));
+			crewinfo.setIsReg(service.getIsCrewMember(member.getMemberIdx(), crewIdx));
+		} else {
+			crewinfo.setIsReg(false);
 		}
+		
 		model.addAttribute("crew", crewinfo);
 		
 		List<CrewCommentInfo> list = service.getCrewComment(crewIdx);
