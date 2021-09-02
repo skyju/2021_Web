@@ -106,6 +106,7 @@
 			}
 			
 			console.log(formData);
+			
 			$.ajax({
 				url : 'http://localhost:8081/members/reg1',
 				type : 'post',

@@ -7,12 +7,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.orl.crew.domain.CrewCommentInfo;
-import com.orl.crew.domain.CrewInfo;
+import com.orl.crew.domain.CrewCommentRequest;
 import com.orl.crew.service.CrewCommentService;
 
 @RestController
@@ -27,19 +28,17 @@ public class CrewCommentRestController {
 			HttpServletRequest request,
 			@RequestParam("crewIdx")int crewIdx
 			){
-		CrewInfo info = (CrewInfo) request.getSession().getAttribute("crew");
-		List<CrewCommentInfo> list = commentService.getCrewComment(info.getCrewIdx());
+		List<CrewCommentInfo> list = commentService.getCrewComment(crewIdx);
 		
 		return list;
 	}
 	
 	@RequestMapping("/crew/commentInsert")
 	@CrossOrigin
-	public int insertComment(
-			@RequestParam("crewComment") String crewComment,
-			@RequestParam("crewIdx") int crewIdx,
+	public String insertComment(
+			CrewCommentRequest request,
 			HttpSession session
 			) {
-		return commentService.insertCrewComment(crewComment, session, crewIdx);
+		return Integer.toString(commentService.insertCrewComment(request.getCrewComment(), session, request.getCrewIdx()));
 	}
 }

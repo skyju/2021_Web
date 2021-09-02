@@ -27,6 +27,7 @@
 		$('#submit').click(function(){
 			
 			var formData = new FormData();
+			formData.append("crewIdx", $('#crewIdx').val());
 			formData.append("crewComment", $('#crewComment').val());
 			
 			$.ajax({
@@ -51,8 +52,9 @@
 			url: 'http://localhost:8080/orl/crew/getCommentInfo',
 			type: 'GET',
 			data: {
-				var crewIdx = crew.crewIdx;
+				crewIdx: $('#crewIdx').val()
 			},
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
 			success: function(data){
 				console.log(data);
 				$.each(data, function(index, item){
@@ -69,10 +71,12 @@
 			}
 		});
 	}
+	
 </script>
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
 </head>
 <body>
+<input type="hidden" value="${crew.crewIdx}" id="crewIdx">
 	<div class="section">
 		<section>
 			<div class="box">
@@ -152,7 +156,6 @@
 								<div class="input_control">
 									<div>
 										<input type="text" name="crewComment" class="form-control" id="crewComment">
-										<input type="hidden" name="crewIdx" value="${crew.crewIdx}">
 									</div>
 									<div>
 										<input type="submit" value="게시" class="btn1 btn-light form-control" id="submit">

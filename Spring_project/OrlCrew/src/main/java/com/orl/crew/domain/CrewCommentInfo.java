@@ -2,9 +2,12 @@ package com.orl.crew.domain;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class CrewCommentInfo {
 	private int crewCommentIdx;
 	private String crewComment;
+	@JsonFormat(pattern = "yyyy.MM.dd. HH:mm")
 	private Timestamp crewCommentDate;
 	private int memberIdx;
 	private int crewIdx;
