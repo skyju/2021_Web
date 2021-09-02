@@ -15,73 +15,64 @@
 <script defer type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
 <script defer src="<c:url value='/js/crew/insert.js'/>"></script>
 </head>
-
 <body>
 <%@ include file="/WEB-INF/frame/default/header.jsp" %>
-    <div class="section">
-        <div class="box">
-            <div class="edit_section">
-                <form method="post" enctype="multipart/form-data" id="tag-form">
-                    <table>
-                    <div class="create">
-                    <h1>생성하기</h1>
-                    </div>
-                    
-                        <tr>
-                            <td>
-                                <label for="crewname">크루명</label>
-                            </td>
-                            <td>
-                                <input type="text" id="crewname" name="crewName" class="form-control">
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>
-                                <label for="crewname">크루 사진</label>
-                            </td>
-                            <td>   
-                            <img id="img" class="hiking" title="클릭하시면 원본크기로 보실 수 있습니다."
-         													style="cursor: pointer;" onclick="doImgPop(this.src)"/>
-                                <input type="file" id="crewPhoto" name="crewPhoto" class="form-control form-control-lg">
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>
-                                <label for="crewintro">크루 소개글</label>
-                            </td>
-                            <td>
-                                <input type="text" id="crewintro" name="crewDiscription" class="form-control"
-                                    placeholder="새로운 크루 소개글을 입력해주세요!">
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>
-                                <div class="tr_hashTag_area">
-                                    <p><strong>해시태그</strong></p>
-                                </div>
-                            </td>
-                            <td>
-                                <ul id="tag-list"></ul>
-                                <div class="form-group">
-                                    <input type="text" id="tag" size="7" placeholder="#" style="width: 300px;" />
-                                </div>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-            <td>
-                <input type="submit" value="생성" class="form-control btn-secondary">
-            </td>
+	<div class="section">
+		<div class="box">
+    	<div class="edit_section">
+        <form method="post" enctype="multipart/form-data" id="tag-form">
+        	 <table>
+           	<div class="create">
+            	<h1>생성하기</h1>
+            </div>
+            <tr>
+            	<td>
+              	<label for="crewname">크루명</label>
+              </td>
+              <td>
+              	<input type="text" id="crewname" name="crewName" class="form-control">
+              </td>
             </tr>
-            </table>
-            </form>
-        </div>
-        </div>
-    </div>
-       <%@ include file="/WEB-INF/frame/default/footer.jsp" %>
-    
+          	<tr>
+          		<td>
+		            <label for="crewname">크루 사진</label>
+		         	</td>
+		          <td>   
+		          	<img id="img" class="hiking" title="클릭하시면 원본크기로 보실 수 있습니다." style="cursor: pointer;" onclick="doImgPop(this.src)"/>
+		            <input type="file" id="crewPhoto" name="crewPhoto" class="form-control form-control-lg">
+		         	</td>
+		        </tr>
+		        <tr>
+		        	<td>
+		          	<label for="crewintro">크루 소개글</label>
+		          </td>
+		         	<td>
+		          	<input type="text" id="crewintro" name="crewDiscription" class="form-control" placeholder="새로운 크루 소개글을 입력해주세요!">
+		          </td>
+		        </tr>
+		        <tr>
+		        	<td>
+		          	<div class="tr_hashTag_area">
+		            	<p><strong>해시태그</strong></p>
+		            </div>
+		          </td>
+		        	<td>
+			        	<ul id="tag-list"></ul>
+			          <div class="form-group">
+			          	<input type="text" id="tag" size="7" placeholder="#" style="width: 300px;" />
+			          </div>
+		          </td>
+		        </tr>
+		        <tr>
+           		<td>
+              	<input type="submit" value="생성" class="form-control btn-secondary">
+            	</td>
+           	</tr>
+          </table>
+       </form>
+     </div>
+   </div>
+ </div>
+<%@ include file="/WEB-INF/frame/default/footer.jsp" %>
 </body>
 </html>

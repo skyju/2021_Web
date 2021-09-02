@@ -10,13 +10,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.orl.crew.domain.CrewInsertRequest;
 import com.orl.crew.service.CrewInsertService;
+import com.orl.crew.service.CrewMemberRegService;
 
 @Controller
 @RequestMapping("/crew/insert")
 public class CrewInsertController {
 
 	@Autowired
-	private CrewInsertService regService;
+	private CrewInsertService insertService;
+	
+	@Autowired
+	private CrewMemberRegService regService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String insert() {
@@ -24,11 +28,15 @@ public class CrewInsertController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String reg(CrewInsertRequest crewRequest, HttpServletRequest request, Model model) {
+	public String reg(
+			CrewInsertRequest crewRequest, 
+			HttpServletRequest request, 
+			Model model) {
 
-		int result = regService.insert(crewRequest, request);
+		int insertResult = insertService.insert(crewRequest, request);
+		int regResult = regService.reg(request);
 
-		model.addAttribute("result", result);
+		model.addAttribute("result", insertResult);
 
 		return "crew/insert";
 	}

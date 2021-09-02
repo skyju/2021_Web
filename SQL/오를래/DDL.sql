@@ -15,7 +15,7 @@ CREATE TABLE final.member (
 );
 
 -- 사진게시판
-CREATE TABLE final.PhotoBoard (
+CREATE TABLE final.photoBoard (
    `boardIdx` INTEGER NOT NULL AUTO_INCREMENT,
    `boardPhoto` VARCHAR(100) NOT NULL,
    `boardDiscription` text NULL,
@@ -27,14 +27,14 @@ CREATE TABLE final.PhotoBoard (
 );
 
 -- 사진게시판-댓글
-CREATE TABLE final.PhotoBoardComment (
+CREATE TABLE final.photoBoardComment (
    boardCommnetIdx INTEGER NOT NULL AUTO_INCREMENT ,
    comment text NOT NULL,
    commentDate TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
    boardIdx INTEGER NOT NULL,
    memberIdx INTEGER NOT NULL,
    PRIMARY KEY (`boardCommnetIdx`),
-   CONSTRAINT `FK_boardIdx_to_boardComment` FOREIGN KEY (`boardIdx`) REFERENCES final.PhotoBoard(`boardIdx`),
+   CONSTRAINT `FK_boardIdx_to_boardComment` FOREIGN KEY (`boardIdx`) REFERENCES final.photoBoard(`boardIdx`),
    CONSTRAINT `FK_memberIdx_to_boardComment` FOREIGN KEY (`memberIdx`) REFERENCES final.member(`memberIdx`)
 );
 

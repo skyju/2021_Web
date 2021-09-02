@@ -60,7 +60,7 @@
 						
 						<c:if test="${crew.isReg ne true}">
 							<div class="join_section">
-	               <a href="#" class="btn btn-sm btn-light">가입하기</a>
+	               <a href="<c:url value='/crew/memberReg/${crew.crewIdx}'/>" class="btn btn-sm btn-light">가입하기</a>
 	            </div>
             </c:if>
 						

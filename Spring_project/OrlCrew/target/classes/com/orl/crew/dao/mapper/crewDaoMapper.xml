@@ -85,7 +85,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where memberIdx = #{memberIdx}
 	</select>
 	
-	
+	<!-- insert -->
+	<insert 
+	id="insertCrewReg"
+	parameterType="com.orl.crew.domain.CrewReg"
+	useGeneratedKeys="true" 
+	keyProperty="crewRegIdx">
+		insert into crewreg (memberIdx, crewIdx)
+		values (#{memberIdx}, #{crewIdx})
+	</insert>
 	
 	<!-- 용성쓰가 작성 -->
 	<!-- 페이징 처리 -->

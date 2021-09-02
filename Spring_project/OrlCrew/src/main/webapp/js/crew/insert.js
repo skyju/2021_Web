@@ -79,9 +79,6 @@ $(document).ready(function () {
 
     // 서버에 제공
     $("#tag-form").on("submit", function (e) {
-        var value = marginTag(); // return array
-        $("#rdTag").val(value);
-
         $(this).submit();
     });
 
@@ -104,7 +101,7 @@ $(document).ready(function () {
                 // 해시태그가 중복되었는지 확인
                 if (result.length == 0) {
                     $("#tag-list").append("<li class='tag-item'>" + tagValue + "<span class='del-btn' idx='" + counter + "'>x"+
-                    "</span><input type='hidden' name='crewTag' id='rdTag' value='"+tagValue+"'></li>");
+                    "</span><input type='hidden' name='crewTag' id='rdTag' value=#"+tagValue+"></li>");
                     addTag(tagValue);
                     self.val("");
                 } else {

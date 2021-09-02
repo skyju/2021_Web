@@ -103,4 +103,13 @@ public class Crew {
 				0, 0, false);
 		return crewinfo;
 	}
+
+	@Override
+	public String toString() {
+		return "Crew [crewIdx=" + crewIdx + ", crewName=" + crewName + ", crewPhoto=" + crewPhoto + ", crewDiscription="
+				+ crewDiscription + ", crewCreatedate=" + crewCreatedate + ", crewTag=" + crewTag + ", memberIdx="
+				+ memberIdx + ", memberNickName=" + memberNickName + "]";
+	}
+	
+	
 }

@@ -39,4 +39,6 @@ public interface Dao {
 	List<CrewComment> selectCrewComment(@Param("crewIdx")int crewIdx);
 	
 	Member selectCommentMember(@Param("memberIdx")int memberIdx);
+	
+	int insertCrewReg(@Param("memberIdx")int memberIdx, @Param("crewIdx")int crewIdx);
 }

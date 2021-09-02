@@ -2,6 +2,8 @@ package com.orl.crew.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import com.orl.crew.dao.Dao;
 import com.orl.crew.domain.Crew;
 import com.orl.crew.domain.CrewComment;
 import com.orl.crew.domain.CrewCommentInfo;
+import com.orl.crew.domain.CrewInfo;
 import com.orl.member.domain.Member;
 
 @Service
@@ -19,6 +22,26 @@ public class CrewDetailService {
 	
 	@Autowired
 	private SqlSessionTemplate template;
+	
+	public CrewInfo getCrewInfo(
+			HttpSession session, 
+			int crewIdx
+			) {
+		
+		CrewInfo crewinfo = getCrew(crewIdx).crewToCrewInfo();
+		Member member = (Member)session.getAttribute("member");
+		
+		crewinfo.setCrewMemberNum(getCrewMemberNum(crewIdx));
+		crewinfo.setCrewCommentNum(getCrewCommentNum(crewIdx));
+		
+		if(member != null) {
+			crewinfo.setIsReg(getIsCrewMember(member.getMemberIdx(), crewIdx));
+		} else {
+			crewinfo.setIsReg(false);
+		}
+		
+		return crewinfo;
+	}
 	
 	public Crew getCrew(int crewIdx) {
 		Crew crew = null;

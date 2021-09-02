@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.orl.crew.domain.CrewCommentInfo;
 import com.orl.crew.domain.CrewInfo;
 import com.orl.crew.service.CrewDetailService;
-import com.orl.member.domain.Member;
 
 @Controller
 public class CrewDetailController {
@@ -28,18 +27,7 @@ public class CrewDetailController {
 			Model model
 			) {
 		
-		CrewInfo crewinfo = service.getCrew(crewIdx).crewToCrewInfo();
-		Member member = (Member)session.getAttribute("member");
-		
-		crewinfo.setCrewMemberNum(service.getCrewMemberNum(crewIdx));
-		crewinfo.setCrewCommentNum(service.getCrewCommentNum(crewIdx));
-		
-		if(member != null) {
-			crewinfo.setIsReg(service.getIsCrewMember(member.getMemberIdx(), crewIdx));
-		} else {
-			crewinfo.setIsReg(false);
-		}
-		
+		CrewInfo crewinfo = service.getCrewInfo(session, crewIdx);
 		model.addAttribute("crew", crewinfo);
 		
 		List<CrewCommentInfo> list = service.getCrewComment(crewIdx);
