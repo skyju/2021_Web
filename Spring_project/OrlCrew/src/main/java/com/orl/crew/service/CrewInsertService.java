@@ -35,17 +35,13 @@ public class CrewInsertService {
 		File newFile = null;
 		
 		try {
-		Crew crew = new Crew();
-		crew.setCrewName(crewRequest.getCrewName());
+		Crew crew = crewRequest.toCrew();
 		
 		if (crewRequest.getCrewPhoto() != null && !crewRequest.getCrewPhoto().isEmpty()) {
 			newFile = saveFile(request,crewRequest.getCrewPhoto());
 			crew.setCrewPhoto(newFile.getName());
 		}
 		
-	    crew.setCrewDiscription(crewRequest.getCrewDiscription());
-	    crew.setCrewTag(crewRequest.getCrewTag());
-	    
 	    Member member = (Member)(request.getSession().getAttribute("member"));
 	    
 	    if (member != null) {			
@@ -54,10 +50,12 @@ public class CrewInsertService {
 	    }
 	    
 		dao = template.getMapper(Dao.class);
+		
 		resultCnt = dao.insertCrew(crew);
 		
-		System.out.println(crew);
+		dao.insertCrewReg(member.getMemberIdx(), crew.getCrewIdx());
 		
+		System.out.println(crew);
 		
 		} catch(Exception e) {
 			e.printStackTrace();

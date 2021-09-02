@@ -88,9 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- insert -->
 	<insert 
 	id="insertCrewReg"
-	parameterType="com.orl.crew.domain.CrewReg"
-	useGeneratedKeys="true" 
-	keyProperty="crewRegIdx">
+	parameterType="com.orl.crew.domain.CrewReg">
 		insert into crewreg (memberIdx, crewIdx)
 		values (#{memberIdx}, #{crewIdx})
 	</insert>

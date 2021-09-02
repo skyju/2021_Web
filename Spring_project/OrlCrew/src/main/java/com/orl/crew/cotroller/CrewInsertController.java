@@ -18,9 +18,7 @@ public class CrewInsertController {
 
 	@Autowired
 	private CrewInsertService insertService;
-	
-	@Autowired
-	private CrewMemberRegService regService;
+
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String insert() {
@@ -34,10 +32,8 @@ public class CrewInsertController {
 			Model model) {
 
 		int insertResult = insertService.insert(crewRequest, request);
-		int regResult = regService.reg(request);
-
 		model.addAttribute("result", insertResult);
-
+		
 		return "crew/insert";
 	}
 }
