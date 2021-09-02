@@ -3,7 +3,7 @@ package com.orl.crew.domain;
 import java.sql.Timestamp;
 
 public class CrewCommentInfo {
-	private int crewCommnetIdx;
+	private int crewCommentIdx;
 	private String crewComment;
 	private Timestamp crewCommentDate;
 	private int memberIdx;
@@ -15,7 +15,7 @@ public class CrewCommentInfo {
 	
 	public CrewCommentInfo(int crewCommnetIdx, String crewComment, Timestamp crewCommentDate, int memberIdx,
 			int crewIdx, String memberNickName, String memberProfile) {
-		this.crewCommnetIdx = crewCommnetIdx;
+		this.crewCommentIdx = crewCommnetIdx;
 		this.crewComment = crewComment;
 		this.crewCommentDate = crewCommentDate;
 		this.memberIdx = memberIdx;
@@ -24,12 +24,12 @@ public class CrewCommentInfo {
 		this.memberProfile = memberProfile;
 	}
 
-	public int getCrewCommnetIdx() {
-		return crewCommnetIdx;
+	public int getCrewCommentIdx() {
+		return crewCommentIdx;
 	}
 
-	public void setCrewCommnetIdx(int crewCommnetIdx) {
-		this.crewCommnetIdx = crewCommnetIdx;
+	public void setCrewCommentIdx(int crewCommentIdx) {
+		this.crewCommentIdx = crewCommentIdx;
 	}
 
 	public String getCrewComment() {

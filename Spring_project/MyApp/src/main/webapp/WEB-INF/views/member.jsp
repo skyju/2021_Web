@@ -83,6 +83,10 @@
 			});
 		});
 		
+		
+		
+		
+		
 		$('#submit').click(function(){
 			
 			var photoFile = $('#photo');
@@ -119,9 +123,6 @@
 					}
 				}
 			});
-			
-			
-			
 		});
 		
 		
@@ -141,6 +142,8 @@
 		});
 		memberList();
 	});
+	
+	
 	
 	function memberList(){
 		$.ajax({

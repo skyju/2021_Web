@@ -59,11 +59,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from crewreg where memberIdx = #{memberIdx} and crewIdx = #{crewIdx};
 	</select>
 	
+	<!-- 크루 댓글 작성자 찾기 -->
+	<select 
+	id = "selectCommentMember"
+	resultType="com.orl.member.domain.Member">
+		select * from member where memberIdx = #{memberIdx}
+	</select>
+	
 	
 	<!-- Select 의 결과를 매핑하는 설정 -->
 	<resultMap id="crewCommentListResult"
 		type="com.orl.crew.domain.CrewComment">
-		<id column="crewCommnetIdx" property="crewCommnetIdx" />
+		<id column="crewCommentIdx" property="crewCommentIdx" />
 		<result column="crewComment" property="crewComment" />
 		<result column="crewCommentDate" property="crewCommentDate" />
 		<result column="memberIdx" property="memberIdx" />
@@ -93,9 +100,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values (#{memberIdx}, #{crewIdx})
 	</insert>
 	
-	<!-- 용성쓰가 작성 -->
-	<!-- 페이징 처리 -->
+	<insert 
+	id="insertCrewComment"
+	parameterType="com.orl.crew.domain.CrewComment">
+		insert into crewComment (crewComment, memberIdx, crewIdx) 
+		values (#{crewComment}, #{memberIdx}, #{crewIdx})
+	</insert>
 	
+	
+	
+	<!-- 용성쓰가 작성 -->
+	
+	<!-- 페이징 처리 -->
 	<select 
 	id="selectCrewPaging"
 	resultType="com.orl.crew.domain.Paging">

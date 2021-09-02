@@ -63,7 +63,7 @@
 								<div class="inner">
 									<div>
 										<a href="<c:url value='/crew/detail/${crew.crewIdx}'/>"> 
-										<img src="<c:url value='/images/hiking2.jpg'/>" class="card-img-top" alt="card image cap"></a>
+										<img src="<c:url value='/images/crew/${crew.crewPhoto}'/>" class="card-img-top" alt="card image cap"></a>
 									</div>
 								</div>
 								<div class="card-body text-left">
@@ -77,6 +77,7 @@
 					
 					</c:forEach>
 				</c:if>
+				
 			</div>
 		</div>
 		

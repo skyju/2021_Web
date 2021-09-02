@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.orl.crew.service.CrewMemberRegService;
 
 @Controller
-@RequestMapping("/crew/memberReg/{crewIdx}")
+@RequestMapping("/crew/memberReg")
 public class CrewMemberRegController {
 
 	@Autowired
 	CrewMemberRegService service;
 	
+	@RequestMapping("/{crewIdx}")
 	public String crewMemberReg(
 			HttpServletRequest request,
 			@PathVariable("crewIdx")int crewIdx,

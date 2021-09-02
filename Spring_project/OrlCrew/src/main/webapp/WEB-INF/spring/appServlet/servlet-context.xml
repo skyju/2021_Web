@@ -31,16 +31,15 @@
 		p:defaultEncoding="utf-8" p:maxUploadSize="10000000">
 	</beans:bean>
 	
-	<!-- 로그인 체크 인터셉터 등록
+	<!-- 로그인 체크 인터셉터 등록-->
 	<interceptors>
 		<interceptor>
-			<mapping path="/board/**" />
-			<mapping path="/member/mypage/**" />
+			<mapping path="/crew/insert/**" />
+			<mapping path="/crew/memberReg/**" />
 			<beans:bean
-				class="" />
+				class="com.orl.interceptor.LoginCheckInterceptor" />
 		</interceptor>
 	</interceptors>
-	-->
 	
 	<context:component-scan base-package="com.orl" />	
 	

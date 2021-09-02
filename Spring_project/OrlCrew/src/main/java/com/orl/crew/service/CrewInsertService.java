@@ -55,8 +55,6 @@ public class CrewInsertService {
 		
 		dao.insertCrewReg(member.getMemberIdx(), crew.getCrewIdx());
 		
-		System.out.println(crew);
-		
 		} catch(Exception e) {
 			e.printStackTrace();
 			if(newFile != null & newFile.exists()) {
@@ -69,6 +67,7 @@ public class CrewInsertService {
 	}
 	
 	private File saveFile(HttpServletRequest request, MultipartFile file) {
+		
 		String path = request.getSession().getServletContext().getRealPath(UPLOAD_URI);
 		File newDir = new File(path);
 		

@@ -1,7 +1,5 @@
 package com.orl.crew.service;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -10,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.orl.crew.dao.Dao;
 import com.orl.crew.domain.Crew;
-import com.orl.crew.domain.CrewComment;
-import com.orl.crew.domain.CrewCommentInfo;
 import com.orl.crew.domain.CrewInfo;
 import com.orl.member.domain.Member;
 
@@ -44,9 +40,8 @@ public class CrewDetailService {
 	}
 	
 	public Crew getCrew(int crewIdx) {
-		Crew crew = null;
 		dao = template.getMapper(Dao.class);
-		crew = dao.selectCrew(crewIdx);
+		Crew crew = dao.selectCrew(crewIdx);
 		return crew;
 	}
 	
@@ -70,27 +65,5 @@ public class CrewDetailService {
 			chk = true;
 		}
 		return chk;
-	}
-	
-	public List<CrewCommentInfo> getCrewComment(int crewIdx) {
-		dao = template.getMapper(Dao.class);
-		
-		List<CrewComment> list = dao.selectCrewComment(crewIdx);
-		List<CrewCommentInfo> infoList = null;
-		if(list != null) {
-			for(int i = 0 ; i < list.size() ; i++) {
-				CrewCommentInfo info = list.get(i).CommentToInfo();
-				Member commentMember = getCommentMember(list.get(i).getMemberIdx());
-				info.setMemberNickName(commentMember.getMemberNickname());
-				info.setMemberProfile(commentMember.getMemberProfile());
-				infoList.add(info);
-			}
-		}
-		return infoList;
-	}
-	
-	public Member getCommentMember(int memberIdx) {
-		dao = template.getMapper(Dao.class);
-		return dao.selectCommentMember(memberIdx);
 	}
 }
