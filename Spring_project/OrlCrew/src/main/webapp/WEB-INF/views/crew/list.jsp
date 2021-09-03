@@ -32,8 +32,8 @@
 				
 					<div class="article-crew">
 						<div>
-							<a href='<c:url value="/crew/detail/${crew.crewIdx}"/>'>
-							<img src="<c:url value="/images/hiking2"/>"></a>
+							<a href='<c:url value="/crew/detail/${crew.crewIdx}&1"/>'>
+							<img src="<c:url value='/images/crew/${crew.crewPhoto}'/>"></a>
 						</div>
 						<p>${crew.crewName}</p>
 					</div>
@@ -62,7 +62,7 @@
 							<div class="card shadow" style="width: 25rem; height: 35rem;">
 								<div class="inner">
 									<div>
-										<a href="<c:url value='/crew/detail/${crew.crewIdx}'/>"> 
+										<a href="<c:url value='/crew/detail/${crew.crewIdx}&1'/>"> 
 										<img src="<c:url value='/images/crew/${crew.crewPhoto}'/>" class="card-img-top" alt="card image cap"></a>
 									</div>
 								</div>
@@ -70,7 +70,7 @@
 									<h4 class="card-title">크루 이름: ${crew.crewName}</h4>
 									<p class="card-text">크루장: ${crew.memberNickName}</p>
 									<p class="card-text">크루소개 : ${crew.crewDiscription}</p>
-									<a href="#" class="btn btn-success">GO</a>
+									<a href="<c:url value='/crew/detail/${crew.crewIdx}&1'/>" class="btn btn-success">GO</a>
 								</div>
 							</div>
 						</div>

@@ -25,12 +25,13 @@ public class CrewCommentRestController {
 	public CrewCommentPagingDTO getCommentList(
 			HttpServletRequest request,
 			@RequestParam("crewIdx")int crewIdx,
-			@RequestParam("currentPageNum")int currentPageNum
+			@RequestParam(value="currentPageNum", defaultValue = "0")int currentPageNum
 			){
 		
 		if(currentPageNum == 0) {
 			currentPageNum = 1;
 		}
+		
 		CrewCommentCriteria cir = new CrewCommentCriteria(crewIdx, currentPageNum);
 		CrewCommentPagingDTO dto = commentService.getCrewComment(cir);
 		

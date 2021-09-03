@@ -22,7 +22,7 @@
 <script>
 	$(document).ready(function(){
 		
-		commentList();
+		commentList(0);
 		
 		$('#submit').click(function(){
 			
@@ -41,45 +41,57 @@
 					if(data==0){
 						alert('로그인 여부를 확인해주세요.');
 					}
-					commentList();
+					commentList(0);
 				}
 			})
 		});
 	});
 	
-	function commentList(){
+	function commentList(parameter){
 		$.ajax({
 			url: 'http://localhost:8080/orl/crew/getCommentInfo',
 			type: 'GET',
 			data: {
 				crewIdx: '${crew.crewIdx}',
-				currentPageNum : $('#currentPageNum').val()
+				currentPageNum : '${cri.currentPageNum}'
 			},
 			contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
-			success: function(data){
+			success: function(data){ // data가 json -> js객체로 변환해서 옴
 				var html = '';
-				$.each(data, function(index, items){
-					$.each(items, function(index, item){
-						html += '<tr><td><img id="profile" src="<c:url value="/images/default.jpg"/>"></td>';
-						html +=	'<td><p id="nickname">'+item.memberNickName+'</p>';
-						html += '<p class="content">'+item.crewComment+'</p>';
-						html += '<p class="date">'+item.crewCommentDate+'</p>';
-						html += '</td></tr>';
-						$('#commentList').html(html);
-					});
-					
+				var html2 = '';
+				$.each(data.infoList, function(index, item){
+					html += '<tr><td><img id="profile" src="<c:url value="/images/default.jpg"/>"></td>';
+					html +=	'<td><p id="nickname">'+item.memberNickName+'</p>';
+					html += '<p class="content">'+item.crewComment+'</p>';
+					html += '<p class="date">'+item.crewCommentDate+'</p>';
+					html += '</td></tr>';
+					$('#commentList').html(html);
 				});
+				
+				var currentPageNum = parseInt('${cri.currentPageNum}');
+				var prev = currentPageNum-1;
+				if (prev==0){
+					prev = 1;
+				}
+				var next = currentPageNum+1;
+				if (next>data.totalPageNum){
+					next = data.totalPageNum
+				}
+				
+				html2 += '<li class="page-item"><a class="page-link" href="<c:url value="/crew/detail/${crew.crewIdx}&'+prev+'"/>">&lt</a></li>';
+				for(var i=1 ; i <= data.totalPageNum; i++){
+					html2 += '<li class="page-item"><a href="<c:url value="/crew/detail/${crew.crewIdx}&'+i+'"/>" class="page-link">'+i+'</a></li>';
+				}
+				html2 += '<li class="page-item"><a class="page-link" href="<c:url value="/crew/detail/${crew.crewIdx}&'+next+'"/>">&gt</a></li>';
+				$('#paging').html(html2);
 			}
-		});
+		});                                                                                                                     
 	}
 	
 </script>
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
 </head>
 <body>
-
-	<input type="hidden" value="1" id="currentPageNum">
-
 	<div class="section">
 		<section>
 			<div class="box">
@@ -133,13 +145,6 @@
 					<div class="input_section">
 						<div>
 							<ul class="pagination" id="paging">
-								<li class="page-item"><a class="page-link" href="#">&lt</a></li>
-									<c:forEach begin ="1" end="" var="num">
-										<li class="page-item"><a class="page-link" href="#">${num}</a></li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-									</c:forEach>
-								<li class="page-item"><a class="page-link" href="#">&gt</a></li>
 							</ul>
 						</div>
 						

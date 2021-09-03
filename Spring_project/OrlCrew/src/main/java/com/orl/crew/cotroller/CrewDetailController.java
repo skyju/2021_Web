@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.orl.crew.domain.CrewCommentCriteria;
 import com.orl.crew.domain.CrewInfo;
 import com.orl.crew.service.CrewDetailService;
 
@@ -18,15 +19,18 @@ public class CrewDetailController {
 	@Autowired
 	CrewDetailService service;
 	
-	@RequestMapping("/{crewIdx}")
+	@RequestMapping("/{crewIdx}&{currentPageNum}")
 	public String getCrewDetail(
 			@PathVariable("crewIdx")int crewIdx,
+			@PathVariable("currentPageNum")int currentPageNum,
 			HttpServletRequest request,
 			Model model
 			) {
 		
 		CrewInfo crewinfo = service.getCrewInfo(request.getSession(), crewIdx);
+		CrewCommentCriteria cri = new CrewCommentCriteria(crewIdx, currentPageNum);
 		model.addAttribute("crew", crewinfo);
+		model.addAttribute("cri", cri);
 		return "crew/detail";
 	}
 	
