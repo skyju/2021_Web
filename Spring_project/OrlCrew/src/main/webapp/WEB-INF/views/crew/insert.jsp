@@ -31,6 +31,7 @@
               </td>
               <td>
               	<input type="text" id="crewname" name="crewName" class="form-control">
+              	<p id="msg"></p>
               </td>
             </tr>
           	<tr>
