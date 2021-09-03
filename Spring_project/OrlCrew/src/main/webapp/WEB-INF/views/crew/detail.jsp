@@ -87,7 +87,6 @@
 			}
 		});                                                                                                                     
 	}
-	
 </script>
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
 </head>

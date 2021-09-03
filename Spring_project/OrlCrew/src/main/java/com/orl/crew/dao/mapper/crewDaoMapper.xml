@@ -125,4 +125,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values (#{crewName}, #{crewPhoto}, #{crewDiscription}, #{crewTag}, #{memberIdx}, #{memberNickName})
 	</insert>
 	
+	<!-- 크루 이름 중복 체크 -->
+	<select
+	id="selectByCrewName"
+	resultType="int">
+		select count(*) from final.crew where crewName = #{crewName}
+	</select>
 </mapper>

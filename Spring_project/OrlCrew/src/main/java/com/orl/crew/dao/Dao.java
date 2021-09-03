@@ -38,4 +38,6 @@ public interface Dao {
 	List <CrewComment> selectCrewCommentPaging(@Param("crewIdx")int crewIdx, @Param("firstRow")int firstRow, @Param("amountPerPage")int amountPerPage);
 
 	int insertCrew(Crew crew);
+	
+	int selectByCrewName(@Param("crewName")String crewName);
 }
