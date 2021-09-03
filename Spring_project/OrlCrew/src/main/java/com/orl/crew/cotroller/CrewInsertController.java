@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.orl.crew.domain.CrewInsertRequest;
 import com.orl.crew.service.CrewInsertService;
-import com.orl.crew.service.CrewMemberRegService;
 
 @Controller
 @RequestMapping("/crew/insert")

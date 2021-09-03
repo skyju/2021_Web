@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select
 		id="selectAll"
 		resultMap="crewListResult">
-			select * from crew order by crewIdx
+			select * from crew order by crewIdx desc
 	</select>
 	
 	<!-- 내가 가입한 크루 리스트 -->
@@ -61,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 크루 댓글 작성자 찾기 -->
 	<select 
-	id = "selectCommentMember"
+	id = "selectCrewCommentMember"
 	resultType="com.orl.member.domain.Member">
 		select * from member where memberIdx = #{memberIdx}
 	</select>
@@ -86,7 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 크루 댓글 작성자 정보 가져오기 -->
 	<select
-	id="selectByMemberIdx"
+	id="selectCommentMember"
 	resultType="com.orl.member.domain.Member">
 		select * from member
 		where memberIdx = #{memberIdx}
@@ -107,19 +107,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values (#{crewComment}, #{memberIdx}, #{crewIdx})
 	</insert>
 	
-	
-	
-	<!-- 용성쓰가 작성 -->
-	
-	<!-- 페이징 처리 -->
-	<select 
-	id="selectCrewPaging"
-	resultType="com.orl.crew.domain.Paging">
-	SELECT * FROM final.crew ORDER BY crewIdx DESC LIMIT #{startPage},#{endPage};
-	</select>
-	
-	<select id="getCrewListCnt" resultType="int">
-		SELECT count(*) as crewIdx FROM crew;
+	<!-- 크루 댓글 페이징 처리를 위한 select -->
+	<select
+	id="selectCrewCommentPaging"
+	resultMap="crewCommentListResult">
+		select * from crewComment where crewIdx=#{crewIdx} 
+		order by crewCommentDate desc limit #{firstRow}, #{amountPerPage}
 	</select>
 	
 	<!-- insert -->

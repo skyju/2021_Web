@@ -21,6 +21,9 @@ public class MsgListService {
 		return service;
 	}
 	
+	
+	
+	
 	public MsgListView getMsgList(int currentPageNum) {
 		// MsgListView 객체를 생성하는 데 필요한 것
 		

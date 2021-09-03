@@ -27,7 +27,6 @@ public class CrewDetailController {
 		
 		CrewInfo crewinfo = service.getCrewInfo(request.getSession(), crewIdx);
 		model.addAttribute("crew", crewinfo);
-		model.addAttribute("crewIdx", crewIdx);
 		return "crew/detail";
 	}
 	

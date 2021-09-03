@@ -52,21 +52,22 @@
 			url: 'http://localhost:8080/orl/crew/getCommentInfo',
 			type: 'GET',
 			data: {
-				crewIdx: $('#crewIdx').val()
+				crewIdx: '${crew.crewIdx}',
+				currentPageNum : $('#currentPageNum').val()
 			},
 			contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
 			success: function(data){
-				console.log(data);
-				$.each(data, function(index, item){
-						console.log(index, item);
-						var html = '<table><tr><td>';
-						html += '<img id="profile" src="<c:url value="/images/default.jpg"/>"></td>';
+				var html = '';
+				$.each(data, function(index, items){
+					$.each(items, function(index, item){
+						html += '<tr><td><img id="profile" src="<c:url value="/images/default.jpg"/>"></td>';
 						html +=	'<td><p id="nickname">'+item.memberNickName+'</p>';
 						html += '<p class="content">'+item.crewComment+'</p>';
 						html += '<p class="date">'+item.crewCommentDate+'</p>';
-						html += '</td></tr></table>';
-						$('#commentList').append(html);
-							
+						html += '</td></tr>';
+						$('#commentList').html(html);
+					});
+					
 				});
 			}
 		});
@@ -76,7 +77,9 @@
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
 </head>
 <body>
-<input type="hidden" value="${crew.crewIdx}" id="crewIdx">
+
+	<input type="hidden" value="1" id="currentPageNum">
+
 	<div class="section">
 		<section>
 			<div class="box">
@@ -84,15 +87,13 @@
 					<img src="<c:url value='/images/crew/${crew.crewPhoto}'/>" class="card-img-top" alt="...">
 						
 					<div class="card-body">
+					
 						<div class="crew_name_section">
-						
 							<h3 class="card-title">${crew.crewName}</h3>
-							
 							<c:if test="${member.memberIdx eq crew.memberIdx}">
 							<a href='<c:url value="/crew/edit"/>'
 								class="btn btn-sm color_blue text_bold">크루 관리</a>
 							</c:if>
-							
 						</div>
 						
 						<p class="card-text">${crew.crewDiscription}</p>
@@ -124,19 +125,20 @@
 				
 				<div class="comment_section">
 					<div class="comment_table">
-						<div id="commentList">
-						</div>
+						<table id="commentList">
+							
+						</table>
 					</div>
 					
 					<div class="input_section">
 						<div>
-							<ul class="pagination">
+							<ul class="pagination" id="paging">
 								<li class="page-item"><a class="page-link" href="#">&lt</a></li>
-								<li class="page-item"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">4</a></li>
-								<li class="page-item"><a class="page-link" href="#">5</a></li>
+									<c:forEach begin ="1" end="" var="num">
+										<li class="page-item"><a class="page-link" href="#">${num}</a></li>
+										<li class="page-item"><a class="page-link" href="#">2</a></li>
+										<li class="page-item"><a class="page-link" href="#">3</a></li>
+									</c:forEach>
 								<li class="page-item"><a class="page-link" href="#">&gt</a></li>
 							</ul>
 						</div>
@@ -156,6 +158,7 @@
 								<div class="input_control">
 									<div>
 										<input type="text" name="crewComment" class="form-control" id="crewComment">
+										<input type="hidden" value="${crew.crewIdx}" id="crewIdx">
 									</div>
 									<div>
 										<input type="submit" value="게시" class="btn1 btn-light form-control" id="submit">
