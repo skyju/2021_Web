@@ -27,7 +27,7 @@ public interface Dao {
 	
 	int selectCountMemberToRegCrew(@Param("memberIdx")int memberIdx, @Param("crewIdx")int crewIdx);
 	
-	Member selectCrewCommentMember(@Param("memberIdx")int memberIdx);
+	Member selectMemberByMemberIdx(@Param("memberIdx")int memberIdx);
 	
 	List<CrewComment> selectCrewComment(@Param("crewIdx")int crewIdx);
 	

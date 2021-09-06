@@ -57,7 +57,7 @@ public class CrewCommentService {
 	
 	public Member getCommentMember(int memberIdx) {
 		dao = template.getMapper(Dao.class);
-		return dao.selectCrewCommentMember(memberIdx);
+		return dao.selectMemberByMemberIdx(memberIdx);
 	}
 	
 	public int insertCrewComment(

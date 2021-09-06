@@ -61,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 크루 댓글 작성자 찾기 -->
 	<select 
-	id = "selectCrewCommentMember"
+	id = "selectMemberByMemberIdx"
 	resultType="com.orl.member.domain.Member">
 		select * from member where memberIdx = #{memberIdx}
 	</select>
@@ -82,14 +82,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	id = "selectCrewComment"
 	resultMap="crewCommentListResult">
 		select * from crewComment where crewIdx = #{crewIdx}
-	</select>
-	
-	<!-- 크루 댓글 작성자 정보 가져오기 -->
-	<select
-	id="selectCommentMember"
-	resultType="com.orl.member.domain.Member">
-		select * from member
-		where memberIdx = #{memberIdx}
 	</select>
 	
 	<!-- insert -->
