@@ -22,7 +22,7 @@
 <script>
 	$(document).ready(function(){
 		
-		commentList(0);
+		commentList();
 		
 		$('#submit').click(function(){
 			
@@ -47,7 +47,7 @@
 		});
 	});
 	
-	function commentList(parameter){
+	function commentList(){
 		$.ajax({
 			url: 'http://localhost:8080/orl/crew/getCommentInfo',
 			type: 'GET',
