@@ -15,16 +15,23 @@ import com.orl.member.domain.Member;
 
 @Service
 public class CrewListViewService {
-	
+
 	private Dao dao;
-	
+
 	@Autowired
 	private SqlSessionTemplate template;
-	
+
+	// 크루 리스트 (이름순)
+	public List<Crew> getCrewNameInfo(String crewName) {
+		List<Crew> crewList = null;
+		dao = template.getMapper(Dao.class);
+		return crewList;
+	}
+
 	public List<Crew> getMyCrewList(
 			HttpServletRequest request
-			){
-		
+			) {
+
 		List<Crew> myCrewList = null;
 		Member member = (Member) request.getSession().getAttribute("member");
 		if (member != null) {
@@ -33,15 +40,15 @@ public class CrewListViewService {
 			myCrewList = dao.selectMyCrewList(memberIdx);
 		}
 		return myCrewList;
-	};
-	
+	}
+
 	public List<Crew> getMyCrewList(
 			HttpServletRequest request, 
 			SearchType searchType
-			){
-		
+			) {
+
 		List<Crew> myCrewList = null;
-		
+
 		Member member = (Member) request.getSession().getAttribute("member");
 		if (member != null) {
 			int memberIdx = member.getMemberIdx();
@@ -50,15 +57,14 @@ public class CrewListViewService {
 		}
 		return myCrewList;
 	};
-	
-	public List<Crew> getCrewListAll(){
+
+	public List<Crew> getCrewListAll() {
 		dao = template.getMapper(Dao.class);
 		return dao.selectAll();
 	}
-	
+
 	public List<Crew> getCrewListAll(SearchType searchType){
-		dao = template.getMapper(Dao.class);
-		return dao.selectAll(searchType);
+		return template.getMapper(Dao.class).selectCrewAll(searchType);
 	}
-	
+
 }

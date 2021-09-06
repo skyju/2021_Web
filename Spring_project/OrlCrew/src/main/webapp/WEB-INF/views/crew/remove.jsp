@@ -13,7 +13,7 @@
 		<div class="box">
 			<%@ include file="/WEB-INF/frame/crew/crew-manage-nav.jsp"%>
 			<div class="edit_section">
-				<form>
+				<form method="post">
 					<table>
 						<tr>
 							<td><label for="crewname">크루명</label></td>

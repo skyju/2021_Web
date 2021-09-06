@@ -40,41 +40,41 @@ CREATE TABLE final.photoBoardComment (
 
 -- 크루
 CREATE TABLE final.crew (
-	`crewIdx` INTEGER NOT NULL auto_increment,
-	`crewName` VARCHAR(50) NOT NULL,
+   `crewIdx` INTEGER NOT NULL auto_increment,
+   `crewName` VARCHAR(50) NOT NULL,
     `crewPhoto` VARCHAR(100) NULL,
-	`crewDiscription` TEXT NOT NULL,
-	`crewCreatedate` timestamp default current_timestamp,
-	`crewTag` varchar(200) NULL,
-	`memberIdx` INTEGER NOT NULL,
+   `crewDiscription` TEXT NOT NULL,
+   `crewCreatedate` timestamp default current_timestamp,
+   `crewTag` varchar(200) NULL,
+   `memberIdx` INTEGER NOT NULL,
     `memberNickName` VARCHAR(50),
     constraint pk_crewIdx primary key (crewIdx),
     constraint unique_crewName unique key (crewName),
-    constraint fk_memberIdx_to_crewOwner foreign key (memberIdx) references final.member(memberIdx),
-    constraint fk_memberName_to_crewCapName foreign key (memberNickName) references final.member(memberNickName)
+    constraint fk_memberIdx_to_crewOwner foreign key (memberIdx) references final.member(memberIdx) ON DELETE CASCADE,
+    constraint fk_memberName_to_crewCapName foreign key (memberNickName) references final.member(memberNickName) ON DELETE CASCADE
 );
 
 -- 크루가입
 CREATE TABLE final.crewreg (
-	`crewRegIdx` INTEGER NOT NULL auto_increment,
-	`crewRegdate` timestamp default current_timestamp,
-	`memberIdx` INTEGER NOT NULL,
-	`crewIdx` INTEGER NOT NULL,
+   `crewRegIdx` INTEGER NOT NULL auto_increment,
+   `crewRegdate` timestamp default current_timestamp,
+   `memberIdx` INTEGER NOT NULL,
+   `crewIdx` INTEGER NOT NULL,
     constraint pk_crewIdx primary key (crewRegIdx),
-	constraint fk_memberIdx_to_crewReg foreign key (memberIdx) references final.member(memberIdx),
-    constraint fk_crewIdx_to_crewReg foreign key (crewIdx) references final.crew(crewIdx)
+   constraint fk_memberIdx_to_crewReg foreign key (memberIdx) references final.member(memberIdx)  ON DELETE CASCADE,
+    constraint fk_crewIdx_to_crewReg foreign key (crewIdx) references final.crew(crewIdx)  ON DELETE CASCADE
 );
 
 -- 크루댓글
 CREATE TABLE final.crewComment (
-	`crewCommentIdx` INTEGER NOT NULL auto_increment,
-	`crewComment` text NOT NULL,
-	`crewCommentDate` timestamp default current_timestamp,
-	`memberIdx` INTEGER NOT NULL,
-	`crewIdx` INTEGER NOT NULL,
+   `crewCommentIdx` INTEGER NOT NULL auto_increment,
+   `crewComment` text NOT NULL,
+   `crewCommentDate` timestamp default current_timestamp,
+   `memberIdx` INTEGER NOT NULL,
+   `crewIdx` INTEGER NOT NULL,
     constraint pk_crewCommentidx primary key (crewCommentIdx),
-    constraint fk_memberIdx_to_crewComment foreign key (memberIdx) references final.member(memberIdx),
-    constraint fk_crewIdx_to_crewComment foreign key (crewIdx) references final.crew(crewIdx)
+    constraint fk_memberIdx_to_crewComment foreign key (memberIdx) references final.member(memberIdx)  ON DELETE CASCADE,
+    constraint fk_crewIdx_to_crewComment foreign key (crewIdx) references final.crew(crewIdx)  ON DELETE CASCADE
 );
 
 -- 팔로우
@@ -98,6 +98,10 @@ CREATE TABLE final.like (
     constraint fk_myMemberIdx_to_like foreign key (memberIdx) references final.member(memberIdx),
     constraint fk_boardIdx foreign key (boardIdx) references final.photoboard(boardIdx)
 );
+
+delete from final.crewcomment where crewIdx=1;
+delete from final.crewreg where crewIdx=1;
+delete from final.crew where crewIdx=1;
 
 -- 드랍테이블
 drop table final.member;

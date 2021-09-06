@@ -9,6 +9,7 @@
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
 </head>
 <body>
+<p>${crew.crewIdx}</p>
 	<div class="section">
 		<div class="box">
 			<%@ include file="/WEB-INF/frame/crew/crew-manage-nav.jsp"%>
@@ -23,9 +24,8 @@
 						</tr>
 						<tr>
 							<td><label for="crewname">크루 사진</label></td>
-							<td><img id="hiking" src="hiking.jpg"> <input
-								type="file" id="crewphoto" name="crewphoto"
-								class="form-control form-control-lg"></td>
+							<td><img id="hiking" src=""> 
+							<input type="file" id="crewphoto" name="crewphoto" class="form-control form-control-lg"></td>
 						</tr>
 						<tr>
 						</tr>

@@ -28,7 +28,8 @@ public class CrewInsertController {
 	public String reg(
 			CrewInsertRequest crewRequest, 
 			HttpServletRequest request, 
-			Model model) {
+			Model model
+			) {
 
 		int insertResult = insertService.insert(crewRequest, request);
 		model.addAttribute("result", insertResult);

@@ -102,7 +102,7 @@
 						<div class="crew_name_section">
 							<h3 class="card-title">${crew.crewName}</h3>
 							<c:if test="${member.memberIdx eq crew.memberIdx}">
-							<a href='<c:url value="/crew/edit"/>'
+							<a href='<c:url value="/crew/edit/${crew.crewIdx}"/>'
 								class="btn btn-sm color_blue text_bold">크루 관리</a>
 							</c:if>
 						</div>

@@ -13,7 +13,10 @@ public interface Dao {
 	
 	List<Crew> selectAll();
 	
-	List<Crew> selectAll(SearchType searchType);
+	List<Crew> selectAll(String crewName);
+	
+	//검색을 통한 crew 리스트 
+	List<Crew> selectCrewAll(SearchType searchType);
 	
 	List<Crew> selectMyCrewList(@Param("memberIdx")int memberIdx);
 
@@ -40,4 +43,7 @@ public interface Dao {
 	int insertCrew(Crew crew);
 	
 	int selectByCrewName(@Param("crewName")String crewName);
+	
+	int deleteCrew(@Param("crewIdx")int crewIdx);
+	
 }

@@ -1,5 +1,7 @@
 @charset "UTF-8";
-
+.justify-content-center {
+    justify-content: flex-start;
+}
 
 .section .article h1,
 .container h1 {

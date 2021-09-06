@@ -27,7 +27,7 @@
             </div>
             <tr>
             	<td>
-              	<label for="crewname">크루명</label>
+              	<label for="crewName">크루명</label>
               </td>
               <td>
               	<input type="text" id="crewname" name="crewName" class="form-control">
@@ -36,7 +36,7 @@
             </tr>
           	<tr>
           		<td>
-		            <label for="crewname">크루 사진</label>
+		            <label for="crewPhoto">크루 사진</label>
 		         	</td>
 		          <td>   
 		          	<img id="img" class="hiking" title="클릭하시면 원본크기로 보실 수 있습니다." style="cursor: pointer;" onclick="doImgPop(this.src)"/>
@@ -45,7 +45,7 @@
 		        </tr>
 		        <tr>
 		        	<td>
-		          	<label for="crewintro">크루 소개글</label>
+		          	<label for="crewDiscription">크루 소개글</label>
 		          </td>
 		         	<td>
 		          	<input type="text" id="crewintro" name="crewDiscription" class="form-control" placeholder="새로운 크루 소개글을 입력해주세요!">
