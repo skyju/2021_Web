@@ -138,10 +138,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- delete -->
 	<delete
 	id="deleteCrew">
-		delete from final.crew where crewIdx = #{crewIdx};
+		delete from crew where crewIdx = #{crewIdx};
 	</delete>
-
-
+	
+	<!-- update -->
+	<update
+	id="updateCrew">
+		update crew 
+		set crewName = #{crewName}, crewPhoto = #{crewPhoto}, crewDiscription = #{crewDiscription}, crewTag = #{crewTag}
+		where crewIdx = #{crewIdx};
+	</update>
+	
+	<!-- update -->
+	<update
+	id="updateCrewWithoutPhoto">
+		update crew 
+		set crewName = #{crewName}, crewDiscription = #{crewDiscription}, crewTag = #{crewTag}
+		where crewIdx = #{crewIdx};
+	</update>
 
 
 

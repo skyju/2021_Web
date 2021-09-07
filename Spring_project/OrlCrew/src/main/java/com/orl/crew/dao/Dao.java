@@ -46,4 +46,10 @@ public interface Dao {
 	
 	int deleteCrew(@Param("crewIdx")int crewIdx);
 	
+	int updateCrew(@Param("crewName")String crewName, @Param("crewPhoto")String crewPhoto, @Param("crewDiscription")String crewDiscription, @Param("crewTag")String crewTag);
+
+	int updateCrewWithoutPhoto(@Param("crewName")String crewName, @Param("crewDiscription")String crewDiscription, @Param("crewTag")String crewTag);
+	
+	
+	
 }

@@ -9,12 +9,17 @@
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
 </head>
 <body>
-<p>${crew.crewIdx}</p>
+<c:if test="${chk eq false}">
+	<script>
+		alert('해당 페이지에 접근 할 권한이 없습니다.');
+		location.href="<c:url value='/'/>";
+	</script>
+</c:if>
 	<div class="section">
 		<div class="box">
 			<%@ include file="/WEB-INF/frame/crew/crew-manage-nav.jsp"%>
 			<div class="edit_section">
-				<form>
+				<form method="post" enctype="multipart/form-data">
 					<table>
 						<tr>
 							<td><label for="crewname">크루명</label></td>

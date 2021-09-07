@@ -31,7 +31,6 @@ public class CrewInsertService {
 			
 			) {
 		int resultCnt = 0;
-		
 		File newFile = null;
 		
 		try {
@@ -64,7 +63,9 @@ public class CrewInsertService {
 		return resultCnt;
 	}
 	
-	private File saveFile(HttpServletRequest request, MultipartFile file) {
+	public File saveFile(
+			HttpServletRequest request, 
+			MultipartFile file) {
 		
 		String path = request.getSession().getServletContext().getRealPath(UPLOAD_URI);
 		File newDir = new File(path);
