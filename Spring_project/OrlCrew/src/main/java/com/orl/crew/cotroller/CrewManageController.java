@@ -11,14 +11,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.orl.crew.domain.Crew;
+import com.orl.crew.domain.CrewCommentCriteria;
+import com.orl.crew.domain.CrewInfo;
 import com.orl.crew.domain.CrewInsertRequest;
+import com.orl.crew.service.CrewDetailService;
 import com.orl.crew.service.CrewManageService;
 
 @Controller
 public class CrewManageController {
 	
 	@Autowired
-	CrewManageService service;
+	private CrewManageService service;
+	
+	@Autowired
+	private CrewDetailService detailService;
 	
 	@RequestMapping("/crew/edit/{crewIdx}")
 	public String getCrewEditPage(
@@ -42,9 +48,17 @@ public class CrewManageController {
 			HttpServletRequest request,
 			Model model
 			) {
-		int result = service.updateCrew(crewRequest, request);
-		model.addAttribute("result", result);
-		return "";
+		System.out.println(crewRequest);
+		
+		int result = service.updateCrew(crewRequest, request, crewIdx);
+		
+		CrewInfo crewinfo = detailService.getCrewInfo(request.getSession(), crewIdx);
+		CrewCommentCriteria cri = new CrewCommentCriteria(crewIdx, 1);
+		
+		model.addAttribute("crew", crewinfo);
+		model.addAttribute("cri", cri);
+		model.addAttribute("updateResult", result);
+		return "crew/detail";
 	}
 	
 	@RequestMapping("/crew/memberManage/{crewIdx}")
@@ -79,13 +93,17 @@ public class CrewManageController {
 	
 	@RequestMapping(value="/crew/remove/{crewIdx}", method = RequestMethod.POST)
 	public String crewRemove(
+			HttpServletRequest request,
 			@PathVariable("crewIdx")int crewIdx,
 			@RequestParam("crewName")String crewName,
 			Model model
 			) {
 		int result = service.deleteCrew(crewIdx, crewName);
+		Crew crew = service.selectCrew(crewIdx);
+		
+		model.addAttribute("crew", crew);
 		model.addAttribute("result", result);
-		return "";
+		
+		return "crew/remove";
 	}
-	
 }

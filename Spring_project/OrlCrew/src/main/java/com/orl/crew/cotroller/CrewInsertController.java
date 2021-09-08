@@ -8,7 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.orl.crew.domain.Crew;
+import com.orl.crew.domain.CrewCommentCriteria;
+import com.orl.crew.domain.CrewInfo;
 import com.orl.crew.domain.CrewInsertRequest;
+import com.orl.crew.service.CrewDetailService;
 import com.orl.crew.service.CrewInsertService;
 
 @Controller
@@ -17,7 +21,9 @@ public class CrewInsertController {
 
 	@Autowired
 	private CrewInsertService insertService;
-
+	
+	@Autowired
+	private CrewDetailService detailService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String insert() {
@@ -30,10 +36,13 @@ public class CrewInsertController {
 			HttpServletRequest request, 
 			Model model
 			) {
-
-		int insertResult = insertService.insert(crewRequest, request);
-		model.addAttribute("result", insertResult);
+		Crew crew = insertService.insert(crewRequest, request);
+		CrewInfo crewinfo = detailService.getCrewInfo(request.getSession(), crew.getCrewIdx());
+		CrewCommentCriteria cri = new CrewCommentCriteria(crew.getCrewIdx(), 1);
 		
-		return "crew/insert";
+		model.addAttribute("crew", crewinfo);
+		model.addAttribute("cri", cri);
+		
+		return "crew/detail";
 	}
 }

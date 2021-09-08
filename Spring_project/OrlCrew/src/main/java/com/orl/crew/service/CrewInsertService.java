@@ -25,32 +25,31 @@ public class CrewInsertService {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public int insert(
+	public Crew insert(
 			CrewInsertRequest crewRequest,
 			HttpServletRequest request
 			
 			) {
-		int resultCnt = 0;
 		File newFile = null;
-		
-		try {
 		Crew crew = crewRequest.toCrew();
 		
-		if (crewRequest.getCrewPhoto() != null && !crewRequest.getCrewPhoto().isEmpty()) {
-			newFile = saveFile(request,crewRequest.getCrewPhoto());
-			crew.setCrewPhoto(newFile.getName());
-		}
-		
-	    Member member = (Member)(request.getSession().getAttribute("member"));
-	    
-	    if (member != null) {			
-	    	crew.setMemberIdx(member.getMemberIdx());
-	    	crew.setMemberNickName(member.getMemberNickname());
-	    }
-	    
-		dao = template.getMapper(Dao.class);
-		resultCnt = dao.insertCrew(crew);
-		dao.insertCrewReg(member.getMemberIdx(), crew.getCrewIdx());
+		try {
+			
+			if (crewRequest.getCrewPhoto() != null && !crewRequest.getCrewPhoto().isEmpty()) {
+				newFile = saveFile(request,crewRequest.getCrewPhoto());
+				crew.setCrewPhoto(newFile.getName());
+			}
+			
+		    Member member = (Member)(request.getSession().getAttribute("member"));
+		    
+		    if (member != null) {			
+		    	crew.setMemberIdx(member.getMemberIdx());
+		    	crew.setMemberNickName(member.getMemberNickname());
+		    }
+		    
+			dao = template.getMapper(Dao.class);
+			dao.insertCrew(crew);
+			dao.insertCrewReg(member.getMemberIdx(), crew.getCrewIdx());
 		
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -59,8 +58,7 @@ public class CrewInsertService {
 				System.out.println("파일 삭제");
 			}
 		}
-		
-		return resultCnt;
+		return crew;
 	}
 	
 	public File saveFile(
@@ -86,5 +84,10 @@ public class CrewInsertService {
 			e.printStackTrace();
 		}
 		return newFile;
+	}
+	
+	public Crew selectCrew(int crewIdx) {
+		dao = template.getMapper(Dao.class);
+		return dao.selectCrew(crewIdx);
 	}
 }

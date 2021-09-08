@@ -27,10 +27,10 @@ public class CrewManageService {
 			) {
 		boolean chk = false;
 		Member member = (Member)request.getSession().getAttribute("member");
-		int nowAuthIdx = member.getMemberIdx();
-		int crewAuthIdx = selectCrew(crewIdx).getMemberIdx();
 		
 		try {
+			int nowAuthIdx = member.getMemberIdx();
+			int crewAuthIdx = selectCrew(crewIdx).getMemberIdx();
 			if(nowAuthIdx == crewAuthIdx) {
 				chk = true;
 			}
@@ -50,7 +50,8 @@ public class CrewManageService {
 	
 	public int updateCrew(
 			CrewInsertRequest crewRequest,
-			HttpServletRequest request
+			HttpServletRequest request,
+			int crewIdx
 			) {
 		int resultCnt = 0;
 		File newFile = null;
@@ -61,14 +62,18 @@ public class CrewManageService {
 		try {
 			if (crewRequest.getCrewPhoto() != null && !crewRequest.getCrewPhoto().isEmpty()) {
 				newFile = insertservice.saveFile(request, crewRequest.getCrewPhoto());
-				resultCnt = dao.updateCrew(crewRequest.getCrewName(), 
+				resultCnt = dao.updateCrew(
+						crewRequest.getCrewName(), 
 						newFile.getName(), 
 						crewRequest.getCrewDiscription(), 
-						crewRequest.getCrewTag());
+						crewRequest.getCrewTag(),
+						crewIdx);
 			} else {
-				resultCnt = dao.updateCrewWithoutPhoto(crewRequest.getCrewName(), 
+				resultCnt = dao.updateCrewWithoutPhoto(
+						crewRequest.getCrewName(), 
 						crewRequest.getCrewDiscription(), 
-						crewRequest.getCrewTag());
+						crewRequest.getCrewTag(),
+						crewIdx);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
