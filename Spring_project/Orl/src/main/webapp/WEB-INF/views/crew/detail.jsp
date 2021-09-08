@@ -20,16 +20,27 @@
 	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
+
+	function commentToggle(parameter){
+		const toggleMenu = document.querySelector('.commentMenu');
+		toggleMenu.classList.toggle('active')
+		var html = '<li><a href="#">수정</a></li>';
+		html += '<li><a href="javascript:deleteComment('+parameter+')">삭제</a>';
+		$('#commentMenu').html(html);
+	}
+	
+	function deleteComment(parameter){
+		location.href = '<c:url value="/crew/commentDelete/'+parameter+'&'+${crew.crewIdx}+'"/>';
+	}
+
 	$(document).ready(function(){
 		
 		commentList();
 		
 		$('#submit').click(function(){
-			
 			var formData = new FormData();
 			formData.append("crewIdx", $('#crewIdx').val());
 			formData.append("crewComment", $('#crewComment').val());
-			
 			$.ajax({
 				url: 'http://localhost:8080/orl/crew/commentInsert',
 				type: 'post',
@@ -66,7 +77,6 @@
 			});	
 		});
 		
-		
 	});
 	
 	function commentList(){
@@ -81,11 +91,17 @@
 			success: function(data){ // data가 json -> js객체로 변환해서 옴
 				var html = '';
 				var html2 = '';
+				
 				$.each(data.infoList, function(index, item){
 					html += '<tr><td><img id="profile" src="<c:url value="/images/default.jpg"/>"></td>';
 					html +=	'<td><p id="nickname">'+item.memberNickName+'</p>';
 					html += '<p class="content">'+item.crewComment+'</p>';
-					html += '<p class="date">'+item.crewCommentDate+'</p>';
+					html += '<p class="date">'+item.crewCommentDate+'</p></td>';
+					html += '<td>';
+					if('${sessionScope.member.memberIdx}' == item.memberIdx){
+						html += '<div class="icon" onclick="commentToggle('+item.crewCommentIdx+');">';
+						html += '<a href="#"><img id="commentMng" src="<c:url value="/images/crew/icon.png"/>"></a></div>';
+					}
 					html += '</td></tr>';
 					$('#commentList').html(html);
 				});
@@ -100,11 +116,14 @@
 					next = data.totalPageNum
 				}
 				
-				html2 += '<li class="page-item"><a class="page-link" href="<c:url value="/crew/detail/${crew.crewIdx}&'+prev+'"/>">&lt</a></li>';
+				html2 += '<li class="page-item">';
+				html2 += '<a class="page-link" href="<c:url value="/crew/detail/${crew.crewIdx}&'+prev+'"/>">&lt</a></li>';
 				for(var i=1 ; i <= data.totalPageNum; i++){
-					html2 += '<li class="page-item"><a href="<c:url value="/crew/detail/${crew.crewIdx}&'+i+'"/>" class="page-link">'+i+'</a></li>';
+					html2 += '<li class="page-item">';
+					html2 += '<a href="<c:url value="/crew/detail/${crew.crewIdx}&'+i+'"/>" class="page-link">'+i+'</a></li>';
 				}
-				html2 += '<li class="page-item"><a class="page-link" href="<c:url value="/crew/detail/${crew.crewIdx}&'+next+'"/>">&gt</a></li>';
+				html2 += '<li class="page-item">';
+				html2 += '<a class="page-link" href="<c:url value="/crew/detail/${crew.crewIdx}&'+next+'"/>">&gt</a></li>';
 				$('#paging').html(html2);
 			}
 		});                                                                                                                     
@@ -170,6 +189,10 @@
 							
 						</table>
 					</div>
+					<div class="commentMenu">
+	          <ul id="commentMenu">
+						</ul>
+          </div>
 					
 					<div class="input_section">
 						<div>

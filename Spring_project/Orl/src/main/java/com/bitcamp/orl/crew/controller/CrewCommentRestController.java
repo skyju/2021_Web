@@ -46,4 +46,11 @@ public class CrewCommentRestController {
 			) {
 		return Integer.toString(commentService.insertCrewComment(request.getCrewComment(), session, request.getCrewIdx()));
 	}
+	
+	@RequestMapping("crew/deleteMyComment")
+	@CrossOrigin
+	public int deleteMyComment() {
+		int result = 0;
+		return result;
+	}
 }

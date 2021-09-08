@@ -55,4 +55,5 @@ public interface Dao {
 	
 	int deleteFromCrewMemberList(@Param("memberIdx")int memberIdx, @Param("crewIdx")int crewIdx);
 	
+	int deleteCrewComment(@Param("crewCommentIdx")int crewCommentIdx);
 }

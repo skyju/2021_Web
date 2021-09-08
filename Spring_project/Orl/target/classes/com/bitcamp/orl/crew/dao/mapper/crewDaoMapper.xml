@@ -174,15 +174,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	id="selectCrewMemberList"
 	resultMap="crewMemberListResult">
 		select memberIdx, memberId, memberProfile, memberNickname, memberBirth, crewRegdate, crewIdx
-		from member natural join crewreg where crewIdx = #{crewIdx};
+		from member natural join crewreg where crewIdx = #{crewIdx}
 	</select>
 	
 	<!-- 크루 멤버 추방 -->
 	<delete
 	id="deleteFromCrewMemberList">
-		delete from crewreg where memberIdx = #{memberIdx} and crewIdx = #{crewIdx};
+		delete from crewreg where memberIdx = #{memberIdx} and crewIdx = #{crewIdx}
 	</delete>
-
+	
+	<!-- 크루 댓글 삭제 -->
+	<delete
+	id="deleteCrewComment">
+		delete from crewComment where crewCommentIdx = #{crewCommentIdx}
+	</delete>
+	
 
 	<!-- 검색 조건문 -->
 	<sql id="criteria">

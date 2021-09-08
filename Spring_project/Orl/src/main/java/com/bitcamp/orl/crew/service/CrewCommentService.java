@@ -71,4 +71,13 @@ public class CrewCommentService {
 		resultCnt = dao.insertCrewComment(crewComment, member.getMemberIdx(), crewIdx);
 		return resultCnt;
 	}
+	
+	public int deleteCrewComment(
+			int crewCommentIdx
+			) {
+		int resultCnt = 0;
+		dao = template.getMapper(Dao.class);
+		resultCnt = dao.deleteCrewComment(crewCommentIdx);
+		return resultCnt;
+	}
 }

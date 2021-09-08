@@ -22,36 +22,37 @@
    <div class="action">
     <div id="home" class="big-bg">
         <div class="header wrapper">
-            <div class="logo">
-                <span class="oly"><i class="fas fa-seedling"></i></span>
-                <h1><a href="<c:url value='/'/>">오를래</a></h1>
-            </div>
-            <div class="nav">
-                <ul>
-          <li><a href="<c:url value='/'/>">MAIN</a></li>
-					<li><a href="<c:url value='/mountain/mountainAllInfo/'/>">HIKING</a></li>
-					<li><a href="<c:url value='/crew/list'/>">CREW</a></li>
-					<li><a href="<c:url value='/'/>">COMMUNITY</a></li>
-                    <div class="icon" onclick="menuToggle();">
-                        <a href="#"><i class="far fa-user"></i></a>
-                    </div>
-                </ul>
-            </div>
-            <div class="menu">
-              	<ul>
-					<c:if test="${sessionScope.member eq null}">
-						<li><a href="<c:url value='/member/login'/>">로그인</a></li>
-						<li><a href="<c:url value='/member/reg'/>">회원가입</a></li>
-					</c:if>
-					<c:if test="${sessionScope.member ne null}">
-						<li><a href="#">내 크루</a></li>
-						<li><a href="#">내 피드</a></li>
-						<li><a href="<c:url value='/member/mypage'/>">마이페이지</a></li>
-						<li><a href="<c:url value='/member/logout'/>">로그아웃</a></li>
-					</c:if>
-				</ul>
-            </div>
-        </div>
+           <div class="logo">
+             <span class="oly"><i class="fas fa-seedling"></i></span>
+             <h1><a href="<c:url value='/'/>">오를래</a></h1>
+           </div>
+           <div class="nav">
+            <ul>
+		          <li><a href="<c:url value='/'/>">MAIN</a></li>
+							<li><a href="<c:url value='/mountain/mountainAllInfo/'/>">HIKING</a></li>
+							<li><a href="<c:url value='/crew/list'/>">CREW</a></li>
+							<li><a href="<c:url value='/'/>">COMMUNITY</a></li>
+              <div class="icon" onclick="menuToggle();">
+                <a href="#"><i class="far fa-user"></i></a>
+              </div>
+            </ul>
+           </div>
+           <div class="menu">
+             <ul>
+							<c:if test="${sessionScope.member eq null}">
+								<li><a href="<c:url value='/member/login'/>">로그인</a></li>
+								<li><a href="<c:url value='/member/reg'/>">회원가입</a></li>
+							</c:if>
+							<c:if test="${sessionScope.member ne null}">
+								<li><a href="#">내 크루</a></li>
+								<li><a href="#">내 피드</a></li>
+								<li><a href="<c:url value='/member/mypage'/>">마이페이지</a></li>
+								<li><a href="<c:url value='/member/logout'/>">로그아웃</a></li>
+							</c:if>
+						</ul>
+           </div>
+           
+        	</div>
                     <div class="home_video">
                         <video loop autoplay="autoplay" muted="muted" src="../video/Hiking+.mp4"></video>
                     </div>

@@ -20,6 +20,10 @@
 	margin: 0;
 }
 
+#commentMng {
+	width: 20px;
+}
+
 .section {
 	padding-top: 100px;
 	display: flex;
@@ -257,3 +261,69 @@ p {
 	display: flex;
 	padding-bottom: 10px;
 }
+
+
+
+.commentMenu {
+	overflow-y: auto;
+	position: absolute;
+  top: auto;
+  right: 5%;
+  margin-top: 7px;
+	background-color: white;
+	z-index: 100;
+	width: 80px;
+	padding: 10px 0;
+	border-radius: 15px;
+	transition: 0.5s;
+	visibility: hidden;
+	font-size: 14px;
+	box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px;
+	opacity: 0; 
+	overflow-y: auto;
+}
+
+.commentMenu.active {
+	visibility: visible;
+	opacity: 1;
+	box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
+}
+
+.commentMenu ul, .commentMenu li {
+	padding-left: 0px;
+	padding-bottom: 0px;
+	width: 50px;
+}
+
+.commentMenu ul li {
+	list-style: none;
+	direction: flex;
+	align-items: center;
+	justify-content: center;
+	width: 80px;
+	line-height: 30px;
+}
+
+.commentMenu ul li a {
+	display: inline-block;
+	text-decoration: none;
+	font-weight: 500;
+	transition: 0.3s;
+}
+
+.commentMenu ul li:hover a {
+	color: var(--point-color);
+}
+
+.commentMenu a::after {
+	content: "";
+	position: absolute;
+	bottom: 15px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 4px;
+	background: black;
+	transition: all 0.3s ease-out;
+}
+
