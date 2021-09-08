@@ -23,9 +23,9 @@ public class CrewMemberRegController {
 			@PathVariable("crewIdx")int crewIdx,
 			Model model
 			) {
-		
 		int resultCnt = service.reg(request, crewIdx);
 		model.addAttribute("resultCnt", resultCnt);
+		model.addAttribute("crewIdx", crewIdx);
 		
 		return "crew/memberReg";
 	}

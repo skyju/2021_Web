@@ -48,8 +48,6 @@ public class CrewManageController {
 			HttpServletRequest request,
 			Model model
 			) {
-		System.out.println(crewRequest);
-		
 		int result = service.updateCrew(crewRequest, request, crewIdx);
 		
 		CrewInfo crewinfo = detailService.getCrewInfo(request.getSession(), crewIdx);

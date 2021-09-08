@@ -163,7 +163,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id column="memberIdx" property="memberIdx" />
 		<result column="memberId" property="memberId" />
 		<result column="memberProfile" property="memberProfile" />
-		<result column="memberNickname" property="memberNickname" />
+		<result column="memberNickName" property="memberNickName" />
 		<result column="memberBirth" property="memberBirth" />
 		<result column="crewRegdate" property="crewRegdate" />
 		<result column="crewIdx" property="crewIdx" />
@@ -176,8 +176,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select memberIdx, memberId, memberProfile, memberNickname, memberBirth, crewRegdate, crewIdx
 		from member natural join crewreg where crewIdx = #{crewIdx};
 	</select>
-
-
+	
+	<!-- 크루 멤버 추방 -->
+	<delete
+	id="deleteFromCrewMemberList">
+		delete from crewreg where memberIdx = #{memberIdx} and crewIdx = #{crewIdx};
+	</delete>
 
 
 	<!-- 검색 조건문 -->

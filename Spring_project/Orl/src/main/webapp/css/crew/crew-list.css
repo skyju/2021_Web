@@ -3,6 +3,10 @@
     justify-content: flex-start;
 }
 
+.section {
+	background-color: var(--background-color);
+}
+
 .section .article h1,
 .container h1 {
     font-size: 3.5rem;

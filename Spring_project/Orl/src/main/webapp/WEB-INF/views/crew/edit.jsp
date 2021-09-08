@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>크루 관리</title>
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
 <script defer type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
 <script defer src="<c:url value='/js/crew/insert.js'/>"></script>
@@ -27,7 +27,7 @@
 						<tr>
 							<td><label for="crewName">크루명</label></td>
 							<td>
-							<input type="text" id="crewName" name="crewName" class="form-control" placeholder="기존 크루명:${crew.crewName}" required="required">
+							<input type="text" id="crewName" name="crewName" class="form-control" value="${crew.crewName}" required="required">
 							<span id="msg" class="display_none"></span>
 							</td>
 						</tr>
@@ -40,8 +40,7 @@
 						</tr>
 						<tr>
 							<td><label for="crewintro">크루 소개글</label></td>
-							<td><input type="text" id="crewintro" name="crewDiscription"
-								class="form-control" placeholder="새로운 크루 소개글을 입력해주세요!">
+							<td><input type="text" id="crewintro" name="crewDiscription" class="form-control" value="${crew.crewDiscription}">
 							</td>
 						</tr>
 						<tr>

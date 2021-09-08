@@ -167,3 +167,20 @@ a:visited {
 .table_cell {
 	display: table-cell;
 }
+
+
+/*비동기통신*/
+.display_none {
+	display: none;
+}
+.color_yellow {
+	color:  #FDEF7B;
+	padding-left:15px;
+}
+.color_red {
+	color: red;
+	padding-left:15px;
+}
+#loadingimg {
+	height: 20px;
+}

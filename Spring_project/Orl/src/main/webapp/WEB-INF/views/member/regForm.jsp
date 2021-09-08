@@ -10,6 +10,50 @@
 <title>회원가입</title>
 <link rel="stylesheet" href="<c:url value='/css/member/reg.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/default/default.css'/>">
+<script>
+	$(document).ready(function(){
+		
+		$('#id').focusin(function(){
+			$('#msg').addClass('display_none');
+			$('#msg').removeClass('color_yellow');
+			$('#msg').removeClass('color_red');
+			$(this).val('');
+		});
+		$('#id').focusout(function(){
+			
+			$.ajax({
+				url:'<c:url value="/member/idCheck"/>',
+				type:'post',
+				data:{
+					mid:$(this).val()
+				},
+				beforeSend:function(){
+					$('#loadingimg').removeClass('display_none');
+				},
+				success : function(data) {
+					if (data == 'Y') {
+						$('#msg').html('사용가능');
+						$('#msg').addClass('color_yellow');
+						$('#msg').removeClass('display_none');
+					} else {
+						$('#msg').html('사용 불가능');
+						$('#msg').addClass('color_red');
+						$('#msg').removeClass('display_none');
+					}
+				},
+				error : function(request, status, error) {
+					alert('서버 통신에 문제가 발생했습니다. 다시 실행해주세요.');
+					console.log(request);
+					console.log(status);
+					console.log(error);
+				},
+				complete : function() {
+					$('#loadingimg').addClass('display_none');
+				}
+			});
+		});
+	});
+</script>
 </head>
 <body>
 	<div class="reg_box">
@@ -29,7 +73,7 @@
 					<div class="int-area">
 					
 						<input type="text" name="memberId" id="id" autocomplete="off" required>
-						<label for="id">ID</label>
+						<label for="id">ID</label><span id="msg" class="display_none">
 						
 					</div>
 					<div class="int-area">

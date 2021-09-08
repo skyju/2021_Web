@@ -17,7 +17,7 @@ public class CrewMemberListRestController {
 	@Autowired
 	CrewMemberListService service;
 	
-	@GetMapping()
+	@GetMapping("/crew/getCrewMemberList")
 	@CrossOrigin
 	public List<CrewMemberList> crewMemberList(
 			@RequestParam("crewIdx")int crewIdx
@@ -26,4 +26,16 @@ public class CrewMemberListRestController {
 		list = service.getCrewMemberList(crewIdx);
 		return list;
 	}
+	
+	@GetMapping("/crew/deleteCrewMemberFromList")
+	@CrossOrigin
+	public int deleteFromCrewMemberList(
+			@RequestParam("memberIdx")int memberIdx,
+			@RequestParam("crewIdx")int crewIdx
+			) {
+		int resultCnt = 0;
+		resultCnt = service.deleteCrewMemberFromList(memberIdx, crewIdx);
+		return resultCnt;
+	}
+	
 }

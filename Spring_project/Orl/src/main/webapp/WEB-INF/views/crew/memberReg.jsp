@@ -11,7 +11,7 @@
 	<c:if test="${resultCnt == 1}">
 		<script>
 			alert('크루에 가입 완료 되었습니다.');
-			window.history.go(-1);
+			window.location.href="<c:url value='/crew/detail/"+${crewIdx}+"&1'/>"
 		</script>
 	</c:if>
 </body>

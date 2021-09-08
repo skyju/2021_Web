@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>크루 상세</title>
 <link rel="stylesheet" href="<c:url value='/css/crew/crew-detail.css'/>">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
@@ -41,10 +41,32 @@
 					if(data==0){
 						alert('로그인 여부를 확인해주세요.');
 					}
-					commentList(0);
+					commentList();
 				}
 			})
 		});
+		
+		$('#outFromCrew').on('click', 'button', function(){
+			$.ajax({
+				url: 'http://localhost:8080/orl/crew/deleteCrewMemberFromList',
+				type: 'get',
+				data: {
+					memberIdx : '${sessionScope.member.memberIdx}',
+					crewIdx : '${crew.crewIdx}'	
+				},
+				success : function(data){
+					if(data==0){
+						alert('탈퇴에 실패했습니다.');
+					} else if(data==1){
+						alert('해당 크루를 탈퇴했습니다.');
+						window.location.href="<c:url value='/crew/detail/"+${crew.crewIdx}+"&1'/>"
+					}
+					getCrewMemberList();
+				}
+			});	
+		});
+		
+		
 	});
 	
 	function commentList(){
@@ -100,7 +122,7 @@
 		<section>
 			<div class="box">
 				<div class="card">
-					<img src="<c:url value='/images/crew/${crew.crewPhoto}'/>" class="card-img-top" alt="...">
+					<img src="<c:url value='/images/crew/${crew.crewPhoto}'/>" class="card-img-top" alt="..." id="cardImg">
 						
 					<div class="card-body">
 					
@@ -129,13 +151,16 @@
 								<p>${crew.crewCommentNum}</p>
 							</span>
 						</div>
-						
 						<c:if test="${crew.isReg ne true}">
 							<div class="join_section">
 	              <a href="<c:url value='/crew/memberReg/${crew.crewIdx}'/>" class="btn btn-sm btn-light">가입하기</a>
 	            </div>
             </c:if>
-						
+            <c:if test="${crew.isReg eq true and sessionScope.member.memberIdx ne crew.memberIdx}">
+            	<div class="join_section" id="outFromCrew">
+            		<button class="btn btn-sm btn-light">탈퇴하기</button>
+            	</div>
+            </c:if>
 					</div>
 				</div>
 				

@@ -47,4 +47,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where memberId=#{memberId} and memberPw=#{memberPw} 
 	</select>
 	
+	<!--select id체크 -->
+	<select id="selectById" resultType="int">
+		select count(*) from member where memberId=#{memberId}
+	</select>	
+
+	
+	<!-- 회원 삭제 -->
+	<delete id="deleteMember">
+		delete from member where memberIdx=#{memberIdx}
+	</delete>
+	
+	<!-- 회원정보수정 -->
+	<update id="updateMember"
+			parameterType="com.bitcamp.orl.member.domain.Member">
+		update member 
+		set memberName=#{memberName}, memberPw=#{memberPw},memberEmail=#{memberEmail},
+			memberNickname=#{memberNickname}, memberBirth=#{memberBirth}
+		where memberIdx=#{memberIdx}
+	</update>
+	
 </mapper>

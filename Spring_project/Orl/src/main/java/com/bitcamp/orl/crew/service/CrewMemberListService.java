@@ -24,4 +24,14 @@ public class CrewMemberListService {
 		List<CrewMemberList> list = dao.selectCrewMemberList(crewIdx);
 		return list;
 	}
+	
+	public int deleteCrewMemberFromList(
+			int memberIdx,
+			int crewIdx
+			) {
+		int resultCnt = 0;
+		dao = template.getMapper(Dao.class);
+		resultCnt = dao.deleteFromCrewMemberList(memberIdx, crewIdx);
+		return resultCnt;
+	}
 }

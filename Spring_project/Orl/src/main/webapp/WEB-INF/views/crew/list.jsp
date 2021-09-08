@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>크루</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
@@ -101,7 +101,6 @@ function crewList(cList){
           html+='<h4 class="card-title">크루 이름: '+item.crewName+' </h4>';
           html+='<p class="card-text">크루장: '+item.memberNickName+'</p>';
           html+='<p class="card-text">크루소개 : '+item.crewDiscription+'</p>';
-          html+='<a href="#" class="btn btn-success">GO</a>';
           html+='</div>';
           html+='</a>';
 					html+='</div>';
@@ -140,7 +139,7 @@ function crewList(cList){
 		<div class="container">
 			<div class="search-box">
 				<div class="dropdown">
-					<h1>POPULAR CREW</h1>
+					<h1>CREW</h1>
 					<button class="curved" id="nameList">이름순으로 보기</button>
 					<button class="curved" id="newestList">최신순으로 보기</button>
 					<button class="curved" id="oldList">오랜된 순으로 보기</button>
