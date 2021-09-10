@@ -42,8 +42,9 @@
 			$("#crewHashTag").html(html);
 		}
 		
-		commentList();
+		commentList(1);
 		
+		//댓글 입력
 		$('#submit').click(function(){
 			var formData = new FormData();
 			formData.append("crewIdx", $('#crewIdx').val());
@@ -59,7 +60,7 @@
 					if(data==0){
 						alert('로그인 여부를 확인해주세요.');
 					}
-					commentList();
+					commentList(1);
 				}
 			})
 		});
@@ -112,6 +113,7 @@
 		
 	}); //document ready 끝
 	
+	//토글 관리
 	function commentToggle(parameter){
 		const toggleMenu = document.querySelector('.commentMenu'+parameter+'');
 		toggleMenu.classList.toggle('active');
@@ -120,28 +122,34 @@
 		$('#commentMenu'+parameter+'').html(html);
 	}
 	
+	//댓글 삭제
 	function deleteComment(parameter){
-		location.href = '<c:url value="/crew/commentDelete/'+parameter+'&'+${crew.crewIdx}+'"/>';
+		$.ajax({
+			url: 'http://localhost:8080/orl/crew/commentDelete',
+			type: 'GET',
+			data: {crewCommentIdx : parameter},
+			success: function(data){
+				commentList(1);
+			}
+		});
 	}
 	
-	function paging(){
-		
-	}
-	
-	function commentList(){
+	//출력함수
+	function commentList(parameter){
 		$.ajax({
 			url: 'http://localhost:8080/orl/crew/getCommentInfo',
 			type: 'GET',
 			data: {
 				crewIdx: '${crew.crewIdx}',
-				currentPageNum : '${cri.currentPageNum}'
+				currentPageNum : parameter
 			},
 			contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
-			success: function(data){ // data가 json -> js객체로 변환해서 옴
+			success: function(data){
 				
 				if(data.infoList.length == 0) {
 					var html = '<tr><td>아직 작성된 댓글이 없습니다.</td></tr>';
 					$('#commentList').html(html);
+					return;
 				}
 				
 				var html = '';
@@ -166,6 +174,7 @@
 				});
 				
 				var currentPageNum = parseInt('${cri.currentPageNum}');
+				
 				var prev = currentPageNum-1;
 				if (prev==0){
 					prev = 1;
@@ -176,13 +185,13 @@
 				}
 				
 				html2 += '<li class="page-item">';
-				html2 += '<a class="page-link" href=" <c:url value="/crew/detail/${crew.crewIdx}&'+prev+'"/> ">&lt</a></li>';
+				html2 += '<a class="page-link" href="javascript:commentList('+prev+')">&lt</a></li>';
 				for(var i=1 ; i <= data.totalPageNum; i++){
 					html2 += '<li class="page-item">';
-					html2 += '<a href="<c:url value="/crew/detail/${crew.crewIdx}&'+i+'"/>" class="page-link">'+i+'</a></li>';
+					html2 += '<a href="javascript:commentList('+i+')" class="page-link">'+i+'</a></li>';
 				}
 				html2 += '<li class="page-item">';
-				html2 += '<a class="page-link" href="<c:url value="/crew/detail/${crew.crewIdx}&'+next+'"/>">&gt</a></li>';
+				html2 += '<a class="page-link" href="javascript:commentList('+next+')">&gt</a></li>';
 				$('#paging').html(html2);
 			}
 		});                                                                                                                     

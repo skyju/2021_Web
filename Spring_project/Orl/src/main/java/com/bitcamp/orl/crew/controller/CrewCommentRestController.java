@@ -47,10 +47,11 @@ public class CrewCommentRestController {
 		return Integer.toString(commentService.insertCrewComment(request.getCrewComment(), session, request.getCrewIdx()));
 	}
 	
-	@RequestMapping("crew/deleteMyComment")
+	@RequestMapping("crew/commentDelete")
 	@CrossOrigin
-	public int deleteMyComment() {
-		int result = 0;
-		return result;
+	public String deleteMyComment(
+			@RequestParam("crewCommentIdx") int crewCommentIdx
+			) {
+		return Integer.toString(commentService.deleteCrewComment(crewCommentIdx));
 	}
 }
