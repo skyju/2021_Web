@@ -97,7 +97,7 @@ function crewList(cList){
 					html+='<div class="card shadow">';
 					html+='<div class="inner">';
 					html+='<div>';
-					html+='<a href="<c:url value="/crew/detail?crewIdx='+item.crewIdx+'&currentPageNum=1"/>">';
+					html+='<a href="<c:url value="/crew/detail?crewIdx='+item.crewIdx+'"/>">';
 					html+='<img src="<c:url value="/images/crew/'+item.crewPhoto+'"/>"  class="card-img-top" alt="card image cap">';
           html+='<div class="card-body text-left">';
           html+='<h4 class="card-title">크루 이름: '+item.crewName+' </h4>';
@@ -127,7 +127,7 @@ function crewList(cList){
 
 					<div class="article-crew">
 						<div>
-							<a href='<c:url value="/crew/detail?crewIdx=${crew.crewIdx}&currentPageNum=1"/>'> <img
+							<a href='<c:url value="/crew/detail?crewIdx=${crew.crewIdx}"/>'> <img
 								src="<c:url value='/images/crew/${crew.crewPhoto}'/>"></a>
 						</div>
 						<p>${crew.crewName}</p>

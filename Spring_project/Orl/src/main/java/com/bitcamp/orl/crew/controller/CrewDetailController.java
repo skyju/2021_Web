@@ -21,10 +21,11 @@ public class CrewDetailController {
 	@RequestMapping("/crew/detail")
 	public String getCrewDetail(
 			@RequestParam("crewIdx")int crewIdx,
-			@RequestParam("currentPageNum")int currentPageNum,
+			@RequestParam(value="currentPageNum", required = false, defaultValue = "1")int currentPageNum,
 			HttpServletRequest request,
 			Model model
 			) {
+		
 		CrewInfo crewinfo = service.getCrewInfo(request.getSession(), crewIdx);
 		CrewCommentCriteria cri = new CrewCommentCriteria(crewIdx, currentPageNum);
 		

@@ -104,7 +104,7 @@
 						alert('탈퇴에 실패했습니다.');
 					} else if(data==1){
 						alert('해당 크루를 탈퇴했습니다.');
-						window.location.href="<c:url value='/crew/detail?crewIdx=${crew.crewIdx}&currentPageNum=1'/>"
+						window.location.href="<c:url value='/crew/detail?crewIdx=${crew.crewIdx}&currentPageNum=1'/>";
 					}
 				}
 			});	
