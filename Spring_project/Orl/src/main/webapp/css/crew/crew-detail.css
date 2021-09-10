@@ -262,13 +262,15 @@ p {
 	padding-bottom: 10px;
 }
 
-
+.commentMenuBox {
+	position:relative;
+}
 
 .commentMenu {
 	overflow-y: auto;
 	position: absolute;
-  top: auto;
-  right: 5%;
+  top: -30px;
+  right: -80px;
   margin-top: 7px;
 	background-color: white;
 	z-index: 100;
@@ -326,4 +328,22 @@ p {
 	background: black;
 	transition: all 0.3s ease-out;
 }
+#crewHashTag {
+	padding: 0;
+}
 
+.tag-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  /* 라인수 */
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  background-color: rgb(253, 239, 123);
+  color: #000;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 4px 7px;
+  margin-right: 6px;
+  font-size: 13px;
+}

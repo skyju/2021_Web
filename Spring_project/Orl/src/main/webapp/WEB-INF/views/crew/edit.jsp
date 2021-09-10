@@ -7,9 +7,24 @@
 <meta charset="UTF-8">
 <title>크루 관리</title>
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
-<script defer type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
-<script defer src="<c:url value='/js/crew/insert.js'/>"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+<script src="<c:url value='/js/crew/insert.js'/>"></script>
 <link rel="stylesheet" href="<c:url value='/css/crew/edit.css'/>">
+<script>
+	$(document).ready(function () {
+		if('${crew.crewTag}' == null){
+			return;
+		} else {
+			var str = [];
+			const crewTag = '${crew.crewTag}';
+			str = crewTag.split(",");
+			for(var idx = 0 ; idx < str.length ; idx++){
+				$("#tag-list").append("<li class='tag-item'>" + str[idx] + "<span class='del-btn' idx='" + idx + "'>x"+
+						"</span><input type='hidden' name='crewTag' id='rdTag' value="+ str[idx] +"></li>");
+			}
+		}
+	});
+</script>
 </head>
 <body>
 <c:if test="${chk eq false}">

@@ -47,18 +47,13 @@ function viewImage(img) {
     H = img1.height;
     O = "width=" + W + ",height=" + H + ",scrollbars=yes";
     imgWin = window.open("", "", O);
-    imgWin.document.write("<html><head><title>:*:*:*: 이미지상세보기 :*:*:*:*:*:*:</title></head>");
+    imgWin.document.write("<html><head><title>:*:*:*: 이미지상세보기 :*:*:*:</title></head>");
     imgWin.document.write("<body topmargin=0 leftmargin=0>");
     imgWin.document.write("<img src=" + img + " onclick='self.close()' style='cursor:pointer;' title ='클릭하시면 창이 닫힙니다.'>");
     imgWin.document.close();
 }
 
-function menuToggle() {
-    const toggleMenu = document.querySelector('.menu');
-    toggleMenu.classList.toggle('active')
-}
-
-
+///////////////////////
 
 $(document).ready(function () {
 
@@ -69,13 +64,6 @@ $(document).ready(function () {
     function addTag(value) {
         tag[counter] = value;
         counter++; // del-btn 의 고유 id 가 된다.
-    }
-
-    // tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
-    function marginTag() {
-        return Object.values(tag).filter(function (word) {
-            return word !== "";
-        });
     }
 
     // 서버에 제공
@@ -90,10 +78,9 @@ $(document).ready(function () {
         if (e.key === "Enter" || e.keyCode == 32) {
 
             var tagValue = self.val(); // 값 가져오기
-
             // 해시태그 값 없으면 실행X
-            if (tagValue !== "") {
 
+            if (tagValue !== "") {
                 // 같은 태그가 있는지 검사한다. 있다면 해당값이 array 로 return 된다.
                 var result = Object.values(tag).filter(function (word) {
                     return word === tagValue;
@@ -102,7 +89,7 @@ $(document).ready(function () {
                 // 해시태그가 중복되었는지 확인
                 if (result.length == 0) {
                     $("#tag-list").append("<li class='tag-item'>" + tagValue + "<span class='del-btn' idx='" + counter + "'>x"+
-                    "</span><input type='hidden' name='crewTag' id='rdTag' value=#"+tagValue+"></li>");
+                    "</span><input type='hidden' name='crewTag' id='rdTag' value="+tagValue+"></li>");
                     addTag(tagValue);
                     self.val("");
                 } else {
@@ -122,7 +109,7 @@ $(document).ready(function () {
     });
 
 
-    
+    ///////////////////////////////
     //이름 중복 검사
     $('#crewname').focusin(function() {
 		$('#msg').addClass('display_none');

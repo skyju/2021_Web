@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bitcamp.orl.crew.domain.CrewMemberList;
-import com.bitcamp.orl.crew.service.CrewMemberListService;
+import com.bitcamp.orl.crew.service.CrewMemberMngService;
 
 @RestController
-public class CrewMemberListRestController {
+public class CrewMemberMngRestController {
 	
 	@Autowired
-	CrewMemberListService service;
+	CrewMemberMngService service;
 	
 	@GetMapping("/crew/getCrewMemberList")
 	@CrossOrigin
@@ -35,6 +35,16 @@ public class CrewMemberListRestController {
 			) {
 		int resultCnt = 0;
 		resultCnt = service.deleteCrewMemberFromList(memberIdx, crewIdx);
+		return resultCnt;
+	}
+	
+	@GetMapping("/crew/joinToCrewMemberList")
+	@CrossOrigin
+	public int joinToCrewMemberList(
+			@RequestParam("memberIdx")int memberIdx,
+			@RequestParam("crewIdx")int crewIdx) {
+		int resultCnt = 0;
+		resultCnt = service.crewReg(memberIdx, crewIdx);
 		return resultCnt;
 	}
 	

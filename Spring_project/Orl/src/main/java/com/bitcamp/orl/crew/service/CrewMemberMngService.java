@@ -10,7 +10,7 @@ import com.bitcamp.orl.crew.dao.Dao;
 import com.bitcamp.orl.crew.domain.CrewMemberList;
 
 @Service
-public class CrewMemberListService {
+public class CrewMemberMngService {
 	
 	Dao dao;
 	
@@ -32,6 +32,16 @@ public class CrewMemberListService {
 		int resultCnt = 0;
 		dao = template.getMapper(Dao.class);
 		resultCnt = dao.deleteFromCrewMemberList(memberIdx, crewIdx);
+		return resultCnt;
+	}
+	
+	public int crewReg(
+			int memberIdx,
+			int crewIdx
+			) {
+		int resultCnt = 0;
+		dao = template.getMapper(Dao.class);
+		resultCnt = dao.insertCrewReg(memberIdx, crewIdx);
 		return resultCnt;
 	}
 }

@@ -40,7 +40,9 @@ $(document).ready(function(){
 	$.ajax({
 		url:'<c:url value="/crew/crewName"/>',
 		type:'GET',
-		data:{searchType:'${searchType}'},
+		data:{ 
+			searchType:'${searchType}'
+		},
 		dataType : 'json',
 		success:function(data){
 			cList = data;
@@ -95,7 +97,7 @@ function crewList(cList){
 					html+='<div class="card shadow">';
 					html+='<div class="inner">';
 					html+='<div>';
-					html+='<a href="<c:url value="/crew/detail/'+item.crewIdx+'&1"/>">';
+					html+='<a href="<c:url value="/crew/detail?crewIdx='+item.crewIdx+'&currentPageNum=1"/>">';
 					html+='<img src="<c:url value="/images/crew/'+item.crewPhoto+'"/>"  class="card-img-top" alt="card image cap">';
           html+='<div class="card-body text-left">';
           html+='<h4 class="card-title">크루 이름: '+item.crewName+' </h4>';
@@ -125,7 +127,7 @@ function crewList(cList){
 
 					<div class="article-crew">
 						<div>
-							<a href='<c:url value="/crew/detail/${crew.crewIdx}&1"/>'> <img
+							<a href='<c:url value="/crew/detail?crewIdx=${crew.crewIdx}&currentPageNum=1"/>'> <img
 								src="<c:url value='/images/crew/${crew.crewPhoto}'/>"></a>
 						</div>
 						<p>${crew.crewName}</p>
@@ -144,7 +146,7 @@ function crewList(cList){
 					<button class="curved" id="newestList">최신순으로 보기</button>
 					<button class="curved" id="oldList">오랜된 순으로 보기</button>
 				</div>
-				<form action="" name="frm">
+				<form name="frm">
 					<div class="search-drop">
 						<div class="searchType">
 							<select name="searchType">
@@ -155,10 +157,9 @@ function crewList(cList){
 						</div>
 						<div class="boxSearch">
 							<span class="icon"><i class="fa fa-search"
-								aria-hidden="true" onclick="search_onclick_submit"></i></span> <input
-								id="search" class="search"
-								onkeypress="if( event.keyCode == 13 ){search_onclick_submit;}"
-								type="text" name="keyword" placeholder="Type to search">
+								aria-hidden="true" onclick="search_onclick_submit"></i></span>
+								<input id="search" class="search" onkeypress="if( event.keyCode == 13 ){search_onclick_submit;}"
+									type="text" name="keyword" placeholder="Type to search">
 						</div>
 					</div>
 				</form>

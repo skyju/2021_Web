@@ -33,10 +33,10 @@ public class CrewManageController {
 			Model model
 			) {
 		boolean chk = service.isHaveAuth(crewIdx, request);
-		Crew crew = service.selectCrew(crewIdx);
+		CrewInfo crewinfo = detailService.getCrewInfo(request.getSession(), crewIdx);
 		
 		model.addAttribute("chk", chk);
-		model.addAttribute("crew", crew);
+		model.addAttribute("crew", crewinfo);
 		
 		return "crew/edit";
 	}
@@ -49,7 +49,6 @@ public class CrewManageController {
 			Model model
 			) {
 		int result = service.updateCrew(crewRequest, request, crewIdx);
-		
 		CrewInfo crewinfo = detailService.getCrewInfo(request.getSession(), crewIdx);
 		CrewCommentCriteria cri = new CrewCommentCriteria(crewIdx, 1);
 		
