@@ -21,7 +21,6 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
 
-	// 페이징 road하지말고 ajax로 비동기통신3
 	// 토글 밖에 클릭하면 꺼지게 (body)에 걸어서
 	// 클래스에 번호일일히 붙이지 않는 방법 -> on 으로 위에 태그로 잡아서 처리
 	// 검색/페이징
@@ -29,6 +28,16 @@
 	
 	$(document).ready(function(){
 		
+		/*
+		$('body').click(function(){
+			var matches = document.querySelectorAll('.active');
+			for(var i = 0 ; i < matches.length ; i ++){
+					matches[i].classList.remove('active');
+			}
+		});
+		*/
+		
+		//해쉬태그 showing
 		if('${crew.crewTag}' == null){
 			return;
 		} else {
@@ -42,7 +51,7 @@
 			$("#crewHashTag").html(html);
 		}
 		
-		commentList(1);
+		commentList();
 		
 		//댓글 입력
 		$('#submit').click(function(){
@@ -60,14 +69,13 @@
 					if(data==0){
 						alert('로그인 여부를 확인해주세요.');
 					}
-					commentList(1);
+					commentList();
 				}
 			})
 		});
 		
 		//크루 가입
 		$('#joinToCrew').on('click', 'button', function(){
-			
 			if('${sessionScope.member.memberIdx}'==''){
 				window.location.href="<c:url value='/member/login'/>";
 			} else {
@@ -83,7 +91,7 @@
 							alert('가입에 실패했습니다.');
 						} else if(data==1){
 							alert('크루에 가입하셨습니다.');
-							window.location.href="<c:url value='/crew/detail?crewIdx=${crew.crewIdx}&currentPageNum=1'/>";
+							window.location.href="<c:url value='/crew/detail?crewIdx=${crew.crewIdx}'/>";
 						}
 					}
 				});	
@@ -92,22 +100,26 @@
 		
 		//크루 탈퇴
 		$('#outFromCrew').on('click', 'button', function(){
-			$.ajax({
-				url: 'http://localhost:8080/orl/crew/deleteCrewMemberFromList',
-				type: 'get',
-				data: {
-					memberIdx : '${sessionScope.member.memberIdx}',
-					crewIdx : '${crew.crewIdx}'	
-				},
-				success : function(data){
-					if(data==0){
-						alert('탈퇴에 실패했습니다.');
-					} else if(data==1){
-						alert('해당 크루를 탈퇴했습니다.');
-						window.location.href="<c:url value='/crew/detail?crewIdx=${crew.crewIdx}&currentPageNum=1'/>";
+			if('${sessionScope.member.memberIdx}'==''){
+				window.location.href="<c:url value='/member/login'/>";
+			} else {
+				$.ajax({
+					url: 'http://localhost:8080/orl/crew/deleteCrewMemberFromList',
+					type: 'get',
+					data: {
+						memberIdx : '${sessionScope.member.memberIdx}',
+						crewIdx : '${crew.crewIdx}'	
+					},
+					success : function(data){
+						if(data==0){
+							alert('탈퇴에 실패했습니다.');
+						} else if(data==1){
+							alert('해당 크루를 탈퇴했습니다.');
+							window.location.href="<c:url value='/crew/detail?crewIdx=${crew.crewIdx}'/>";
+						}
 					}
-				}
-			});	
+				});
+			}
 		});
 		
 		
@@ -129,7 +141,7 @@
 			type: 'GET',
 			data: {crewCommentIdx : parameter},
 			success: function(data){
-				commentList(1);
+				commentList();
 			}
 		});
 	}
@@ -165,7 +177,7 @@
 						html += '<div class="commentMenuBox">';
 						html += '<div class="icon" onclick="commentToggle('+item.crewCommentIdx+');">';
 						html += '<a href="#"><img id="commentMng" src="<c:url value="/images/crew/icon.png"/>"></a>';
-						html +=	'<div class="commentMenu commentMenu'+item.crewCommentIdx+'"><ul id="commentMenu'+item.crewCommentIdx+'"></ul></div>';
+						html +=	'<div id="cmid" class="commentMenu commentMenu'+item.crewCommentIdx+'"><ul id="commentMenu'+item.crewCommentIdx+'"></ul></div>';
 						html += '</div>';
 						html += '</div>';
 					}
