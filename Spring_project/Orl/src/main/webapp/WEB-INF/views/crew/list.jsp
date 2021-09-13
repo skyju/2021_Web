@@ -23,9 +23,36 @@
 <script>
 $(document).ready(function() {
 	
-	var cList = [];
-	cList = '${list}';
-	crewList(cList);
+	const cList = [];
+	
+	const searchType = '${searchType}';
+	const	keyword = '${keyword}';
+	
+	function getCrewList() {
+		if(keyword == ""){
+			$.ajax({
+				url : '<c:url value="/crew/searchList"/>',
+				type : 'get',
+				success : function(data) {
+					cList = data;
+					crewList(cList);
+				}
+			});
+		} else {
+			$.ajax({
+				url : '<c:url value="/crew/searchList"/>',
+				type : 'get',
+				data : {
+					searchType: '${searchType}',
+					keyword : '${keyword}'
+				},
+				success : function(data) {
+					cList = data;
+					crewList(cList);
+				}
+			});
+		}
+	}
 
 	$('#nameList').click(function() {
 		console.log("이름순으로 정렬");
@@ -58,6 +85,7 @@ $(document).ready(function() {
 	});
 		
 }); //document ready end.
+	
 	
 	//출력함수
 	function crewList(cList) {

@@ -14,26 +14,24 @@ import com.bitcamp.orl.crew.service.CrewListViewService;
 
 @RestController
 public class CrewListRestController {
-	
+
 	@Autowired
-	private CrewListViewService service;
+	CrewListViewService service;
 	
 	@RequestMapping("/crew/searchList")
 	@CrossOrigin
-	public List<Crew> getSortingName(
-			@RequestParam(value="selectSearch", required = false, defaultValue ="")String selectSearch,
-			@RequestParam(value="search", required = false, defaultValue = "")String search
+	public List<Crew> getCrewList(
+			@RequestParam(value="searchType", required = false)String searchType,
+			@RequestParam(value="keyword", required = false)String keyword
 			){
-		List<Crew> list= null;
-		SearchType searchType = new SearchType(selectSearch, search);
-		System.out.println(searchType);
 		
-		if(searchType.getKeyword() !=null && searchType.getKeyword().trim().length() > 0) {
-			list= service.getCrewListAll(searchType);
+		SearchType st = new SearchType(searchType, keyword);
+		List<Crew> allCrewList = service.getCrewListAll(st);
+		if(st.getKeyword() !=null && st.getKeyword().trim().length() > 0) {
+			allCrewList= service.getCrewListAll(st);
 		} else {
-			list = service.getCrewListAll();
+			allCrewList = service.getCrewListAll();
 		}
-		
-		return list;
+		return allCrewList;
 	}
 }
