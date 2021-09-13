@@ -6,6 +6,7 @@
 // 부트 (el -> timeleaf)
 
 $(document).ready(function(){
+    
 	commentList();
 
     //When click the 'body' tag toggle that menu(active-inactive).

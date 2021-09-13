@@ -21,109 +21,68 @@
 <link rel="stylesheet" href="<c:url value='/css/crew/crew-list.css'/>">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
-	$(document).ready(function() {
+$(document).ready(function() {
+	
+	var cList = [];
+	cList = '${list}';
+	crewList(cList);
 
-		var cList = [];
-
-		function Ajax() {
-			$.ajax({
-				url : '<c:url value="/crew/searchList"/>',
-				type : 'GET',
-				data : {
-					"search" : $("#search").val(),
-					"selectSearch" : $("#selectSearch").val()
-				},
-				dataType : 'json',
-				success : function(data) {
-					console.log("실행되었습니다.	")
-					cList = data;
-					crewList(cList);
-				}
-			});
-		}
-
-		$.ajax({
-			url : '<c:url value="/crew/crewName"/>',
-			type : 'GET',
-			data : {
-				searchType : '${searchType}'
-			},
-			dataType : 'json',
-			success : function(data) {
-				cList = data;
-				crewList(cList);
-			}
+	$('#nameList').click(function() {
+		console.log("이름순으로 정렬");
+		cList.sort(function(a, b) {
+			a = a.crewName;
+			b = b.crewName;
+			return a < b ? -1 : a > b ? 1 : 0;
 		});
-
-		$('#nameList').click(function() {
-			console.log("이름순으로 정렬");
-			console.log(cList);
-			cList.sort(function(a, b) {
-				a = a.crewName;
-				b = b.crewName;
-				return a < b ? -1 : a > b ? 1 : 0;
-			});
-			crewList(cList);
-		});
-
-		$('#newestList').click(function() {
-			console.log("최신순으로 정렬");
-			console.log(cList);
-			cList.sort(function(a, b) {
-				a = a.crewCreatedate;
-				b = b.crewCreatedate;
-				return a > b ? -1 : a < b ? 1 : 0;
-			});
-			crewList(cList);
-		});
-
-		$('#oldList').click(function() {
-			console.log("오래된순으로 정렬");
-			console.log(cList);
-			cList.sort(function(a, b) {
-				a = a.crewCreatedate;
-				b = b.crewCreatedate;
-				return a < b ? -1 : a > b ? 1 : 0;
-			});
-			crewList(cList);
-		});
+		crewList(cList);
 	});
 
+	$('#newestList').click(function() {
+		console.log("최신순으로 정렬");
+		cList.sort(function(a, b) {
+			a = a.crewCreatedate;
+			b = b.crewCreatedate;
+			return a > b ? -1 : a < b ? 1 : 0;
+		});
+		crewList(cList);
+	});
+
+	$('#oldList').click(function() {
+		console.log("오래된순으로 정렬");
+		cList.sort(function(a, b) {
+			a = a.crewCreatedate;
+			b = b.crewCreatedate;
+			return a < b ? -1 : a > b ? 1 : 0;
+		});
+		crewList(cList);
+	});
+		
+}); //document ready end.
+	
+	//출력함수
 	function crewList(cList) {
 		var ccList = [];
 		ccList = cList;
-		console.log("리스트 함수 호출");
-		console.log(ccList);
-
 		var html = '<div id="row" class="row">';
-
-		$
-				.each(
-						ccList,
-						function(index, item) {
-							html += '<div class="col-md-4">';
-							html += '<div class="card shadow">';
-							html += '<div class="inner">';
-							html += '<div>';
-							html += '<a href="<c:url value="/crew/detail?crewIdx='
-									+ item.crewIdx + '"/>">';
-							html += '<img src="<c:url value="/images/crew/'+item.crewPhoto+'"/>"  class="card-img-top" alt="card image cap">';
-							html += '<div class="card-body text-left">';
-							html += '<h4 class="card-title">크루 이름: '
-									+ item.crewName + ' </h4>';
-							html += '<p class="card-text">크루장: '
-									+ item.memberNickName + '</p>';
-							html += '<p class="card-text">크루소개 : '
-									+ item.crewDiscription + '</p>';
-							html += '</div>';
-							html += '</a>';
-							html += '</div>';
-							html += '</div>';
-							html += '</div>';
-							html += '</div>';
-
-							$('#cList').html(html);
-						});
+		$.each(ccList, function(index, item) {
+				html += '<div class="col-md-4">';
+				html += '<div class="card shadow">';
+				html += '<div class="inner">';
+				html += '<div>';
+				html += '<a href="<c:url value="/crew/detail?crewIdx='+item.crewIdx+'"/>">';
+				html += '<img src="<c:url value="/images/crew/'+item.crewPhoto+'"/>" class="card-img-top" alt="card image cap">';
+				html += '<div class="card-body text-left">';
+				html += '<h4 class="card-title">크루 이름: '+item.crewName+'</h4>';
+				html += '<p class="card-text">크루장: '+item.memberNickName+'</p>';
+				html += '<p class="card-text">크루소개 : '+item.crewDiscription+'</p>';
+				html += '</div>';
+				html += '</a>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				$('#cList').html(html);
+		});
 	}
 </script>
 </head>
@@ -143,7 +102,6 @@
 			</div>
 			<c:if test="${myCrewList ne null and not empty myCrewList}">
 				<c:forEach items="${myCrewList}" var="crew">
-
 					<div class="article-crew">
 						<div>
 							<a href='<c:url value="/crew/detail?crewIdx=${crew.crewIdx}"/>'>
@@ -152,7 +110,6 @@
 						</div>
 						<p>${crew.crewName}</p>
 					</div>
-
 				</c:forEach>
 			</c:if>
 
@@ -175,41 +132,38 @@
 								<option value="tag">해시태그</option>
 							</select>
 							<div class="boxSearch">
-								<span class="icon"><i id="searchType"
-									class="fa fa-search" aria-hidden="true"></i></span>
-									<input
-									onclick="Ajax()" id="search" class="search" type="text"
-									name="keyword" placeholder="Type to search">
+								<span class="icon">
+									<i id="searchType" class="fa fa-search" aria-hidden="true"></i>
+								</span>
+								<input id="search" class="search" type="text" name="keyword" placeholder="Type to search">
 							</div>
 						</div>
 					</div>
 				</form>
-
 			</div>
 		</div>
 
-
-		<div class="page">
-			<nav aria-label="Page navigation example">
-				<c:if test="${listView.totalPageNum>0}">
-					<ul class="pagination">
-
-						<c:forEach begin="1" end="${listView.totalPageNum}" var="num">
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Previous"><span aria-hidden="true">&laquo;</span>
-									<span class="sr-only">Previous</span> </a></li>
-							<li class="page-item"><a class="page-link"
-								href="<c:url value=''/>">1</a></li>
-							<li class="page-item"><a class="page-link" href="#"
-								aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
-									class="sr-only">Next</span>
-							</a></li>
-						</c:forEach>
-
-					</ul>
-				</c:if>
-			</nav>
+		<div id="cList"> 
 		</div>
+
+	<ul class="pagination">
+    <c:if test="${pageMaker.prev}">
+        <li>
+            <a href="<c:url value="/crew/list/${pageMaker.makeQuery(pageMaker.startPage - 1)}"/>">[이전]</a>
+        </li>
+    </c:if>
+   
+    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="index">
+        <a href="<c:url value="/crew/list/${pageMaker.makeQuery(index)}"/>">[${index }]</a>
+    </c:forEach>
+ 
+    <c:if test="${pageMaker.next }">
+        <li>
+            <a href="<c:url value="/crew/detail/${pageMaker.makeQuery(pageMaker.endPage + 1)}"/>">[다음]</a>
+        </li>
+    </c:if>  
+</ul>
+
 
 	</div>
 

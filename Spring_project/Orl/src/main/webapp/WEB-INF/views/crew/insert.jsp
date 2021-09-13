@@ -11,7 +11,7 @@
 	<c:if test="${crew.crewIdx ne null}">
 		<script>
 			alert('크루 생성이 완료되었습니다.');
-			window.location.href="<c:url value='/crew/detail/"+${crew.crewIdx}+"&1'/>"
+			window.location.href="<c:url value='/crew/detail?crewIdx="+${crew.crewIdx}+"'/>"
 		</script>
 	</c:if>
 </body>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.bitcamp.orl.crew.dao.Dao;
 import com.bitcamp.orl.crew.domain.Crew;
+import com.bitcamp.orl.crew.domain.CrewListCriteria;
 import com.bitcamp.orl.crew.domain.SearchType;
 import com.bitcamp.orl.member.domain.Member;
 
@@ -20,13 +21,6 @@ public class CrewListViewService {
 
 	@Autowired
 	private SqlSessionTemplate template;
-
-	// 크루 리스트 (이름순)
-	public List<Crew> getCrewNameInfo(String crewName) {
-		List<Crew> crewList = null;
-		dao = template.getMapper(Dao.class);
-		return crewList;
-	}
 
 	public List<Crew> getMyCrewList(
 			HttpServletRequest request
@@ -42,22 +36,6 @@ public class CrewListViewService {
 		return myCrewList;
 	}
 
-	public List<Crew> getMyCrewList(
-			HttpServletRequest request, 
-			SearchType searchType
-			) {
-
-		List<Crew> myCrewList = null;
-
-		Member member = (Member) request.getSession().getAttribute("member");
-		if (member != null) {
-			int memberIdx = member.getMemberIdx();
-			dao = template.getMapper(Dao.class);
-			myCrewList = dao.selectMyCrewList(memberIdx, searchType);
-		}
-		return myCrewList;
-	};
-
 	public List<Crew> getCrewListAll() {
 		dao = template.getMapper(Dao.class);
 		return dao.selectAll();
@@ -67,5 +45,12 @@ public class CrewListViewService {
 		dao = template.getMapper(Dao.class);
 		return dao.selectCrewAll(searchType);
 	}
-
+	
+	public int getCrewCount() {
+		return template.getMapper(Dao.class).CrewCount();
+	}
+	
+	public List<Crew> listCriteria(CrewListCriteria cri){
+		return template.getMapper(Dao.class).listCriteria(cri);
+	}
 }

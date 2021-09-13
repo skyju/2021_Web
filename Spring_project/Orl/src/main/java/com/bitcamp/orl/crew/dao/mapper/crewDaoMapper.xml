@@ -23,6 +23,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	resultMap="crewListResult">
 		select * from crew order by crewIdx desc
 	</select>
+	
+	<!-- 게시물 총 개수 -->
+	<select id="CrewCount" resultType="int">
+	select count(*) from crew
+	</select>
 
 	<!-- 내가 가입한 크루 리스트 -->
 	<select 
@@ -198,6 +203,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where crewCommentIdx = #{crewCommentIdx}
 	</select>
 	
+	<!-- 댓글 수정 -->
 	<update 
 	id="updateCrewComment">
 		update crewComment
@@ -205,26 +211,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where crewCommentIdx = #{crewCommentIdx};	
 	</update>
 
-	<!-- 검색 조건문 -->
-	<sql id="criteria">
-		<trim prefix="where (" suffix=")" prefixOverrides="OR">
-			<foreach collection="typeArr" item="type">
-				<trim prefix="OR">
-					<choose>
-						<when test="type == 'name'.toString()">
-							title like concat('%',#{keyword},'%')
-						</when>
-						<when test="type == 'nickName'.toString()">
-							content like concat('%',#{keyword},'%')
-						</when>
-						<when test="type == 'tag'.toString()">
-							writer like concat('%',#{keyword},'%' )
-						</when>
-					</choose>
-				</trim>
-			</foreach>
-		</trim>
-	</sql>
+
+
+	<!-- paging 를 적용한 게시판 페이징 조회 -->
+	<select id="listCriteria" 
+		resultMap="crewListResult">
+		select *
+		from crew
+		order by crewIdx desc, crewCreatedate desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
 	
 	<!-- 검색을 통한 크루 리스트 -->
 	<select id="selectCrewAll"
@@ -242,7 +238,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				<include refid="searchTag" />
 			</if>
 		</where>
+		order by crewIdx desc, crewCreatedate desc
+		limit #{pageStart}, #{perPageNum}
 	</select>
+	
 	<sql id="searchName">
 		or crewName like concat('%', #{keyword} ,'%')
 	</sql>
