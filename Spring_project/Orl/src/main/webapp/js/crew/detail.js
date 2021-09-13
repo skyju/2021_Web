@@ -6,7 +6,7 @@
 // 부트 (el -> timeleaf)
 
 $(document).ready(function(){
-    
+
 	commentList();
 
     //When click the 'body' tag toggle that menu(active-inactive).
@@ -128,6 +128,7 @@ function editComment(parameter){
     });
 }
 
+//Comment update.
 function updateComment(parameter){
     $.ajax({
         url: 'http://localhost:8080/orl/crew/commentUpdate',
