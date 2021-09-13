@@ -21,98 +21,110 @@
 <link rel="stylesheet" href="<c:url value='/css/crew/crew-list.css'/>">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
-$(document).ready(function(){
-	
-	var cList=[];
-	cList=null;
-	
-	$.ajax({
-		url:'<c:url value="/crew/searchTypeRest"/>',
-		type:'GET',
-		data:{searchType:'${searchType}'},
-		dataType : 'json',
-		success:function(data){
-			cList = data;
-			crewList(cList);
-		}
-	});
-	
-	$.ajax({
-		url:'<c:url value="/crew/crewName"/>',
-		type:'GET',
-		data:{ 
-			searchType:'${searchType}'
-		},
-		dataType : 'json',
-		success:function(data){
-			cList = data;
-			crewList(cList);
-		}
-	});
-	
-	$('#nameList').click(function(){
-		console.log("이름순으로 정렬");
-	  console.log(cList);
-	  cList.sort(function(a,b){
-		  a = a.crewName;
-			b = b.crewName;
-		return a < b ? - 1 : a > b ? 1 : 0;
-		});
-	crewList(cList);
-	});
-	
-	$('#newestList').click(function(){
-		console.log("최신순으로 정렬");
-	  console.log(cList);
-	  cList.sort(function(a,b){
-		a = a.crewCreatedate;
-		b = b.crewCreatedate;
-		return a > b ? -1 : a < b ? 1 : 0;
-		});
-	crewList(cList);
-	});
-	
-	$('#oldList').click(function(){
-		console.log("오래된순으로 정렬");
-	  console.log(cList);
-	  cList.sort(function(a,b){
-			a = a.crewCreatedate;
-			b = b.crewCreatedate;
-		  return a < b ? -1 : a > b ? 1 : 0;
-		});
-	crewList(cList);
-	});
-});
+	$(document).ready(function() {
 
-function crewList(cList){
-		var ccList=[];
-		ccList=cList;
+		var cList = [];
+
+		function Ajax() {
+			$.ajax({
+				url : '<c:url value="/crew/searchList"/>',
+				type : 'GET',
+				data : {
+					"search" : $("#search").val(),
+					"selectSearch" : $("#selectSearch").val()
+				},
+				dataType : 'json',
+				success : function(data) {
+					console.log("실행되었습니다.	")
+					cList = data;
+					crewList(cList);
+				}
+			});
+		}
+
+		$.ajax({
+			url : '<c:url value="/crew/crewName"/>',
+			type : 'GET',
+			data : {
+				searchType : '${searchType}'
+			},
+			dataType : 'json',
+			success : function(data) {
+				cList = data;
+				crewList(cList);
+			}
+		});
+
+		$('#nameList').click(function() {
+			console.log("이름순으로 정렬");
+			console.log(cList);
+			cList.sort(function(a, b) {
+				a = a.crewName;
+				b = b.crewName;
+				return a < b ? -1 : a > b ? 1 : 0;
+			});
+			crewList(cList);
+		});
+
+		$('#newestList').click(function() {
+			console.log("최신순으로 정렬");
+			console.log(cList);
+			cList.sort(function(a, b) {
+				a = a.crewCreatedate;
+				b = b.crewCreatedate;
+				return a > b ? -1 : a < b ? 1 : 0;
+			});
+			crewList(cList);
+		});
+
+		$('#oldList').click(function() {
+			console.log("오래된순으로 정렬");
+			console.log(cList);
+			cList.sort(function(a, b) {
+				a = a.crewCreatedate;
+				b = b.crewCreatedate;
+				return a < b ? -1 : a > b ? 1 : 0;
+			});
+			crewList(cList);
+		});
+	});
+
+	function crewList(cList) {
+		var ccList = [];
+		ccList = cList;
 		console.log("리스트 함수 호출");
 		console.log(ccList);
-	
-				var html='<div id="row" class="row">';
-				
-	  		$.each(ccList,function(index,item){
-					html+='<div class="col-md-4">';
-					html+='<div class="card shadow">';
-					html+='<div class="inner">';
-					html+='<div>';
-					html+='<a href="<c:url value="/crew/detail?crewIdx='+item.crewIdx+'"/>">';
-					html+='<img src="<c:url value="/images/crew/'+item.crewPhoto+'"/>"  class="card-img-top" alt="card image cap">';
-          html+='<div class="card-body text-left">';
-          html+='<h4 class="card-title">크루 이름: '+item.crewName+' </h4>';
-          html+='<p class="card-text">크루장: '+item.memberNickName+'</p>';
-          html+='<p class="card-text">크루소개 : '+item.crewDiscription+'</p>';
-          html+='</div>';
-          html+='</a>';
-					html+='</div>';
-					html+='</div>';
-					html+='</div>';
-					html+='</div>';
-					
-					$('#cList').html(html);
-				});
-}
+
+		var html = '<div id="row" class="row">';
+
+		$
+				.each(
+						ccList,
+						function(index, item) {
+							html += '<div class="col-md-4">';
+							html += '<div class="card shadow">';
+							html += '<div class="inner">';
+							html += '<div>';
+							html += '<a href="<c:url value="/crew/detail?crewIdx='
+									+ item.crewIdx + '"/>">';
+							html += '<img src="<c:url value="/images/crew/'+item.crewPhoto+'"/>"  class="card-img-top" alt="card image cap">';
+							html += '<div class="card-body text-left">';
+							html += '<h4 class="card-title">크루 이름: '
+									+ item.crewName + ' </h4>';
+							html += '<p class="card-text">크루장: '
+									+ item.memberNickName + '</p>';
+							html += '<p class="card-text">크루소개 : '
+									+ item.crewDiscription + '</p>';
+							html += '</div>';
+							html += '</a>';
+							html += '</div>';
+							html += '</div>';
+							html += '</div>';
+							html += '</div>';
+
+							$('#cList').html(html);
+						});
+	}
 </script>
 </head>
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
@@ -121,14 +133,22 @@ function crewList(cList){
 
 		<div class="article">
 			<h1>MY CREW</h1>
-
+			<div class="article-crew">
+				<div>
+					<a href="<c:url value='/crew/insert'/>"> <img
+						src="<c:url value='/images/crew/new.JPG'/>"></a>
+				</div>
+				<a href="<c:url value='/crew/insert'/>" class="text-bold">나의 크루
+					만들기</a>
+			</div>
 			<c:if test="${myCrewList ne null and not empty myCrewList}">
 				<c:forEach items="${myCrewList}" var="crew">
 
 					<div class="article-crew">
 						<div>
-							<a href='<c:url value="/crew/detail?crewIdx=${crew.crewIdx}"/>'> <img
-								src="<c:url value='/images/crew/${crew.crewPhoto}'/>"></a>
+							<a href='<c:url value="/crew/detail?crewIdx=${crew.crewIdx}"/>'>
+								<img src="<c:url value='/images/crew/${crew.crewPhoto}'/>">
+							</a>
 						</div>
 						<p>${crew.crewName}</p>
 					</div>
@@ -146,34 +166,31 @@ function crewList(cList){
 					<button class="curved" id="newestList">최신순으로 보기</button>
 					<button class="curved" id="oldList">오랜된 순으로 보기</button>
 				</div>
-				<form name="frm">
+				<form action="" name="frm" id="form">
 					<div class="search-drop">
 						<div class="searchType">
-							<select name="searchType">
+							<select name="searchType" id="selectSearch">
 								<option value="name">크루 이름</option>
 								<option value="nickName">닉네임</option>
 								<option value="tag">해시태그</option>
 							</select>
-						</div>
-						<div class="boxSearch">
-							<span class="icon"><i class="fa fa-search"
-								aria-hidden="true" onclick="search_onclick_submit"></i></span>
-								<input id="search" class="search" onkeypress="if( event.keyCode == 13 ){search_onclick_submit;}"
-									type="text" name="keyword" placeholder="Type to search">
+							<div class="boxSearch">
+								<span class="icon"><i id="searchType"
+									class="fa fa-search" aria-hidden="true"></i></span>
+									<input
+									onclick="Ajax()" id="search" class="search" type="text"
+									name="keyword" placeholder="Type to search">
+							</div>
 						</div>
 					</div>
 				</form>
-			</div>
-			<div id="cList">
-				<div class="row justify-content-center">
-				</div>
+
 			</div>
 		</div>
 
 
 		<div class="page">
 			<nav aria-label="Page navigation example">
-
 				<c:if test="${listView.totalPageNum>0}">
 					<ul class="pagination">
 
@@ -191,11 +208,7 @@ function crewList(cList){
 
 					</ul>
 				</c:if>
-
 			</nav>
-			<div class="crew-insert">
-				<a href="<c:url value='/crew/insert'/>">크루 생성하기</a>
-			</div>
 		</div>
 
 	</div>

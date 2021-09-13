@@ -113,7 +113,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	id="selectCrewCommentPaging"
 	resultMap="crewCommentListResult">
 		select * from crewComment where crewIdx=#{crewIdx}
-		order by crewCommentDate desc limit #{firstRow}, #{amountPerPage}
+		order by crewCommentIdx desc limit #{firstRow}, #{amountPerPage}
 	</select>
 
 	<!-- insert -->
@@ -189,6 +189,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from crewComment where crewCommentIdx = #{crewCommentIdx}
 	</delete>
 	
+	<!-- 해당 댓글 정보 가져오기 : 수정을 위해서 -->
+	<select
+	id ="getCrewCommentInfo"
+	resultType="com.bitcamp.orl.crew.domain.CrewCommentInfo">
+		select crewCommentIdx, crewComment, crewCommentDate, memberIdx, crewIdx, memberNickname, memberProfile 
+		from crewComment natural join member
+		where crewCommentIdx = #{crewCommentIdx}
+	</select>
+	
+	<update 
+	id="updateCrewComment">
+		update crewComment
+		set crewComment = #{crewComment}, crewCommentDate = default
+		where crewCommentIdx = #{crewCommentIdx};	
+	</update>
 
 	<!-- 검색 조건문 -->
 	<sql id="criteria">

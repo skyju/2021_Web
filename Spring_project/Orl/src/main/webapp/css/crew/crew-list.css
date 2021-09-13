@@ -1,4 +1,69 @@
 @charset "UTF-8";
+.searchType {
+    display: flex;
+    padding-top: 80px;
+
+}
+
+.dropdown {
+    padding-top: 20px;
+    margin-bottom: -25px;
+    padding-left: 65px;
+
+}
+
+#selectSearch{
+	background: var(--background-color);
+}
+
+.boxSearch input#search:hover,
+.container-1 input#search:focus,
+.container-1 input#search:active {
+    outline: none;
+    background: var(--background-color);
+}
+
+.boxSearch {
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+}
+
+.boxSearch input#search {
+    width: 300px;
+    height: 50px;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #63717f;
+    padding-left: 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: var(--background-color);
+}
+
+.boxSearch .icon {
+    position: absolute;
+    margin-left: 270px;
+    margin-top: 15px;
+    z-index: 1;
+    color: #4f5b66;
+}
+select {
+    border: none;
+}
+
+.curved {
+    padding: 5px;
+    font-size: 12px;
+    border: none;
+    color: #aaa;
+}
+
+
+
+
 .justify-content-center {
     justify-content: flex-start;
 }
@@ -14,10 +79,6 @@
     position: relative;
 }
 
-.section .nav{
-	margin-left:50%;
-}
-
 .section .inner {
     overflow: hidden;
 }
@@ -28,7 +89,8 @@
 }
 
 .section .dropdown {
-    position: initial;
+   	margin-left: -70px;
+    padding-right: 44%;
 }
 
 .section .select {
@@ -79,7 +141,7 @@
 }
 
 .section {
-    padding: 200px 0;
+    padding: 200px;
 }
 
 .section .container .row {
@@ -97,6 +159,7 @@
 }
 
 .section p {
+	 	font-family: Arial, Helvetica, sans-serif;
     padding-bottom: 50px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -168,12 +231,8 @@
     width: 0px;
 }
 
-.section .search-box h1 {
-    padding-right: 50%;
-}
-
 .section .crew-insert {
-    padding-left: 64%;
+    float:right;
 }
 
 .section .crew-insert a {
@@ -259,4 +318,8 @@
 .section .article span,
 .section .popular_crew span {
     font-size: 40px;
+}
+
+.text-bold{
+	font-weight: bold;
 }
