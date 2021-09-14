@@ -21,38 +21,14 @@
 <link rel="stylesheet" href="<c:url value='/css/crew/crew-list.css'/>">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
+let cList = [];
+
 $(document).ready(function() {
-	
-	const cList = [];
 	
 	const searchType = '${searchType}';
 	const	keyword = '${keyword}';
 	
-	function getCrewList() {
-		if(keyword == ""){
-			$.ajax({
-				url : '<c:url value="/crew/searchList"/>',
-				type : 'get',
-				success : function(data) {
-					cList = data;
-					crewList(cList);
-				}
-			});
-		} else {
-			$.ajax({
-				url : '<c:url value="/crew/searchList"/>',
-				type : 'get',
-				data : {
-					searchType: '${searchType}',
-					keyword : '${keyword}'
-				},
-				success : function(data) {
-					cList = data;
-					crewList(cList);
-				}
-			});
-		}
-	}
+	getList(searchType, keyword);
 
 	$('#nameList').click(function() {
 		console.log("이름순으로 정렬");
@@ -86,6 +62,32 @@ $(document).ready(function() {
 		
 }); //document ready end.
 	
+	//ajax restcontroller
+	function getList(parameter1, parameter2){
+		if(parameter2 == ''){
+			$.ajax({
+				url : '<c:url value="/crew/searchList"/>',
+				type : 'get',
+				success : function(data) {
+					cList = data;
+					crewList(data);
+				}
+			});
+		} else {
+			$.ajax({
+				url : '<c:url value="/crew/searchList"/>',
+				type : 'get',
+				data : {
+					searchType: parameter1,
+					keyword : parameter2
+				},
+				success : function(data) {
+					cList = data;
+					crewList(cList);
+				}
+			});
+		}
+	}
 	
 	//출력함수
 	function crewList(cList) {
