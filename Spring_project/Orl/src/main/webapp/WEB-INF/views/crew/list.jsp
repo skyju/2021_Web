@@ -9,112 +9,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>크루</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
-	crossorigin="anonymous">
-<script defer
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-	crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <link rel="stylesheet" href="<c:url value='/css/crew/crew-list.css'/>">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
 let cList = [];
-
-$(document).ready(function() {
-	
-	const searchType = '${searchType}';
-	const	keyword = '${keyword}';
-	
-	getList(searchType, keyword);
-
-	$('#nameList').click(function() {
-		console.log("이름순으로 정렬");
-		cList.sort(function(a, b) {
-			a = a.crewName;
-			b = b.crewName;
-			return a < b ? -1 : a > b ? 1 : 0;
-		});
-		crewList(cList);
-	});
-
-	$('#newestList').click(function() {
-		console.log("최신순으로 정렬");
-		cList.sort(function(a, b) {
-			a = a.crewCreatedate;
-			b = b.crewCreatedate;
-			return a > b ? -1 : a < b ? 1 : 0;
-		});
-		crewList(cList);
-	});
-
-	$('#oldList').click(function() {
-		console.log("오래된순으로 정렬");
-		cList.sort(function(a, b) {
-			a = a.crewCreatedate;
-			b = b.crewCreatedate;
-			return a < b ? -1 : a > b ? 1 : 0;
-		});
-		crewList(cList);
-	});
-		
-}); //document ready end.
-	
-	//ajax restcontroller
-	function getList(parameter1, parameter2){
-		if(parameter2 == ''){
-			$.ajax({
-				url : '<c:url value="/crew/searchList"/>',
-				type : 'get',
-				success : function(data) {
-					cList = data;
-					crewList(data);
-				}
-			});
-		} else {
-			$.ajax({
-				url : '<c:url value="/crew/searchList"/>',
-				type : 'get',
-				data : {
-					searchType: parameter1,
-					keyword : parameter2
-				},
-				success : function(data) {
-					cList = data;
-					crewList(cList);
-				}
-			});
-		}
-	}
-	
-	//출력함수
-	function crewList(cList) {
-		var ccList = [];
-		ccList = cList;
-		var html = '<div id="row" class="row">';
-		$.each(ccList, function(index, item) {
-				html += '<div class="col-md-4">';
-				html += '<div class="card shadow">';
-				html += '<div class="inner">';
-				html += '<div>';
-				html += '<a href="<c:url value="/crew/detail?crewIdx='+item.crewIdx+'"/>">';
-				html += '<img src="<c:url value="/images/crew/'+item.crewPhoto+'"/>" class="card-img-top" alt="card image cap">';
-				html += '<div class="card-body text-left">';
-				html += '<h4 class="card-title">크루 이름: '+item.crewName+'</h4>';
-				html += '<p class="card-text">크루장: '+item.memberNickName+'</p>';
-				html += '<p class="card-text">크루소개 : '+item.crewDiscription+'</p>';
-				html += '</div>';
-				html += '</a>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';
-				$('#cList').html(html);
-		});
-	}
+const searchType = '${searchType}';
+const	keyword = '${keyword}';
 </script>
+<script src="<c:url value='/js/crew/list.js'/>"></script>
 </head>
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
 <body>
@@ -171,30 +75,17 @@ $(document).ready(function() {
 					</div>
 				</form>
 			</div>
-		</div>
-
-		<div id="cList"> 
-		</div>
-
-	<ul class="pagination">
-    <c:if test="${pageMaker.prev}">
-        <li>
-            <a href="<c:url value="/crew/list/${pageMaker.makeQuery(pageMaker.startPage - 1)}"/>">[이전]</a>
-        </li>
-    </c:if>
-   
-    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="index">
-        <a href="<c:url value="/crew/list/${pageMaker.makeQuery(index)}"/>">[${index }]</a>
-    </c:forEach>
- 
-    <c:if test="${pageMaker.next }">
-        <li>
-            <a href="<c:url value="/crew/detail/${pageMaker.makeQuery(pageMaker.endPage + 1)}"/>">[다음]</a>
-        </li>
-    </c:if>  
-</ul>
-
-
+			
+			<div id="cList">
+			</div>
+			<div class="paging-div">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination" id="pagination">
+					</ul>
+				</nav>
+			</div>
+		
+		</div> <!-- container -->
 	</div>
 
 	<%@ include file="/WEB-INF/frame/default/footer.jsp"%>

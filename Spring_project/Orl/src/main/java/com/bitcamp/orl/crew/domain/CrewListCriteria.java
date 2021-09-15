@@ -2,15 +2,18 @@ package com.bitcamp.orl.crew.domain;
 
 public class CrewListCriteria {
 	private int page; // 보여줄 페이지
-    private int perPageNum; // 페이지당 보여줄 페이지수
+    private int perPageNum = 6; // 페이지당 보여줄 페이지수
  
     public int getPageStart(){
         return (this.page -1) * this.perPageNum;
     }
-     
+    
     public CrewListCriteria() {
-        this.page = 1;
-        this.perPageNum = 6;
+    	this.page = 1;
+    }
+    
+    public CrewListCriteria(int page){
+        this.page = page;
     }
  
     // getter setter

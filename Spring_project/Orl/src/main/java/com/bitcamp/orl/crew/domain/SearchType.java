@@ -4,10 +4,14 @@ public class SearchType extends CrewListCriteria {
 
 	private String searchType;
 	private String keyword;
+	private int pageStart;
+	private int perPageNum;
 
-	public SearchType(String searchType, String keyword) {
+	public SearchType(String searchType, String keyword, int pageStart, int perPageNum) {
 		this.searchType = searchType;
 		this.keyword = keyword;
+		this.pageStart = pageStart;
+		this.perPageNum = perPageNum;
 	}
 
 	public SearchType() {
@@ -27,6 +31,22 @@ public class SearchType extends CrewListCriteria {
 
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+	
+	public int getPageStart() {
+		return pageStart;
+	}
+
+	public void setPageStart(int pageStart) {
+		this.pageStart = pageStart;
+	}
+
+	public int getPerPageNum() {
+		return perPageNum;
+	}
+
+	public void setPerPageNum(int perPageNum) {
+		this.perPageNum = perPageNum;
 	}
 
 	@Override

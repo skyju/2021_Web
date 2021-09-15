@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.bitcamp.orl.crew.dao.Dao;
 import com.bitcamp.orl.crew.domain.Crew;
-import com.bitcamp.orl.crew.domain.CrewListCriteria;
 import com.bitcamp.orl.crew.domain.SearchType;
 import com.bitcamp.orl.member.domain.Member;
 
@@ -36,9 +35,9 @@ public class CrewListViewService {
 		return myCrewList;
 	}
 
-	public List<Crew> getCrewListAll() {
+	public List<Crew> getCrewListAll(int pageStart, int perPageNum) {
 		dao = template.getMapper(Dao.class);
-		return dao.selectAll();
+		return dao.selectAll(pageStart, perPageNum);
 	}
 
 	public List<Crew> getCrewListAll(SearchType searchType){
@@ -50,7 +49,7 @@ public class CrewListViewService {
 		return template.getMapper(Dao.class).CrewCount();
 	}
 	
-	public List<Crew> listCriteria(CrewListCriteria cri){
-		return template.getMapper(Dao.class).listCriteria(cri);
+	public int getCrewCountForSearching(SearchType searchType) {
+		return template.getMapper(Dao.class).CrewCountForSearching(searchType);
 	}
 }

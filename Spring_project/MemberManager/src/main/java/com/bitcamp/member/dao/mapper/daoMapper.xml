@@ -109,7 +109,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					 <include refid="searchName"/>
 				</if>
 			</where>
-	
 	</select>
 
 	<sql id="searchId">
