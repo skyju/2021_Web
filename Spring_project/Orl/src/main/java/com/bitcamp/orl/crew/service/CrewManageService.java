@@ -16,6 +16,8 @@ import com.bitcamp.orl.member.domain.Member;
 @Service
 public class CrewManageService {
 	
+	final String UPLOAD_URI ="/images/crew";
+	
 	Dao dao;
 	
 	@Autowired
@@ -48,6 +50,17 @@ public class CrewManageService {
 		return crew;
 	}
 	
+	public File selectThatFile(
+			HttpServletRequest request,
+			int crewIdx
+			) {
+		String path = request.getSession().getServletContext().getRealPath(UPLOAD_URI);
+		File thatFileDir = new File(path);
+		String crewPhoto = dao.selectCrew(crewIdx).getCrewPhoto();
+		File thatFile = new File(thatFileDir, crewPhoto);
+		return thatFile;
+	}
+	
 	public int updateCrew(
 			CrewInsertRequest crewRequest,
 			HttpServletRequest request,
@@ -58,10 +71,10 @@ public class CrewManageService {
 		dao = template.getMapper(Dao.class);
 		
 		CrewInsertService insertservice = new CrewInsertService();
-		
 		try {
 			if (crewRequest.getCrewPhoto() != null && !crewRequest.getCrewPhoto().isEmpty()) {
 				newFile = insertservice.saveFile(request, crewRequest.getCrewPhoto());
+				selectThatFile(request, crewIdx).delete();
 				resultCnt = dao.updateCrew(
 						crewRequest.getCrewName(), 
 						newFile.getName(), 
@@ -87,7 +100,8 @@ public class CrewManageService {
 	
 	public int deleteCrew(
 			int crewIdx,
-			String crewName
+			String crewName,
+			HttpServletRequest request
 			) {
 		int resultCnt = 0;
 		dao = template.getMapper(Dao.class);
@@ -95,7 +109,7 @@ public class CrewManageService {
 		Crew crew = selectCrew(crewIdx);
 		if(crew.getCrewName().contentEquals(crewName)) {
 			resultCnt = dao.deleteCrew(crewIdx);
-
+			selectThatFile(request, crewIdx).delete();
 		}
 		return resultCnt;
 	}
