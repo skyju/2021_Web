@@ -1,5 +1,23 @@
 @charset "UTF-8";
+.inner ul{
+	padding: 0;
+}
 
+.tag-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  /* 라인수 */
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  background-color: rgb(253, 239, 123);
+  color: #000;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 4px 7px;
+  margin-right: 6px;
+  font-size: 13px;
+}
 .paging-div {
 	padding: 15px 320px 70px 10px;
 	display: table;
@@ -95,11 +113,8 @@ select:focus{
 }
 
 .section .dropdown {
-	margin-left: -70px;
 	margin-bottom: -25px;
-	padding-right: 44%;
 	padding-top: 20px;
-	padding-left: 65px;
 }
 
 .section .select {
