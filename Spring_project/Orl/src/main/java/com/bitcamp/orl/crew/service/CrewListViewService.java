@@ -36,6 +36,15 @@ public class CrewListViewService {
 		return myCrewList;
 	}
 	
+	public List<Crew> getMyCrewList(
+			int memberIdx
+			) {
+		List<Crew> myCrewList = null;
+		dao = template.getMapper(Dao.class);
+		myCrewList = dao.selectMyCrewList(memberIdx);
+		return myCrewList;
+	}
+	
 	//검색하지 않았을 때 크루 리스트 가져오기(페이징 처리)
 	public List<Crew> getCrewListAll(int pageStart, int perPageNum) {
 		dao = template.getMapper(Dao.class);

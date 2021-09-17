@@ -57,7 +57,7 @@
         <!-- 프로필 영역 -->
         <section class="bio">
             <!-- 사진 영역 -->
-            <a href="<c:url value="/feed/userFeed/${member.memberIdx}"/>">
+            <a href="<c:url value="/feed/userfeed/${member.memberIdx}"/>">
                <div class="profile-photo">
                    <img src="<c:url value="/images/member/profile/${member.memberProfile}"/>" alt="profile-photo">
                </div>
@@ -68,7 +68,7 @@
 
                 <!-- 사용자 id -->
                 <div class="username">
-                    <a href="<c:url value="/feed/userFeed/${member.memberIdx}"/>">${member.memberNickname}</a>
+                    <a href="<c:url value="/feed/userfeed/${member.memberIdx}"/>">${member.memberNickname}</a>
                 </div>
 
 
@@ -202,25 +202,25 @@
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
              
-             <!--  내가 가입한 크루 리스트-->
+                <!--  내가 가입한 크루 리스트-->
                  <c:forEach var ="myCrewList" items="${myCrewList}">
                      <div class="swiper-slide">
-                        <a href="<c:url value="/crew/detail/${myCrewList.crewIdx}&1"/>" class="crew">
-                          <img src="${myCrewList.crewPhoto}">
+                        <a href="<c:url value="/crew/detail?crewIdx=${myCrewList.crewIdx}"/>" class="crew">
+                          <img src="<c:url value="/images/crew/${myCrewList.crewPhoto}"/>">
                           <div>${myCrewList.crewName}</div>
                        </a>
                     </div>
                  </c:forEach>
+                 <!--  내가 가입한 크루 리스트 끝-->
               
-              <!-- 마지막에 more -->
-              <!-- href : 크루 페이지 경로 넣어주기 -->
+              <!-- 크루 더 보기 -->
               <div class="swiper-slide">
-                <a href="#" class="crew">
+                <a href="<c:url value="/crew/list"/>" class="crew">
                     <img src="<c:url value="/images/feed/feeds/more.png"/>" alt="">
                     <div>MORE</div>
                 </a>
               </div> 
-                 
+              <!-- 크루 더 보기 끝 -->   
 
             </div>
             <!-- swiper-wrapper 끝 -->
@@ -231,12 +231,12 @@
             <div class="swiper-button-prev"></div>
             <div class="swiper-pagination"></div>
             <!-- 버튼 영역 끝 -->
-            
+           
           </div> 
-          <!-- 크루 가기 영역 끝 -->
+          <!-- 크루 가기 영역(swiper mySwiper) 끝 -->
       
       
-          <!-- Swiper JS -->
+          <!-- 크루가기Swiper JS -->
           <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
       
           <!-- Initialize Swiper -->
@@ -270,15 +270,13 @@
         <!--갤러리 네비게이션 영역 끝 -->
 
         <!-- 갤러리영역 : 기본정렬 -->
-        <form>
-           <section class="gallery" id="default-sort-gallery">
+        <section class="gallery" id="default-sort-gallery">
              <c:forEach var ="feedGallery" items="${feedGallery}">
                  <a class="item">
                      <img onclick="location.href='${pageContext.request.contextPath}/feed/feedview/${member.memberIdx}&${feedGallery.boardIdx}'" src="<c:url value="/images/feed/feedw/uploadfile/${feedGallery.boardPhoto}"/>" alt="기본">
                  </a>
               </c:forEach>
-             </section> 
-        </form>
+          </section> 
       
         <!-- 갤러리 영역: 좋아요 영역 display_none으로 안보이는 상태-->
         <section class="gallery display_none" id="like-sort-gallery">
@@ -366,10 +364,10 @@
                console.log(index,item);
                
                var html ='<div class="member">';
-               html += '   <a href="<c:url value="/feed/userFeed/'+item.memberIdx+'"/>">';
+               html += '   <a href="<c:url value="/feed/userfeed/'+item.memberIdx+'"/>">';
                html += '      <img src="<c:url value="/images/member/profile/'+item.memberProfile+'"/>"/>';
                html += '   </a>';
-               html += '   <a class="nickname-area" href="<c:url value="/feed/userFeed/'+item.memberIdx+'"/>">'+item.memberNickname+'</a>';
+               html += '   <a class="nickname-area" href="<c:url value="/feed/userfeed/'+item.memberIdx+'"/>">'+item.memberNickname+'</a>';
                /* html += '   <input type="submit" class="button-yellow-inList" value="팔로우 시작하기">'; */
                html += '</div>';
                
@@ -439,10 +437,10 @@
                   console.log(index,item);
                   
                   var html ='<div class="member">';
-                  html += '   <a href="<c:url value="/feed/userFeed/'+item.memberIdx2+'"/>">';
+                  html += '   <a href="<c:url value="/feed/userfeed/'+item.memberIdx2+'"/>">';
                   html += '      <img src="<c:url value="/images/member/profile/'+item.memberProfile+'"/>"/>';
                   html += '   </a>';
-                  html += '   <a class="nickname-area" href="<c:url value="/feed/userFeed/'+item.memberIdx2+'"/>">'+item.memberNickname+'</a>';
+                  html += '   <a class="nickname-area" href="<c:url value="/feed/userfeed/'+item.memberIdx2+'"/>">'+item.memberNickname+'</a>';
                   html += '</div>';
                   
                   //div에 추가해주기
@@ -474,10 +472,10 @@
                   console.log(index,item);
                   
                   var html ='<div class="member">';
-                  html += '   <a href="<c:url value="/feed/userFeed/'+item.memberIdx2+'"/>">';
+                  html += '   <a href="<c:url value="/feed/userfeed/'+item.memberIdx2+'"/>">';
                   html += '      <img src="<c:url value="/images/member/profile/'+item.memberProfile+'"/>"/>';
                   html += '   </a>';
-                  html += '   <a class="nickname-area" href="<c:url value="/feed/userFeed/'+item.memberIdx2+'"/>">'+item.memberNickname+'</a>';
+                  html += '   <a class="nickname-area" href="<c:url value="/feed/userfeed/'+item.memberIdx2+'"/>">'+item.memberNickname+'</a>';
                   html += '   <input type="hidden" value="'+item.memberIdx2+'">';
                   html += '   <input type="button" class="button-gray-inList" value="팔로우 그만하기">';
                   html += '</div>';
@@ -503,6 +501,7 @@
    
    // 내 팔로잉 리스트 안쪽에 버튼에서 
    // 팔로우 그만하기 버튼  눌렀을 때 처리하기
+   // 클릭이벤트를 껍데기에 만들어야 한다!! 비동기 통신전에 button의 id값 모른다!
    $('#following-members').on('click','input[type=button]',function(){
       
       //비동기 통신으로 팔로우 그만하기와 시작하기하기!!
@@ -514,8 +513,12 @@
       
       // 팔로우 시작하기 혹은 그만하기 인지 확인
       
+      /* var followStatus = $('input[type=button]').val();   */
+      /* ---> 오류 원인!! input[type=button]은 전체 버튼 배열이기 때문에 가장 첫번째의 val를 가져온다 */
+      /* 즉 아래에 계속 첫번째 버튼 상태만 출력되는 오류가 발생 */
       var followStatus =$(this).val();
       console.log(followStatus);
+      
       
       //클릭한 submit 이 있는 div인 member안쪽의  memberIdx2 $('선택자', 범위한정)
       var memberIdx2 =$('input[type=hidden]', $(this).parent()).val(); 
@@ -611,9 +614,6 @@
    </script>
    
    
-   
 
 </body>
 </html>
-
-

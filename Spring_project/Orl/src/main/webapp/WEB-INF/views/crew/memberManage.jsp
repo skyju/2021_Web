@@ -8,58 +8,11 @@
 <title>크루 관리</title>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
-	$(document).ready(function(){
-		
-		getCrewMemberList();
-		
-		$('#crewMemberList').on('click', 'button', function(){
-			$.ajax({
-				url: 'http://localhost:8080/orl/crew/deleteCrewMemberFromList',
-				type: 'get',
-				data: {
-					memberIdx : $('input', $(this).parent()).val(),
-					crewIdx : '${crew.crewIdx}'	
-				},
-				success : function(data){
-					if(data==0){
-						alert('추방에 실패했습니다.');
-					} else if(data==1){
-						alert('해당 멤버를 추방했습니다.');
-					}
-					getCrewMemberList();
-				}
-			});	
-		});
-		
-	});
-	
-	function getCrewMemberList(){
-		$.ajax({
-			url: 'http://localhost:8080/orl/crew/getCrewMemberList',
-			type: 'GET',
-			data: {crewIdx: '${crew.crewIdx}'},
-			contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
-			success: function(data){
-				var html = '';
-				$.each(data, function(index, item){
-					html += '<tr>';
-					html += '<td>'+Number(index+1)+'</td>';
-					html += '<td><img id="profile" src="<c:url value="/images/default.jpg"/>"></td>';
-					html += '<td id="nickname">'+item.memberNickName+'</td>';
-					html += '<td class="date">'+item.crewRegdate+'</td>';
-					if(item.memberIdx != '${sessionScope.memberVo.memberIdx}'){
-						html += '<td><button class="deleteBtn" id="button">추방</button>';
-						html += '<input type="hidden" id="memberIdx" value="'+item.memberIdx+'"></td>';
-					} else {
-						html += '<td>크루장</td>'
-					}
-					html += '</tr>';
-				});
-				$('#crewMemberList').html(html);
-			}
-		});
-	}
+let crewIdx = '${crew.crewIdx}';
+let sessionMemberIdx = '${sessionScope.memberVo.memberIdx}';
+const url = '${pageContext.request.contextPath}';
 </script>
+<script src="<c:url value='/js/crew/memberManage.js'/>"></script>
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
 </head>
 <body>

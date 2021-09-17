@@ -11,20 +11,10 @@
 <script src="<c:url value='/js/crew/insert.js'/>"></script>
 <link rel="stylesheet" href="<c:url value='/css/crew/edit.css'/>">
 <script>
-	$(document).ready(function () {
-		if('${crew.crewTag}' == null){
-			return;
-		} else {
-			var str = [];
-			const crewTag = '${crew.crewTag}';
-			str = crewTag.split(",");
-			for(var idx = 0 ; idx < str.length ; idx++){
-				$("#tag-list").append("<li class='tag-item'>" + str[idx] + "<span class='del-btn' idx='" + idx + "'>x"+
-						"</span><input type='hidden' name='crewTag' id='rdTag' value="+ str[idx] +"></li>");
-			}
-		}
-	});
+let crewtag = '${crew.crewTag}';
+const url = '${pageContext.request.contextPath}';
 </script>
+<script src="<c:url value='/js/crew/edit.js'/>"></script>
 </head>
 <body>
 <c:if test="${chk eq false}">
@@ -55,8 +45,7 @@
 						</tr>
 						<tr>
 							<td><label for="crewintro">크루 소개글</label></td>
-							<td><input type="text" id="crewintro" name="crewDiscription" class="form-control" value="${crew.crewDiscription}">
-							</td>
+							<td><textarea id="crewintro" name="crewDiscription" class="form-control">${crew.crewDiscription}</textarea>
 						</tr>
 						<tr>
 							<td>

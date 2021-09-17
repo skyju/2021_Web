@@ -14,5 +14,11 @@
 			window.location.href="<c:url value='/crew/detail?crewIdx="+${crew.crewIdx}+"'/>"
 		</script>
 	</c:if>
+	<c:if test="${crew.crewIdx eq null}">
+		<script>
+			alert('유효한 정보를 입력해주세요.');
+			history.go(-1);
+		</script>
+	</c:if>
 </body>
 </html>

@@ -20,7 +20,10 @@
 <script defer type="text/javascript"
 	src="https://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
 <script src="//code.jquery.com/jquery.min.js"></script>
-<script defer src="<c:url value='/js/crew/insert.js'/>"></script>
+<script>
+const url = '${pageContext.request.contextPath}';
+</script>
+<script src="<c:url value='/js/crew/insert.js'/>"></script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/frame/default/header.jsp"%>
@@ -52,7 +55,8 @@
 							<td><label for="crewDiscription">크루 소개글</label></td>
 							<td><textarea id="crewintro" name="crewDiscription"
 									class="form-control" placeholder="새로운 크루 소개글을 입력해주세요!"
-									required="required"></textarea></td>
+									required="required"></textarea>
+								<div id="crewintro_cnt">(0 / 150)</div></td>
 						</tr>
 						<tr>
 							<td>

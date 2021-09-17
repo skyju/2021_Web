@@ -1,6 +1,5 @@
 package com.bitcamp.orl.crew.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bitcamp.orl.crew.dao.Dao;
-import com.bitcamp.orl.crew.domain.CrewComment;
 import com.bitcamp.orl.crew.domain.CrewCommentCriteria;
 import com.bitcamp.orl.crew.domain.CrewCommentInfo;
 import com.bitcamp.orl.crew.domain.CrewCommentPagingDTO;
@@ -39,25 +37,11 @@ public class CrewCommentService {
 		int totalCommentNum = dao.selectCrewCommentNum(cri.getCrewIdx());
 		
 		//페이징 적용해서 list 가져옴
-		List<CrewComment> list = dao.selectCrewCommentPaging(cri.getCrewIdx(), startRow, cri.getAmountPerPage()); 
-		
-		//crew에 member정보를 더해서 담을 수 있도록 새 List 생성
-		List<CrewCommentInfo> infoList = new ArrayList<CrewCommentInfo>();
-		
-		//반복문으로 돌려서 memberNickName과 Profile값 설정
-		if(list != null) {
-			for(int i = 0 ; i < list.size() ; i++) {
-				CrewCommentInfo info = list.get(i).CommentToInfo();
-				Member commentMember = getCommentMember(list.get(i).getMemberIdx());
-				info.setMemberNickName(commentMember.getMemberNickname());
-				info.setMemberProfile(commentMember.getMemberProfile());
-				infoList.add(info);
-			}
-		}
+		List<CrewCommentInfo> list = dao.selectCrewCommentPaging(cri.getCrewIdx(), startRow, cri.getAmountPerPage()); 
 		
 		//만든 리스트와, 페이징 정보를 담아서 return
 		CrewCommentPagingDTO dto = new CrewCommentPagingDTO(
-				infoList, totalCommentNum, cri, startRow, endRow);
+				list, totalCommentNum, cri, startRow, endRow);
 		return dto;
 	}
 	

@@ -20,6 +20,7 @@
 	let cList = [];
 	const searchType = '${searchType}';
 	const keyword = '${keyword}';
+	const url = '${pageContext.request.contextPath}';
 </script>
 <script src="<c:url value='/js/crew/list.js'/>"></script>
 </head>
@@ -31,8 +32,9 @@
 			<h1>MY CREW</h1>
 			<div class="article-crew">
 				<div>
-					<a href="<c:url value='/crew/insert'/>"> <img
-						src="<c:url value='/images/crew/new.JPG'/>"></a>
+					<a href="<c:url value='/crew/insert'/>">
+					<img src="<c:url value='/images/crew/new.JPG'/>">
+					</a>
 				</div>
 				<a href="<c:url value='/crew/insert'/>" class="text-bold">나의 크루
 					만들기</a>
@@ -57,34 +59,34 @@
 				<div class="dropdown">
 					<h1>CREW</h1>
 					<div class="dropdown-button">
-						<button class="curved" id="nameList">이름순 보기</button>
 						<button class="curved" id="newestList">최신순 보기</button>
+						<button class="curved" id="nameList">이름순 보기</button>
 						<button class="curved" id="oldList">오래된 순 보기</button>
 					</div>
 				</div>
 				<form action="" name="frm" id="form">
 					<div class="search-drop">
 						<div class="searchType">
-							<select name="searchType" id="selectSearch">
-								<option value="name">크루 이름</option>
+							<label for="selectbox">크루이름</label> <select name="searchType"
+								id="selectSearch" title="검색">
+								<option value="name" selected="selected">크루 이름</option>
 								<option value="nickName">닉네임</option>
 								<option value="tag">해시태그</option>
 							</select>
-							<div class="boxSearch">
-								<span class="icon"> <label for="button"> <i
-										id="searchType" class="fas fa-search" aria-hidden="true"></i>
-								</label> <input type="submit" id="button" style="display: none">
-								</span> <input autocomplete="off" id="search" class="search"
-									type="text" name="keyword" placeholder="Type to search">
-							</div>
+						</div>
+						<div class="boxSearch">
+							<span class="icon"> <label for="button"> <i
+									id="searchType" class="fas fa-search" aria-hidden="true"></i>
+							</label> <input type="submit" id="button" style="display: none">
+							</span> <input autocomplete="off" id="search" class="search" type="text"
+								name="keyword" placeholder="Type to search">
 						</div>
 
 					</div>
 				</form>
 			</div>
 
-			<div id="cList">
-			</div>
+			<div id="cList"></div>
 			<div class="paging-div">
 				<nav aria-label="Page navigation example">
 					<ul class="pagination" id="pagination">

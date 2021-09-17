@@ -24,6 +24,7 @@ const crewTag = '${crew.crewTag}';
 const crewIdx = '${crew.crewIdx}';
 const memberIdx = '${sessionScope.memberVo.memberIdx}';
 const currentPageNum = parseInt('${cri.currentPageNum}');
+const url = '${pageContext.request.contextPath}';
 </script>
 <script src="<c:url value='/js/crew/detail.js'/>"></script>
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
@@ -50,13 +51,19 @@ const currentPageNum = parseInt('${cri.currentPageNum}');
 							</c:if>
 						</div>
 						
-						<p class="card-text">${crew.crewDiscription}</p>
+						<pre class="card-text">${crew.crewDiscription}</pre>
 						<ul class="crew_hashtag" id="crewHashTag"></ul>
 						
 						<div class="crew_information">
 							<span class="crew_captain">
-								<p class="text_bold">${crew.memberNickName}</p> 
-								<img id="profile" src="<c:url value='/images/default.jpg'/>">
+								<c:if test="${memberVo ne null}">
+									<a href="<c:url value='/feed/userfeed/${crew.memberIdx}'/>">
+								</c:if>
+									<p class="text_bold">${crew.memberNickName}</p> 
+								<img id="profile" src="<c:url value='/images/member/profile/${crew.memberProfile}'/>">
+								<c:if test="${memberVo ne null}">
+									</a>
+								</c:if>
 							</span>
 							<span class="crew_number">
 								<p class="text_bold">크루원</p>

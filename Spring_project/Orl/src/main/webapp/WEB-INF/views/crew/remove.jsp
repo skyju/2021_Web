@@ -8,6 +8,9 @@
 <title>크루 관리</title>
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
 </head>
+<script>
+const url = '${pageContext.request.contextPath}';
+</script>
 <body>
 <c:if test="${chk ne null && chk eq false}">
 	<script>
