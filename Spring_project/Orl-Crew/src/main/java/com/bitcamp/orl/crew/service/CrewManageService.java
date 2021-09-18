@@ -72,7 +72,7 @@ public class CrewManageService {
 				selectThatFile(request, crewIdx).delete();
 				
 				//새로운 파일 저장
-				newFile = insertservice.saveFile(request, crewRequest.getCrewPhoto());
+				newFile = insertservice.saveFile(crewRequest.getCrewPhoto());
 				//DB에 업데이트
 				resultCnt = dao.updateCrew(
 						crewRequest.getCrewName(), 

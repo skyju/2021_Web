@@ -1,9 +1,9 @@
 $(document).ready(function () {
 	$('#btnReg1').click(function () {
-		var photoFile = $('#photo');
+		var photoFile = $('#photo')[0];
 
 		if(photoFile != null){
-			var file1 = photoFile[0].files[0];
+			var file1 = photoFile.files[0];
 		}
 
 		var formData = new FormData();

@@ -1,27 +1,29 @@
 package com.bitcamp.orl.crew.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bitcamp.orl.crew.service.CrewNameCheckService;
+import com.bitcamp.orl.crew.service.GetMemberInfoService;
+import com.bitcamp.orl.member.domain.Member;
 
 @RestController
-public class RestCrewNameCheckController {
+public class RestGetMemberInfoController {
 	
 	@Autowired
-	private CrewNameCheckService service;
+	private GetMemberInfoService service;
 	
-	//이름 유효성 중복 check
-	@RequestMapping("/crew/nameCheck")
+	@RequestMapping("/crew/getMemberInfo")
 	@CrossOrigin
-	public String crewNameCheck(
-			@RequestParam("crewName") String crewName,
-			Model model
+	public Member getMemberInfo(
+			@RequestParam("memberIdx")int memberIdx
 			) {
-		return service.crewNameCheck(crewName);
+		Member member = null;
+		if(memberIdx != 0) {
+			member = service.getMemberInfo(memberIdx);
+		}
+		return member;
 	}
 }

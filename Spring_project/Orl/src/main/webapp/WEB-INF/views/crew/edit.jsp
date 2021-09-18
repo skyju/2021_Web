@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>크루 관리</title>
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="<c:url value='/js/crew/insert.js'/>"></script>
 <link rel="stylesheet" href="<c:url value='/css/crew/edit.css'/>">
 <script>

@@ -42,9 +42,6 @@ $(document).ready(function(){
             url: url+'/crew/commentInsert',
             type: 'post',
             data: formData,
-            processData: false,
-            contentType: false,
-            cache: false,
             success : function(data){
                 if(data==0){
                     alert('로그인 여부를 확인해주세요.');

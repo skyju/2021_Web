@@ -14,8 +14,10 @@ public class CrewInsertRequest {
 	private MultipartFile crewPhoto;
 	private String crewDiscription;
 	private String crewTag;
+	private int memberIdx;
+	private String memberNickName;
 	
 	public Crew toCrew() {
-		return new Crew(0, crewName, crewPhoto.getName(), crewDiscription, null, crewTag, 0, null);
+		return new Crew(0, crewName, crewPhoto.getName(), crewDiscription, null, crewTag, memberIdx, null);
 	}
 }

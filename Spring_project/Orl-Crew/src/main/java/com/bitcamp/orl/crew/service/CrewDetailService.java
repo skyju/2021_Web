@@ -1,7 +1,5 @@
 package com.bitcamp.orl.crew.service;
 
-import javax.servlet.http.HttpSession;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.bitcamp.orl.crew.domain.Crew;
 import com.bitcamp.orl.crew.domain.CrewInfo;
 import com.bitcamp.orl.crew.mapper.CrewMapper;
-import com.bitcamp.orl.member.domain.MemberDto;
 
 @Service
 public class CrewDetailService {
@@ -21,18 +18,16 @@ public class CrewDetailService {
 	
 	//크루 정보가져오기
 	public CrewInfo getCrewInfo(
-			HttpSession session, 
+			int memberIdx,
 			int crewIdx
 			) {
 		
 		CrewInfo crewinfo = getCrew(crewIdx).crewToCrewInfo();
-		MemberDto dto = (MemberDto)session.getAttribute("memberVo");
-		
 		crewinfo.setCrewMemberNum(getCrewMemberNum(crewIdx));
 		crewinfo.setCrewCommentNum(getCrewCommentNum(crewIdx));
 		
-		if(dto != null) {
-			crewinfo.setReg(getIsCrewMember(dto.getMemberIdx(), crewIdx));
+		if(memberIdx != 0 ) {
+			crewinfo.setReg(getIsCrewMember(memberIdx, crewIdx));
 		} else {
 			crewinfo.setReg(false);
 		}
