@@ -20,7 +20,10 @@
 	let cList = [];
 	const searchType = '${searchType}';
 	const keyword = '${keyword}';
-	const url = '${pageContext.request.contextPath}';
+	/*부트서버*/
+	const url = 'http://localhost:8081';
+	/*뷰 서버*/	
+	const url2 = '${pageContext.request.contextPath}';
 </script>
 <script src="<c:url value='/js/crew/list.js'/>"></script>
 </head>

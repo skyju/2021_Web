@@ -32,9 +32,9 @@ public class CrewDetailService {
 		crewinfo.setCrewCommentNum(getCrewCommentNum(crewIdx));
 		
 		if(dto != null) {
-			crewinfo.setIsReg(getIsCrewMember(dto.getMemberIdx(), crewIdx));
+			crewinfo.setReg(getIsCrewMember(dto.getMemberIdx(), crewIdx));
 		} else {
-			crewinfo.setIsReg(false);
+			crewinfo.setReg(false);
 		}
 		
 		return crewinfo;

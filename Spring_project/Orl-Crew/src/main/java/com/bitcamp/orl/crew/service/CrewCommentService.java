@@ -2,8 +2,6 @@ package com.bitcamp.orl.crew.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +11,6 @@ import com.bitcamp.orl.crew.domain.CrewCommentInfo;
 import com.bitcamp.orl.crew.domain.CrewCommentPagingDTO;
 import com.bitcamp.orl.crew.mapper.CrewMapper;
 import com.bitcamp.orl.member.domain.Member;
-import com.bitcamp.orl.member.domain.MemberDto;
 
 @Service
 public class CrewCommentService {
@@ -57,14 +54,13 @@ public class CrewCommentService {
 	
 	//크루 댓글 입력
 	public int insertCrewComment(
+			int crewIdx,
 			String crewComment,
-			HttpSession session,
-			int crewIdx
+			int memberIdx
 			) {
 		int resultCnt = 0;
 		dao = template.getMapper(CrewMapper.class);
-		MemberDto dto = (MemberDto)session.getAttribute("memberVo");
-		resultCnt = dao.insertCrewComment(crewComment, dto.getMemberIdx(), crewIdx);
+		resultCnt = dao.insertCrewComment(crewComment, memberIdx, crewIdx);
 		return resultCnt;
 	}
 	

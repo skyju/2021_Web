@@ -21,7 +21,10 @@
 	src="https://code.jquery.com/jquery-1.12.4.min.js" charset="utf-8"></script>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script>
-const url = '${pageContext.request.contextPath}';
+/*부트서버*/
+const url = 'http://localhost:8081';
+/*뷰 서버*/	
+const url2 = '${pageContext.request.contextPath}';
 </script>
 <script src="<c:url value='/js/crew/insert.js'/>"></script>
 </head>

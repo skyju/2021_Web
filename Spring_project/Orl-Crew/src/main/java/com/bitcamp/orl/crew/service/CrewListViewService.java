@@ -48,12 +48,6 @@ public class CrewListViewService {
 		return dao.selectCrewAll(searchType);
 	}
 	
-	//관리자용 크루 리스트 가져오기
-	public List<Crew> getCrewListAdmin(){
-		dao = template.getMapper(CrewMapper.class);
-		return dao.selectCrewListByAdmin();
-	}
-	
 	//크루 총 개수 계산(검색하지 않았을 때)
 	public int getCrewCount() {
 		return template.getMapper(CrewMapper.class).CrewCount();

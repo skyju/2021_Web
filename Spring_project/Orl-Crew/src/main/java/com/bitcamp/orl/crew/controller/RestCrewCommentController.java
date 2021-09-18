@@ -1,8 +1,5 @@
 package com.bitcamp.orl.crew.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,11 +22,13 @@ public class RestCrewCommentController {
 	@RequestMapping("/crew/getCommentInfoList")
 	@CrossOrigin
 	public CrewCommentPagingDTO getCommentList(
-			HttpServletRequest request,
 			@RequestParam("crewIdx")int crewIdx,
 			@RequestParam(value="currentPageNum", required = false, defaultValue = "1")int currentPageNum
 			){
 		
+		if(currentPageNum == 0) {
+			currentPageNum = 1;
+		}
 		CrewCommentCriteria cir = new CrewCommentCriteria(crewIdx, currentPageNum);
 		CrewCommentPagingDTO dto = commentService.getCrewComment(cir);
 		
@@ -49,10 +48,9 @@ public class RestCrewCommentController {
 	@RequestMapping("/crew/commentInsert")
 	@CrossOrigin
 	public String insertComment(
-			CrewCommentRequest request,
-			HttpSession session
+			CrewCommentRequest request
 			) {
-		return Integer.toString(commentService.insertCrewComment(request.getCrewComment(), session, request.getCrewIdx()));
+		return Integer.toString(commentService.insertCrewComment(request.getCrewIdx(), request.getCrewComment(), request.getMemberIdx()));
 	}
 	
 	//crew Detail Page에서 댓글 삭제 method

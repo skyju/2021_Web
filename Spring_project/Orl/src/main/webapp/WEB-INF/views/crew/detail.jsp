@@ -24,7 +24,11 @@ const crewTag = '${crew.crewTag}';
 const crewIdx = '${crew.crewIdx}';
 const memberIdx = '${sessionScope.memberVo.memberIdx}';
 const currentPageNum = parseInt('${cri.currentPageNum}');
-const url = '${pageContext.request.contextPath}';
+
+/*부트서버*/
+const url = 'http://localhost:8081';
+/*뷰 서버*/	
+const url2 = '${pageContext.request.contextPath}';
 </script>
 <script src="<c:url value='/js/crew/detail.js'/>"></script>
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>

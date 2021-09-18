@@ -12,7 +12,10 @@
 <link rel="stylesheet" href="<c:url value='/css/crew/edit.css'/>">
 <script>
 let crewtag = '${crew.crewTag}';
-const url = '${pageContext.request.contextPath}';
+/*부트서버*/
+const url = 'http://localhost:8081';
+/*뷰 서버*/	
+const url2 = '${pageContext.request.contextPath}';
 </script>
 <script src="<c:url value='/js/crew/edit.js'/>"></script>
 </head>

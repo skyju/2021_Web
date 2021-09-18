@@ -36,7 +36,7 @@ function getCrewMemberList() {
             $.each(data, function (index, item) {
                 html += '<tr>';
                 html += '<td>' + Number(index + 1) + '</td>';
-                html += '<td><img id="profile" src="'+url+'/images/default.jpg"></td>';
+                html += '<td><img id="profile" src="'+url2+'/images/default.jpg"></td>';
                 html += '<td id="nickname">' + item.memberNickName + '</td>';
                 html += '<td class="date">' + item.crewRegdate + '</td>';
                 if (item.memberIdx != sessionMemberIdx) {

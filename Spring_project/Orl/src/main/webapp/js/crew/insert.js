@@ -2,7 +2,7 @@ var sel_file;
 var nickJ = /^[가-힣A-Za-z0-9]{4,12}$/;
 var checkNick = true;
 
-function form_submit(form) {
+let form_submit = function(form) {
     if (checkNick) {
         form.submit();
     } else {
@@ -10,8 +10,8 @@ function form_submit(form) {
     }
 }
 
-
 $(document).ready(function () {
+
     // 비동기통신 스타일 속성
     $('#crewName').focusin(function () {
         $('#msg').addClass('display_none');
@@ -19,6 +19,7 @@ $(document).ready(function () {
         $('#msg').removeClass('color_red');
         $(this).val('');
     });
+
     //1. 아이디 유효성 체크
     $("#crewName").blur(function () {
         if (nickJ.test($(this).val())) {
@@ -59,16 +60,19 @@ $(document).ready(function () {
                 }
             });
         } else {
-            /*    alert('아이디는 4자 이상 12자 이하여야하며 ,대문자/소문자/숫자만 사용할 수 있습니다.'); */
+            /*  alert('아이디는 4자 이상 12자 이하여야하며 ,대문자/소문자/숫자만 사용할 수 있습니다.'); */
             $('#crewName_check').removeClass('display_none');
             $('#crewName_check').text('크루명을 다시 입력해주세요.');
             $('#crewName_check').css('color', '#f82a2aa3');
             checkNick = false;
         }
+
     });
+
+    // 사진이 바뀌면 사진 이미지 preview처리 함수 실행
     $("#crewPhoto").on("change", handleImgFileSelect);
 
-
+    //크루 소개글에서 키업 이벤트가 발생했을 시
     $('#crewintro').on('keyup', function () {
         $('#crewintro_cnt').html("(" + $(this).val().length + " / 150)");
 
@@ -138,10 +142,11 @@ function viewImage(img) {
     imgWin.document.close();
 }
 
-///////////////////////hashtaging////////////////////
 
 $(document).ready(function () {
 
+
+    //해시 태그 처리
     var tag = {};
     var counter = 0;
 

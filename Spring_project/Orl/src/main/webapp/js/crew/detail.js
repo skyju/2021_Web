@@ -37,6 +37,7 @@ $(document).ready(function(){
         var formData = new FormData();
         formData.append("crewIdx", $('#crewIdx').val());
         formData.append("crewComment", $('#crewComment').val());
+		formData.append("memberIdx", memberIdx);
         $.ajax({
             url: url+'/crew/commentInsert',
             type: 'post',
@@ -46,7 +47,8 @@ $(document).ready(function(){
             cache: false,
             success : function(data){
                 if(data==0){
-                    alert('로그인 여부를 확인해주세요.');}
+                    alert('로그인 여부를 확인해주세요.');
+				}
                 commentList();
             }
         })
@@ -69,7 +71,7 @@ $(document).ready(function(){
 						alert('가입에 실패했습니다.');
 					} else if(data==1){
 						alert('크루에 가입하셨습니다.');
-						window.location.href=""+url+"/crew/detail?crewIdx="+crewIdx+"";
+						window.location.href=""+url2+"/crew/detail?crewIdx="+crewIdx+"";
 					}
 				}
 			});	
@@ -93,7 +95,7 @@ $(document).ready(function(){
 						alert('탈퇴에 실패했습니다.');
 					} else if(data==1){
 						alert('해당 크루를 탈퇴했습니다.');
-						window.location.href=""+url+"/crew/detail?crewIdx="+crewIdx+"";
+						window.location.href=""+url2+"/crew/detail?crewIdx="+crewIdx+"";
 					}
 				}
 			});
@@ -118,7 +120,7 @@ function editComment(parameter){
         type: 'GET',
         data: {crewCommentIdx : parameter},
         success: function(data){
-            var html = '<td><img id="profile" src="'+url+'/images/member/profile/'+data.memberProfile+'"></td>';
+            var html = '<td><img id="profile" src="'+url2+'/images/member/profile/'+data.memberProfile+'"></td>';
             html += '<td><p id="nickname">'+data.memberNickName+'</p>';
             html += '<input class="form-control" id="newCrewComment" type="text" value="'+data.crewComment+'"></td>';
             html += '<td><p><br></p><a href="javascript:commentList()" class="tag-item">취소</a>';
@@ -127,8 +129,6 @@ function editComment(parameter){
         }
     });
 }
-
-//Comment update.
 function updateComment(parameter){
     $.ajax({
         url: url+'/crew/commentUpdate',
@@ -185,12 +185,12 @@ function commentList(parameter){
 				html += '<tr id="'+item.crewCommentIdx+'">';
 				html += '<td>';
 				if(memberIdx != '') {
-					html += '<a href="'+url+'/feed/userfeed/'+item.memberIdx+'">';
+					html += '<a href="'+url2+'/feed/userfeed/'+item.memberIdx+'">';
 				}
-				html += '<img id="profile" src="'+url+'/images/member/profile/'+item.memberProfile+'"></a></td>';
+				html += '<img id="profile" src="'+url2+'/images/member/profile/'+item.memberProfile+'"></a></td>';
 				html +=	'<td>';
 				if(memberIdx != '') {
-					html += '<a href="'+url+'/feed/userfeed/'+item.memberIdx+'">';
+					html += '<a href="'+url2+'/feed/userfeed/'+item.memberIdx+'">';
 				}
 				html += '<p id="nickname">'+item.memberNickName+'</p></a>';
 				html += '<p class="content">'+item.crewComment+'</p>';
@@ -199,7 +199,7 @@ function commentList(parameter){
 			    if(memberIdx == item.memberIdx){
 					html += '<div class="commentMenuBox">';
 					html += '<div class="icon" onclick="commentToggle('+item.crewCommentIdx+');">';
-					html += '<a href="#"><img id="commentMng" src="'+url+'/images/crew/icon.png"></a>';
+					html += '<a href="#"><img id="commentMng" src="'+url2+'/images/crew/icon.png"></a>';
 					html +=	'<div id="cmid" class="commentMenu commentMenu'+item.crewCommentIdx+'"><ul id="commentMenu'+item.crewCommentIdx+'"></ul></div>';						html += '</div>';
 					html += '</div>';
 				}
