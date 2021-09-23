@@ -26,9 +26,11 @@ public class CrewDetailController {
 			HttpServletRequest request,
 			Model model
 			) {
+		
 		CrewInfo crewinfo = service.getCrewInfo(request.getSession(), crewIdx);
 		CrewCommentCriteria cri = new CrewCommentCriteria(crewIdx, currentPageNum);
 		
+		model.addAttribute("crewIdx", crewIdx);
 		model.addAttribute("crew", crewinfo);
 		model.addAttribute("cri", cri);
 		

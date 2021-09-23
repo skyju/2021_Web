@@ -11,4 +11,5 @@ public class CrewCommentRequest {
 	private int crewIdx;
 	private String crewComment;
 	private int memberIdx;
+	
 }

@@ -13,5 +13,5 @@ public class SearchType {
 	private String keyword;
 	private int pageStart;
 	private int perPageNum;
-
+	
 }

@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+.display-hidden {
+	display: none;
+}
 
 .card-text {
    text-overflow: ellipsis;
@@ -155,7 +158,7 @@ p {
 	margin-bottom: 20px;
 }
 
-.crew_information span {
+.crew_information div {
 	padding-left: 30px;
 	padding-right: 30px;
 	text-align: center;

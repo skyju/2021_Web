@@ -16,7 +16,7 @@ import com.bitcamp.orl.crew.service.CrewCommentService;
 public class RestCrewCommentController {
 	
 	@Autowired
-	CrewCommentService commentService;
+	private CrewCommentService commentService;
 	
 	//crew Detail Page에서 comment를 list로 받아오는 method
 	@RequestMapping("/crew/getCommentInfoList")

@@ -17,4 +17,5 @@ public class CrewCommentCriteria {
 		this.currentPageNum = currentPageNum;
 		this.amountPerPage = 8;
 	}
+	
 }

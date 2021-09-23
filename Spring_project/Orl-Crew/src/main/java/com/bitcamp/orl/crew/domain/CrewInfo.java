@@ -24,4 +24,5 @@ public class CrewInfo {
 	private int crewMemberNum;
 	private int crewCommentNum;
 	private boolean isReg;
+	
 }

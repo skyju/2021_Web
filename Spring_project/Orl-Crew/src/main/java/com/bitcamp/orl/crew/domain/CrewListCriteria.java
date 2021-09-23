@@ -37,5 +37,9 @@ public class CrewListCriteria {
             this.perPageNum = perPageNum;
         }
     }
+    
+    public int getPerPageNum() {
+    	return perPageNum;
+    }
      
 }

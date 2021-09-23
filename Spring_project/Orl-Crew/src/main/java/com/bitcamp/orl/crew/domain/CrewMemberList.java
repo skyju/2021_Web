@@ -21,5 +21,5 @@ public class CrewMemberList {
 	@JsonFormat(pattern = "yyyy.MM.dd. HH:mm")
 	private Timestamp crewRegdate;
 	private int crewIdx;
-	
+
 }

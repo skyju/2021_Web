@@ -60,7 +60,6 @@ public class CrewInsertService {
 			newDir.mkdir();
 			System.out.println("저장 폴더를 생성했습니다.");
 		}
-		System.out.println(newDir);
 		
 		String newFileName = System.currentTimeMillis() + file.getOriginalFilename();
 		File newFile = new File(newDir, newFileName);

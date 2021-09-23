@@ -39,4 +39,5 @@ public class PageMaker {
         prev = startPage ==1 ?false :true;// 1페이지면 이전 누를 수 없게 false
         next = endPage * cri.getPerPageNum() >= totalCount ?false :true;
     }
+
 }
