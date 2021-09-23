@@ -8,7 +8,6 @@
 <title>크루 관리</title>
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="<c:url value='/js/crew/insert.js'/>"></script>
 <link rel="stylesheet" href="<c:url value='/css/crew/edit.css'/>">
 <script>
 let crewtag = '${crew.crewTag}';
@@ -18,6 +17,7 @@ const url = 'http://localhost:8081';
 const url2 = '${pageContext.request.contextPath}';
 </script>
 <script src="<c:url value='/js/crew/edit.js'/>"></script>
+<script src="<c:url value='/js/crew/insert.js'/>"></script>
 </head>
 <body>
 <c:if test="${chk eq false}">
