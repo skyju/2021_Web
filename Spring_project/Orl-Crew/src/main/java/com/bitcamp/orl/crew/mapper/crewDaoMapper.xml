@@ -180,8 +180,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	useGeneratedKeys="true"
 	keyProperty="crewIdx">
 		insert into crew
-		(crewName,crewPhoto,crewDiscription,crewTag,memberIdx,memberNickName)
-		values (#{crewName}, #{crewPhoto}, #{crewDiscription}, #{crewTag}, #{memberIdx}, #{memberNickName})
+		(crewName,crewPhoto,crewDiscription,crewTag,memberIdx)
+		values (#{crewName}, #{crewPhoto}, #{crewDiscription}, #{crewTag}, #{memberIdx})
 	</insert>
 
 	<!-- 크루 이름 중복 체크 -->
