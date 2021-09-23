@@ -17,6 +17,6 @@ public class CrewInsertRequest {
 	private int memberIdx;
 	
 	public Crew toCrew() {
-		return new Crew(0, crewName, crewPhoto.getName(), crewDiscription, null, crewTag, memberIdx);
+		return new Crew(0, crewName, crewPhoto.getName(), crewDiscription, null, crewTag, memberIdx, null);
 	}
 }

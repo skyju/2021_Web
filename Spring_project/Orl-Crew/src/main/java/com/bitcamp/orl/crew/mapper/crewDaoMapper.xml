@@ -15,13 +15,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="crewCreatedate" property="crewCreatedate" />
 		<result column="crewTag" property="crewTag" />
 		<result column="memberIdx" property="memberIdx" />
+		<result column="memberNickName" property="memberNickName" />
 	</resultMap>
 
 <!-- 관리자에서 사용 -전체 크루 리스트 -->
 	<select 
 	id="selectCrewListByAdmin" 
 	resultMap="crewListResult">
-		select * from crew 
+		select crewIdx, crewName, crewPhoto, crewDiscription, crewCreatedate, crewTag, memberIdx, memberNickName
+		from crew natural join member
 		order by crewIdx desc, crewCreatedate desc
 	</select>
 
@@ -29,7 +31,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select 
 	id="selectAll" 
 	resultMap="crewListResult">
-		select * from crew 
+		select crewIdx, crewName, crewPhoto, crewDiscription, crewCreatedate, crewTag, memberIdx, memberNickName
+		from crew natural join member
 		order by crewIdx desc, crewCreatedate desc
 		limit #{pageStart}, #{perPageNum}
 	</select>
@@ -38,7 +41,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCrewAll"
 		parameterType="com.bitcamp.orl.crew.domain.SearchType"
 		resultMap="crewListResult">
-		select * from crew
+		select crewIdx, crewName, crewPhoto, crewDiscription, crewCreatedate, crewTag, memberIdx, memberNickName
+		from crew natural join member
 		<where>
 			<if test="searchType == 'name'">
 				<include refid="searchName" />
@@ -91,8 +95,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select 
 	id="selectMyCrewList"
 	resultMap="crewListResult">
-		select * 
-		from final.crew
+		select crewIdx, crewName, crewPhoto, crewDiscription, crewCreatedate, crewTag, memberIdx, memberNickName
+		from crew natural join member
 		where crewIdx in (select crewIdx from member natural join crewreg where memberIdx = #{memberIdx})
 	</select>
 
@@ -100,7 +104,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select 
 	id="selectCrew" 
 	resultType="com.bitcamp.orl.crew.domain.Crew">
-		select * from crew where crewIdx = #{crewIdx}
+		select crewIdx, crewName, crewPhoto, crewDiscription, crewCreatedate, crewTag, memberIdx, memberNickName
+		from crew natural join member
+		where crewIdx = #{crewIdx}
 	</select>
 
 	<!-- 해당 크루의 크루원 수 -->

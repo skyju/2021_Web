@@ -20,11 +20,12 @@ public class Crew {
 	private Timestamp crewCreatedate;
 	private String crewTag;
 	private int memberIdx;
+	private String memberNickName;
 	
 	public CrewInfo crewToCrewInfo() {
 		CrewInfo crewinfo = new CrewInfo(crewIdx, crewName, 
 				crewPhoto, crewDiscription, crewCreatedate, 
-				crewTag, memberIdx, null, 
+				crewTag, memberIdx, memberNickName, 
 				0, 0, false);
 		return crewinfo;
 	}
@@ -33,7 +34,7 @@ public class Crew {
 			int crewMemberNum, int crewCommentNum, boolean isReg) {
 		CrewInfo crewinfo = new CrewInfo(crewIdx, crewName,
 				crewPhoto, crewDiscription, crewCreatedate,
-				crewTag, memberIdx, null,
+				crewTag, memberIdx, memberNickName,
 				crewMemberNum, crewCommentNum, isReg);
 		return crewinfo;
 				
