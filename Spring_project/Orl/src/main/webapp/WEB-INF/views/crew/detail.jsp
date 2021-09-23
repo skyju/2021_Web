@@ -88,8 +88,11 @@ const url2 = '${pageContext.request.contextPath}';
 						
 						<div id="input-form">
 							<div class="input_control">
-								<div>
+								<div id="textinput">
 									<input type="text" name="crewComment" class="form-control" id="crewComment">
+								</div>
+								<div id="textinput-readonly">
+									<input type="text" name="crewComment" class="form-control" id="crewComment" readonly="readonly">
 								</div>
 								<div>
 									<input type="submit" value="게시" class="btn1 btn-light form-control" id="submit">

@@ -1,10 +1,3 @@
-//el 들어간 거는 js로 빼면 오류남 ? el표현된 것이 서버에서 돌아야하니까..
-//어떻게 해결? el 표현으로 넘기지말고 html로 표현해서 넣으면 가능 - val() 이나 text() 사용하는 등..
-//js src 하는 위에서 js 변수로 잡아도 되는데, idx를 노출해도 되면 이렇게 하면되고, 노출하면 안되는 정보일 경우 x
-
-// 토글처리,, 클래스에 번호일일히 붙이지 않는 방법 -> on 으로 위에 태그로 잡아서 처리
-// 부트 (el -> timeleaf)
-
 $(document).ready(function () {
 
 	crewInfoShowing();
@@ -99,6 +92,8 @@ function crewInfoShowing() {
 			crewIdx: crewIdx
 		},
 		success: function (data) {
+
+
 			let crewImg = '<img src="' + url2 + '/images/crew/' + data.crewPhoto + '" class="card-img-top" alt="..." id="cardImg">';
 			$('#crew-img').html(crewImg);
 			let crewTitle = data.crewName;
@@ -120,7 +115,7 @@ function crewInfoShowing() {
 				str = crewTagArr.split(",");
 				var crewHashTag = "";
 				for (var idx = 0; idx < str.length; idx++) {
-					crewHashTag += '<li class="tag-item">#' + str[idx] + '</li>';
+					crewHashTag += '<a href="'+url2+'/crew/list?searchType=tag&keyword='+str[idx]+'"><li class="tag-item">#' + str[idx] + '</li></a>';
 				}
 				$("#crewHashTag").html(crewHashTag);
 			}
@@ -146,17 +141,25 @@ function crewInfoShowing() {
 
 			let crewOut = document.querySelector('#outFromCrew');
 			let crewJoin = document.querySelector('#joinToCrew');
-			if (!data.isReg) {
+			if (memberIdx == data.memberIdx){
 				crewOut.classList.add('display-hidden');
-			} else if (data.isReg && memberIdx != data.memberIdx) {
 				crewJoin.classList.add('display-hidden');
+			} else if (!data.reg) {
+				crewJoin.classList.remove('display-hidden');
+				crewOut.classList.add('display-hidden');
+			} else if (data.reg && memberIdx != data.memberIdx) {
+				crewJoin.classList.add('display-hidden');
+				crewOut.classList.remove('display-hidden');
 			}
 
-			let crewCommentText = document.querySelector('#crewComment');
-			if(!data.isReg){
-				crewCommentText.readOnly = true;
+			let crewCommentText = document.querySelector('#textinput');
+			let crewCommentTextRead = document.querySelector('#textinput-readonly');
+			if(!data.reg){
+				crewCommentText.classList.add('display-hidden');
+				crewCommentTextRead.classList.remove('display-hidden');
 			} else {
-				crewCommentText.readOnly = false;
+				crewCommentText.classList.remove('display-hidden');
+				crewCommentTextRead.classList.add('display-hidden');
 			}
 		}
 	});

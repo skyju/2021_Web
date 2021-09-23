@@ -21,6 +21,7 @@ public class CrewDetailService {
 			int memberIdx,
 			int crewIdx
 			) {
+		dao = template.getMapper(CrewMapper.class);
 		
 		CrewInfo crewinfo = getCrew(crewIdx).crewToCrewInfo();
 		crewinfo.setCrewMemberNum(getCrewMemberNum(crewIdx));
@@ -31,6 +32,8 @@ public class CrewDetailService {
 		} else {
 			crewinfo.setReg(false);
 		}
+		
+		crewinfo.setMemberNickName(dao.selectMemberByMemberIdx(crewinfo.getMemberIdx()).getMemberNickname());
 		
 		return crewinfo;
 	}
