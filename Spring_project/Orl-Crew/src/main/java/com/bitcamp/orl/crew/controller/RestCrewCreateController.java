@@ -1,5 +1,7 @@
 package com.bitcamp.orl.crew.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +24,7 @@ public class RestCrewCreateController {
 	
 	@RequestMapping("/crew/createCrew")
 	@CrossOrigin
-	public CrewInfo createCrew(CrewInsertRequest crewRequest) {
+	public CrewInfo createCrew(CrewInsertRequest crewRequest) throws IOException, Exception {
 		
 		Crew crew = insertService.insert(crewRequest);
 		CrewInfo crewinfo = null;

@@ -45,7 +45,7 @@ $(document).ready(function () {
 
             //
             $('#crewName').val(data.info.crewName);
-            $('#img').attr("src", url2 + '/images/crew/' + data.info.crewPhoto);
+            $('#img').attr("src", crewFileUrl + data.info.crewPhoto);
             $('#crewintro').val(data.info.crewDiscription);
 
         },

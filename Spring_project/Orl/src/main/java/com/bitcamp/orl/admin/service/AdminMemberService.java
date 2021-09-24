@@ -12,9 +12,6 @@ import com.bitcamp.orl.member.domain.Member;
 @Service
 public class AdminMemberService {
 
-	//멤버의 Dao
-	private Dao dao;
-	
 	@Autowired
 	private SqlSessionTemplate template;
 	

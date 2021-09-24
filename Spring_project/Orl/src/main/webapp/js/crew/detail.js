@@ -93,8 +93,7 @@ function crewInfoShowing() {
 		},
 		success: function (data) {
 
-
-			let crewImg = '<img src="' + url2 + '/images/crew/' + data.crewPhoto + '" class="card-img-top" alt="..." id="cardImg">';
+			let crewImg = '<img src="' + crewFileUrl + data.crewPhoto + '" class="card-img-top" alt="..." id="cardImg">';
 			$('#crew-img').html(crewImg);
 			let crewTitle = data.crewName;
 			$('#crew-title').html(crewTitle);

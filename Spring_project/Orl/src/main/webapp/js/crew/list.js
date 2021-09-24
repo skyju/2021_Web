@@ -14,7 +14,7 @@ $(document).ready(function () {
         crewList(cList);
     });
 
-    $('#newestList').click(function() {
+    $('#newestList').click(function () {
         console.log("최신순으로 정렬");
         cList.sort(function (a, b) {
             a = a.crewCreatedate;
@@ -33,15 +33,15 @@ $(document).ready(function () {
             return a < b ? -1 : a > b ? 1 : 0;
         });
         crewList(cList);
-        
+
     });// ready end
 
     var select = $('.searchType select');
-        select.change(function(){
-            var select_name = $(this).children('option:selected').text();
-            $(this).siblings("label").text(select_name);
-        });
-    
+    select.change(function () {
+        var select_name = $(this).children('option:selected').text();
+        $(this).siblings("label").text(select_name);
+    });
+
     var curved = document.getElementsByClassName("curved");
 
     function handleClick(event) {
@@ -70,37 +70,37 @@ $(document).ready(function () {
 
 }); //document ready end.
 //ajax rest - my crew list 
-function getMyList(){
+function getMyList() {
     $.ajax({
-        url: url+'/crew/getMyCrewList',
+        url: url + '/crew/getMyCrewList',
         type: 'get',
         data: {
             memberIdx: memberIdx
         },
-        success: function(data){
-            if(data == null){
+        success: function (data) {
+            if (data == null) {
                 return false;
             }
             let html = '';
-            $.each(data, function(index, item){
-                if(memberIdx == item.memberIdx){
+            $.each(data, function (index, item) {
+                if (memberIdx == item.memberIdx) {
                     html += '<div class="article-crew">';
                     html += '<div>';
-                    html += '<a href="'+url2+'/crew/detail?crewIdx='+item.crewIdx+'">';
-                    html += '<img class="border-yellow" src="'+url2+'/images/crew/'+item.crewPhoto+'">';
+                    html += '<a href="' + url2 + '/crew/detail?crewIdx=' + item.crewIdx + '">';
+                    html += '<img class="border-yellow" src="' + crewFileUrl + item.crewPhoto + '">';
                     html += '</a>';
                     html += '</div>';
                     html += item.crewName;
                     html += '</div>';
-                } else{
-                html += '<div class="article-crew">';
-                html += '<div>';
-                html += '<a href="'+url2+'/crew/detail?crewIdx='+item.crewIdx+'">';
-                html += '<img class="border-grey" src="'+url2+'/images/crew/'+item.crewPhoto+'">';
-                html += '</a>';
-                html += '</div>';
-                html += item.crewName;
-                html += '</div>';
+                } else {
+                    html += '<div class="article-crew">';
+                    html += '<div>';
+                    html += '<a href="' + url2 + '/crew/detail?crewIdx=' + item.crewIdx + '">';
+                    html += '<img class="border-grey" src="' + crewFileUrl + item.crewPhoto + '">';
+                    html += '</a>';
+                    html += '</div>';
+                    html += item.crewName;
+                    html += '</div>';
                 }
             });
             $('#myCrewSection').html(html);
@@ -111,7 +111,7 @@ function getMyList(){
 function getList(parameter1, parameter2, parameter3) {
     if (parameter2 == '') {
         $.ajax({
-            url: url+'/crew/searchList',
+            url: url + '/crew/searchList',
             type: 'get',
             data: {
                 page: parameter3,
@@ -123,7 +123,7 @@ function getList(parameter1, parameter2, parameter3) {
         });
     } else {
         $.ajax({
-            url: url+'/crew/searchList',
+            url: url + '/crew/searchList',
             type: 'get',
             data: {
                 searchType: parameter1,
@@ -147,18 +147,18 @@ function crewList(parameter1, parameter2) {
         html += '<div class="card shadow">';
         html += '<div class="inner">';
         html += '<div>';
-        html += '<a href="'+url2+'/crew/detail?crewIdx=' + item.crewIdx + '">';
-        html += '<img src="'+url2+'/images/crew/' + item.crewPhoto + '" class="card-img-top" alt="card image cap">';
+        html += '<a href="' + url2 + '/crew/detail?crewIdx=' + item.crewIdx + '">';
+        html += '<img src="' + crewFileUrl + item.crewPhoto + '" class="card-img-top" alt="card image cap">';
         html += '<div class="card-body text-left">';
         html += '<h4 class="card-title">크루 이름: ' + item.crewName + '</h4>';
         html += '<p class="card-text">크루장: ' + item.memberNickName + '</p>';
-        if(item.crewTag != null) {
+        if (item.crewTag != null) {
             let str = [];
             const crewTagArr = item.crewTag;
             str = crewTagArr.split(",");
             html += '<ul>';
-            for(let idx = 0 ; idx < str.length ; idx++) {
-                html += '<li class="tag-item">#'+str[idx]+'</li>';
+            for (let idx = 0; idx < str.length; idx++) {
+                html += '<li class="tag-item">#' + str[idx] + '</li>';
             }
             html += '</ul>';
         }
@@ -171,7 +171,7 @@ function crewList(parameter1, parameter2) {
         html += '</div>';
         $('#cList').html(html);
     });
-    
+
     //
     if (parameter2 == null) {
         return;

@@ -1,78 +1,71 @@
 package com.bitcamp.orl.crew.service;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bitcamp.orl.crew.domain.Crew;
 import com.bitcamp.orl.crew.domain.CrewInsertRequest;
 import com.bitcamp.orl.crew.mapper.CrewMapper;
+import com.bitcamp.orl.s3.util.UploadFileUtils;
 
 @Service
 public class CrewInsertService {
 
+	private static final Logger logger = LoggerFactory.getLogger(CrewInsertService.class);
+	String bucketName = "minju-aws-bucket";
+
 	private CrewMapper dao;
-	
+
 	@Autowired
 	private SqlSessionTemplate template;
-	
-	//크루 생성
-	public Crew insert(CrewInsertRequest crewRequest) {
-		
-		File newFile = null;
+
+	// 크루 생성
+	@Transactional
+	public Crew insert(CrewInsertRequest crewRequest) throws IOException, Exception {
+
 		Crew crew = crewRequest.toCrew();
 		dao = template.getMapper(CrewMapper.class);
-		
-		//크루 이름이 3글자 이상이 안되면 null 리턴
-		if(crewRequest.getCrewName().trim().length()<3) {
+
+		// 크루 이름이 3글자 이상이 안되면 null 리턴
+		if (crewRequest.getCrewName().trim().length() < 3) {
 			return null;
 		}
-		
-		try {
-			if (crewRequest.getCrewPhoto() != null && !crewRequest.getCrewPhoto().isEmpty()) {
-				newFile = saveFile(crewRequest.getCrewPhoto());
-				crew.setCrewPhoto(newFile.getName());
-			}
+		if (crewRequest.getCrewPhoto() != null && !crewRequest.getCrewPhoto().isEmpty()) {
 			
-			dao.insertCrew(crew);
-			dao.insertCrewReg(crew.getMemberIdx(), crew.getCrewIdx());
-		} catch(Exception e) {
-			e.printStackTrace();
-			if(newFile != null & newFile.exists()) {
-				newFile.delete();
-				System.out.println("파일 삭제");
-			}
+			//content type
+			String contentType = crewRequest.getCrewPhoto().getContentType();
+			
+			// 웹 경로
+			String uploadPath = "/fileupload/crew";
+
+			// 파일저장
+			String photoFileName = UploadFileUtils.uploadFile(
+					uploadPath,
+					crewRequest.getCrewPhoto().getOriginalFilename(),
+					contentType,
+					crewRequest.getCrewPhoto().getBytes());
+
+			ResponseEntity<String> img_path = new ResponseEntity<>(photoFileName, HttpStatus.CREATED);
+
+			String user_imgPath = (String) img_path.getBody();
+			logger.info(user_imgPath);
+
+			crew.setCrewPhoto(photoFileName);
 		}
+		// db처리
+		dao.insertCrew(crew);
+		dao.insertCrewReg(crew.getMemberIdx(), crew.getCrewIdx());
 		return crew;
 	}
-	
-	//파일 저장 method
-	public File saveFile(MultipartFile file) {
-		
-		String path = "C:\\Users\\user\\Documents\\GitHub\\java205\\Spring_project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Orl\\images\\crew";
-		File newDir = new File(path);
-		
-		if(!newDir.exists()) {
-			newDir.mkdir();
-			System.out.println("저장 폴더를 생성했습니다.");
-		}
-		
-		String newFileName = System.currentTimeMillis() + file.getOriginalFilename();
-		File newFile = new File(newDir, newFileName);
-		try {
-			file.transferTo(newFile);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return newFile;
-	}
-	
+
 	public Crew selectCrew(int crewIdx) {
 		dao = template.getMapper(CrewMapper.class);
 		return dao.selectCrew(crewIdx);

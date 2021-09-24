@@ -1,21 +1,17 @@
 package com.bitcamp.orl.crew.service;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.bitcamp.orl.crew.domain.Crew;
 import com.bitcamp.orl.crew.domain.CrewInsertRequest;
 import com.bitcamp.orl.crew.mapper.CrewMapper;
+import com.bitcamp.orl.s3.util.S3Util;
+import com.bitcamp.orl.s3.util.UploadFileUtils;
 
 @Service
 public class CrewManageService {
-
-	final String path = "C:\\Users\\user\\Documents\\GitHub\\java205\\Spring_project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Orl\\images\\crew";
 
 	CrewMapper dao;
 
@@ -42,19 +38,35 @@ public class CrewManageService {
 
 	// 크루 수정
 	public int updateCrew(CrewInsertRequest crewRequest, int crewIdx) {
+		
+		S3Util s3 = new S3Util();
 		int resultCnt = 0;
-		File newFile = null;
 		dao = template.getMapper(CrewMapper.class);
 
 		try {
 			// 크루 수정 시 파일을 넣었을 때
 			if (crewRequest.getCrewPhoto() != null && !crewRequest.getCrewPhoto().isEmpty()) {
-				// 기존 파일을 선택해서 삭제
-				selectThatFile(crewIdx).delete();
-				// 새로운 파일 저장
-				newFile = saveFile(crewRequest.getCrewPhoto());
+				
+				//// 기존 파일을 선택해서 삭제
+				Crew crew = dao.selectCrew(crewIdx);
+				s3.fileDelete("minju-aws-bucket", crew.getCrewPhoto());
+				
+				//// 새로운 파일 저장
+				//content type
+				String contentType = crewRequest.getCrewPhoto().getContentType();
+				
+				// 웹 경로
+				String uploadPath = "/fileupload/crew";
+
+				// 파일저장
+				String photoFileName = UploadFileUtils.uploadFile(
+						uploadPath,
+						crewRequest.getCrewPhoto().getOriginalFilename(),
+						contentType,
+						crewRequest.getCrewPhoto().getBytes());
+				
 				// DB에 업데이트
-				resultCnt = dao.updateCrew(crewRequest.getCrewName(), newFile.getName(),
+				resultCnt = dao.updateCrew(crewRequest.getCrewName(), photoFileName,
 						crewRequest.getCrewDiscription(), crewRequest.getCrewTag(), crewIdx);
 			} else {
 				// 크루 수정 시 파일을 넣지 않았을 때
@@ -63,61 +75,22 @@ public class CrewManageService {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			if (newFile != null && newFile.exists()) {
-				newFile.delete();
-				System.out.println("오류가 발생하여 파일을 삭제했습니다.");
-			}
 		}
 		return resultCnt;
 	}
 
 	// 크루 삭제
 	public int deleteCrew(int crewIdx, String crewName) {
+		S3Util s3 = new S3Util();
 		int resultCnt = 0;
 		dao = template.getMapper(CrewMapper.class);
 		Crew crew = selectCrew(crewIdx);
 
 		// 크루이름이 일치할 때 삭제
 		if (crew.getCrewName().equals(crewName)) {
-			selectThatFile(crewIdx).delete();
+			s3.fileDelete("minju-aws-bucket", crew.getCrewPhoto());
 			resultCnt = dao.deleteCrew(crewIdx);
 		}
 		return resultCnt;
-	}
-
-	// 크루 idx로 현재 크루 사진 파일 선택
-	public File selectThatFile(int crewIdx) {
-		dao = template.getMapper(CrewMapper.class);
-		File Dir = new File(path);
-		File file = null;
-		Crew crew = dao.selectCrew(crewIdx);
-		try {
-			String crewPhoto = crew.getCrewPhoto();
-			file = new File(Dir, crewPhoto);
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
-		return file;
-	}
-
-	// 파일 저장 method
-	public File saveFile(MultipartFile file) {
-
-		File newDir = new File(path);
-
-		if (!newDir.exists()) {
-			newDir.mkdir();
-			System.out.println("저장 폴더를 생성했습니다.");
-		}
-		String newFileName = System.currentTimeMillis() + file.getOriginalFilename();
-		File newFile = new File(newDir, newFileName);
-		try {
-			file.transferTo(newFile);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return newFile;
 	}
 }
