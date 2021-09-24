@@ -6,7 +6,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
 /*부트서버*/
-const url = 'http://localhost:8081';
+const url = 'http://52.79.178.223:8081';
 /*뷰 서버*/	
 const url2 = '${pageContext.request.contextPath}';
 $(document).ready(function () {

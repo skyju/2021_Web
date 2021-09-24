@@ -22,7 +22,7 @@
 	const keyword = '${keyword}';
 	const memberIdx = '${sessionScope.memberVo.memberIdx}';
 	/*부트서버*/
-	const url = 'http://localhost:8081';
+	const url = 'http://52.79.178.223:8081';
 	/*뷰 서버*/	
 	const url2 = '${pageContext.request.contextPath}';
 </script>
