@@ -21,6 +21,19 @@ public class RestCrewListController {
 	@Autowired
 	CrewListViewService service;
 	
+	//My Crew List 가져오는 method
+	@RequestMapping("/crew/getMyCrewList")
+	@CrossOrigin
+	public List<Crew> getMyCrewList(
+			@RequestParam("memberIdx")int memberIdx
+			){
+		List<Crew> myCrewList =  null;
+		if(memberIdx != 0) {
+			myCrewList = service.getMyCrewList(memberIdx);
+		}
+		return myCrewList;
+	}
+	
 	//Crew List Page에서 Page정보와 List<Crew>객체를 같이 넘겨주는 method
 	@RequestMapping("/crew/searchList")
 	@CrossOrigin

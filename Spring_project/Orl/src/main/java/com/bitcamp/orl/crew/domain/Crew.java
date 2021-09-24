@@ -98,34 +98,5 @@ public class Crew {
 	public void setMemberNickName(String memberNickName) {
 		this.memberNickName = memberNickName;
 	}
-
-	public CrewInfo crewToCrewInfo() {
-		CrewInfo crewinfo = new CrewInfo(crewIdx, crewName, 
-				crewPhoto, crewDiscription, crewCreatedate, 
-				crewTag, memberIdx, memberNickName, null,
-				0, 0, false);
-		return crewinfo;
-	}
-	
-	public CrewInfo crewToCrewInfo(
-			String memberProfile,
-			int crewMemberNum, 
-			int crewCommentNum,
-			boolean isReg) {
-		CrewInfo crewinfo = new CrewInfo(crewIdx, crewName,
-				crewPhoto, crewDiscription, crewCreatedate,
-				crewTag, memberIdx, memberNickName, memberProfile,
-				crewMemberNum, crewCommentNum, isReg);
-		return crewinfo;
-				
-	}
-
-	@Override
-	public String toString() {
-		return "Crew [crewIdx=" + crewIdx + ", crewName=" + crewName + ", crewPhoto=" + crewPhoto + ", crewDiscription="
-				+ crewDiscription + ", crewCreatedate=" + crewCreatedate + ", crewTag=" + crewTag + ", memberIdx="
-				+ memberIdx + ", memberNickName=" + memberNickName + "]";
-	}
-	
 	
 }

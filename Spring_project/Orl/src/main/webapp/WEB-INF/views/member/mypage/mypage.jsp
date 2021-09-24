@@ -70,6 +70,8 @@
 
          <div class="caption">
                 <a href="<c:url value='/member/mypage/pwchange'/>">비밀번호 변경하기</a>
+                <a > &nbsp |  &nbsp</a>
+                <a href="<c:url value='/member/delete?memberIdx=${member.memberIdx}'/>" onclick="if(!confirm('정말 탈퇴하시겠습니까?')){return false;}">탈퇴하기</a>
             </div>
 
 
@@ -169,7 +171,8 @@
             console.log(mailJ.test($(this).val()));
             $("#msgchk5").text('');
                $.ajax({
-                  url: '<c:url value="/member/emailCheck"/>',
+                //  url: '<c:url value="/member/emailCheck"/>',
+                   url: 'http://localhost:8087/member/emailCheck',
                   type: 'get',
                   data: {
                      email: $(this).val()
@@ -225,7 +228,8 @@
             console.log(ninkJ.test($(this).val()));
             $("#msgchk6").text('');
                $.ajax({
-                  url: '<c:url value="/member/nickNameCheck"/>',
+                //  url: '<c:url value="/member/nickNameCheck"/>',
+                   url: 'http://localhost:8087/member/nickNameCheck',
                   type: 'get',
                   data: {
                      nickname: $(this).val()

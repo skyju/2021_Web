@@ -7,9 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.bitcamp.orl.admin.service.AdminCrewService;
 import com.bitcamp.orl.admin.service.AdminFeedService;
-import com.bitcamp.orl.feed.service.FeedManageService;
 
 @Controller
 public class AdminFeedDeleteController {

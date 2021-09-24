@@ -13,8 +13,6 @@ import com.bitcamp.orl.feed.domain.NewFeedList;
 @Service
 public class FeedSearchService {
 	
-	// 피드에서 검색했을 때
-
 	private FeedDao dao;
 	
 	@Autowired
@@ -25,7 +23,6 @@ public class FeedSearchService {
 	public List<NewFeedList> getSearchByHashtag(String hashtag) {
 		
 		List<NewFeedList> searchByHashtag = null;
-		
 		
 		dao =template.getMapper(FeedDao.class);
 		searchByHashtag = dao.selectByHashtag(hashtag);
@@ -41,9 +38,7 @@ public class FeedSearchService {
 		dao =template.getMapper(FeedDao.class);
 		searchByNickname = dao.selectByNickname(nickname);
 		
-		
 		return searchByNickname;
 	}
-	
 	
 }

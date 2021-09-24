@@ -26,7 +26,7 @@
    <link rel="stylesheet" href="<c:url value='/css/default/default.css'/>">
    <link rel="stylesheet" href="<c:url value='/css/feed/userFeed.css'/>">
    <link rel="stylesheet" href="<c:url value='/css/feed/follow.css'/>">
-   <link rel="stylesheet" href="<c:url value='/css/feed/feedmain.css'/>">
+   <link rel="stylesheet" href="<c:url value='/css/feed/feedMain.css'/>">
    
    <style>
       .display_none{
@@ -115,16 +115,20 @@
               var followStatus = $('#follow-button').val(); // 팔로우 시작하기 혹은 그만하기 인지 확인
               console.log(followStatus);
               
-
+      
               if(followStatus == '팔로우 그만하기'){
                  //팔로우 그만하기
                  //followStatus = -1
+                 
+                 // data 파라미터 추가 0918 수정
                  $.ajax({
-                     url:'<c:url value="/feed/followButtonClick"/>',
+                     //url:'<c:url value="/feed/followButtonClick"/>',
+                     url:'http://localhost:8083/feed/followButtonClick',
                      type:'POST',
                      data:{
                         followStatus : '-1',
-                        memberIdx : '${member.memberIdx}'
+                        yourIdx : '${member.memberIdx}',
+                        myIdx:'${sessionScope.memberVo.memberIdx}'
                      },
                      success: function(data){
                         //data == 1 또는 0
@@ -159,11 +163,13 @@
                  //팔로우 시작하기: followStatus ==1
                  
                  $.ajax({
-                    url:'<c:url value="/feed/followButtonClick"/>',
+                     //url:'<c:url value="/feed/followButtonClick"/>',
+                     url:'http://localhost:8083/feed/followButtonClick',
                      type:'POST',
                      data:{
                         followStatus :'1',
-                        memberIdx : '${member.memberIdx}'
+                        yourIdx : '${member.memberIdx}',
+                        myIdx:'${sessionScope.memberVo.memberIdx}'
                      },
                      success:function(data){
                         if(data ==1){
@@ -351,7 +357,8 @@
       
       //비동기 통신
       $.ajax({
-         url:'<c:url value="/feed/followerList"/>',
+         //url:'<c:url value="/feed/followerList"/>',
+         url:'http://localhost:8083/feed/followerList',
          type:'POST',
          data:{
             memberIdx:'${member.memberIdx}'
@@ -425,7 +432,8 @@
          
          //팔로잉 버튼 눌렀을 때 명단 가져오기 ->비동기 통신으로
          $.ajax({
-            url:'<c:url value="/feed/followingList"/>',
+            //url:'<c:url value="/feed/followingList"/>',
+            url:'http://localhost:8083/feed/followingList',
             type:'POST',
             data:{
                memberIdx:'${member.memberIdx}'
@@ -460,7 +468,8 @@
          // 팔로잉 버튼 눌렀을 때 명단 가져오기 ->비동기 통신으로
          // post방식으로 바꿈
          $.ajax({
-            url:'<c:url value="/feed/followingList"/>',
+            //url:'<c:url value="/feed/followingList"/>',
+            url:'http://localhost:8083/feed/followingList',
             type:'POST',
             data:{
                memberIdx:'${member.memberIdx}'
@@ -529,13 +538,15 @@
        if(followStatus == '팔로우 그만하기'){ 
          
          //비동기 통신 시작
-         
+         // myIdx 파라미터 추가 0918      
           $.ajax({
-            url:'<c:url value="/feed/followButtonClick"/>',
+            // url:'<c:url value="/feed/followButtonClick"/>',
+             url:'http://localhost:8083/feed/followButtonClick',
              type:'POST',
              data:{
                 followStatus : '-1',
-                memberIdx : memberIdx2
+                yourIdx : memberIdx2,
+                myIdx:'${member.memberIdx}'
              },
              
              success:function(data){
@@ -569,12 +580,15 @@
       }else{
          //followStatus =='팔로우 시작하기'
       //비동기 통신 시작
+     // myIdx 파라미터 추가 0918      
        $.ajax({
-         url:'<c:url value="/feed/followButtonClick"/>',
+        // url:'<c:url value="/feed/followButtonClick"/>',
+           url:'http://localhost:8083/feed/followButtonClick',
             type:'POST',
             data:{
                followStatus : '1',
-               memberIdx : memberIdx2
+               yourIdx : memberIdx2,
+               myIdx:'${member.memberIdx}'
             },
             
             success:function(data){
@@ -588,7 +602,7 @@
                 //2)버튼 글자를 팔로우 시작하기로 바꿔준다. 
                 //3)팔로잉 수를 바꿔준다.
                    
-               btn.val('팔로우 그만하기');
+                btn.val('팔로우 그만하기');
                 btn.css('background','#EFEFEF'); 
                 //console.log(btn.val());
                    

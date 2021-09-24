@@ -10,7 +10,12 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <link rel="stylesheet" href="<c:url value='/css/default/default.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/feed/feededit.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/feed/editFeed.css'/>">
+<style>
+.hide {
+	display: none;
+}
+</style>
 </head>
 <body>
 
@@ -36,11 +41,6 @@
 	
 	            <!-- 피드 사진 -->
 	            <img src="<c:url value="/images/feed/feedw/uploadfile/${selectFeedView.boardPhoto}"/>" alt="feed-img">
-	
-	            <!-- 태그 버튼 -->
-	            <button>
-	                <img src="<c:url value="/images/feed/feedw/icon-05.png"/>">
-	            </button>
 	
 	        </section>
 	        <!-- 왼쪽 사진 영역 끝 -->
@@ -69,27 +69,40 @@
 	            <!-- 수정 폼 시작 -->
 	            <form method="post" enctype="multipart/form-data" id="feededitform">
 	            	
-	            	<!-- 게시글 영역 -->
+	            	<!-- 게시글 입력 -->
 		           	<div class="contentsbox">
 						<p>게시글</p>
 						<textarea name="boardDiscription" id="boardDiscription" autocomplete="off">${selectFeedView.boardDiscription}</textarea>	<!-- 수정 (09.17.우리) -->
 					</div>
 					
-					<!-- 해시태그 영역 -->
-					<div class="hashtagbox">
-						<p>해시태그</p>
-						<input type="text" value="${selectFeedView.hashtag}" name="hashtag" id="hashtag" autocomplete="off">
-					</div>
-					
-					<!-- 태그 영역 -->
+					<!-- 태그 입력 -->
 					<div class="tagbox">
 						<p>태그</p>
-						<input type="text" value="${selectFeedView.tag}" name="tag" id="tag" autocomplete="off">
+						<input type="text" placeholder="Enter" name="tag" id="tag" autocomplete="off">
+						<div class="tagShow">
+							<p class="noTag hide">태그된 닉네임이 없습니다</p>
+							<ul id="tag-list">
+								<!-- 태그 리스트 -->
+							</ul>
+						</div>
+					</div>
+					
+					<!-- 해시태그 입력 -->
+					<div class="hashtagbox">
+						<p>해시태그</p>
+						<input type="text" placeholder="Enter" name="hashtag" id="hashtag" autocomplete="off">
+						
+						<div class="hashtagShow">
+							<p class="noHashtag">입력된 해시태그가 없습니다</p>
+							<ul id="hashtag-list">
+								<!-- 해시태그 리스트 -->
+							</ul>
+						</div>
 					</div>
 						
 					<!-- 게시 버튼 -->
 					<div class="submit">
-						<input type="submit" class="edit_submit" value="게시">
+						<input type="submit" class="edit_submit" onclick="edit_submit()" value="게시">
 					</div>
 					
 				</form>
@@ -107,13 +120,207 @@
 	
 	<%@ include file="/WEB-INF/frame/default/footer.jsp"%>
 
+
+
 	<script>
 	
-		/* 수정 확인 */
-		function edit_submit(){
-			alert('수정되었습니다');
+	/* 부트 서버 */
+	const bootUrl = 'http://localhost:8083';
+	/* 저장된 태그 */
+	const tag = '${selectFeedView.tag}';
+	/* 저장된 해시태그 */
+	const hashTag = '${selectFeedView.hashtag}';
+	
+	/* 수정 확인 */
+	function edit_submit(){
+		alert('수정되었습니다');
+	}
+	
+	
+	$(document).ready(function() {
+		
+	/* 폼 내용 서버에 제공 */
+		$('#feedform').on('submit', function (e) {
+			$(this).submit();
+		});
+		
+	
+	
+	/* 태그 */
+	
+		/* 저장된 태그 리스트 */
+		if(tag == null) {
+			return;
+		} else {
+			
+			/* noTag 삭제 */
+			$('.noTag').addClass('hide');
+			
+			var str = [];
+			var html = "";
+			const tagArr = tag;
+			
+			str = tagArr.split(",");
+			
+			for(var idx=1; idx<str.length; idx++) {
+				
+				html += "<li class='tag-item'>@" + str[idx] + "<span class='del-btn' idx='" + tagCounter + "'>x" +
+				"</span><input type='hidden' name='hashtag' id='rdTag' value=" + str[idx] + "></li>";
+			}
+			$('#tag-list').html(html);
+		}
+	
+		/* 추가하는 태그 */
+		var addTag = {};
+		var tagCounter = 0;
+		
+		/* 입력 값을 태그로 생성 */
+		function inTag(value) {
+			addTag[tagCounter] = value;
+			tagCounter++;
 		}
 		
+		/* 추가하는 태그 입력 */
+		$('#tag').on('keypress', function (e) {
+			
+			var self = $(this);
+				
+			if(e.key == "Enter" || e.keyCode == 32) {
+				var tagValue = self.val();
+				
+				/* 닉네임 체크 ajax */
+				$.ajax({
+					url : bootUrl+'/feed/createfeed/nicknameCheck',
+					type: 'get',
+					data: {
+						memberNickname : tagValue
+					},
+					success: function(data) {
+						
+						//존재하는 닉네임
+						if(data == 'Y') {
+							
+							if(tagValue !== "") {
+								
+								/* noTag 삭제 */
+								$('.noTag').addClass('hide');
+								
+								var result = Object.values(addTag).filter(function (word) {
+									return word == tagValue;
+								})
+								
+								//태그 중복 확인
+								if(result.length == 0) {
+									$('#tag-list').append("<li class='tag-item'>@" + tagValue + "<span class='del-btn' idx='" + tagCounter + "'>x" +
+					                		"</span><input type='hidden' name='tag' id='rdTag' value=" + tagValue + "></li>");
+									inTag(tagValue);
+									self.val("");
+								} else {
+									alert('이미 등록된 닉네임입니다');
+								}
+							}
+							
+						} else {
+							alert('존재하지 않는 닉네임 입니다');
+							return false;
+						}
+					}
+				}); /* 닉네임 체크 ajax 끝 */
+
+		        e.preventDefault();
+			}
+				
+		});/* 추가 태그 입력 끝 */
+			
+		$(document).on("click", ".del-btn", function (e) {
+			var index = $(this).attr("idx");
+			addTag[index] = "";
+			$(this).parent().remove();
+		});
+		
+	/* 태그 끝 */
+	
+	
+			
+	/* 해시태그 */
+	
+		/* 저장된 해시태그 리스트 */
+		if(hashTag == null) {
+			return;
+		} else {
+			
+			var str = [];
+			var html = "";
+			const hashTagArr = hashTag;
+			
+			str = hashTagArr.split(",");
+			
+			for(var idx=1; idx<str.length; idx++) {
+				
+				html += "<li class='tag-item'>#" + str[idx] + "<span class='del-btn' idx='" + hashtagCounter + "'>x" +
+				"</span><input type='hidden' name='hashtag' id='rdTag' value=" + str[idx] + "></li>";
+			
+			}
+			$('#hashtag-list').html(html);
+		}
+	
+		/* 추가하는 해시태그 */
+		var addHashTag = {};
+		var hashtagCounter = 0;
+			
+		/* 입력 값을 해시태그로 생성 */
+		function inHashTag(value) {
+			addHashTag[hashtagCounter] = value;
+			hashtagCounter++;
+		}
+
+		/* 추가하는 해시태그 입력 */
+		$('#hashtag').on('keypress', function (e) {
+				
+			var self = $(this);
+				
+			/* 엔터키나 스페이스바 눌렀을 때 실행 */
+			if(e.key == "Enter" || e.keyCode == 32) {
+				var tagValue = self.val();	//값 가져오기
+							
+				if(tagValue !== "") {
+					
+					$('.noHashtag').addClass('hide');
+					
+					var result = Object.values(addHashTag).filter(function (word) {
+		            	return word == tagValue;
+		            })
+
+		            // 해시태그 중복 확인
+		            if (result.length == 0) {
+		            	$("#hashtag-list").append(
+		            			"<li class='tag-item'>#" + tagValue + "<span class='del-btn' idx='" + hashtagCounter + "'>x" +
+		                		"</span><input type='hidden' name='hashtag' id='rdTag' value=" + tagValue + "></li>");
+		            	
+		            	inHashTag(tagValue);
+		                self.val("");
+		                
+					} else {
+						alert("태그값이 중복됩니다");
+		                }
+		            }
+		            e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
+				}
+				
+			});
+			
+		$(document).on("click", ".del-btn", function (e) {
+			var index = $(this).attr("idx");
+			addHashTag[index] = "";
+			$(this).parent().remove();
+		});
+		
+	/* 해시태그 끝 */
+
+	
+	
+	});	
+	
 	</script>
 	
 </body>

@@ -17,8 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="memberIdx" property="memberIdx" />
 		<result column="memberNickName" property="memberNickName" />
 	</resultMap>
-
-<!-- 관리자에서 사용 -전체 크루 리스트 -->
+	<!-- 관리자에서 사용 -전체 크루 리스트 -->
 	<select 
 	id="selectCrewListByAdmin" 
 	resultMap="crewListResult">
@@ -26,8 +25,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from crew natural join member
 		order by crewIdx desc, crewCreatedate desc
 	</select>
+	
+	<!-- Select 의 결과를 매핑하는 설정 -->
+	<resultMap id="crewMemberListResult"
+		type="com.bitcamp.orl.crew.domain.CrewMemberList">
+		<id column="memberIdx" property="memberIdx" />
+		<result column="memberId" property="memberId" />
+		<result column="memberProfile" property="memberProfile" />
+		<result column="memberNickName" property="memberNickName" />
+		<result column="memberBirth" property="memberBirth" />
+		<result column="crewRegdate" property="crewRegdate" />
+		<result column="crewIdx" property="crewIdx" />
+	</resultMap>
+	<!-- 관리자에서 사용 -모든 크루 멤버 가져오는 리스트 -->
+	<select id="selectAllCrewMemberList"
+		resultMap="crewMemberListResult">
+		select memberIdx, memberId, memberProfile, memberNickname, memberBirth, crewRegdate, crewIdx
+		from member natural join crewreg
+	</select>
+	
+	<!-- 특정 크루 멤버들 리스트 -->
+	<select
+	id="selectCrewMemberList"
+	resultMap="crewMemberListResult">
+		select memberIdx, memberId, memberProfile, memberNickname, memberBirth, crewRegdate, crewIdx
+		from member natural join crewreg where crewIdx = #{crewIdx}
+	</select>
 
-	<!-- 전체 크루 리스트 -->
+	<!-- 전체 크루 리스트+페이징 -->
 	<select 
 	id="selectAll" 
 	resultMap="crewListResult">
@@ -220,26 +245,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where crewIdx = #{crewIdx};
 	</update>
 	
-	<!-- Select 의 결과를 매핑하는 설정 -->
-	<resultMap id="crewMemberListResult"
-		type="com.bitcamp.orl.crew.domain.CrewMemberList">
-		<id column="memberIdx" property="memberIdx" />
-		<result column="memberId" property="memberId" />
-		<result column="memberProfile" property="memberProfile" />
-		<result column="memberNickName" property="memberNickName" />
-		<result column="memberBirth" property="memberBirth" />
-		<result column="crewRegdate" property="crewRegdate" />
-		<result column="crewIdx" property="crewIdx" />
-	</resultMap>
-	
-	<!-- 크루 멤버들 리스트 -->
-	<select
-	id="selectCrewMemberList"
-	resultMap="crewMemberListResult">
-		select memberIdx, memberId, memberProfile, memberNickname, memberBirth, crewRegdate, crewIdx
-		from member natural join crewreg where crewIdx = #{crewIdx}
-	</select>
-	
 	<!-- 크루 멤버 추방 -->
 	<delete
 	id="deleteFromCrewMemberList">
@@ -268,7 +273,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set crewComment = #{crewComment}, crewCommentDate = default
 		where crewCommentIdx = #{crewCommentIdx};	
 	</update>
-
-
 	
 </mapper>

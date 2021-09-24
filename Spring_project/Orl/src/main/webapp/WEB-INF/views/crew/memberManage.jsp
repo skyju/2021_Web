@@ -8,7 +8,7 @@
 <title>크루 관리</title>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
-let crewIdx = '${crew.crewIdx}';
+let crewIdx = '${crewIdx}';
 let sessionMemberIdx = '${sessionScope.memberVo.memberIdx}';
 /*부트서버*/
 const url = 'http://localhost:8081';
@@ -19,12 +19,6 @@ const url2 = '${pageContext.request.contextPath}';
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>
 </head>
 <body>
-<c:if test="${chk ne null && chk eq false}">
-	<script>
-		alert('해당 페이지에 접근 할 권한이 없습니다.');
-		location.href="<c:url value='/'/>";
-	</script>
-</c:if>
 	<div class="section">
 		<div class="box">
 			<%@ include file="/WEB-INF/frame/crew/crew-manage-nav.jsp"%>

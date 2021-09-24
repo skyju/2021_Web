@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FEED MAIN</title>
-<link rel="stylesheet" href="<c:url value='/css/feed/feedmain.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/feed/feedMain.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/default/default.css'/>">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>

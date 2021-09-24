@@ -6,10 +6,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bitcamp.orl.crew.domain.Crew;
 import com.bitcamp.orl.feed.dao.FeedDao;
 import com.bitcamp.orl.feed.domain.FeedGallery;
 import com.bitcamp.orl.feed.domain.FeedLikeGallery;
-
 
 @Service
 public class FeedGalleryService {
@@ -21,7 +21,6 @@ public class FeedGalleryService {
 	@Autowired
 	SqlSessionTemplate template;
 	
-	
 	// 1) 내 피드 보여주기
 	public List<FeedGallery> getFeedGallery(int memberIdx) {
 		
@@ -29,8 +28,6 @@ public class FeedGalleryService {
 		
 		dao =template.getMapper(FeedDao.class);
 		feedGallery = dao.selectFeedGallery(memberIdx);
-		
-		
 		
 		return feedGallery;
 	}
@@ -44,14 +41,12 @@ public class FeedGalleryService {
 		dao =template.getMapper(FeedDao.class);
 		feedLikeGallery = dao.selectFeedLikeGallery(memberIdx);
 		
-		
-		
 		return feedLikeGallery;
 	}
 	
+	// 3) 내가 가입한 크루 리스트 보여주기 (민주 추가 09 24)
+	public  List<Crew> getMyCrewList(int memberIdx){
+		return template.getMapper(FeedDao.class).selectMyCrewList(memberIdx);
+	}
 	
-
-	
-
-
 }

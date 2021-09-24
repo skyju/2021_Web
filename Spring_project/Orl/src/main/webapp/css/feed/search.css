@@ -13,6 +13,8 @@ body {
   width: auto;
   height: auto;
   z-index: 1;
+  /* 0921 추가 */
+  margin-bottom:200px;
 }
 /*중간 검색창 부분*/
 #contents {
@@ -64,7 +66,7 @@ body {
 /*검색 결과 리스트*/
 .selectArea{
    /* 마진 수정 */
-   margin:30px;
+   margin:50px;
 }
 h3{
    font-size:30px;
@@ -73,17 +75,8 @@ h3{
 #selectList {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  row-gap: 20px;
+  row-gap: 30px;
   column-gap: 20px;
-}
-
-/* 추가 */
-#selectList2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width:900px;
-  
 }
 
 
@@ -117,4 +110,18 @@ h3{
 #selectList a{
   padding-top: 15px;
   padding-left: 15px;
+}
+
+
+
+/* 0921 추가 */
+/* 스크롤 배경 */
+::-webkit-scrollbar {
+   background-color: white;
+}
+/* 스크롤 막대 */
+::-webkit-scrollbar-thumb {
+   height: 30px;
+   border-radius: 10px;
+   background-color: #fdef7b;
 }

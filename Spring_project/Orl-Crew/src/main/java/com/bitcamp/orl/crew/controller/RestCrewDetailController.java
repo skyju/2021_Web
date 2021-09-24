@@ -23,8 +23,6 @@ public class RestCrewDetailController {
 			) {
 		CrewInfo info = null;
 		info = service.getCrewInfo(memberIdx, crewIdx);
-		
-		System.out.println(info);
 		return info;
 	}
 }

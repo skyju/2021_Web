@@ -54,13 +54,15 @@
       where memberName=#{memberName} and memberEmail=#{memberEmail}
    </select>
 
+  
    <!-- select 비밀번호찾기 -->
    <select
          id="selectPw"
-         resultType="String">
-      select memberPw from member
+         resultType="com.bitcamp.orl.member.domain.Member">
+      select * from member
       where memberId=#{memberId} and memberName=#{memberName} and memberEmail=#{memberEmail}
    </select>
+
 
    <!--select id체크 -->
    <select id="selectById" resultType="int">

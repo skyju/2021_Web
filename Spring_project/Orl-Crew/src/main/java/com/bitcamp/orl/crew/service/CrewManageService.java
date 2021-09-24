@@ -1,141 +1,123 @@
 package com.bitcamp.orl.crew.service;
 
 import java.io.File;
-
-import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bitcamp.orl.crew.domain.Crew;
 import com.bitcamp.orl.crew.domain.CrewInsertRequest;
 import com.bitcamp.orl.crew.mapper.CrewMapper;
-import com.bitcamp.orl.member.domain.MemberDto;
 
 @Service
 public class CrewManageService {
-	
-	final String UPLOAD_URI ="/images/crew";
-	
+
+	final String path = "C:\\Users\\user\\Documents\\GitHub\\java205\\Spring_project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Orl\\images\\crew";
+
 	CrewMapper dao;
-	
+
 	@Autowired
 	SqlSessionTemplate template;
-	
-	//해당 페이지에 접근할 권한이 있는지(크루장인지) 확인하기
-	public boolean isHaveAuth(
-			int crewIdx,
-			HttpServletRequest request
-			) {
+
+	// 해당 페이지에 접근할 권한이 있는지(크루장인지) 확인하기
+	public boolean isHaveAuth(int crewIdx, int memberIdx) {
 		boolean chk = false;
-		MemberDto dto = (MemberDto)request.getSession().getAttribute("memberVo");
-		
-		try {
-			int nowAuthIdx = dto.getMemberIdx();
-			int crewAuthIdx = selectCrew(crewIdx).getMemberIdx();
-			if(nowAuthIdx == crewAuthIdx) {
-				chk = true;
-			}
-		} catch (NullPointerException e) {
-			e.printStackTrace();
+
+		int crewAuthIdx = selectCrew(crewIdx).getMemberIdx();
+		if (memberIdx == crewAuthIdx) {
+			chk = true;
 		}
 		return chk;
 	}
-	
-	//한 크루 선택
-	public Crew selectCrew(
-			int crewIdx
-			) {
+
+	// 한 크루 선택
+	public Crew selectCrew(int crewIdx) {
 		dao = template.getMapper(CrewMapper.class);
 		Crew crew = dao.selectCrew(crewIdx);
 		return crew;
 	}
-	
-	//크루 수정
-	public int updateCrew(
-			CrewInsertRequest crewRequest,
-			HttpServletRequest request,
-			int crewIdx
-			) {
+
+	// 크루 수정
+	public int updateCrew(CrewInsertRequest crewRequest, int crewIdx) {
 		int resultCnt = 0;
 		File newFile = null;
 		dao = template.getMapper(CrewMapper.class);
-		
-		CrewInsertService insertservice = new CrewInsertService();
+
 		try {
-			
-			
-			//크루 수정 시 파일을 넣었을 때
+			// 크루 수정 시 파일을 넣었을 때
 			if (crewRequest.getCrewPhoto() != null && !crewRequest.getCrewPhoto().isEmpty()) {
-				//기존 파일을 선택해서 삭제(default있으면 걸러지게 처리)
-				selectThatFile(request, crewIdx).delete();
-				
-				//새로운 파일 저장
-				newFile = insertservice.saveFile(crewRequest.getCrewPhoto());
-				//DB에 업데이트
-				resultCnt = dao.updateCrew(
-						crewRequest.getCrewName(), 
-						newFile.getName(), 
-						crewRequest.getCrewDiscription(), 
-						crewRequest.getCrewTag(),
-						crewIdx);
+				// 기존 파일을 선택해서 삭제
+				selectThatFile(crewIdx).delete();
+				// 새로운 파일 저장
+				newFile = saveFile(crewRequest.getCrewPhoto());
+				// DB에 업데이트
+				resultCnt = dao.updateCrew(crewRequest.getCrewName(), newFile.getName(),
+						crewRequest.getCrewDiscription(), crewRequest.getCrewTag(), crewIdx);
 			} else {
-				
-				
-				//크루 수정 시 파일을 넣지 않았을 때
-				resultCnt = dao.updateCrewWithoutPhoto(
-						crewRequest.getCrewName(), 
-						crewRequest.getCrewDiscription(), 
-						crewRequest.getCrewTag(),
-						crewIdx);
+				// 크루 수정 시 파일을 넣지 않았을 때
+				resultCnt = dao.updateCrewWithoutPhoto(crewRequest.getCrewName(), crewRequest.getCrewDiscription(),
+						crewRequest.getCrewTag(), crewIdx);
 			}
-			
-			
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			if(newFile != null && newFile.exists()) {
+			if (newFile != null && newFile.exists()) {
 				newFile.delete();
 				System.out.println("오류가 발생하여 파일을 삭제했습니다.");
 			}
 		}
 		return resultCnt;
 	}
-	
-	//크루 삭제
-	public int deleteCrew(
-			int crewIdx,
-			String crewName,
-			HttpServletRequest request
-			) {
+
+	// 크루 삭제
+	public int deleteCrew(int crewIdx, String crewName) {
 		int resultCnt = 0;
 		dao = template.getMapper(CrewMapper.class);
 		Crew crew = selectCrew(crewIdx);
-		
-		//크루이름이 일치할 때 삭제
-		if(crew.getCrewName().equals(crewName)) {
-			selectThatFile(request, crewIdx).delete();
+
+		// 크루이름이 일치할 때 삭제
+		if (crew.getCrewName().equals(crewName)) {
+			selectThatFile(crewIdx).delete();
 			resultCnt = dao.deleteCrew(crewIdx);
 		}
 		return resultCnt;
 	}
-	
-	//크루 idx로 현재 크루 사진 파일 선택
-	public File selectThatFile(
-			HttpServletRequest request,
-			int crewIdx
-			) {
+
+	// 크루 idx로 현재 크루 사진 파일 선택
+	public File selectThatFile(int crewIdx) {
 		dao = template.getMapper(CrewMapper.class);
-		String path = request.getSession().getServletContext().getRealPath(UPLOAD_URI);
 		File Dir = new File(path);
 		File file = null;
 		Crew crew = dao.selectCrew(crewIdx);
 		try {
 			String crewPhoto = crew.getCrewPhoto();
 			file = new File(Dir, crewPhoto);
-		} catch(NullPointerException e) {
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 		return file;
+	}
+
+	// 파일 저장 method
+	public File saveFile(MultipartFile file) {
+
+		File newDir = new File(path);
+
+		if (!newDir.exists()) {
+			newDir.mkdir();
+			System.out.println("저장 폴더를 생성했습니다.");
+		}
+		String newFileName = System.currentTimeMillis() + file.getOriginalFilename();
+		File newFile = new File(newDir, newFileName);
+		try {
+			file.transferTo(newFile);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return newFile;
 	}
 }

@@ -12,10 +12,16 @@ import com.bitcamp.orl.member.domain.Member;
 
 public interface CrewMapper {
 	
-	//모든 crew 리스트
+	// 관리자 crew 전체 리스트
+	List<Crew> selectCrewListByAdmin();
+	
+	// 관리자 crewreg 전체 리스트
+	List<CrewMemberList> selectAllCrewMemberList();
+	
+	//모든 crew 리스트+페이징
 	List<Crew> selectAll(@Param("pageStart")int pageStart, @Param("perPageNum")int perPageNum);
 	
-	//검색을 통한 crew 리스트 
+	//검색을 통한 crew 리스트 +페이징
 	List<Crew> selectCrewAll(SearchType searchType);
 	
 	//크루 게시물 총 개수

@@ -48,6 +48,10 @@ function getCrewMemberList() {
                 html += '</tr>';
             });
             $('#crewMemberList').html(html);
+        },
+        error: function(){
+            alert('해당 페이지에 접근 할 권한이 없습니다.');
+            location.href = url2 + '/crew/detail?crewIdx=' + crewIdx + '';
         }
     });
 }

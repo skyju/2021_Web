@@ -20,6 +20,7 @@
 	let cList = [];
 	const searchType = '${searchType}';
 	const keyword = '${keyword}';
+	const memberIdx = '${sessionScope.memberVo.memberIdx}';
 	/*부트서버*/
 	const url = 'http://localhost:8081';
 	/*뷰 서버*/	
@@ -42,19 +43,8 @@
 				<a href="<c:url value='/crew/insert'/>" class="text-bold">나의 크루
 					만들기</a>
 			</div>
-			<c:if test="${myCrewList ne null and not empty myCrewList}">
-				<c:forEach items="${myCrewList}" var="crew">
-					<div class="article-crew">
-						<div>
-							<a href='<c:url value="/crew/detail?crewIdx=${crew.crewIdx}"/>'>
-								<img src="<c:url value='/images/crew/${crew.crewPhoto}'/>">
-							</a>
-						</div>
-						<p>${crew.crewName}</p>
-					</div>
-				</c:forEach>
-			</c:if>
-
+			<div id="myCrewSection">
+			</div>
 		</div>
 
 		<div class="container">

@@ -10,13 +10,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CrewInsertRequest {
+	private int crewIdx;
 	private String crewName;
 	private MultipartFile crewPhoto;
 	private String crewDiscription;
 	private String crewTag;
 	private int memberIdx;
+	private String memberNickName;
 	
 	public Crew toCrew() {
-		return new Crew(0, crewName, crewPhoto.getName(), crewDiscription, null, crewTag, memberIdx, null);
+		return new Crew(0, crewName, crewPhoto.getName(), crewDiscription, null, crewTag, memberIdx, memberNickName);
 	}
 }

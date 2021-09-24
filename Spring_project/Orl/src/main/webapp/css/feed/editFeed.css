@@ -123,13 +123,13 @@ textarea:focus {
 
 .e_profile>a {
 	position: absolute;
-	left: 105px;
-	top: 40px;
+	left: 110px;
+	top: 45px;
 }
 
 /* 게시글 수정 영역 */
 .contentsbox {
-	height: 270px;
+	height: 200px;
 	position: relative;
 }
 .contentsbox>p {
@@ -137,7 +137,7 @@ textarea:focus {
 	left: 27px;
 	top: 45px;
 }
-/* 입력 상자 */
+/* 게시글 내용 */
 .contentsbox>textarea {
 	position: absolute;
 	left: 90px;
@@ -147,9 +147,8 @@ textarea:focus {
 	padding-left: 20px;
 	padding-top: 20px;
 	width: 320px;
-	height: 200px;
-	line-height: 150%;
-	font-size: 15px;
+	height: 150px;
+	line-height: 130%;
 }
 /* 게시글 placeholder */
 textarea::placeholder {
@@ -157,59 +156,109 @@ textarea::placeholder {
 	top: 20px;
 }
 
-/* 해시태그 수정 영역 */
-.hashtagbox {
-	height: 70px;
-	position: relative;
-}
-.hashtagbox>p {
-	position: absolute;
-	left: 18px;
-	top: 25px;
-}
-/* 입력 상자 */
-.hashtagbox>input {
-	position: absolute;
-	left: 90px;
-	bottom: 20px;
-	border: 1px solid gray;
-	border-radius: 6px;
-	padding-left: 15px;
-	padding-right: 15px;
-	padding-top: 2px;
-	width: 320px;
-	height: 33px;
-	font-size: 14px;
-}
-
 /* 태그 수정 영역 */
 .tagbox {
-	height: 80px;
-	border-bottom: 1px solid gainsboro;
+	height: 120px;
 	position: relative;
 }
 .tagbox>p {
 	position: absolute;
 	left: 32px;
-	top: 30px;
+	top: 15px;
 }
-/* 입력 상자 */
+/* 태그 수정 내용 */
 .tagbox>input {
 	position: absolute;
 	left: 90px;
-	bottom: 23px;
+	top: 5px;
 	border: 1px solid gray;
 	border-radius: 6px;
 	padding-left: 20px;
-	padding-top: 2px;
 	width: 320px;
 	height: 33px;
-	font-size: 15px;
+	font-size: 14px;
+}
+.noTag, .noHashtag {
+	position: absolute;
+	color: gray;
+	font-size: 13px;
+	padding-left: 95px;
+	padding-top: 20px;
+}
+
+/* 해시태그 수정 영역 */
+.hashtagbox {
+	height: 120px;
+	position: relative;
+	border-bottom: 1px solid gainsboro;
+}
+.hashtagbox>p {
+	position: absolute;
+	top: 10px;
+	left: 18px;
+}
+/* 해시태그 수정 내용 */
+.hashtagbox>input {
+	position: absolute;
+	left: 90px;
+	top: 3px;
+	border: 1px solid gray;
+	border-radius: 6px;
+	padding-left: 15px;
+	width: 320px;
+	height: 33px;
+	font-size: 14px;
+}
+/* 입력된 해시태그 */
+.hashtagShow, .tagShow {
+    position: absolute;
+    top: 45px;
+    left: 80px;
+    width: 350px;
+	height: 60px;
+	overflow: scroll;
+}
+.hashtagShow::-webkit-scrollbar, .tagShow::-webkit-scrollbar{
+	display: none;
+}
+#tag-list {
+  border: none
+  display: flex;
+}
+
+.tag-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  /* 라인수 */
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  margin-left: 10px;
+  margin-top: 3px;
+}
+
+.tr_hashTag_area p {
+  margin-top: 70px;
+}
+/* 태그 지우기 */
+.del-btn {
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 8px;
+}
+ul li.tag-item {
+  background-color: rgb(253, 239, 123);
+  color: #000;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 4px 7px;
+  font-size: 13px;
 }
 
 /* 게시 버튼 영역 */
 .submit {
-	height: 120px;
+	height: 90px;
 	position: relative;
     
 }

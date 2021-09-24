@@ -15,33 +15,28 @@ import com.bitcamp.orl.member.domain.*;
 @RequestMapping("/feed/feededit/{memberIdx}&{boardIdx}")
 public class FeedEditController {
 	
-	//피드 수정 페이지
-
 	@Autowired
 	private FeedViewService viewService;
-
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getFeedEdit(
 			@PathVariable("memberIdx") int memberIdx,
 			@PathVariable("boardIdx") int boardIdx,
 			HttpServletRequest request, Model model) {
 
-		// 피드 상세
+		// 수정할 피드 정보
 		FeedView feedview = viewService.getFeedView(boardIdx);
-		model.addAttribute("selectFeedView", viewService.getFeedView(boardIdx));
-		System.out.println("feedview controller => " + feedview);
 
-		// session에 있는 나의 memberIdx 필요
 		int myIdx = ((MemberDto) request.getSession().getAttribute("memberVo")).getMemberIdx();
-		// 1. 첫 요청에 하트의 결과를 보여줘야한다. 내가 이 게시물을 좋아요 하는지 안 하는지!
 		int likeStatus = viewService.getLikeStatus(myIdx, boardIdx);
-		// 모델에 저장
+		
+		model.addAttribute("selectFeedView", viewService.getFeedView(boardIdx));
 		model.addAttribute("likeStatus", likeStatus);
 
 		return "/feed/feedEdit";
 
 	}
-
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public String postFeedEdit(
 			@PathVariable("boardIdx") int boardIdx,
@@ -52,8 +47,7 @@ public class FeedEditController {
 			) {
 		
 		// 피드 수정
-		int result = viewService.editFeed(boardIdx, feedEdit, request);
-		
+		viewService.editFeed(boardIdx, feedEdit, request);
 		model.addAttribute("boardDiscription", feedEdit.getBoardDiscription());
 		model.addAttribute("hashtag", feedEdit.getHashtag());
 		model.addAttribute("tag", feedEdit.getTag());
@@ -61,21 +55,15 @@ public class FeedEditController {
 		// 피드 상세보기
 		FeedView feedview = viewService.getFeedView(boardIdx);
 		model.addAttribute("selectFeedView", viewService.getFeedView(boardIdx));
-		System.out.println("feedview controller => " + feedview);
 		
-		// session에 있는 나의 memberIdx 필요
+		// 좋아요
 		int myIdx = ((MemberDto) request.getSession().getAttribute("memberVo")).getMemberIdx();
-		// 1. 첫 요청에 하트의 결과를 보여줘야한다. 내가 이 게시물을 좋아요 하는지 안 하는지!
 		int likeStatus = viewService.getLikeStatus(myIdx, boardIdx);
-		// 모델에 저장
-		model.addAttribute("likeStatus", likeStatus);
-
-		// 2. 첫 요청에 좋아요 갯수를 보여준다.
 		int totalLikeCount = viewService.getTotalLikeCount(boardIdx);
-		// 모델에 저장
+		model.addAttribute("likeStatus", likeStatus);
 		model.addAttribute("totalLikeCount", totalLikeCount);
 		
-		return "/feed/feedview";
+		return "redirect:/feed/feedview/"+memberIdx+"&"+boardIdx;
 
 	}
 

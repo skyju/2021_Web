@@ -8,6 +8,7 @@ import org.springframework.stereotype.*;
 
 import com.bitcamp.orl.feed.dao.*;
 import com.bitcamp.orl.feed.domain.*;
+import com.bitcamp.orl.member.domain.*;
 
 @Service
 public class FeedViewService {
@@ -26,6 +27,7 @@ public class FeedViewService {
 		feedview = dao.selectFeedView(boardIdx);
 
 		return feedview;
+		
 	}
 
 	// 피드 수정
@@ -42,6 +44,35 @@ public class FeedViewService {
 				feedEdit.getHashtag(),
 				feedEdit.getTag(),
 				boardIdx);
+
+		return result;
+
+	}
+	
+	//피드 댓글 작성
+	public int insertComment(FeedCommentRequest commentRequest, HttpServletRequest request) {
+
+		int result = 0;
+			
+		try {
+				
+			FeedComment feedComment = commentRequest.toFeedComment();
+				
+			MemberDto memberVo = (MemberDto)(request.getSession().getAttribute("memberVo"));
+				
+			if(memberVo != null) {
+				feedComment.setMemberIdx(memberVo.getMemberIdx());
+			}
+
+			dao = template.getMapper(FeedDao.class);
+			result = dao.insertFeedComment(feedComment);
+				
+			System.out.println(feedComment);
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("예외발생");
+		}
 
 		return result;
 

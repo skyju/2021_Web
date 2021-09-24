@@ -10,22 +10,16 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet" href="<c:url value='/css/crew/edit.css'/>">
 <script>
-let crewtag = '${crew.crewTag}';
+const crewIdx = '${crewIdx}';
+const memberIdx = '${sessionScope.memberVo.memberIdx}';
 /*부트서버*/
 const url = 'http://localhost:8081';
 /*뷰 서버*/	
 const url2 = '${pageContext.request.contextPath}';
 </script>
 <script src="<c:url value='/js/crew/edit.js'/>"></script>
-<script src="<c:url value='/js/crew/insert.js'/>"></script>
 </head>
 <body>
-<c:if test="${chk eq false}">
-	<script>
-		alert('해당 페이지에 접근 할 권한이 없습니다.');
-		location.href="<c:url value='/'/>";
-	</script>
-</c:if>
 	<div class="section">
 		<div class="box">
 			<%@ include file="/WEB-INF/frame/crew/crew-manage-nav.jsp"%>
@@ -35,20 +29,20 @@ const url2 = '${pageContext.request.contextPath}';
 						<tr>
 							<td><label for="crewName">크루명</label></td>
 							<td>
-							<input type="text" id="crewName" name="crewName" class="form-control" value="${crew.crewName}" required="required">
+							<input type="text" id="crewName" name="crewName" class="form-control" required="required">
 							<span id="msg" class="display_none"></span>
 							</td>
 						</tr>
 						<tr>
 							<td><label for="crewPhoto">크루 사진</label></td>
-							<td><img src="<c:url value="/images/crew/${crew.crewPhoto}"/>" id="img" class="hiking" title="클릭하시면 원본크기로 보실 수 있습니다." style="cursor: pointer;" onclick="doImgPop(this.src)"/>
+							<td><img id="img" class="hiking" title="클릭하시면 원본크기로 보실 수 있습니다." style="cursor: pointer;" onclick="doImgPop(this.src)"/>
 							<input type="file" id="crewPhoto" name="crewPhoto" class="form-control form-control-lg"></td>
 						</tr>
 						<tr>
 						</tr>
 						<tr>
 							<td><label for="crewintro">크루 소개글</label></td>
-							<td><textarea id="crewintro" name="crewDiscription" class="form-control">${crew.crewDiscription}</textarea>
+							<td><textarea id="crewintro" name="crewDiscription" class="form-control"></textarea>
 						</tr>
 						<tr>
 							<td>
@@ -65,8 +59,7 @@ const url2 = '${pageContext.request.contextPath}';
 						</tr>
 						<tr>
 							<td></td>
-							<td><input type="submit" value="수정"
-								class="form-control btn-secondary"></td>
+							<td><input id="submit" type="button" value="수정" class="form-control btn-secondary"></td>
 						</tr>
 					</table>
 				</form>

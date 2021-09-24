@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $('#newestList').addClass('clicked');
-
+    getMyList();
     getList(searchType, keyword, 1);
 
     $('#nameList').click(function () {
@@ -33,14 +33,14 @@ $(document).ready(function () {
             return a < b ? -1 : a > b ? 1 : 0;
         });
         crewList(cList);
+        
+    });// ready end
 
-        var select = $('.searchType select');
+    var select = $('.searchType select');
         select.change(function(){
             var select_name = $(this).children('option:selected').text();
             $(this).siblings("label").text(select_name);
         });
-        
-    });// ready end
     
     var curved = document.getElementsByClassName("curved");
 
@@ -69,8 +69,45 @@ $(document).ready(function () {
     init();
 
 }); //document ready end.
-
-//ajax restcontroller
+//ajax rest - my crew list 
+function getMyList(){
+    $.ajax({
+        url: url+'/crew/getMyCrewList',
+        type: 'get',
+        data: {
+            memberIdx: memberIdx
+        },
+        success: function(data){
+            if(data == null){
+                return false;
+            }
+            let html = '';
+            $.each(data, function(index, item){
+                if(memberIdx == item.memberIdx){
+                    html += '<div class="article-crew">';
+                    html += '<div>';
+                    html += '<a href="'+url2+'/crew/detail?crewIdx='+item.crewIdx+'">';
+                    html += '<img class="border-yellow" src="'+url2+'/images/crew/'+item.crewPhoto+'">';
+                    html += '</a>';
+                    html += '</div>';
+                    html += item.crewName;
+                    html += '</div>';
+                } else{
+                html += '<div class="article-crew">';
+                html += '<div>';
+                html += '<a href="'+url2+'/crew/detail?crewIdx='+item.crewIdx+'">';
+                html += '<img class="border-grey" src="'+url2+'/images/crew/'+item.crewPhoto+'">';
+                html += '</a>';
+                html += '</div>';
+                html += item.crewName;
+                html += '</div>';
+                }
+            });
+            $('#myCrewSection').html(html);
+        }
+    });
+}
+//ajax rest - all crew list
 function getList(parameter1, parameter2, parameter3) {
     if (parameter2 == '') {
         $.ajax({

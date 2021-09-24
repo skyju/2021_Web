@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bitcamp.orl.crew.domain.Crew;
-import com.bitcamp.orl.crew.service.CrewListViewService;
 import com.bitcamp.orl.feed.domain.FeedCreateRequest;
 import com.bitcamp.orl.feed.domain.FeedGallery;
 import com.bitcamp.orl.feed.domain.FeedLikeGallery;
@@ -33,9 +32,6 @@ public class UserFeedController {
    
    @Autowired
    private FeedGalleryService galleryService;
-   
-   @Autowired
-   private CrewListViewService crewListService;
    
    @Autowired
    private CreateFeedService createService;
@@ -81,7 +77,7 @@ public class UserFeedController {
          List<FeedLikeGallery> feedLikeGallery = galleryService.getFeedLikeGallery(memberIdx);
          
          // 7) 내가 가입한 크루 보여주기 
-         List<Crew> myCrewList = crewListService.getMyCrewList(memberIdx);
+         List<Crew> myCrewList = galleryService.getMyCrewList(memberIdx);
          
          
          //model에 객체 전달

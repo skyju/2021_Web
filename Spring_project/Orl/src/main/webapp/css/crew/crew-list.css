@@ -1,4 +1,11 @@
 @charset "UTF-8";
+.border-yellow {
+    border: 4px solid rgb(253, 239, 123);
+}
+
+.border-grey {
+	border: 4px solid #aaa;
+}
 
 .inner ul{
 	padding: 0;
@@ -377,7 +384,7 @@ v
 
 .section .card {
 	width: 25rem;
-	height: 35rem;
+	height: 36rem;
 }
 
 .section .card img {

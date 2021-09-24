@@ -12,8 +12,8 @@
 	crossorigin="anonymous"></script>
 <div class="nav2">
 	<ol>
-		<li><a href="<c:url value='/crew/edit/${crew.crewIdx}'/>">크루 수정</a></li>
-		<li><a href="<c:url value='/crew/memberManage/${crew.crewIdx}'/>">크루원 관리</a></li>
-		<li><a href="<c:url value='/crew/remove/${crew.crewIdx}'/>">크루 삭제</a></li>
+		<li><a href="<c:url value='/crew/edit/${crewIdx}'/>">크루 수정</a></li>
+		<li><a href="<c:url value='/crew/memberManage/${crewIdx}'/>">크루원 관리</a></li>
+		<li><a href="<c:url value='/crew/remove/${crewIdx}'/>">크루 삭제</a></li>
 	</ol>
 </div>

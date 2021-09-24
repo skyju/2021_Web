@@ -17,8 +17,6 @@ import com.bitcamp.orl.member.domain.*;
 @Controller
 @RequestMapping("/feed/feedmain")
 public class FeedMainController {
-	
-	//피드 메인 페이지
 
 	@Autowired
 	private CreateFeedService createService;
@@ -26,22 +24,18 @@ public class FeedMainController {
 	@Autowired
 	private FeedListService listService;
 	
-	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getFeedMain(
 			Model model,
 			HttpServletRequest request) {
 		
-		// 피드 인기순 정렬 ajax 안하고
+		// 피드 인기순 정렬
 	    List<NewFeedList> feedOrderByLike = listService.selectFeedOrderByLike();
+	    model.addAttribute("feedOrderByLike",feedOrderByLike);
 	    
 	    //추가 (09.16.우리)
 	    Member member = listService.getMember(request);
-	    System.out.println("member : "+ member);
-	    
-	    //모델에 저장
 	    model.addAttribute("member", member);	//추가 (09.16.우리)
-	    model.addAttribute("feedOrderByLike",feedOrderByLike);
 		
 		return "feed/feedmain";
 	}	
@@ -53,22 +47,10 @@ public class FeedMainController {
 			Model model)
 			throws IllegalStateException, IOException {
 		
-		//삭제 (09.17.우리)
-//		// 피드 인기순 정렬 ajax 안하고
-//	    List<NewFeedList> feedOrderByLike = listService.selectFeedOrderByLike();
-//	    model.addAttribute("feedOrderByLike",feedOrderByLike);
-//		
-//		//피드 작성
-//		model.addAttribute("boardPhoto", feedrequest.getBoardPhoto());
-//		model.addAttribute("boardDiscription", feedrequest.getBoardDiscription());
-//		model.addAttribute("hashtag", feedrequest.getHashtag());
-//		model.addAttribute("tag", feedrequest.getTag());
-		
+		//작성 피드 insert
 		createService.insert(feedrequest, request);
 	    
 		return "redirect:/feed/feedmain";
 	}
-
-	
 	
 }

@@ -15,26 +15,10 @@ import com.bitcamp.orl.member.domain.*;
 @Service
 public class FeedListService {
 
-	// feedmain 에서 전체 피드랑 인기순 정렬 피드 보여주기
-
 	private FeedDao dao;
 
 	@Autowired
 	private SqlSessionTemplate template;
-
-	// 전체 피드 리스트 (최신순)
-	public List<NewFeedList> selectNewFeed() {
-
-		List<NewFeedList> newFeedList = null;
-
-		dao = template.getMapper(FeedDao.class);
-		newFeedList = dao.selectNewFeed();
-
-		System.out.println("feed list - new");
-
-		return newFeedList;
-
-	}
 
 	// 멤버 가져오기 (09.16.우리)
 	public Member getMember(HttpServletRequest request) {
@@ -47,9 +31,7 @@ public class FeedListService {
 		if (dto != null) {
 			member = dao.selectOneMember(dto.getMemberIdx());
 		}
-
 		return member;
-
 	}
 
 	// 피드 리스트(인기순) 세라 추가
