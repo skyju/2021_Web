@@ -209,11 +209,20 @@
 			<version>1.1.1</version>
 		</dependency>
 
-		<!-- 한글파싱 -->
+
+<!-- 9월 23일 추가 2개 -->
+		<!-- spring-context-support:mail하려고 추가 -->
 		<dependency>
-			<groupId>xerces</groupId>
-			<artifactId>xercesImpl</artifactId>
-			<version>2.9.1</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+		<!-- commons-codec : 암호화 처리시에 사용 -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.15</version>
 		</dependency>
 
 	</dependencies>
