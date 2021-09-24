@@ -17,14 +17,16 @@
 <link rel="stylesheet" href="<c:url value='/css/crew/crew-list.css'/>">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
-	let cList = [];
-	const searchType = '${searchType}';
-	const keyword = '${keyword}';
-	const memberIdx = '${sessionScope.memberVo.memberIdx}';
-	/*부트서버*/
-	const url = 'http://52.79.178.223:8081';
-	/*뷰 서버*/	
-	const url2 = '${pageContext.request.contextPath}';
+let cList = [];
+const searchType = '${searchType}';
+const keyword = '${keyword}';
+const memberIdx = '${sessionScope.memberVo.memberIdx}';
+/*부트서버*/
+const url = 'http://52.79.178.223:8081';
+/*뷰 서버*/	
+const url2 = '${pageContext.request.contextPath}';
+/*s3 경로*/
+const crewFileUrl = 'https://minju-aws-bucket.s3.ap-northeast-2.amazonaws.com//fileupload/crew';
 </script>
 <script src="<c:url value='/js/crew/list.js'/>"></script>
 </head>

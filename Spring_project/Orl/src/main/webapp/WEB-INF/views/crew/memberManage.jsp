@@ -8,12 +8,14 @@
 <title>크루 관리</title>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
-let crewIdx = '${crewIdx}';
-let sessionMemberIdx = '${sessionScope.memberVo.memberIdx}';
+const crewIdx = '${crewIdx}';
+const sessionMemberIdx = '${sessionScope.memberVo.memberIdx}';
 /*부트서버*/
 const url = 'http://52.79.178.223:8081';
 /*뷰 서버*/	
 const url2 = '${pageContext.request.contextPath}';
+/*s3 경로*/
+const crewFileUrl = 'https://minju-aws-bucket.s3.ap-northeast-2.amazonaws.com//fileupload/crew';
 </script>
 <script src="<c:url value='/js/crew/memberManage.js'/>"></script>
 <%@ include file="/WEB-INF/frame/default/header.jsp"%>

@@ -39,6 +39,7 @@ $(document).ready(function () {
                     window.location.href = url2 + '/';
                 } else {
                     alert('크루명이 일치하지 않습니다.');
+                    history.go(-1);
                 }
             },
             error: function(){

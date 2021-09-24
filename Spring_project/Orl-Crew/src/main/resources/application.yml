@@ -1,9 +1,16 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://minju2021.cuvvpjbo4wqy.ap-northeast-2.rds.amazonaws.com:3306/final?serverTimezone=UTC
+    url: jdbc:mysql://mysql205.ccidazbyqjzz.ap-northeast-2.rds.amazonaws.com:3306/final?serverTimezone=UTC
     username: bit
     password: bit
+    hikari:
+      connection-timeout: 20000
+      minimum-idle: 5
+      maximum-pool-size: 5
+      validation-timeout: 300000
+      max-lifetime: 1200000
+      auto-commit: true
     
   thymeleaf:
     prefix: classpath:templates/

@@ -25,8 +25,6 @@ public class ForgotPwController {
 		return "member/forgotPw";
 	}
 	
-	
-	
 	@RequestMapping(method = RequestMethod.POST)
 	public String getFindPw(HttpServletRequest request, Model model,
 			@RequestParam("memberId") String memberId,
@@ -44,8 +42,6 @@ public class ForgotPwController {
 	      }
 
 	      model.addAttribute("findPw",newPw);
-
-
 
 	      return "member/findPw";
 	}

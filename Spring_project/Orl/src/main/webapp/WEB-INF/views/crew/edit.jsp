@@ -16,6 +16,8 @@ const memberIdx = '${sessionScope.memberVo.memberIdx}';
 const url = 'http://52.79.178.223:8081';
 /*뷰 서버*/	
 const url2 = '${pageContext.request.contextPath}';
+/*s3 경로*/
+const crewFileUrl = 'https://minju-aws-bucket.s3.ap-northeast-2.amazonaws.com//fileupload/crew';
 </script>
 <script src="<c:url value='/js/crew/edit.js'/>"></script>
 </head>
