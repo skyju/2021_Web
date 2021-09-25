@@ -73,7 +73,7 @@ $(document).ready(function () {
 function getMyList() {
     $.ajax({
         url: url + '/crew/getMyCrewList',
-        type: 'get',
+        type: 'post',
         data: {
             memberIdx: memberIdx
         },
@@ -112,7 +112,7 @@ function getList(parameter1, parameter2, parameter3) {
     if (parameter2 == '') {
         $.ajax({
             url: url + '/crew/searchList',
-            type: 'get',
+            type: 'post',
             data: {
                 page: parameter3,
             },
@@ -124,7 +124,7 @@ function getList(parameter1, parameter2, parameter3) {
     } else {
         $.ajax({
             url: url + '/crew/searchList',
-            type: 'get',
+            type: 'post',
             data: {
                 searchType: parameter1,
                 keyword: parameter2,
