@@ -19,8 +19,8 @@ public class S3Util {
 	
 	///////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////
-	private String accessKey = "액세스 키"; // 엑세스 키
-	private String secretKey = "보안 액세스 키"; // 보안 엑세스 키
+	private String accessKey = "액세스키"; // 엑세스 키
+	private String secretKey = "보안액세스키"; // 보안 엑세스 키
 	///////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////
 	
@@ -63,10 +63,10 @@ public class S3Util {
 	}
 
 	// 파일 삭제
-	public void fileDelete(String bucketName, String fileName) {
+	public void fileDelete(String fileName) {
 		String filePath = (fileName).replace(File.separatorChar, '/');
 		String realFilePath =  "/fileupload/crew"+filePath;
-		conn.deleteObject(bucketName, realFilePath);
+		conn.deleteObject("minju-aws-bucket", realFilePath);
 		System.out.println("삭제성공");
 	}
 

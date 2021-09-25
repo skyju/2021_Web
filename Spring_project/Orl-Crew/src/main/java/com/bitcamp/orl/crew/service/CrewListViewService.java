@@ -10,6 +10,7 @@ import com.bitcamp.orl.crew.domain.Crew;
 import com.bitcamp.orl.crew.domain.CrewMemberList;
 import com.bitcamp.orl.crew.domain.SearchType;
 import com.bitcamp.orl.crew.mapper.CrewMapper;
+import com.bitcamp.orl.s3.util.S3Util;
 
 @Service
 public class CrewListViewService {
@@ -61,7 +62,11 @@ public class CrewListViewService {
 	
 	// 관리자용 크루 삭제
 	public int deleteCrew(int crewIdx) {
-		return template.getMapper(CrewMapper.class).deleteCrew(crewIdx);
+		CrewMapper dao = template.getMapper(CrewMapper.class);
+		S3Util s3 = new S3Util();
+		Crew crew = dao.selectCrew(crewIdx);
+		s3.fileDelete(crew.getCrewPhoto());
+		return dao.deleteCrew(crewIdx);
 	}
 	
 }

@@ -49,7 +49,7 @@ public class CrewManageService {
 				
 				//// 기존 파일을 선택해서 삭제
 				Crew crew = dao.selectCrew(crewIdx);
-				s3.fileDelete("minju-aws-bucket", crew.getCrewPhoto());
+				s3.fileDelete(crew.getCrewPhoto());
 				
 				//// 새로운 파일 저장
 				//content type
@@ -88,7 +88,7 @@ public class CrewManageService {
 
 		// 크루이름이 일치할 때 삭제
 		if (crew.getCrewName().equals(crewName)) {
-			s3.fileDelete("minju-aws-bucket", crew.getCrewPhoto());
+			s3.fileDelete(crew.getCrewPhoto());
 			resultCnt = dao.deleteCrew(crewIdx);
 		}
 		return resultCnt;
