@@ -66,7 +66,7 @@ public class S3Util {
 	public void fileDelete(String fileName) {
 		String filePath = (fileName).replace(File.separatorChar, '/');
 		String realFilePath =  "/fileupload/crew"+filePath;
-		conn.deleteObject("minju-aws-bucket", realFilePath);
+		conn.deleteObject("버킷네임", realFilePath);
 		System.out.println("삭제성공");
 	}
 
