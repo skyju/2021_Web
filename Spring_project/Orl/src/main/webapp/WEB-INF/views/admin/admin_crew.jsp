@@ -9,6 +9,8 @@
 const url = 'http://52.79.178.223:8081';
 /*뷰 서버*/	
 const url2 = '${pageContext.request.contextPath}';
+/*s3 경로*/
+const crewFileUrl = 'https://minju-aws-bucket.s3.ap-northeast-2.amazonaws.com//fileupload/crew';
 $(document).ready(function () {
     $.ajax({
     	url: url + '/admin/crew/getAllInfo',
@@ -19,7 +21,7 @@ $(document).ready(function () {
 				html += '<tr>';
 				html += '<td>'+item.crewIdx+'</td>';
 				html += '<td>'+item.crewName+'</td>';
-				html += '<td><img src="'+url2+'/images/crew/'+item.crewPhoto+'"';
+				html += '<td><img src="'+crewFileUrl+item.crewPhoto+'"';
 				html += 'style="width: 100px; height: 100px"></td>';
 				html += '<td style="max-width: 350px; overflow: auto">'+item.crewDiscription+'</td>';
 				html += '<td style="max-width: 100px">'+item.crewCreatedate+'</td>';
@@ -38,7 +40,6 @@ $(document).ready(function () {
 				// Modal
 				html += '<div id="myModal'+item.crewIdx+'" class="modal fade" role="dialog">';
 				html += '<div class="modal-dialog">';
-
 				// Modal content
 				html += '<div class="modal-content">';
 				html += '<div class="modal-header">';
@@ -76,7 +77,6 @@ $(document).ready(function () {
 	});
     
 }); //document ready end
-
 function isDelete(crewIdx){
 	if(confirm("삭제하시겠습니까?")) {
 		window.location.href = url2+'/admin/crew/delete?crewIdx='+crewIdx;
@@ -84,7 +84,6 @@ function isDelete(crewIdx){
 		return false;
 	}
 }
-
 </script>
 <head>
   <title>크루 관리</title>

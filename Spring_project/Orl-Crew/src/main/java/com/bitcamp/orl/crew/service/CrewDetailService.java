@@ -32,7 +32,7 @@ public class CrewDetailService {
 		} else {
 			crewinfo.setReg(false);
 		}
-		
+		crewinfo.setMemberProfile(dao.selectMemberByMemberIdx(getCrew(crewIdx).getMemberIdx()).getMemberProfile());
 		crewinfo.setMemberNickName(dao.selectMemberByMemberIdx(crewinfo.getMemberIdx()).getMemberNickname());
 		
 		return crewinfo;

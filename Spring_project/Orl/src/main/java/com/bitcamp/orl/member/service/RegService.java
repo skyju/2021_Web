@@ -35,9 +35,6 @@ public class RegService {
 	        member.setMemberNickname(memberRequest.getMemberNickname());
 			member.setMemberBirth(memberRequest.getMemberBirth());
 			
-			
-			
-			
 			// AES256 으로 암호화된 문자열 : insert or update
 			String epw = aes256Util.encrypt(memberRequest.getMemberPw());
 			 member.setMemberPw(epw);
@@ -51,11 +48,7 @@ public class RegService {
 			System.out.println("AES256으로 복호화된 문자열");
 			System.out.println(ppw);
 			
-			
-			
 			resultCnt=dao.insertMember(member);
-			
-			
 		
 		}catch (Exception e) {
 			e.printStackTrace();

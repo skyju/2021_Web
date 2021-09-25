@@ -5,7 +5,7 @@ let checkNick = true;
 let memberNickName;
 
 $(document).ready(function () {
-    
+
     //로그인 한사람의 정보를 우선 가져옴
     $.ajax({
         url: url + '/crew/getMemberInfo',
@@ -110,9 +110,9 @@ $(document).ready(function () {
 
         var tags = document.getElementsByName('crewTag');
         let tagString;
-        if(tags != null){
+        if (tags != null) {
             tagString = $(tags[0]).val();
-            for(var i = 1; i <tags.length ; i++){
+            for (var i = 1; i < tags.length; i++) {
                 tagString += ',';
                 tagString += ($(tags[i]).val());
             }
@@ -139,7 +139,12 @@ $(document).ready(function () {
                         alert('유효한 정보를 입력해주세요.');
                         history.go(-1);
                     }
+                },
+                error: function () {
+                    alert('유효한 정보를 입력해주세요.');
+                    history.go(-1);
                 }
+
             });
         } else {
             return false;

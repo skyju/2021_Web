@@ -1,7 +1,6 @@
-package com.bitcamp.orl.admin.service;
+package com.bitcamp.orl.member.service;
 
 import java.io.File;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,22 +12,16 @@ import com.bitcamp.orl.member.dao.Dao;
 import com.bitcamp.orl.member.domain.Member;
 
 @Service
-public class AdminMemberService {
+public class MemberDeleteService {
 	final String PROFILE_URI ="/images/member/profile";
-	
-	Dao dao; 
-	
-	@Autowired
-	private SqlSessionTemplate template;
-	
-	//모든 멤버 리스트
-	public List<Member> getMemberList(){
-		
-		return template.getMapper(Dao.class).selectAll();
-		
-	}
-	
-	 //멤버 삭제하기
+
+    //멤버의 Dao
+    private Dao dao;
+
+    @Autowired
+    private SqlSessionTemplate template;
+
+    //멤버 삭제하기
     public int deleteMember(int memberIdx, HttpServletRequest request) {
     	if(selectThatFile(memberIdx,request) != null) {
     		selectThatFile(memberIdx,request).delete();
@@ -48,5 +41,5 @@ public class AdminMemberService {
     	}
     	return thatFile;
     }
-	
+
 }

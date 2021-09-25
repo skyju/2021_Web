@@ -21,6 +21,7 @@ public class CrewInfo {
 	private String crewTag;
 	private int memberIdx; //크루장 
 	private String memberNickName;
+	private String memberProfile;
 	private int crewMemberNum;
 	private int crewCommentNum;
 	private boolean isReg;

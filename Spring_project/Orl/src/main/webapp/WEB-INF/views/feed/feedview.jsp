@@ -23,6 +23,8 @@
 </head>
 <body>
 
+<!-- 09.24. 221, 264 -->
+
 	<!-- header -->
 	<%@ include file="/WEB-INF/frame/default/header.jsp"%>
 
@@ -216,7 +218,13 @@
     /* boardMemberIdx */
 	let boardMemberIdx = '${boardMemberIdx}';
 
-	
+	/* 09.24.추가 */
+	/* 해시태그 search submit */
+	function setParamTag(tag){
+        $("#mySearch").val(tag);
+        console.log(tag);
+        $("#formSearch").submit();
+    }
 	
 	/* document ready START */
     $(document).ready(function(){
@@ -234,8 +242,8 @@
 			
 			for(var idx=1; idx<str.length; idx++) {
 				
-				$.ajax({
-					url: bootUrl+'/feed/feedview/memberIdxCheck',
+				$.ajax({ 
+					url: '<c:url value="/feed/feedview/memberIdxCheck"/>',
 					type: 'get',
 					async: false,
 					data: {
@@ -252,21 +260,28 @@
 		};
 		
     	
-    	
+		
+		/* 09.24.수정 */
 		/* 해시태그 리스트 */
 		if(hashTag == null) {
 			return;
 		} else {
 			
 			var str = [];
-			var html = "";
 			const hashTagArr = hashTag;
 			
 			str = hashTagArr.split(",");
 			
+			var html = "";
+			
+			html += '<form id="formSearch" action="${pageContext.request.contextPath}/feed/feedSearch" method="POST">';
+			
 			for(var idx=1; idx<str.length; idx++) {
-				html += '<a class="hashtag-item">#' + str[idx] + '</a> ';
+				html += '<h1 onclick="setParamTag(this.title)" class="hashtag-item" title="'+str[idx]+'">#' + str[idx] + '</h1> ';
 			}
+            
+            html += '<input name="mySearch" id="mySearch" type="hidden" value="">';
+            html += '</form>';
 			
 			$('.hashTag').html(html);
 		};
@@ -275,12 +290,14 @@
 
         /* 댓글 리스트 (ajax) */
         $.ajax({
-            url: bootUrl+'/feed/feedview/selectcomment',
+            url: '<c:url value="/feed/feedview/selectcomment"/>',
             type: 'get',
             data: {
                 boardIdx: '${selectFeedView.boardIdx}'
             },
             success: function(data) {
+            	
+            	console.log('댓글 리스트 ajax');
             	
                 var memberIdx = '${sessionScope.memberVo.memberIdx}';
                 showList(data,memberIdx);
@@ -335,7 +352,7 @@
     /* 피드 삭제 (ajax) */
     $('.v_delete').click(function(){
         $.ajax({
-            url : bootUrl+'/feed/feedview/deletefeed/${selectFeedView.memberIdx}&${selectFeedView.boardIdx}',
+            url : '<c:url value="/feed/feedview/deletefeed/${selectFeedView.memberIdx}&${selectFeedView.boardIdx}"/>',
             type:'POST',
             success : function(data) {
                 if(data==1) {
@@ -354,8 +371,8 @@
 		var board = boardIdx;
 		var idx = boardCommentIdx;
 
-		$.ajax({
-			url: bootUrl+'/feed/feedview/deletecomment/'+idx+'&'+board,
+		$.ajax({  
+			url: '<c:url value="/feed/feedview/deletecomment/'+idx+'&'+board+'"/>',
 			type: 'GET',
 			success: function(data){
                 
@@ -437,8 +454,8 @@
             // myIdx 파라미터로 추가0918, url 수정
             // url경로 boot 로 수정
             $.ajax({
-               //url:'<c:url value="/feed/likeButtonClick"/>',
-               url: bootUrl+'/feed/likeButtonClick',
+               url:'<c:url value="/feed/likeButtonClick"/>',
+               //url: bootUrl+'/feed/likeButtonClick',
                type:'POST',
                data:{
                   likeChange:'1',
@@ -475,8 +492,8 @@
             // click == 'delete'
             // 내 idx 파라미터로 추가
             $.ajax({
-               //url:'<c:url value="/feed/likeButtonClick"/>',
-               url: bootUrl+'/feed/likeButtonClick',
+               url:'<c:url value="/feed/likeButtonClick"/>',
+               //url: bootUrl+'/feed/likeButtonClick',
                type:'POST',
                data:{
                   likeChange:'-1',

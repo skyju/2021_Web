@@ -36,28 +36,28 @@ public class MypageController {
       model.addAttribute("result", result);
       return "member/mypage/update";
    }
-   
+
    @RequestMapping(value="/member/mypage/pwchange", method=RequestMethod.GET)
    public String getPwChangePage(HttpServletRequest request, Model model) {
-	  MemberDto memberVo = (MemberDto) request.getSession().getAttribute("memberVo");
+      MemberDto memberVo = (MemberDto) request.getSession().getAttribute("memberVo");
       Member member = service.getMemberSelectByIdx(memberVo.getMemberIdx());
       model.addAttribute("member", member);
       return "member/mypage/mypagePwChange";
    }
-   
+
    @RequestMapping(value="/member/mypage/pwchange", method=RequestMethod.POST)
    public String getPwChange(HttpServletRequest request, Model model) {
-	   MemberDto memberVo = (MemberDto) request.getSession().getAttribute("memberVo");
-	   Member member = service.getMemberSelectByIdx(memberVo.getMemberIdx());
+      MemberDto memberVo = (MemberDto) request.getSession().getAttribute("memberVo");
+      Member member = service.getMemberSelectByIdx(memberVo.getMemberIdx());
 
-	   String oldPw=request.getParameter("pw");
-	   String newPw=request.getParameter("newpw");
-	   String newPw2=request.getParameter("newpw2");
-	   int result = service.editPw(oldPw,newPw,newPw2,member);
-	   
+      String oldPw=request.getParameter("pw");
+      String newPw=request.getParameter("newpw");
+      String newPw2=request.getParameter("newpw2");
+      int result = service.editPw(oldPw,newPw,newPw2,member);
+
       model.addAttribute("result", result);
       return "member/mypage/changePw";
    }
-   
-   
+
+
 }
