@@ -19,8 +19,8 @@ public class S3Util {
 	
 	///////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////
-	private String accessKey = "액세스키"; // 엑세스 키
-	private String secretKey = "보안액세스키"; // 보안 엑세스 키
+	private String accessKey = ""; // 엑세스 키
+	private String secretKey = ""; // 보안 엑세스 키
 	///////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////
 	
@@ -66,7 +66,7 @@ public class S3Util {
 	public void fileDelete(String fileName) {
 		String filePath = (fileName).replace(File.separatorChar, '/');
 		String realFilePath =  "/fileupload/crew"+filePath;
-		conn.deleteObject("버킷네임", realFilePath);
+		conn.deleteObject("", realFilePath);
 		System.out.println("삭제성공");
 	}
 

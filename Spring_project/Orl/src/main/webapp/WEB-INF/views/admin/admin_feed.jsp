@@ -14,6 +14,47 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/cccee664d4.js" crossorigin="anonymous"></script>
 </head>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+/*부트서버*/
+const url = 'http://3.36.48.110:8083';
+/*뷰 서버*/	
+const url2 = '${pageContext.request.contextPath}';
+
+const adminIdx = '${sessionScope.memberVo.memberIdx}';
+
+$(document).ready(function () {
+	
+	if(adminIdx != 92){
+		alert('해당 페이지에 접근할 권한이 없습니다.');
+		window.location.href = url2 + '/';
+	}
+		$.ajax({
+			url:url+'/admin/feed/getAllInfo',
+			type:'get',
+			success:function(data){
+				let html= '';
+				$.each(data, function(index,item){
+					html+=	   '<tr>'
+					html+= '<td>'+item.boardIdx+'</td>'
+					html+='<td><img src="'+url2+'/images/feed/feedw/uploadfile/'+item.boardPhoto+'/>" width="100px" height="100px" ></td>'
+					html+='<td style="max-width:100px">'+item.memberIdx+'${list.memberNickname}</td>'
+					html+='<td><img src="'+url2+'/images/member/'+item.memberProfile+'/>" style="width:80px; height:80px;border-radius: 50%;"></td>'
+					html+='<td style="max-width:400px">'+item.boardDiscription+'</td>'
+					html+='<td style="max-width:300px">'+item.hashtag+'</td>'
+					html+='<td>'
+					html+=    ' <a id = "deleteId" onclick="javascript:isDelete('+item.boardIdx+')" >삭제</a>'
+					html+='</td>'
+					html+='</tr>'
+				})
+				
+				$('#myTable').html(html);	
+			}
+		})
+	})
+	
+	
+</script>
 <body>
 <%@ include file="/WEB-INF/frame/admin/header.jsp" %>
 
@@ -36,20 +77,6 @@
       </tr>
     </thead>
     <tbody id="myTable">
-    <c:forEach items="${feedList}" var="list">
-      <tr>
-        <td>${list.boardIdx}</td>
-        <td><img src="<c:url value='/images/feed/feedw/uploadfile/${list.boardPhoto}'/>" width="100px" height="100px" ></td>
-        <td style="max-width:100px">${list.memberNickname}</td>
-        <td><img src="<c:url value='/images/member/${list.memberProfile}'/>" style="width:80px; height:80px;border-radius: 50%;"></td>
-        <td style="max-width:400px">${list.boardDiscription}</td>
-        <td style="max-width:300px">${list.hashtag}</td>
-        <td>
-             <a id = "deleteId" href="<c:url value='/admin/feed/delete?boardIdx=${list.boardIdx}'/>" onclick="if(!confirm('삭제하시겠습니까?')){return false;}">삭제</a>
-        </td>
-
-      </tr>
-      </c:forEach>
     
     </tbody>
   </table>
@@ -72,6 +99,14 @@ $(document).ready(function(){
     });
   });
 });
+function isDelete(boardIdx){
+	if(confirm("삭제하시겠습니까?")) {
+		window.location.href = url2+'/admin/feed/delete?boardIdx='+boardIdx;
+	} else{
+		return false;
+	}
+}
+
 </script>
 
 </body>

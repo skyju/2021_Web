@@ -92,8 +92,11 @@ public class MypageService {
 			}
 		}
 	} catch (UnsupportedEncodingException | GeneralSecurityException e) {
+		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	   
+	   
 	   return resultCnt;
    }
    
@@ -105,6 +108,7 @@ public class MypageService {
 
       String path = request.getSession().getServletContext().getRealPath(PROFILE_URI);
       File newDir = new File(path);
+
       if(!newDir.exists()) {
          newDir.mkdir();
          System.out.println("저장 폴더를 생성했습니다.");
@@ -124,12 +128,11 @@ public class MypageService {
    }
    
    public File selectThatFile(int memberIdx, HttpServletRequest request) {
-   	dao = template.getMapper(Dao.class);
-   	Member member = dao.selectByIdx(memberIdx);
-   	String fileName = member.getMemberProfile();
-   	String dirpath = request.getSession().getServletContext().getRealPath(PROFILE_URI);
-   	return new File(dirpath, fileName);
-   }
-   
+	   	dao = template.getMapper(Dao.class);
+	   	Member member = dao.selectByIdx(memberIdx);
+	   	String fileName = member.getMemberProfile();
+	   	String dirpath = request.getSession().getServletContext().getRealPath(PROFILE_URI);
+	   	return new File(dirpath, fileName);
+	   }
    
 }

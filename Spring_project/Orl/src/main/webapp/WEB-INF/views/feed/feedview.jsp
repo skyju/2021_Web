@@ -210,7 +210,7 @@
 	<script>
 	
 	/* 부트 서버 */
-	const bootUrl = 'http://localhost:8083';
+	const bootUrl = 'http://3.36.48.110:8083';
 	/* 태그 */
 	const tag = '${selectFeedView.tag}';
 	/* 해시태그 */
@@ -242,8 +242,8 @@
 			
 			for(var idx=1; idx<str.length; idx++) {
 				
-				$.ajax({ 
-					url: '<c:url value="/feed/feedview/memberIdxCheck"/>',
+				$.ajax({
+					url: bootUrl+'/feed/feedview/memberIdxCheck',
 					type: 'get',
 					async: false,
 					data: {
@@ -259,8 +259,8 @@
 			$('.tagList').html(html);
 		};
 		
-    	
 		
+    	
 		/* 09.24.수정 */
 		/* 해시태그 리스트 */
 		if(hashTag == null) {
@@ -285,19 +285,18 @@
 			
 			$('.hashTag').html(html);
 		};
+		
 
 		
 
         /* 댓글 리스트 (ajax) */
         $.ajax({
-            url: '<c:url value="/feed/feedview/selectcomment"/>',
+            url: bootUrl+'/feed/feedview/selectcomment',
             type: 'get',
             data: {
                 boardIdx: '${selectFeedView.boardIdx}'
             },
             success: function(data) {
-            	
-            	console.log('댓글 리스트 ajax');
             	
                 var memberIdx = '${sessionScope.memberVo.memberIdx}';
                 showList(data,memberIdx);
@@ -352,7 +351,7 @@
     /* 피드 삭제 (ajax) */
     $('.v_delete').click(function(){
         $.ajax({
-            url : '<c:url value="/feed/feedview/deletefeed/${selectFeedView.memberIdx}&${selectFeedView.boardIdx}"/>',
+            url : bootUrl+'/feed/feedview/deletefeed/${selectFeedView.memberIdx}&${selectFeedView.boardIdx}',
             type:'POST',
             success : function(data) {
                 if(data==1) {
@@ -371,8 +370,8 @@
 		var board = boardIdx;
 		var idx = boardCommentIdx;
 
-		$.ajax({  
-			url: '<c:url value="/feed/feedview/deletecomment/'+idx+'&'+board+'"/>',
+		$.ajax({
+			url: bootUrl+'/feed/feedview/deletecomment/'+idx+'&'+board,
 			type: 'GET',
 			success: function(data){
                 
@@ -454,8 +453,7 @@
             // myIdx 파라미터로 추가0918, url 수정
             // url경로 boot 로 수정
             $.ajax({
-               url:'<c:url value="/feed/likeButtonClick"/>',
-               //url: bootUrl+'/feed/likeButtonClick',
+               url: bootUrl+'/feed/likeButtonClick',
                type:'POST',
                data:{
                   likeChange:'1',
@@ -492,8 +490,7 @@
             // click == 'delete'
             // 내 idx 파라미터로 추가
             $.ajax({
-               url:'<c:url value="/feed/likeButtonClick"/>',
-               //url: bootUrl+'/feed/likeButtonClick',
+               url: bootUrl+'/feed/likeButtonClick',
                type:'POST',
                data:{
                   likeChange:'-1',
@@ -546,8 +543,8 @@
            description: '오를래',
            imageUrl:'https://ifh.cc/g/Mtgj7e.jpg',
            link: {
-             mobileWebUrl:'http://localhost:8080/orl/feed/feedview/'+memberIdx+'&'+boardIdx,
-             webUrl: 'http://localhost:8080/orl/feed/feedview/'+memberIdx+'&'+boardIdx,
+             mobileWebUrl:'http://54.180.143.122:8080/orl/feed/feedview/'+memberIdx+'&'+boardIdx,
+             webUrl: 'http://54.180.143.122:8080/orl/feed/feedview/'+memberIdx+'&'+boardIdx,
            },
          },
          social: {
@@ -559,8 +556,8 @@
            {
              title: '웹으로 보기',
              link: {
-               mobileWebUrl: '/feed/feedview/'+memberIdx+'&'+boardIdx,
-               webUrl: '/feed/feedview/'+memberIdx+'&'+boardIdx,
+               mobileWebUrl: 'http://54.180.143.122:8080/orl/feed/feedview/'+memberIdx+'&'+boardIdx,
+               webUrl: 'http://54.180.143.122:8080/orl/feed/feedview/'+memberIdx+'&'+boardIdx,
              },
            }
          ],

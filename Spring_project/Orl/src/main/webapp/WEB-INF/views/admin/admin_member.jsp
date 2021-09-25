@@ -15,6 +15,78 @@
   <script src="https://kit.fontawesome.com/cccee664d4.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
+<script>
+	/*부트서버*/
+	const url = 'http://13.125.199.218:8087';
+	/*뷰 서버*/	
+	const url2 = '${pageContext.request.contextPath}';
+
+	const adminIdx = '${sessionScope.memberVo.memberIdx}';
+
+	$(document).ready(function () {
+		
+		if(adminIdx != 92){
+			alert('해당 페이지에 접근할 권한이 없습니다.');
+			window.location.href = url2 + '/';
+		}
+		
+		$.ajax({
+			url:url+'/admin/member/getAllInfo',
+			type:'get',
+			success:function(data){
+				let html = '';
+				$.each(data.list, function(index,item){
+					
+					html +=  '<tr>'
+					html +=  '<td>'+item.memberIdx+'</td>'
+					html +=   ' <td style="max-width:150px;overflow:auto">'+item.memberId+'</td>'
+					html +=  '  <td><img src="'+url2+'/images/member/profile/'+item.memberProfile+'/>" style="width:80px; height:80px;border-radius: 50%;"></td>'
+					html +=   ' <td>'+item.memberName+'</td>'
+					html +=    '<td>'+item.memberEmail+'</td>'
+					html +=   ' <td>'+item.memberNickname+'</td>'
+					html +=   ' <td>'+item.memberRegdate+'</td>'
+					html +=    '<td>'+item.memberBirth+'</td>'
+					html +=    '<td>'
+					html +=     '   <a id = "deleteId" onclick="javascript:isDelete('+item.memberIdx+')" >삭제</a>'
+					html +=    '</td>'
+					html +=    '<td>'
+				        	
+				//<!-- Trigger the modal with a button -->
+				html +='<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal'+item.memberIdx+'" style="width:100px; height:40px; font-size:15px; font-weight:bold; background-color:cadetblue;">피드보기</button>'
+
+				//<!-- Modal -->
+				html +='<div id="myModal'+item.memberIdx+'" class="modal fade" role="dialog">'
+				html +='<div class="modal-dialog">'
+
+				   // <!-- Modal content-->
+				    html +=    '<div class="modal-content">'
+				    html +=  '<div class="modal-header">'
+				    html +=    '<button type="button" class="close" data-dismiss="modal">&times;</button>'
+				    html +=    '<h4 class="modal-title">피드 보기</h4>'
+				    html += ' </div>'
+				    html +=  '<div class="modal-body selectList">'
+				    
+				    $.each(data.feedList,function(index, item2){
+				    	if(item.memberIdx == item2.memberIdx){
+				    		html += '<div class="item">'
+						    html +=    '<img alt="" class="img" src="'+url2+'/images/feed/feedw/uploadfile/'+item2.boardPhoto+'/>"  width="80px" height="80px">'
+						    html +=    '<span># '+item2.boardIdx+'</span>'
+						    html +=    '</div>'
+				    	}
+				    })
+				    html +=  '</div>'
+				    html += ' <div class="modal-footer">'
+				    html +=  '  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>'
+				    html +=  '</div></div></div></div></td></tr>'
+				})
+				$('#myTable').html(html);	
+			}
+		})
+	})
+	
+	
+</script>
+
 <body>
 <%@ include file="/WEB-INF/frame/admin/header.jsp" %>
 
@@ -40,64 +112,9 @@
       </tr>
     </thead>
     <tbody id="myTable">
-    <c:forEach items="${memberList}" var="list">
-      <tr>
-        <td>${list.memberIdx}</td>
-        <td style="max-width:150px;overflow:auto">${list.memberId}</td>
-        <td><img src="<c:url value='/images/member/profile/${list.memberProfile}'/>" style="width:80px; height:80px;border-radius: 50%;"></td>
-        <td>${list.memberName}</td>
-        <td>${list.memberEmail}</td>
-        <td>${list.memberNickname}</td>
-        <td>${list.memberRegdate}</td>
-        <td>${list.memberBirth}</td>
-        <td>
-            <a id = "deleteId" href="<c:url value='/admin/member/delete?memberIdx=${list.memberIdx}'/>" onclick="if(!confirm('삭제하시겠습니까?')){return false;}">삭제</a>
-        </td>
-        <td>
-        	
-<!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal${list.memberIdx}" style="width:100px; height:40px; font-size:15px; font-weight:bold; background-color:cadetblue;">피드보기</button>
-
-<!-- Modal -->
-<div id="myModal${list.memberIdx}" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">피드 보기</h4>
-      </div>
-      <div class="modal-body selectList">
-     <c:forEach items="${feedList}" var="fList">
-	      <c:if test="${list.memberIdx eq fList.memberIdx}">
-	                <div class="item">
-	                	 <img alt="" class="img" src="<c:url value='/images/feed/feedw/uploadfile/${fList.boardPhoto}'/>"  width="80px" height="80px">
-	                    <span># ${fList.boardIdx}</span>
-	                </div>
-	      </c:if>
-      </c:forEach>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-        
-        
-        </td>
-      </tr>
-      </c:forEach>
-    
+   
     </tbody>
   </table>
-  
- 
-  
-  
-  
 
 </div>
 
@@ -114,6 +131,13 @@ $(document).ready(function(){
     });
   });
 });
+function isDelete(memberIdx){
+	if(confirm("삭제하시겠습니까?")) {
+		window.location.href = url2+'/admin/member/delete?memberIdx='+memberIdx;
+	} else{
+		return false;
+	}
+}
 </script>
 
 </body>

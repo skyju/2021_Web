@@ -80,7 +80,7 @@
 						<p>태그</p>
 						<input type="text" placeholder="Enter" name="tag" id="tag" autocomplete="off">
 						<div class="tagShow">
-							<!-- <p class="noTag hide">태그된 닉네임이 없습니다</p> -->
+							<p class="noTag">태그된 닉네임이 없습니다</p>
 							<ul id="tag-list">
 								<!-- 태그 리스트 -->
 							</ul>
@@ -93,7 +93,7 @@
 						<input type="text" placeholder="Enter" name="hashtag" id="hashtag" autocomplete="off">
 						
 						<div class="hashtagShow">
-							<!-- <p class="noHashtag">입력된 해시태그가 없습니다</p> -->
+							<p class="noHashtag">입력된 해시태그가 없습니다</p>
 							<ul id="hashtag-list">
 								<!-- 해시태그 리스트 -->
 							</ul>
@@ -123,7 +123,9 @@
 
 
 	<script>
-
+	
+	/* 부트 서버 */
+	const bootUrl = 'http://3.36.48.110:8083';
 	/* 저장된 태그 */
 	const tag = '${selectFeedView.tag}';
 	/* 저장된 해시태그 */
@@ -147,9 +149,13 @@
 	/* 태그 */
 	
 		/* 저장된 태그 리스트 */
-		if(tag == null) {
+		if(tag == null && tag[0]=="") {
 			return;
 		} else {
+			
+			console.log(tag);
+			
+			$('.noTag').addClass('hide');
 			
 			var str = [];
 			var html = "";
@@ -158,8 +164,8 @@
 			str = tagArr.split(",");
 			
 			for(var idx=1; idx<str.length; idx++) {
-																		/* 09.24.수정 */
-				html += "<li class='tag-item'>@" + str[idx] + "<span class='tag-del-btn' idx='" + tagCounter + "'>x" +
+																			/* 09.24.수정 */
+				html += "<li class='tag-item'>@" + str[idx] + "<span class='tag-del-btn' idx='" + tagCounter + "'> x" +
 				"</span><input type='hidden' name='tag' id='rdTag' value=" + str[idx] + "></li>";
 			}
 			$('#tag-list').html(html);
@@ -185,7 +191,7 @@
 				
 				/* 닉네임 체크 ajax */
 				$.ajax({
-					url : '<c:url value="/feed/createfeed/nicknameCheck"/>',
+					url : bootUrl+'/feed/createfeed/nicknameCheck',
 					type: 'GET',
 					data: {
 						memberNickname : tagValue
@@ -197,7 +203,6 @@
 							
 							if(tagValue !== "") {
 								
-								/* noTag 삭제 */
 								$('.noTag').addClass('hide');
 								
 								var result = Object.values(addTag).filter(function (word) {
@@ -206,7 +211,7 @@
 								
 								//태그 중복 확인
 								if(result.length == 0) {													/* 09.24.수정 */
-									$('#tag-list').append("<li class='tag-item'>@" + tagValue + "<span class='tag-del-btn' idx='" + tagCounter + "'>x" +
+									$('#tag-list').append("<li class='tag-item'>@" + tagValue + "<span class='tag-del-btn' idx='" + tagCounter + "'> x" +
 					                		"</span><input type='hidden' name='tag' id='rdTag' value=" + tagValue + "></li>");
 									inTag(tagValue);
 									self.val("");
@@ -236,6 +241,7 @@
 			if(tagIndex == 0) {	/* 09.24.추가 */
 				$('.noTag').removeClass('hide');	/* 09.24.추가 */					
 			}	/* 09.24.추가 */
+			
 		});
 		
 	/* 태그 끝 */
@@ -258,8 +264,8 @@
 			str = hashTagArr.split(",");
 			
 			for(var idx=1; idx<str.length; idx++) {
-				
-				html += "<li class='hashtag-item'>#" + str[idx] + "<span class='hashtag-del-btn' idx='" + hashtagCounter + "'>x" +
+																				/* 09.24.수정 */
+				html += "<li class='hashtag-item'>#" + str[idx] + "<span class='hashtag-del-btn' idx='" + hashtagCounter + "'> x" +
 				"</span><input type='hidden' name='hashtag' id='rdTag' value=" + str[idx] + "></li>";
 			
 			}
@@ -295,8 +301,8 @@
 
 		            // 해시태그 중복 확인
 		            if (result.length == 0) {
-		            	$("#hashtag-list").append(											/* 09.24.수정 */
-		            			"<li class='hashtag-item'>#" + hashtagValue + "<span class='hashtag-del-btn' idx='" + hashtagCounter + "'>x" +
+		            	$("#hashtag-list").append(
+		            			"<li class='hashtag-item'>#" + hashtagValue + "<span class='hashtag-del-btn' idx='" + hashtagCounter + "'> x" +
 		                		"</span><input type='hidden' name='hashtag' id='rdTag' value=" + hashtagValue + "></li>");
 		            	
 		            	inHashTag(hashtagValue);
@@ -310,7 +316,7 @@
 				}
 				
 			});
-								/* 09.24.수정 */
+			
 		$(document).on("click", ".hashtag-del-btn", function (e) {
 			var hashTagIndex = $(this).attr("idx");
 			addHashTag[hashTagIndex] = "";
@@ -320,6 +326,7 @@
 			if(hashTagIndex == 0) {	/* 09.24.추가 */
 				$('.noHashtag').removeClass('hide');	/* 09.24.추가 */					
 			}	/* 09.24.추가 */
+			
 		});
 		
 	/* 해시태그 끝 */

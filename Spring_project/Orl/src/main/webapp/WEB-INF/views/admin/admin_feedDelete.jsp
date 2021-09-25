@@ -7,18 +7,39 @@
 <head>
 <meta charset="UTF-8">
 <title>삭제중</title>
-<c:if test="${result>0}">
-	<script>
-		alert('삭제되었습니다.');
-	</script>
-	<% response.sendRedirect("/orl/admin/feed"); %>
-</c:if>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+/*부트서버*/
+const url = 'http://3.36.48.110:8083';
+/*뷰 서버*/
+const url2 = '${pageContext.request.contextPath}';
+const boardIdx = '${boardIdx}';
+const adminIdx = '${sessionScope.memberVo.memberIdx}';
 
-<c:if test="${result eq 0}">
-	<script>
-		alert('삭제가 실패하였습니다.');
-		window.history.go(-1);
-	</script>
-</c:if>
+$(document).ready(function () {
+	
+	if(adminIdx != 92){
+		alert('해당 페이지에 접근할 권한이 없습니다.');
+		window.location.href = url2 + '/';
+	}
+	
+	$.ajax({
+		url : url + '/admin/feed/deleteFeed',
+		data : {
+			boardIdx : boardIdx
+		},
+		success : function(data) {
+			if (data > 0) {
+				alert('삭제되었습니다.');
+				window.location.href = url2+"/admin/feed";
+			} else if (data == 0) {
+				alert('삭제에 실패하였습니다.');
+				window.history.go(-1);
+			}
+		}
+	});
+});
+
+</script>
 </head>
 </html>

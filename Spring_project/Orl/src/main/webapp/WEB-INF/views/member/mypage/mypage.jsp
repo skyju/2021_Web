@@ -172,7 +172,7 @@
             $("#msgchk5").text('');
                $.ajax({
                 //  url: '<c:url value="/member/emailCheck"/>',
-                   url: 'http://localhost:8087/member/emailCheck',
+                   url: 'http://13.125.199.218:8087/member/emailCheck',
                   type: 'get',
                   data: {
                      email: $(this).val()
@@ -229,7 +229,7 @@
             $("#msgchk6").text('');
                $.ajax({
                 //  url: '<c:url value="/member/nickNameCheck"/>',
-                   url: 'http://localhost:8087/member/nickNameCheck',
+                   url: 'http://13.125.199.218:8087/member/nickNameCheck',
                   type: 'get',
                   data: {
                      nickname: $(this).val()

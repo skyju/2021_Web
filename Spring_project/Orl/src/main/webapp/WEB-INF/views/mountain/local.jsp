@@ -29,7 +29,7 @@
 
             // 시작할때 비동기 통신으로 지역별 산 리스트 받아와서 mList에 저장
             $.ajax({
-                url: 'http://localhost:8085/mountain/local',
+                url: 'http://3.38.104.170:8085/mountain/local',
                 type: 'POST',
                 data: {loc: '${loc}'},
                 success: function (data) {
@@ -42,7 +42,7 @@
 
             // 시작할때 비동기 통신으로 전국 산 리스트 받아와서 allList에 저장
             $.ajax({
-                url:  'http://localhost:8085/mountain/all',
+                url:  'http://3.38.104.170:8085/mountain/all',
                 type: 'GET',
                 success: function (data) {
                     console.log(data);

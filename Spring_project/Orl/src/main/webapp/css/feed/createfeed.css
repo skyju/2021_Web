@@ -16,7 +16,7 @@ button, input {
 	background-color: #00ff0000;
 }
 
-button:hover {
+button:hover, span:hover {
 	cursor: pointer;
 }
 textarea {
@@ -229,11 +229,11 @@ textarea::placeholder {
 	padding-right: 10px;
 }
 #tag-list {
-  border: none
+  border: none;
   display: flex;
 }
 
-.tag-item {
+.tag-item, .hashtag-item {
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
@@ -254,7 +254,7 @@ textarea::placeholder {
   cursor: pointer;
   margin-left: 8px;
 }
-ul li.tag-item {
+ul li.tag-item, ul li.hashtag-item {
   background-color: rgb(253, 239, 123);
   color: #000;
   border-radius: 5px;

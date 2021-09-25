@@ -18,23 +18,46 @@ public class FeedEditController {
 	@Autowired
 	private FeedViewService viewService;
 	
+	@Autowired
+	private UserFeedService feedService;
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getFeedEdit(
 			@PathVariable("memberIdx") int memberIdx,
 			@PathVariable("boardIdx") int boardIdx,
 			HttpServletRequest request, Model model) {
-
-		// 수정할 피드 정보
-		FeedView feedview = viewService.getFeedView(boardIdx);
+		
+		String feedpath = null;
 
 		int myIdx = ((MemberDto) request.getSession().getAttribute("memberVo")).getMemberIdx();
-		int likeStatus = viewService.getLikeStatus(myIdx, boardIdx);
+		Member member = feedService.getOneMember(memberIdx);
 		
-		model.addAttribute("selectFeedView", viewService.getFeedView(boardIdx));
-		model.addAttribute("likeStatus", likeStatus);
-
-		return "/feed/feedEdit";
-
+		int feedChk = viewService.selectFeedChk(memberIdx, boardIdx);
+		System.out.println("feedChk : "+feedChk);
+		
+		if(feedChk != 0) {
+			
+			if(myIdx==memberIdx && member!=null) {
+				
+				int likeStatus = viewService.getLikeStatus(myIdx, boardIdx);
+				
+				// 수정할 피드 정보
+				FeedView feedview = viewService.getFeedView(boardIdx);
+				
+				model.addAttribute("selectFeedView", viewService.getFeedView(boardIdx));
+				model.addAttribute("likeStatus", likeStatus);
+				
+				feedpath = "/feed/feedEdit";
+				
+			} else {
+				throw new NullPointerException();
+			} 
+			
+		} else {
+			throw new NullPointerException();
+		}
+		
+		return feedpath;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -66,5 +89,13 @@ public class FeedEditController {
 		return "redirect:/feed/feedview/"+memberIdx+"&"+boardIdx;
 
 	}
+	
+	@ExceptionHandler(NullPointerException.class)
+	public String handleNullPointerException(NullPointerException e) {
 
+		e.printStackTrace();
+		return "error/pageNotFound";
+		
+	}
+	
 }

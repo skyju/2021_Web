@@ -136,7 +136,6 @@ $(document).ready(function () {
                         alert('크루 생성이 완료되었습니다.');
                         window.location.href = url2 + '/crew/detail?crewIdx=' + data.crewIdx + '';
                     } else {
-                        alert('유효한 정보를 입력해주세요.');
                         history.go(-1);
                     }
                 },

@@ -11,7 +11,16 @@ const url = 'http://52.79.178.223:8081';
 const url2 = '${pageContext.request.contextPath}';
 /*s3 경로*/
 const crewFileUrl = 'https://minju-aws-bucket.s3.ap-northeast-2.amazonaws.com//fileupload/crew';
+
+const adminIdx = '${sessionScope.memberVo.memberIdx}';
+
 $(document).ready(function () {
+	
+	if(adminIdx != 92){
+		alert('해당 페이지에 접근할 권한이 없습니다.');
+		window.location.href = url2 + '/';
+	}
+	
     $.ajax({
     	url: url + '/admin/crew/getAllInfo',
         type: 'get',
@@ -79,7 +88,19 @@ $(document).ready(function () {
 }); //document ready end
 function isDelete(crewIdx){
 	if(confirm("삭제하시겠습니까?")) {
-		window.location.href = url2+'/admin/crew/delete?crewIdx='+crewIdx;
+		 $.ajax({
+			url: url+'/admin/crew/deleteCrew',
+		 	data: {crewIdx : crewIdx},
+		 	type: 'get',
+	        success: function (data) {
+	        	if(data!=0){
+	        		alert('삭제했습니다.');
+	        		history.go(0);
+	        	} else {
+	        		alert('삭제에 실패했습니다.');
+	        	}
+	        }
+		 });
 	} else{
 		return false;
 	}

@@ -120,10 +120,9 @@
                  //팔로우 그만하기
                  //followStatus = -1
                  
-                 // data 파라미터 추가 0918 수정
+                
                  $.ajax({
-                     url:'<c:url value="/feed/followButtonClick"/>',
-                     //url:'http://localhost:8083/feed/followButtonClick',
+                     url:'http://3.36.48.110:8083/feed/followButtonClick',
                      type:'POST',
                      data:{
                         followStatus : '-1',
@@ -163,8 +162,7 @@
                  //팔로우 시작하기: followStatus ==1
                  
                  $.ajax({
-                     url:'<c:url value="/feed/followButtonClick"/>',
-                     //url:'http://localhost:8083/feed/followButtonClick',
+                     url:'http://3.36.48.110:8083/feed/followButtonClick',
                      type:'POST',
                      data:{
                         followStatus :'1',
@@ -210,7 +208,7 @@
                  <c:forEach var ="myCrewList" items="${myCrewList}">
                      <div class="swiper-slide">
                         <a href="<c:url value="/crew/detail?crewIdx=${myCrewList.crewIdx}"/>" class="crew">
-                          <img src="<c:url value="/images/crew/${myCrewList.crewPhoto}"/>">
+                          <img src="https://minju-aws-bucket.s3.ap-northeast-2.amazonaws.com//fileupload/crew${myCrewList.crewPhoto}">
                           <div>${myCrewList.crewName}</div>
                        </a>
                     </div>
@@ -355,7 +353,7 @@
       
       //비동기 통신
       $.ajax({
-         url:'<c:url value="/feed/followerList"/>',
+         url:'http://3.36.48.110:8083/feed/followerList',
          type:'GET',
          data:{
             memberIdx:'${member.memberIdx}'
@@ -410,7 +408,7 @@
     <!-- 팔로잉 리스트 영역 비동기 통신 영역 시작 -->
    <!-- 내피드에서 팔로잉 리스트에서 버튼, 남피드 팔로잉 리스트에서는 버튼 안보이게  -->
    <script>
-
+   
    $('#following').click(function(){
          $('#container-following').removeClass('display_none');
          
@@ -419,8 +417,7 @@
             
             // 팔로잉 버튼 눌렀을 때 명단 가져오기 ->비동기 통신으로
             $.ajax({
-               url:'<c:url value="/feed/followingList"/>',
-               //url:'http://localhost:8083/feed/followingList',
+               url:'http://3.36.48.110:8083/feed/followingList',
                type:'GET',
                data:{
                   memberIdx:'${member.memberIdx}'
@@ -439,7 +436,7 @@
                      
                      //세션에 있는 memberIdx == 모델에 저장된 memberIdx -->내 피드일 경우 팔로우버튼 보여주기
                      if(${sessionScope.memberVo.memberIdx eq member.memberIdx}){
-                          html += '   <input type="hidden" value="'+item.memberIdx2+'">';
+                       html += '   <input type="hidden" value="'+item.memberIdx2+'">';
                        html += '   <input type="button" class="button-gray-inList" value="팔로우 그만하기">';  
                      }
                      
@@ -452,8 +449,7 @@
             });/* ajax 끝 */
             
       });/*click 이벤트 끝  */
-   
-   
+
    
    // 닫기 버튼 눌렀을 때 
    $('.form-close').click(function(){
@@ -462,20 +458,15 @@
    });/* 닫기끝 */
    
    
-   // 내 팔로잉 리스트 안쪽에 버튼에서 
-   // 팔로우 그만하기 버튼  눌렀을 때 처리하기
+   // 내 팔로잉 리스트 안쪽에 버튼에서 팔로우 그만하기 버튼  눌렀을 때 처리하기
    $('#following-members').on('click','input[type=button]',function(){
       
       //비동기 통신으로 팔로우 그만하기와 시작하기하기!!
       
-      //보내야 하는 데이터 : 리스트 옆쪽의 memberIdx
-      //그리고 followStatus
+      //보내야 하는 데이터 : 리스트 옆쪽의 memberIdx followStatus
       
       console.log("클릭");
-      
       // 팔로우 시작하기 혹은 그만하기 인지 확인
-      
-      /* var followStatus = $('input[type=button]').val();   */
       var followStatus =$(this).val();
       console.log(followStatus);
       
@@ -489,9 +480,8 @@
        if(followStatus == '팔로우 그만하기'){ 
          
          //비동기 통신 시작
-         // myIdx 파라미터 추가 0918      
           $.ajax({
-             url:'<c:url value="/feed/followButtonClick"/>',
+             url:'http://3.36.48.110:8083/feed/followButtonClick',
              type:'POST',
              data:{
                 followStatus : '-1',
@@ -509,10 +499,11 @@
                     //2)버튼 글자를 팔로우 시작하기로 바꿔준다. 
                     //3)팔로잉 수를 바꿔준다.
                     
-                   btn.val('팔로우 시작하기');
+                    btn.val('팔로우 시작하기');
                     btn.css('background','#fdef7b'); 
+                    //console.log(btn.val());
                     
-                    var followingCount = parseInt($('#followingCount').text());
+                   var followingCount = parseInt($('#followingCount').text());
                    var newFollowingCount = followingCount -1;
                    
                    $('#followingCount').text(newFollowingCount);
@@ -527,9 +518,9 @@
          
       }else{
          //followStatus =='팔로우 시작하기'
-         //비동기 통신 시작
+      //비동기 통신 시작
        $.ajax({
-            url:'<c:url value="/feed/followButtonClick"/>',
+    	    url:'http://3.36.48.110:8083/feed/followButtonClick',
             type:'POST',
             data:{
                followStatus : '1',
@@ -550,6 +541,7 @@
                    
                 btn.val('팔로우 그만하기');
                 btn.css('background','#EFEFEF'); 
+                //console.log(btn.val());
                    
                 var followingCount = parseInt($('#followingCount').text());
                   var newFollowingCount = followingCount +1;

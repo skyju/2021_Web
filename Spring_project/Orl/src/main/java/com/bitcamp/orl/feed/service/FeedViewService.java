@@ -77,6 +77,18 @@ public class FeedViewService {
 		return result;
 
 	}
+	
+	// 추가 (09.25.우리)
+	//피드 존재 여부 체크
+	public int selectFeedChk(int memberIdx, int boardIdx) {
+		
+		int result = 0;
+		
+		dao = template.getMapper(FeedDao.class);
+		result = dao.selectFeedChk(memberIdx, boardIdx);
+		
+		return result;
+	}
 
 	// 3) 좋아요 상태인지 아닌지 확인 (세라 추가)
 	public int getLikeStatus(int myIdx, int boardIdx) {

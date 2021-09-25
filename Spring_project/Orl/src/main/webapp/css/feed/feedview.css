@@ -13,7 +13,7 @@ button, input {
 	border: 0;
 	background-color: #00ff0000;
 }
-button:hover, input:hover, a:hover {
+button:hover, input:hover, a:hover, h1:hover {
 	cursor: pointer;
 }
 textarea {
@@ -86,7 +86,7 @@ textarea:focus {
 .hashTag::-webkit-scrollbar {
 	display: none;
 }
-.hashTag a {
+.hashTag h1 {
   background-color: rgb(253, 239, 123);
   color: #000;
   border-radius: 5px;
@@ -94,6 +94,7 @@ textarea:focus {
   padding: 5px 8px;
   padding-top: 5px;
   font-size: 13px;
+  font-weight: 400;
   margin-right: 5px;
   margin-top: 5px;
 }
@@ -113,7 +114,7 @@ textarea:focus {
 	border-radius: 10px;
 	padding: 8px 12px;;
 }
-.tag-item {
+.tag-item, .hashtag-item {
 	color: #fdef7b;
 	padding-right: 5px;
 }

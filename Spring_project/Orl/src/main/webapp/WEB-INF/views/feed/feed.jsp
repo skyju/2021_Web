@@ -145,7 +145,6 @@
 
 
 
-
 	<script>	
 	
 	/* document ready 시작 */
@@ -153,7 +152,7 @@
 	
 		/* ajax 최신순 피드 리스트 */
 		$.ajax({
-			url : '<c:url value="/feed/feedmain/selectNewFeed"/>',
+			url : bootUrl+'/feed/feedmain/selectNewFeed',
 			type : 'GET',
 			success : function(data) {
 				
@@ -162,7 +161,7 @@
 				
 			}
 		});
-		/* ajax 최신순 피드 리스트 끝 */
+		/* ajax 피드 리스트 */
 	
 	});
 	/* document ready 끝 */

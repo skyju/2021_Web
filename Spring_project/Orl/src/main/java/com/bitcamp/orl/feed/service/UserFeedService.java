@@ -77,30 +77,6 @@ public class UserFeedService {
       return followRelationResult;
    }
 
-   // 비동기통신으로 가져오는 팔로워 팔로잉 리스트 followService로 분리
-   
-   //팔로워 리스트 가져오기
-//   public List<FollowList> getFollowerList(int memberIdx) {
-//      List<FollowList> followerList = new ArrayList<>();
-//      
-//      dao = template.getMapper(FeedDao.class);
-//      followerList = dao.selectFollowerList(memberIdx);
-//      
-//      return followerList;
-//   }
-   
-   //팔로잉 리스트 가져오기(08.31)
-//   public List<FollowList> getFollowingList(int memberIdx) {
-//      List<FollowList> followingList = new ArrayList<>();
-//      
-//      dao = template.getMapper(FeedDao.class);
-//      followingList = dao.selectFollowingList(memberIdx);
-//      
-//      
-//      return followingList;
-//   }
-   
-   
    
    
 }

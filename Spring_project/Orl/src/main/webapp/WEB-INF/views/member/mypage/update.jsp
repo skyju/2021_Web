@@ -8,7 +8,7 @@
 <c:if test="${result>0}">
    <script>
       alert('수정되었습니다.');
-      location.href = '<c:url value="/member/logout"/>';
+      location.href = '<c:url value="/"/>';
    </script>
 </c:if>
 <c:if test="${result eq 0}">

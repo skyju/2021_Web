@@ -19,6 +19,8 @@
 
 <body>
 
+<!-- 09.24. 태그 / 해시태그 -->
+
 	<!-- 피드 작성 폼 -->
 	<form method="post" enctype="multipart/form-data" id="feedform">
 		
@@ -49,7 +51,7 @@
 					</div>
 					
 					<!-- 작성자 닉네임 -->
-					<a href="<c:url value="/feed/userfeed/${sessionScope.memberVo.memberIdx}"/>"
+					<a href="<c:url value="/feed/userFeed/${sessionScope.memberVo.memberIdx}"/>"
 						class="c_nickname">${sessionScope.memberVo.memberNickname}
 					</a>
 
@@ -116,21 +118,23 @@
 
 	<script>
 	
-	let tag = {};
-	let hashTag = {};
+	/* 부트 서버 */
+	const bootUrl = 'http://3.36.48.110:8083';
 		
 	$(document).ready(function() {
+		
+		
 		
 		/* 폼 내용 서버에 제공 */
 		$('#feedform').on('submit', function (e) {
 			$(this).submit();
 		});
 		
-
+		
 		
 		/* 태그 시작 */
 		
-			
+			var tag = {};
 			var tagCounter = 0;
 			
 			/* 입력 값을 태그로 생성 */
@@ -138,6 +142,8 @@
 				tag[tagCounter] = value;
 				tagCounter++;
 			}
+			
+			
 			
 			/* 태그 입력 */
 			$('#tag').on('keypress', function(e) {
@@ -151,12 +157,12 @@
 					
 					/* 닉네임 체크 ajax */
 					$.ajax({
-						url : '<c:url value="/feed/createfeed/nicknameCheck"/>',
+						url : bootUrl+'/feed/createfeed/nicknameCheck',
 						type: 'GET',
-						data: {
+						data: {	 //보내는 데이터 : 입력받은 닉네임 보내기
 							memberNickname : tagValue
 						},
-						success: function(data) {
+						success: function(data) { //받는 데이터 : Y or N
 							
 							//존재하는 닉네임
 							if(data == 'Y') {
@@ -170,15 +176,12 @@
 										return word == tagValue;
 									})
 									
-									//태그 중복 확인
+									//태그 중복 확인	
 									if(result.length == 0) {									/* 09.24.수정 : tag-del-btn */
 										$('#tag-list').append("<li class='tag-item'>@" + tagValue + "<span class='tag-del-btn' idx='" + tagCounter + "'> x" +
 						                		"</span><input type='hidden' name='tag' id='rdTag' value=" + tagValue + "></li>");
 										addTag(tagValue);
 										self.val("");
-										
-										console.log($('#rdTag').val());
-										
 									} else {
 										alert('이미 등록된 닉네임입니다');
 									}
@@ -193,8 +196,9 @@
 					
 					e.preventDefault();
 				}
+				
 			}); /* 태그 입력 끝 */
-									/* 09.24.수정 : tag-del-btn */
+							/* 09.24.수정 : tag-del-btn */
 			$(document).on("click", ".tag-del-btn", function (e) {
 				
 				var tagIndex = $(this).attr("idx");
@@ -215,7 +219,7 @@
 		
 		/* 해시태그 시작 */
 		
-			
+			var hashTag = {};
 			var hashtagCounter = 0;
 				
 			/* 입력 값을 태그로 생성 */
@@ -259,7 +263,7 @@
 					}
 					
 				});
-	
+			
 			/* 09.24.수정 : hashtag-del-btn */
 			$(document).on("click", ".hashtag-del-btn", function (e) {
 				var hashTagIndex = $(this).attr("idx");
@@ -271,6 +275,7 @@
  				if(hashTagIndex == 0) {	/* 09.24.추가 */
 					$('.noHashtag').removeClass('hide');	/* 09.24.추가 */					
 				}	/* 09.24.추가 */
+				
 			});
 	
 		/* 해시태그 끝 */
@@ -290,21 +295,14 @@
 
 		/* off */
 		$(".c_close").click(function() {
-			
 			$(".modal_createfeed").fadeOut();
 			$("html, body").removeClass("not_scroll");
 			/* 프리뷰 리셋 */
 			$('#preview-img').attr('src', '<c:url value="/images/feed/feedw/noImage.png"/>');
 			/* 태그 리셋 */
-			$("#hashtag-list").html("");
-			$("#tag-list").html("");
-			tag = {};
-			$('.noTag').removeClass('hide');
-			hashTag = {};
-			$('.noHashtag').removeClass('hide');
-			
-			console.log(hashTag);
-			
+			$('#tag-list').empty();
+			/* 해시태그 리셋 */
+			$("#hashtag-list").empty();
 		});
 			
 	});

@@ -10,9 +10,9 @@ public class AdminCrewController {
 
 	@RequestMapping("/admin/crew")
 	public String CrewList() {
+		
 		return "admin/admin_crew";
 	}
-	
 	@RequestMapping("admin/crew/delete")
 	public String CrewDelete(
 			@RequestParam("crewIdx")int crewIdx,
@@ -20,5 +20,4 @@ public class AdminCrewController {
 		model.addAttribute("crewIdx", crewIdx);
 		return "admin/admin_crewDelete";
 	}
-	
 }
