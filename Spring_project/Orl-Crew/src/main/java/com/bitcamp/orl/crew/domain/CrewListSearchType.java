@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SearchType {
+public class CrewListSearchType {
 
 	private String searchType;
 	private String keyword;

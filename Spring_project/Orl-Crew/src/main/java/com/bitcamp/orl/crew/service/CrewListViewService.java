@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.bitcamp.orl.crew.domain.Crew;
 import com.bitcamp.orl.crew.domain.CrewMemberList;
-import com.bitcamp.orl.crew.domain.SearchType;
+import com.bitcamp.orl.crew.domain.CrewListSearchType;
 import com.bitcamp.orl.crew.mapper.CrewMapper;
 import com.bitcamp.orl.s3.util.S3Util;
 
@@ -32,7 +32,7 @@ public class CrewListViewService {
 	}
 
 	//검색 결과가 있을 때 크루 리스트 가져오기(페이징 처리)
-	public List<Crew> getCrewListAll(SearchType searchType){
+	public List<Crew> getCrewListAll(CrewListSearchType searchType){
 		dao = template.getMapper(CrewMapper.class);
 		return dao.selectCrewAll(searchType);
 	}
@@ -43,7 +43,7 @@ public class CrewListViewService {
 	}
 	
 	//크루 총 개수 계산(검색했을 때)
-	public int getCrewCountForSearching(SearchType searchType) {
+	public int getCrewCountForSearching(CrewListSearchType searchType) {
 		return template.getMapper(CrewMapper.class).CrewCountForSearching(searchType);
 	}
 	

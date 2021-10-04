@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bitcamp.orl.crew.domain.Crew;
 import com.bitcamp.orl.crew.domain.CrewForPaging;
 import com.bitcamp.orl.crew.domain.CrewListCriteria;
-import com.bitcamp.orl.crew.domain.PageMaker;
-import com.bitcamp.orl.crew.domain.SearchType;
+import com.bitcamp.orl.crew.domain.CrewListPageMaker;
+import com.bitcamp.orl.crew.domain.CrewListSearchType;
 import com.bitcamp.orl.crew.service.CrewListViewService;
 
 @RestController
@@ -47,18 +47,18 @@ public class RestCrewListController {
 		// 현재 페이지 값을 받아서 페이징에 필요한 값을 계산하기 위한 Criteria 객체 생성
 		CrewListCriteria cri = new CrewListCriteria(page);
 		
-		SearchType st;
+		CrewListSearchType st;
 
 		if (keyword != null) {
 			String keywordK = URLDecoder.decode(keyword, "UTF-8");
 			System.out.println(keywordK);
-			st = new SearchType(searchType, keywordK, cri.getPageStart(), cri.getPerPageNum());
+			st = new CrewListSearchType(searchType, keywordK, cri.getPageStart(), cri.getPerPageNum());
 		} else {
-			st = new SearchType(searchType, keyword, cri.getPageStart(), cri.getPerPageNum());
+			st = new CrewListSearchType(searchType, keyword, cri.getPageStart(), cri.getPerPageNum());
 		}
 
 		// 페이징 처리
-		PageMaker pageMaker = new PageMaker();
+		CrewListPageMaker pageMaker = new CrewListPageMaker();
 		pageMaker.setCri(cri);
 
 		// 총 게시물 수

@@ -23,6 +23,10 @@ public class S3Util {
 	private String secretKey = ""; // 보안 엑세스 키
 	///////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////
+	private String bucketName = ""; //버킷 이름
+	///////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
+	
 	
 	private AmazonS3 conn;
 
@@ -66,7 +70,7 @@ public class S3Util {
 	public void fileDelete(String fileName) {
 		String filePath = (fileName).replace(File.separatorChar, '/');
 		String realFilePath =  "/fileupload/crew"+filePath;
-		conn.deleteObject("", realFilePath);
+		conn.deleteObject(bucketName, realFilePath);
 		System.out.println("삭제성공");
 	}
 

@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CrewForPaging {
 	private List<Crew> crewList;
-	private PageMaker pk;
+	private CrewListPageMaker pk;
 	
 }

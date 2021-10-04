@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PageMaker {
+public class CrewListPageMaker {
 	
 	private CrewListCriteria cri;// page, perPageNum 을 가지고 있음
     private int totalCount;// 전체 게시글 수

@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.bitcamp.orl.crew.domain.Crew;
 import com.bitcamp.orl.crew.domain.CrewCommentInfo;
 import com.bitcamp.orl.crew.domain.CrewMemberList;
-import com.bitcamp.orl.crew.domain.SearchType;
+import com.bitcamp.orl.crew.domain.CrewListSearchType;
 import com.bitcamp.orl.member.domain.Member;
 
 public interface CrewMapper {
@@ -22,13 +22,13 @@ public interface CrewMapper {
 	List<Crew> selectAll(@Param("pageStart")int pageStart, @Param("perPageNum")int perPageNum);
 	
 	//검색을 통한 crew 리스트 +페이징
-	List<Crew> selectCrewAll(SearchType searchType);
+	List<Crew> selectCrewAll(CrewListSearchType searchType);
 	
 	//크루 게시물 총 개수
 	int CrewCount();
 		
 	//검색 결과에 대한 크루 게시물 총 개수
-	int CrewCountForSearching(SearchType searchType);
+	int CrewCountForSearching(CrewListSearchType searchType);
 	
 	//session의 memberIdx을 이용하여 내가 가입한 crew 리스트
 	List<Crew> selectMyCrewList(@Param("memberIdx")int memberIdx);
